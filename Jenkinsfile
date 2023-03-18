@@ -18,5 +18,10 @@ pipeline {
                 git branch: 'feature_gunjan', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+         stage('GItSCM') {
+                    steps {
+                        echo 'trying gitscm'
+                    }
+                }
     }
 }
