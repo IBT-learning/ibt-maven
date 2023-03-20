@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ibt.app</groupId>
-  <artifactId>patdada-app</artifactId>
+  <artifactId>ibt-maven</artifactId>
   <version>1.4</version>
 
   <name>hello-maven</name>
