@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ibt.patdada-app</groupId>
+  <groupId>com.ibt.app</groupId>
   <artifactId>patdada-app</artifactId>
-  <version>1.3.2-SNAPSHOT</version>
+  <version>1.4</version>
 
-  <name>patdada-app</name>
+  <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -17,20 +17,6 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
-
-
-  <distributionManagement>
-    <repository>
-      <id>central</id>
-      <name>a0dgqoivcggpg-artifactory-primary-0-releases</name>
-      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-release</url>
-     <repository>
-     </snapshotRepository>
-      <id>snapshots</id>
-      <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
-      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-snapshot</url>
-    </snapshotRepository>
-  </distributionManagement>
   
   <dependencies>
     <dependency>
@@ -40,6 +26,19 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <distributionManagement>
+    </snapshotRepository>
+      <id>snapshots</id>
+      <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
+      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-snapshot</url>
+    </snapshotRepository>
+    <repository>
+      <id>central</id>
+      <name>a0dgqoivcggpg-artifactory-primary-0-releases</name>
+      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-release</url>
+    </repository>
+  </distributionManagement>
   
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
