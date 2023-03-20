@@ -17,7 +17,7 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
-  
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -26,9 +26,9 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
-  </distributionManagement>
-  </snapshotRepository>
+
+  <distributionManagement>
+    <snapshotRepository>
       <id>snapshots</id>
       <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
       <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-snapshot</url>
@@ -39,7 +39,7 @@
       <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-release</url>
     </repository>
   </distributionManagement>
-  
+
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
@@ -61,10 +61,10 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
         </plugin>
-<!--    <plugin>-->
-<!--      <artifactId>maven-jar-plugin</artifactId>-->
-<!--      <version>3.0.2</version>-->
-<!--    </plugin>-->
+<!--        <plugin>-->
+<!--          <artifactId>maven-jar-plugin</artifactId>-->
+<!--          <version>3.0.2</version>-->
+<!--        </plugin>-->
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
@@ -86,3 +86,15 @@
     </pluginManagement>
   </build>
 </project>
+
+
+
+
+
+
+
+
+
+
+
+
