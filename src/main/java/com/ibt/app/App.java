@@ -1,4 +1,4 @@
-package com.ibt.app;
+package com.ibt.patdada_app;
 
 /**
  * Hello world!
@@ -6,8 +6,5 @@ package com.ibt.app;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World this is Patrick" );
-    }
+    public static void main( String[] args ) { System.out.println( "Hello World this is Patrick" ); }
 }
