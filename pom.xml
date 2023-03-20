@@ -28,7 +28,7 @@
   </dependencies>
   
   <distributionManagement>
-    </snapshotRepository>
+  </snapshotRepository>
       <id>snapshots</id>
       <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
       <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-snapshot</url>
