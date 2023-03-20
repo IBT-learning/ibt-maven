@@ -27,7 +27,7 @@
     </dependency>
   </dependencies>
   
-  <distributionManagement>
+  </distributionManagement>
   </snapshotRepository>
       <id>snapshots</id>
       <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
