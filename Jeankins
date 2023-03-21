@@ -27,7 +27,9 @@ pipeline {
                 echo "${env.Message}"
             }
         }
-        stage('Gutscm') {
+        stage('Gitscm') {
+
+        }
                     steps {
                         echo 'trying git scm'
                         echo "${env.Message}"
@@ -44,8 +46,7 @@ pipeline {
                      sh "dir"
                      sh "ls -lrt"
                      echo "${env.Message}"
-                     environment{
-                     variable="435"
+
                         }
                      }
 
