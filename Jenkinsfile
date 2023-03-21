@@ -20,7 +20,7 @@ pipeline {
         }
          stage('GItSCM') {
                     steps {
-                        echo 'trying gitscm one more time'
+                        echo 'trying gitscm to hook logs'
                     }
                 }
     }
