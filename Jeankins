@@ -28,5 +28,11 @@ pipeline {
                                 echo 'Hi'
                             }
                         }
+             stage('Run shel command') {
+                       steps {
+                     sh "dir"
+                     sh "ls -lrt"
+                        }
+                    }
     }
 }
