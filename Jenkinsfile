@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        string(name:'Branch', defaultValue:'main', description:'enter branch to build')
-    }
     stages {
         stage('Hello') {
             steps {
@@ -10,11 +7,6 @@ pipeline {
             }
         }
          stage('hi') {
-            when {
-                expression {
-                    env.BRANCH_NAME == 'feature_gunjan'
-                }
-            }
             steps {
                 echo 'Hi'
             }
@@ -26,16 +18,8 @@ pipeline {
             }
         }
          stage('GItSCM') {
-         environment{
-                 version='1.2'
-             }
                     steps {
                         echo 'trying gitscm to hook logs'
-                        echo "${env.version}"
-                        sh "echo $version"
-                        script {
-                            print env.version
-                         }
                     }
                 }
     }
