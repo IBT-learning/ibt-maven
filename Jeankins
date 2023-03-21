@@ -4,7 +4,7 @@ pipeline {
     string(name:'Branch', defaultValue:'main', description:'enter a branch to build')
     }
     environment{
-    Message="hansP!PLine--->''
+    Message="hans_P!PLine--->"
 
     }
     stages {
