@@ -4,7 +4,7 @@ pipeline {
         string(name:'Branch', defaultValue:'main', description:'enter branch to build')
     }
     environment{
-        version="1.2"
+        version = '1.2'
     }
 
     stages {
@@ -14,6 +14,7 @@ pipeline {
             }
         }
          stage('hi') {
+
             steps {
                 echo 'Hi'
             }
