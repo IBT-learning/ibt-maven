@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name:'Branch', defaultValue:'master', description:'enter branch to build')
+        string(name:'Branch', defaultValue:'main', description:'enter branch to build')
         choice(name:'test', choices:['ice-cream', 'chocalte'], description:'choose')
     }
 
@@ -25,6 +25,7 @@ pipeline {
          stage('GItSCM') {
                     steps {
                         echo 'trying gitscm to hook logs'
+                        echo ${test}
                     }
                 }
     }
