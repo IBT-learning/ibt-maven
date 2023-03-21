@@ -23,5 +23,16 @@ pipeline {
                         echo 'trying gitSCM poll'
                     }
                 }
+          stage('Build'){
+            steps{
+                  sh "pwd"
+                  sh "who"
+                  script{
+                    def version = '1.2'
+                    echo "${version}"
+                  }
+            }
+          }
+
     }
 }
