@@ -26,6 +26,11 @@ pipeline {
             }
         }
          stage('GItSCM') {
+            when{
+                 expression {
+                        env.BRANCH_NAME == "main"
+                 }
+                }
                     steps {
                         echo 'trying gitscm to hook logs'
                         echo 'trying gitSCM poll'
