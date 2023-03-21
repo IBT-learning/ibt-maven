@@ -27,11 +27,15 @@ pipeline {
         }
          stage('GItSCM') {
          environment{
-                 version = '1.2'
+                 version='1.2'
              }
                     steps {
                         echo 'trying gitscm to hook logs'
-                        echo '${env.version}'
+                        echo "${env.version}"
+                        sh "echo $version"
+                        script {
+                            print env.version
+                         }
                     }
                 }
     }
