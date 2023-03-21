@@ -29,13 +29,17 @@ pipeline {
                     steps {
                         echo 'trying gitscm to hook logs'
                         echo 'trying gitSCM poll'
-                        echo "${env.Message}"
+                        echo "${env.variable}"
                     }
                 }
           stage('Build'){
+          environment{
+            variable="435"
+          }
             steps{
                   sh "pwd"
                   sh "who"
+                  echo "${env.variable}"
                   script{
                     def version = '1.2'
                     echo "${version}"
