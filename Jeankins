@@ -28,8 +28,6 @@ pipeline {
             }
         }
         stage('Gitscm') {
-
-        }
                     steps {
                         echo 'trying git scm'
                         echo "${env.Message}"
