@@ -16,7 +16,7 @@ pipeline {
          stage('hi') {
             when {
                 expression {
-                    BRANCH_NAME == 'feature_gunjan'
+                    env.BRANCH_NAME == 'feature_gunjan'
                 }
             }
             steps {
@@ -32,7 +32,7 @@ pipeline {
          stage('GItSCM') {
                     steps {
                         echo 'trying gitscm to hook logs'
-                        echo '${version}'
+                        echo '${env.version}'
                     }
                 }
     }
