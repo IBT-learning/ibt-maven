@@ -35,9 +35,7 @@ pipeline {
                      sh "dir"
                      sh "ls -lrt"
 
-                     script{
 
-                     }
                         }
                      }
 
