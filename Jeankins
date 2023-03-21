@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    parameters {
+    string(name:'Branch', defaultValue:'main', description:'enter a branch to build')
+    }
     stages {
         stage('1st- great') {
             steps {
@@ -15,7 +17,7 @@ pipeline {
         stage('adding Git') {
             steps {
                 echo 'first pipeline job'
-                git branch: 'hansn-feature', credentialsId: 'for-github', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: '${Branch}', credentialsId: 'for-github', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
         stage('Gutscm') {
@@ -32,7 +34,13 @@ pipeline {
                        steps {
                      sh "dir"
                      sh "ls -lrt"
+
+                     script{
+
+                     }
                         }
-                    }
+                     }
+
     }
 }
+
