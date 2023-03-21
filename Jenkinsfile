@@ -3,15 +3,20 @@ pipeline {
     parameters {
         string(name:'Branch', defaultValue:'main', description:'enter branch to build')
     }
+    environment{
+        Message="Jan26_Cohort"
+    }
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                echo "${env.Message}"
             }
         }
          stage('hi') {
             steps {
                 echo 'Hi'
+                echo "${env.Message}"
             }
         }
         stage('Git checkout') {
@@ -24,6 +29,7 @@ pipeline {
                     steps {
                         echo 'trying gitscm to hook logs'
                         echo 'trying gitSCM poll'
+                        echo "${env.Message}"
                     }
                 }
           stage('Build'){
