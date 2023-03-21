@@ -34,8 +34,6 @@ pipeline {
                        steps {
                      sh "dir"
                      sh "ls -lrt"
-
-
                         }
                      }
 
