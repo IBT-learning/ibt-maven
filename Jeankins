@@ -18,5 +18,15 @@ pipeline {
                 git branch: 'hansn-feature', credentialsId: 'for-github', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage('Gutscm') {
+                    steps {
+                        echo 'trying git scm'
+                    }
+                }
+                stage('adding sonarqube') {
+                            steps {
+                                echo 'Hi'
+                            }
+                        }
     }
 }
