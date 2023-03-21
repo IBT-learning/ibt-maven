@@ -14,7 +14,11 @@ pipeline {
             }
         }
          stage('hi') {
-
+            when {
+                expression {
+                    BRANCH_NAME == 'feature_gunjan'
+                }
+            }
             steps {
                 echo 'Hi'
             }
