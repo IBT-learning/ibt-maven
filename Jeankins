@@ -28,6 +28,11 @@ pipeline {
             }
         }
         stage('Gitscm') {
+            when{
+                expression {
+                    env.BRANCH_NAME == "MAIN"
+                }
+        }
                     steps {
                         echo 'trying git scm'
                         echo "${env.Message}"
