@@ -6,8 +6,22 @@ stages {
         stage('1st- great') {
             steps {
                 echo 'Hello World'
+                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/hansn_feature']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven']]]
 
             }
         }
+    stage('Validate')
+    {
+    step{
+            sh "mvn compile"
+}
+    }
 
+    stage('Validate')
+        {
+        step{
+                sh "mvn compile"
+    }
+        }
+    }
 }
