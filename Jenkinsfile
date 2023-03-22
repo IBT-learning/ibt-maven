@@ -51,10 +51,10 @@ pipeline {
                   }
             }
           }
-    post {
-        always{
-            echo "i will run always"
+    }
+     post {
+            always{
+                echo "i will run always"
+            }
         }
-    }
-    }
 }
