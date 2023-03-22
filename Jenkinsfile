@@ -20,6 +20,7 @@ pipeline {
                 echo 'Michael Jordan'
                 echo 'Michael Jackson'
                 echo 'Bill Clinton'
+                echo 'now what'
                 git branch: 'feature_koby2', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
