@@ -2,10 +2,14 @@ pipeline{
     agent any
 
     stages {
-    stage('hi') {
+    stage('Git checkout') {
                 steps {
-                    echo 'Hi'
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_gunjan']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
                 }
             }
+     stage('Validate')
+     {
+        sh "mvn validate"
+     }
     }
 }
