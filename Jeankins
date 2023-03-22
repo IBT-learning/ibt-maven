@@ -52,6 +52,11 @@ pipeline {
 
                         }
                      }
+        post {
+        always{
+        echo 'will always run'
+        }
+        }
 
     }
 }
