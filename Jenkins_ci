@@ -1,0 +1,13 @@
+pipeline{
+    agent any
+
+
+stages {
+        stage('1st- great') {
+            steps {
+                echo 'Hello World'
+
+            }
+        }
+
+}
