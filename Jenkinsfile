@@ -7,6 +7,16 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Mezanin') {
+                    steps {
+                        sh "pwd"
+                        sh "whoami"
+                        script {
+                            def version = '1.2'
+                            echo "${version}"
+                        }
+                    }
+                }
         stage('Hi') {
             steps {
                 echo 'Hi this is Koby'
