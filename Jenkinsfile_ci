@@ -25,6 +25,16 @@ pipeline{
                  sh "mvn test"
              }
           }
+      stage('SonarQube Analysis') {
+       environment{
+            scannerHome = tool 'ibt-sonarqube';
+       }
+           steps{
+           withSonarQubeEnv(credentialsId: 'SQ-student' installationName: 'IBT sonarqube') ) {
+             sh "$scannerHome/bin/sonar-scanner -Dsonar.projectKey=Jan26_cohort"
+           }
+          }
+         }
        stage('Package')
             {
                steps{
