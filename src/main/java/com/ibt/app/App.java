@@ -1,7 +1,7 @@
 package com.ibt.app;
 
 /**
- * Hello world!
+ * Hello world! This is cedric 
  *
  */
 public class App 
