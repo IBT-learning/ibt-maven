@@ -24,7 +24,7 @@ pipeline{
             }
         }
 
-           stage('continue1'){
+           stage('input1'){
                         input{
                         message "should we proceed"
                         ok "Yes, proceed"
@@ -41,7 +41,7 @@ pipeline{
                     }
                 }
 
-                stage('continue'){
+                stage('input2'){
                 input{
                 message "should we proceed"
                 ok "Yes, proceed"
@@ -69,6 +69,16 @@ pipeline{
                      }
                   }
 
+            stage('Pipeline runs?'){
+                input{
+                message "does the pipeline run all steps"
+                ok "Yes, proceed"
+                }
+                steps{
+                echo 'deploy pipeline'
+                }
+                }
+
         stage('CI success') {
                     steps {
 
@@ -76,5 +86,7 @@ pipeline{
                     echo 'done'
                     }
                 }
+
+
     }
 }
