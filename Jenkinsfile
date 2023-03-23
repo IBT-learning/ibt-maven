@@ -20,7 +20,8 @@ pipeline {
         }
         stage('GITSCM') {
                     steps {
-                        echo 'trying GITSCM'
+                        echo 'trying GITSCM poll'
+
                     }
                 }
     }
