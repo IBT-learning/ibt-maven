@@ -12,6 +12,7 @@ stages {
                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
                 }
             }
+            }
             steps {
                 echo "Pipeline ins running."
         stage('git check-out') {
@@ -35,3 +36,4 @@ stages {
                     }
                 }
     }
+}
