@@ -3,17 +3,15 @@ pipeline{
 
 
 stages {
-        stage('1st- stage | git check-out') {
+        stage('git check-out') {
             steps {
-                echo 'Git check out'
-                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/hansn-feaure']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                  checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/hansn-feaure']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
 
             }
         }
-        stage('2nd- stage | Validate') {
+        stage('Validate') {
             steps {
-                echo '----'
-                sh 'mvn validate'
+                 sh 'mvn validate'
 
             }
         }
@@ -22,8 +20,7 @@ stages {
                     steps {
                         echo 'Hello World'
 
-                        sh 'cd target'
-                        su 'dir'
+
                     }
                 }
     }
