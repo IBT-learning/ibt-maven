@@ -21,6 +21,7 @@ pipeline {
          stage('GitSCM') {
                     steps {
                         echo 'Trying gitscm on jenkinsfile one more time'
+                        echo 'Trying gitscm poll'
                     }
                 }
     }
