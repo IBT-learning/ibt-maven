@@ -9,6 +9,11 @@ stages {
 
             }
         }
+        stage('2nd- stage') {
+            steps {
+                echo 'Hello World'
 
+            }
+        }
     }
 }
