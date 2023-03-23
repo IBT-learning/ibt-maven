@@ -20,7 +20,7 @@ pipeline {
         }
          stage('GitSCM') {
                     steps {
-                        echo 'Trying gitscm'
+                        echo 'Trying gitscm on jenkinsfile'
                     }
                 }
     }
