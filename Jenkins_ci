@@ -25,6 +25,16 @@ stages {
                     }
                 }
 
+                stage('continue'){
+                input{
+                message "should we proceed"
+                ok "Yes, proceed"
+                }
+                steps{
+                echo 'deploy pipeline'
+                }
+                }
+
           stage('adding SonarQube scanner') {
                 environment{
                      scannerHome = tool 'ibt-sonarqube';
