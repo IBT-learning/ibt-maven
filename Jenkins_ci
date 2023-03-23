@@ -4,6 +4,36 @@ pipeline{
 
 stages {
 
+        stage('welcome to ci pipeline')
+        steps{
+        script{
+        firstName = input(
+       message: 'what is your name?'
+       ok: 'Submit,
+       parameters: [string(defaultValue: 'Dave', name: 'FIRST_NAME', trim:true)]
+
+        )
+        }
+        }
+        }
+
+        stage('output'){
+        agent any
+
+        steps{
+        script {
+        echo "Good morning, firstName"
+        }
+
+        sh '''
+
+       hostname
+
+
+        }
+        }
+
+
 
         stage('git check-out') {
             steps {
@@ -53,7 +83,7 @@ stages {
                      }
                   }
 
-        stage('3rd- stage') {
+        stage('CI success') {
                     steps {
 
 
