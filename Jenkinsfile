@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    parameter {
+    parameters {
         string(name:'Branch', defaultValue:'main', description:'enter branch to build')
     }
     stages {
