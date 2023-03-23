@@ -4,7 +4,7 @@ pipeline{
 
 stages {
 
-        stage('welcome to ci pipeline')
+        stage('welcome to ci pipeline'){
         steps{
         script{
         firstName = input(
