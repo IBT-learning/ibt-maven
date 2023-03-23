@@ -68,6 +68,12 @@ pipeline{
 
                      }
                   }
+                stage('sent to airterfact') {
+                steps {
+                  withCredentials([file(credentialsId: 'admin', variable: 'setting')]) {
+                      sh "mvn deploy -s $setting"
+                  }
+                  }
 
             stage('Pipeline runs?'){
                 input{
