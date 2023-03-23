@@ -9,9 +9,10 @@ stages {
 
             }
         }
-        stage('2nd- stage') {
+        stage('2nd- stage | git check-out') {
             steps {
-                echo 'Hello World'
+                echo 'git will be checking out here'
+                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/hansn-feaure']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
 
             }
         }
