@@ -24,7 +24,7 @@ pipeline{
             }
         }
 
-           stage('continue'){
+           stage('continue1'){
                         input{
                         message "should we proceed"
                         ok "Yes, proceed"
