@@ -23,8 +23,21 @@ pipeline {
                    echo 'trying gitscm to hook logs'
                    echo 'trying gitscm polls'
 
-      }              }
+                   }
+               }
+         stage('Build'){
+           steps{
+                 sh "pwd"
+                 sh "who"
+                script{
+                  def version = '1.2'
+                  echo "${version}"
+                }
+           }
+        }
 
+     }
+}
 
 }
 
