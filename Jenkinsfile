@@ -32,10 +32,9 @@ pipeline {
                 }
                }
                    steps {
-                   echo 'trying gitscm to hook logs'
-                   echo 'trying gitscm polls'
-                   echo "${env.Message}"
-
+                       echo 'trying gitscm to hook logs'
+                        echo 'trying gitscm polls'
+                        echo "${env.Message}"
                    }
                }
          stage('Build'){
@@ -56,3 +55,6 @@ pipeline {
         always{
              echo "i will run always"
         }
+    }
+    }
+}
