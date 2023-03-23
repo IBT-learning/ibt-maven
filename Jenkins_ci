@@ -41,12 +41,30 @@ stages {
 
             }
         }
+
+        stage('Clean') {
+                    steps {
+                         sh 'mvn clean'
+
+                    }
+                }
+
         stage('Validate') {
             steps {
                  sh 'mvn validate'
 
             }
         }
+
+           stage('continue'){
+                        input{
+                        message "should we proceed"
+                        ok "Yes, proceed"
+                        }
+                        steps{
+                        echo 'deploy pipeline'
+                        }
+                        }
 
         stage('compile') {
                     steps {
