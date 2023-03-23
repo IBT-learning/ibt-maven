@@ -24,15 +24,15 @@ pipeline {
                         echo 'Trying gitscm poll'
                     }
                 }
-          stage('Build'){
+         stage('Build'){
            steps{
-                  sh "pwd"
-                  sh "who"
-                  scripts{
+                 sh "pwd"
+                 sh "who"
+                 scripts{
                     def version = '1.2'
                     echo "${version}"
-                  }
+                 }
            }
-          }
+         }
     }
 }
