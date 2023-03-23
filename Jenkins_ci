@@ -18,6 +18,20 @@ stages {
             }
         }
 
+        stage('compile') {
+                    steps {
+                         sh 'compile'
+
+                    }
+                }
+
+        stage('package') {
+                     steps {
+                         sh 'package'
+
+                     }
+                  }
+
         stage('3rd- stage') {
                     steps {
 
