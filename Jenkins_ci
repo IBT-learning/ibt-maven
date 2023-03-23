@@ -1,3 +1,4 @@
+def firstName = null
 pipeline{
     agent any
 
