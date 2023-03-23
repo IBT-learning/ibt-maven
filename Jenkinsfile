@@ -4,7 +4,7 @@ pipeline {
         string(name:'Branch', defaultValue:'main', description:'enter branch to build')
     }
     environment{
-         Message="Jan26_Cohort"
+        Message="Jan26_Cohort"
     }
     stages {
         stage('Hello') {
@@ -13,7 +13,7 @@ pipeline {
                 echo "${env.Message}"
             }
         }
-           stage('Hi') {
+         stage('hi') {
             steps {
                 echo 'Hi'
                 echo "${env.Message}"
@@ -25,36 +25,36 @@ pipeline {
                 git branch: '${Branch}', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
-        stage('GITSCM') {
-           when{
-                expression {
+         stage('GItSCM') {
+            when{
+                 expression {
                         env.BRANCH_NAME == "main"
+                 }
                 }
-               }
-                   steps {
-                       echo 'trying gitscm to hook logs'
-                        echo 'trying gitscm polls'
-                        echo "${env.Message}"
-                   }
-               }
-         stage('Build'){
-         environment{
-          variable="435"
-         }
-           steps{
-                 sh "pwd"
-                 sh "who"
-                 echo "{env.variable}"
-                script{
-                  def version = '1.2'
-                  echo "${version}"
-               }
-
-           }
-    post {
-        always{
-             echo "i will run always"
+                    steps {
+                        echo 'trying gitscm to hook logs'
+                        echo 'trying gitSCM poll'
+                        echo "${env.variable}"
+                    }
+                }
+          stage('Build'){
+          environment{
+            variable="435"
+          }
+            steps{
+                  sh "pwd"
+                  sh "who"
+                  echo "${env.variable}"
+                  script{
+                    def version = '1.2'
+                    echo "${version}"
+                  }
+            }
+          }
+    }
+     post {
+            always{
+                echo "i will run always"
+            }
         }
-    }
-    }
 }
