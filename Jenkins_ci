@@ -3,6 +3,17 @@ pipeline{
 
 
 stages {
+
+        stage('login: ') {
+            input {
+                message "Enter your name:?"
+
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
+            steps {
+                echo "Pipeline ins running."
         stage('git check-out') {
             steps {
                   checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/hansn-feature']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
@@ -18,9 +29,9 @@ stages {
 
         stage('3rd- stage') {
                     steps {
-                        echo 'Hello World'
 
 
+                    echo "Pipeline was running by: ${PERSON}"
                     }
                 }
     }
