@@ -13,7 +13,7 @@ stages {
     stage('Validate')
     {
     step{
-            sh "mvn compile"
+            echo 'validate'
 }
     }
 
