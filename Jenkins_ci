@@ -11,7 +11,7 @@ stages {
         }
         stage('Validate') {
             steps {
-                 bash 'mvn validate'
+                 sh 'mvn validate'
 
             }
         }
