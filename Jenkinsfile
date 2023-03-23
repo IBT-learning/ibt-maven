@@ -49,9 +49,10 @@ pipeline {
                 script{
                   def version = '1.2'
                   echo "${version}"
-                }
+               }
+
            }
     post {
         always{
              echo "i will run always"
-}
+        }
