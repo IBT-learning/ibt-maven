@@ -18,5 +18,10 @@ pipeline {
                 git branch: 'patdada', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+         stage('GitSCM') {
+                    steps {
+                        echo 'Trying gitscm'
+                    }
+                }
     }
 }
