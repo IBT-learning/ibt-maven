@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                echo 'Hello World'
+                git branch: 'feature_koby2', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+            }
+        }
+    }
+    post {
+        always {
+            echo "ci done"
+        }
+    }
+}
