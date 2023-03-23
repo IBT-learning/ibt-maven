@@ -34,9 +34,13 @@ pipeline {
                    }
                }
          stage('Build'){
+         environment{
+          variable="435"
+         }
            steps{
                  sh "pwd"
                  sh "who"
+                 echo "{env.variable}"
                 script{
                   def version = '1.2'
                   echo "${version}"
