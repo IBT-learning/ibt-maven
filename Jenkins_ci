@@ -20,14 +20,14 @@ stages {
 
         stage('compile') {
                     steps {
-                         mvn 'Compile'
+                         mvn 'compile'
 
                     }
                 }
 
         stage('package') {
                      steps {
-                        mvn 'Package'
+                        mvn 'package'
 
                      }
                   }
