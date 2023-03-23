@@ -3,7 +3,7 @@ pipeline{
 
 
 stages {
-        stage('1st- stage' | git check-out) {
+        stage('1st- stage | git check-out') {
             steps {
                 echo 'Git check out'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/hansn-feaure']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
