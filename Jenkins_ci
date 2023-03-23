@@ -15,5 +15,12 @@ stages {
 
             }
         }
+
+        stage('3rd- stage') {
+                    steps {
+                        echo 'Hello World'
+
+                    }
+                }
     }
 }
