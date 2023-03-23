@@ -23,7 +23,7 @@ stages {
                         echo 'Hello World'
 
                         sh 'cd target'
-                        dir
+                        su 'dir'
                     }
                 }
     }
