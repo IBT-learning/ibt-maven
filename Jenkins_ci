@@ -25,6 +25,17 @@ stages {
                     }
                 }
 
+          stage('adding SonarQube scanner') {
+                environment{
+                     scannerHome = tool 'ibt-sonarqube';
+                }
+                    steps{
+                    withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
+                      sh "$scannerHome/bin/sonar-scanner"
+                    }
+                   }
+                  }
+
         stage('package') {
                      steps {
                         sh 'mvn package'
