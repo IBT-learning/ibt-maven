@@ -20,14 +20,14 @@ stages {
 
         stage('compile') {
                     steps {
-                         sh 'compile'
+                         sh 'Compile'
 
                     }
                 }
 
         stage('package') {
                      steps {
-                         sh 'package'
+                         sh 'Package'
 
                      }
                   }
