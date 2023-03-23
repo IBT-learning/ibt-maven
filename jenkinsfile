@@ -18,5 +18,11 @@ pipeline {
                 git branch: 'feature-fabrice', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+         stage('Gitscm') {
+            steps {
+                 echo 'trying gitscm to hooks logs'
+                 echo 'trying gitscm poll'
+            }
+         }
     }
 }
