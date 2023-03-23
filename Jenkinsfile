@@ -19,10 +19,18 @@ pipeline {
             }
         }
         stage('GITSCM') {
-                    steps {
-                        echo 'trying GITSCM poll'
+                   steps {
+                   echo 'trying gitscm to hook logs'
 
-                    }
-                }
-    }
+
+    }              }
 }
+
+
+
+
+
+
+
+
+    }
