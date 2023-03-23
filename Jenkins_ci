@@ -9,7 +9,7 @@ stages {
         script{
         firstName = input(
        message: 'what is your name?',
-       ok: 'Submit,
+       ok: 'Submit'
        parameters: [string(defaultValue: 'Dave', name: 'FIRST_NAME', trim:true)]
 
         )
