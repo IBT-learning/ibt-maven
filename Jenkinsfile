@@ -51,7 +51,10 @@ pipeline {
                   echo "${version}"
                 }
            }
+    post {
+        always{
+             echo "i will run always"
         }
-
-     }
+    }
+    }
 }
