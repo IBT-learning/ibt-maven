@@ -41,5 +41,13 @@ pipeline{
                    sh "mvn package"
                }
             }
+       stage('Upload to Artifactory')
+       {
+            steps{
+                withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
+                    sh "mvn deploy -s $settings"
+                }
+            }
+       }
     }
 }
