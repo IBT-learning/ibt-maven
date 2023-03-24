@@ -49,5 +49,13 @@ pipeline{
                  }
             }
        }
+       stage(upload Artifactory -configFile')
+       {
+             steps{
+                  configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn-settings', variable: 'mvn-settings')]) {
+                      mvn deploy -s $mvn-settings
+                  }
+             }
+       }
     }
 }
