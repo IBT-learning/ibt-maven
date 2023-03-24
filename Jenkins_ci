@@ -62,16 +62,20 @@ pipeline{
                    }
                   }
 
+                  }
+                  }
+
         stage('package') {
                      steps {
                         sh 'mvn package'
 
                      }
                   }
-          stage('sent to airterfact') {
+          stage('sent to fact') {
                 steps {
                   withCredentials([file(credentialsId: 'admin', variable: 'setting')]) {
                       sh "mvn deploy -s $setting"
+                  }
                   }
                   }
 
@@ -92,7 +96,6 @@ pipeline{
                     echo 'done'
                     }
                 }
+        }
 
-
-    }
-}
+   }
