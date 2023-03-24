@@ -32,8 +32,8 @@
                  echo 'Im trying some commands.'
                  sh 'pwd'
                  sh 'who'
-                 script{
-                    def version = 1.0.1
+                 script {
+                    def version = '1.0.1'
                     echo "${vision}"
                  }
              }
