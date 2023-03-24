@@ -23,9 +23,6 @@ pipeline {
         }
 
          stage('SonarQube Analysis') {
-          catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "exit 1"
-                }
        environment{
             scannerHome = tool 'ibt-sonarqube';
        }
