@@ -46,27 +46,17 @@ pipeline{
             steps{
                  withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
                      sh "mvn deploy -s $settings"
+
                  }
             }
        }
        stage('upload Artifactory -configFile')
        {
              steps{
-                  configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn-settings', variable: 'mvn-settings')]) {
+                  configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
                     sh "mvn deploy -s $mvn-settings"
                   }
              }
        }
-         stage('Vulnerability scan - Dependency Check')
-              {
-                   steps{
-                            dependencyCheck additionalArguments: '''
-                                                                  -o "./"
-                                                                  -s "./"
-                                                                  -f "ALL"
-                                                                  --prettyPrint ''', odcInstallation: 'dependency-check'
-                              dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                   }
-              }
-           }
-       }
+    }
+}
