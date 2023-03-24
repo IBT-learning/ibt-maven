@@ -41,5 +41,13 @@ pipeline{
                    sh "mvn package"
                }
             }
+       stage('deploy to Artifactory')
+       {
+            steps{
+                 withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
+                     sh "mvn deploy -s $settings"
+                 }
+            }
+       }
     }
 }
