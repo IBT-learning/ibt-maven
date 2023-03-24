@@ -46,6 +46,15 @@ pipeline{
             steps{
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
                     sh "mvn deploy -s $settings"
+
+                }
+            }
+       }
+       stage('upload Artifactory - configFile')
+       {
+            steps{
+                configFileProvider([configFile(fileId: '5d0920bc-97c5-4877-8aa4-2f61975fa9fc', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                   mvn deploy -s $mvn_settings
                 }
             }
        }
