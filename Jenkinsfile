@@ -36,6 +36,11 @@
                }
           }
          stage('commands & code') {
+            when{
+                expression {
+                    env.BRANCH_NAME == "main"
+                }
+            }
              steps {
                  echo 'Im trying some commands.'
                  sh 'pwd'
