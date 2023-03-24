@@ -10,7 +10,7 @@
          stage('Hello') {
              steps {
                  echo 'Hello World'
-                 echo "$(env.Message)"
+                 echo "${env.Message}"
              }
          }
          stage('Git checkout') {
@@ -21,7 +21,7 @@
          stage('GitSCM') {
              steps {
                  echo 'I not yet trying git scm'
-                 echo "$(env.Message)"
+                 echo "${env.Message}"
              }
          }
          stage('correct - GitSCM') {
@@ -32,7 +32,7 @@
          stage('WEBHOOK') {
                steps {
                    echo 'Im tryin this to see if webhook is working.'
-                   echo "$(env.Message)"
+                   echo "${env.Message}"
                }
           }
          stage('commands & code') {
