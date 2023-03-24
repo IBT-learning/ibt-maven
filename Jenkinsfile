@@ -22,5 +22,10 @@
                   echo 'I did try git scm. And it is working'
               }
          }
+         stage('WEBHOOK') {
+               steps {
+                   echo 'Im tryin this to see if webhook is working.'
+               }
+          }
      }
  }
