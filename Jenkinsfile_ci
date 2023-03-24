@@ -4,7 +4,7 @@ pipeline{
     stages {
     stage('Git checkout') {
                 steps {
-                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_gunjan']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/patdada']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
                 }
             }
      stage('Validate')
@@ -44,7 +44,7 @@ pipeline{
        stage('Upload to Artifactory')
        {
             steps{
-                withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
+                withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
                     sh "mvn deploy -s $settings"
                 }
             }
@@ -52,7 +52,7 @@ pipeline{
        stage('upload Artifactory - configFile')
        {
             steps{
-                configFileProvider([configFile(fileId: '5d0920bc-97c5-4877-8aa4-2f61975fa9fc', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
                    sh "mvn deploy -s $mvn_settings"
                 }
             }
