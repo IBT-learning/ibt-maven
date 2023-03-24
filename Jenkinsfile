@@ -34,7 +34,7 @@
                  sh 'who'
                  script {
                     def version = '1.0.1'
-                    echo "${vision}"
+                    echo "${version}"
                  }
              }
         }
