@@ -11,7 +11,7 @@
          }
          stage('Git checkout') {
              steps {
-                 git branch: 'feature-moses', changelog: false, credentialsId: 'github-jashan', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                 git branch: '${Branch}', changelog: false, credentialsId: 'github-jashan', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
              }
          }
          stage('GitSCM') {
