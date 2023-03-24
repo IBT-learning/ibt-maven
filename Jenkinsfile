@@ -17,5 +17,10 @@
                  echo 'I not yet trying git scm'
              }
          }
+         stage('correct - GitSCM') {
+              steps {
+                  echo 'I did try git scm. And it is working'
+              }
+         }
      }
  }
