@@ -87,7 +87,7 @@ pipeline{
                 steps{
                 echo 'deploy pipeline'
                 }
-                }
+
 
         stage('CI success') {
                     steps {
