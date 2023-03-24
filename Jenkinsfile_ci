@@ -53,7 +53,7 @@ pipeline{
        {
             steps{
                 configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
-                   sh "mvn deploy -s $mvn_settings"
+                 sh "mvn deploy -s $mvn_settings"
                 }
             }
        }
