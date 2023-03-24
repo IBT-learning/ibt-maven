@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'UX_IBT'}
+    agent any
 
     stages {
     stage('Git checkout') {
@@ -41,31 +41,12 @@ pipeline{
                    sh "mvn package"
                }
             }
-       stage('Upload to Artifactory')
+       stage('deploy to Artifactory')
        {
             steps{
-                withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
-                    sh "mvn deploy -s $settings"
-                }
-            }
-       }
-       stage('upload Artifactory - configFile')
-       {
-            steps{
-                configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
-                 sh "mvn deploy -s $mvn_settings"
-                }
-            }
-       }
-       stage('Vulnerability scan - Dependency Check')
-       {
-            steps{
-                     dependencyCheck additionalArguments: '''
-                                                           -o "./"
-                                                           -s "./"
-                                                           -f "ALL"
-                                                           --prettyPrint ''', odcInstallation: 'dependency-check'
-                       dependencyCheckPublisher pattern: 'dependency-check-report.xml.'
+                 withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
+                     sh "mvn deploy -s $settings"
+                 }
             }
        }
     }
