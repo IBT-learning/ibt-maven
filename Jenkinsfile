@@ -27,5 +27,16 @@
                    echo 'Im tryin this to see if webhook is working.'
                }
           }
+         stage('commands & code') {
+             steps {
+                 echo 'Im trying some commands.'
+                 sh 'pwd'
+                 sh 'who'
+                 script{
+                    def version = 1.0.1
+                    echo "${vision}"
+                 }
+             }
+        }
      }
  }
