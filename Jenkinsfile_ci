@@ -1,10 +1,10 @@
 pipeline{
-    agent any
+    agent {label 'UX_IBT'}
 
     stages {
     stage('Git checkout') {
                 steps {
-                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/patdada']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_gunjan']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
                 }
             }
      stage('Validate')
@@ -41,12 +41,31 @@ pipeline{
                    sh "mvn package"
                }
             }
-       stage('deploy to Artifactory')
+       stage('Upload to Artifactory')
        {
             steps{
-                 withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
-                     sh "mvn deploy -s $settings"
-                 }
+                withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
+                    sh "mvn deploy -s $settings"
+                }
+            }
+       }
+       stage('upload Artifactory - configFile')
+       {
+            steps{
+                configFileProvider([configFile(fileId: '5d0920bc-97c5-4877-8aa4-2f61975fa9fc', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                   sh "mvn deploy -s $mvn_settings"
+                }
+            }
+       }
+       stage('Vulnerability scan - Dependency Check')
+       {
+            steps{
+                     dependencyCheck additionalArguments: '''
+                                                           -o "./"
+                                                           -s "./"
+                                                           -f "ALL"
+                                                           --prettyPrint ''', odcInstallation: 'dependency-check'
+                       dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
        }
     }
