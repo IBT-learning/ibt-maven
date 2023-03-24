@@ -1,25 +1,21 @@
- stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Hi') {
-            steps {
-                echo ' Hi'
-            }
-        }
-        stage('GIT') {
-            steps {
-                echo 'This is connecting to my repository on github.'
-                git branch: 'feature-moses', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
-            }
-        }
-        stage('GitSCM') {
-            steps {
-                echo 'Testing this.'
-                echo 'You already know this'
-            }
-        }
+ pipeline {
+     agent any
 
-    }
+     stages {
+         stage('Hello') {
+             steps {
+                 echo 'Hello World'
+             }
+         }
+         stage('Git checkout') {
+             steps {
+                 git branch: 'feature-moses', changelog: false, credentialsId: 'github-jashan', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+             }
+         }
+         stage('GitSCM') {
+             steps {
+                 echo 'I not yet trying git scm'
+             }
+         }
+     }
+ }
