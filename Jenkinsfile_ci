@@ -16,6 +16,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test'
+                ech 'almost done'
             }
         }
         stage('Deploy') {
