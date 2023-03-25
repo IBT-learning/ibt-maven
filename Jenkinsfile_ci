@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                echo 'Hello World'
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'for-github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
         stage('Build') {
