@@ -1,0 +1,68 @@
+@Library('jenkins-library')
+pipeline {
+    agent any
+    parameters {
+    string(name:'Branch', defaultValue:'main', description:'enter a branch to build')
+    }
+    environment{
+    Message="hans_P!PLine--->"
+
+    }
+    stages {
+        stage('1st- great') {
+            steps {
+                echo 'Hello World'
+                echo "${env.Message}"
+            }
+        }
+         stage('2nd- prompt') {
+            steps {
+                echo 'Hi'
+                echo "${env.Message}"
+            }
+        }
+        stage('adding Git') {
+            steps {
+                echo 'first pipeline job'
+                git branch: '${Branch}', credentialsId: 'for-github', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                echo "${env.Message}"
+            }
+        }
+        stage('Gitscm') {
+            when{
+                expression {
+                    env.BRANCH_NAME == "MAIN"
+                }
+        }
+                    steps {
+                        echo 'trying git scm'
+                        echo "${env.Message}"
+                    }
+                }
+                stage('adding sonarqube') {
+                            steps {
+                                echo 'Hi'
+                                echo "${env.Message}"
+                            }
+                        }
+             stage('Run shel command') {
+                       steps {
+                     sh "dir"
+                     sh "ls -lrt"
+                     echo "${env.Message}"
+
+                        }
+                     }
+           }
+            post {
+                   always{
+                   echo 'will always run'
+                   }
+                   stage('adding library') {
+                               steps {
+                                   sonarScan()
+                               }
+                           }
+                   }
+}
+
