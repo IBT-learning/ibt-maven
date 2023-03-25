@@ -58,9 +58,9 @@ pipeline {
                    always{
                    echo 'will always run'
                    }
-                   stage('adding library') {
-                               steps {
-                                   sonarScan()
+         stage('adding library') {
+                    steps {
+                          sonarScan()
                                }
                            }
                    }
