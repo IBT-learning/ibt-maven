@@ -28,7 +28,7 @@ pipeline {
          stage('GItSCM') {
             when{
                  expression {
-                        env.BRANCH_NAME == "main"
+                        env.BRANCH_NAME == "feature_koby2"
                  }
                 }
                     steps {
