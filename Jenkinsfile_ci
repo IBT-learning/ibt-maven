@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'Branch', defaultValue:'main', description: 'enter branch to build')
+        string(name: 'Branch', defaultValue:'feature_koby2', description: 'enter branch to build')
     }
     stages {
         stage('Git Checkout') {
