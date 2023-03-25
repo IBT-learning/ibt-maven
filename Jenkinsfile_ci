@@ -1,11 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'Branch', defaultValue:'feature_koby2', description: 'enter branch to build')
-    }
-    environment {
-        Message="Jan26_Cohort"
-    }
     stages {
         stage('Git Checkout') {
             steps {
@@ -19,20 +13,17 @@ pipeline {
         stage('Test') {
             when {
                 expression {
-                env.BRANCH_NAME == "main"
                 }
             }
             steps {
                 echo 'Test'
                 echo 'almost done'
-                echo "${env.Message}"
             }
         }
         stage('Deploy') {
             steps {
             echo 'Deploy'
             echo 'Now'
-            echo "${env.Message}"
             }
         }
     }
