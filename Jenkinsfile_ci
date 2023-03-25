@@ -68,5 +68,19 @@ pipeline{
                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
        }
+       stage('Deploy to Dev server')
+       {
+        steps{
+            script{
+                def server = [name: 'IBT-dev', host: '159.203.35.105', allowAnyHosts: true]
+                withCredentials([usernamePassword(credentialsId: 'for-IBT-dev01Server', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    server.password = password
+                    server.user = username
+                    sshPut server: server, from: 'target/ibt-maven-1.4.jar' , into: '/opt/tomcat/webapps'
+                }
+
+            }
+        }
+       }
     }
 }
