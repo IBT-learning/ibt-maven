@@ -10,7 +10,7 @@ pipeline{
             }
         }
 
-        stage('Clean') {
+        stage('Clean1') {
                     steps {
                          sh 'mvn clean'
 
