@@ -18,5 +18,16 @@ pipeline {
                 git branch: 'feature-omoniyi', credentialsId: 'jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+      stages('Build'){
+         steps{
+               sh 'pwd'
+               sh 'who'
+               script{
+                  def version = '1.2'
+                  echo "${version}"
+               }
+         }
+      }
     }
+
 }
