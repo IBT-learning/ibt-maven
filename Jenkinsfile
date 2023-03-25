@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Maven') {
             steps {
-                sh "mvn validate"
+                sh 'mvn validate'
             }
         }
     }
