@@ -10,19 +10,25 @@ pipeline{
      stage('Validate')
      {
         steps{
-            sh "mvn validate"
+            withMaven(maven: 'maven_3.8') {
+                sh "mvn validate"
+            }
         }
      }
      stage('Compile')
           {
              steps{
-                 sh "mvn compile"
+                 withMaven(maven: 'maven_3.8') {
+                   sh "mvn compile"
+                 }
              }
           }
      stage('Run tests')
           {
              steps{
-                 sh "mvn test"
+                 withMaven(maven: 'maven_3.8') {
+                                 sh "mvn test"
+                 }
              }
           }
       stage('SonarQube Analysis') {
@@ -38,7 +44,9 @@ pipeline{
        stage('Package')
             {
                steps{
-                   sh "mvn package"
+                   withMaven(maven: 'maven_3.8') {
+                         sh "mvn package"
+                  }
                }
             }
        stage('Upload to Artifactory')
