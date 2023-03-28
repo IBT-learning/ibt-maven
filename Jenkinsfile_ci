@@ -10,25 +10,25 @@ pipeline{
      stage('Validate')
      {
         steps{
-             withMaven(maven: 'maven_3.8') {
-            sh "mvn validate"
+            withMaven(maven: 'maven_3.8') {
+                sh "mvn validate"
+            }
         }
-     }
      }
      stage('Compile')
           {
              steps{
                  withMaven(maven: 'maven_3.8') {
-                 sh "mvn compile"
+                   sh "mvn compile"
+                 }
              }
           }
      stage('Run tests')
           {
              steps{
-                  withMaven(maven: 'maven_3.8') {
-                  }
-             }
-                 sh "mvn test"
+                 withMaven(maven: 'maven_3.8') {
+                                 sh "mvn test"
+                 }
              }
           }
       stage('SonarQube Analysis') {
@@ -44,51 +44,51 @@ pipeline{
        stage('Package')
             {
                steps{
-                    withMaven(maven: 'maven_3.8') {
+                   withMaven(maven: 'maven_3.8') {
                          sh "mvn package"
-                   }
-              }
+                  }
+               }
             }
-       stage('deploy to Artifactory')
+       stage('Upload to Artifactory')
        {
             steps{
-                 withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
-                     sh "mvn deploy -s $settings"
-                 }
+                withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
+                    sh "mvn deploy -s $settings"
+                }
             }
        }
-       stage('upload Artifactory -configFile')
+       stage('upload Artifactory - configFile')
        {
-             steps{
-                  configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
-                    sh "mvn deploy -s $mvn_settings"
-                  }
-             }
+            steps{
+                configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                   sh "mvn deploy -s $mvn_settings"
+                }
+            }
        }
-       stage('Vulnerability scan - Dependency check')
+       stage('Vulnerability scan - Dependency Check')
        {
-             steps{
-                      dependencyCheck additionalArguments: '''
-                                                            -o "./"
-                                                            -s "./"
-                                                            -f "ALL"
-                                                            --prettyPrint ''', odcInstallation: 'dependency-check'
-                         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-             }
+            steps{
+                     dependencyCheck additionalArguments: '''
+                                                           -o "./"
+                                                           -s "./"
+                                                           -f "ALL"
+                                                           --prettyPrint ''', odcInstallation: 'dependency-check'
+                       dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
        }
-              stage('Deploy to Dev server')
-              {
-               steps{
-                   script{
-                       def remote = [name: 'IBT-dev', host: '159.203.35.105', allowAnyHosts: true]
-                       withCredentials([usernamePassword(credentialsId: 'for-IBT-dev01Server', passwordVariable: 'password', usernameVariable: 'username')]) {
-                           remote.password = password
-                           remote.user = username
-                           sshPut remote: remote, from: 'target/ibt-maven-1.4.jar' , into: '/opt/tomcat/webapps'
-                       }
+       stage('Deploy to Dev server')
+       {
+        steps{
+            script{
+                def remote = [name: 'IBT-dev', host: '146.190.74.177', allowAnyHosts: true]
+                withCredentials([usernamePassword(credentialsId: 'for-IBT-dev01Server', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    remote.password = password
+                    remote.user = username
+                    sshPut remote: remote, from: 'target/ibt-maven-1.4.jar' , into: '/opt/tomcat/webapps'
+                }
 
-                   }
-               }
-              }
-           }
+            }
+        }
        }
+    }
+}
