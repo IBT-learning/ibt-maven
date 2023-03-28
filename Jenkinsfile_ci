@@ -10,18 +10,24 @@ pipeline{
      stage('Validate')
      {
         steps{
+             withMaven(maven: 'maven_3.8') {
             sh "mvn validate"
         }
+     }
      }
      stage('Compile')
           {
              steps{
+                 withMaven(maven: 'maven_3.8') {
                  sh "mvn compile"
              }
           }
      stage('Run tests')
           {
              steps{
+                  withMaven(maven: 'maven_3.8') {
+                  }
+             }
                  sh "mvn test"
              }
           }
@@ -38,8 +44,10 @@ pipeline{
        stage('Package')
             {
                steps{
-                   sh "mvn package"
-               }
+                    withMaven(maven: 'maven_3.8') {
+                         sh "mvn package"
+                   }
+              }
             }
        stage('deploy to Artifactory')
        {
@@ -68,19 +76,19 @@ pipeline{
                          dependencyCheckPublisher pattern: 'dependency-check-report.xml'
              }
        }
-       stage('Deploy to Dev server')
-       {
-        steps{
-            scripts{
-                 def remote = [name: 'IBT-dev', host: '146.190.74.177', user: 'root', allowAnyHosts: true]
-                 withCredentials([usernamePassword(credentialsId: 'for-IBT-dev01Server', passwordVariable: 'password', usernameVariable: 'username')]) {
-                     remote.password = password
-                     remote.user = username
-                     sshPut remote: remote, from: 'target/ibt-maven-1.4.jar' , into: '/opt/tomcat/webapps'
-                 }
+              stage('Deploy to Dev server')
+              {
+               steps{
+                   script{
+                       def remote = [name: 'IBT-dev', host: '159.203.35.105', allowAnyHosts: true]
+                       withCredentials([usernamePassword(credentialsId: 'for-IBT-dev01Server', passwordVariable: 'password', usernameVariable: 'username')]) {
+                           remote.password = password
+                           remote.user = username
+                           sshPut remote: remote, from: 'target/ibt-maven-1.4.jar' , into: '/opt/tomcat/webapps'
+                       }
 
-            }
-        }
+                   }
+               }
+              }
+           }
        }
-    }
-}
