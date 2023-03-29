@@ -32,6 +32,11 @@ pipeline{
              }
           }
       stage('SonarQube Analysis') {
+      when{
+                 expression {
+                        env.BRANCH_NAME == "main"
+                 }
+                }
        environment{
             scannerHome = tool 'ibt-sonarqube';
        }
@@ -78,6 +83,11 @@ pipeline{
        }
        stage('Deploy to Dev server')
        {
+       when{
+                 expression {
+                        env.BRANCH_NAME == "main"
+                 }
+                }
         steps{
             script{
                 def remote = [name: 'IBT-dev', host: '159.203.35.105', allowAnyHosts: true]
