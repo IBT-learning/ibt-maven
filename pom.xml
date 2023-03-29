@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>1.4</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
@@ -26,19 +26,20 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
+ 
   <distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
+        <url>https://ibt.jfrog.io/artifactory/ibt-libs-release</url>
+    </repository>
     <snapshotRepository>
       <id>snapshots</id>
-      <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
-      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-snapshot</url>
+      <name>a0n5tucjjiuir-artifactory-primary-0-snapshots</name>
+        <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
-    <repository>
-      <id>central</id>
-      <name>a0dgqoivcggpg-artifactory-primary-0-releases</name>
-      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-release</url>
-    </repository>
-  </distributionManagement>
+</distributionManagement>
+  
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
