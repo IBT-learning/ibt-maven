@@ -58,7 +58,9 @@ pipeline{
        {
             steps{
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
+                withMaven(maven: 'maven_3.8') {
                     sh "mvn deploy -s $settings"
+                   }
                 }
             }
        }
@@ -66,7 +68,9 @@ pipeline{
        {
             steps{
                 configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                withMaven(maven: 'maven_3.8') {
                    sh "mvn deploy -s $mvn_settings"
+                  }
                 }
             }
        }
