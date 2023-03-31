@@ -32,11 +32,6 @@ pipeline{
              }
           }
       stage('SonarQube Analysis') {
-      when{
-                 expression {
-                        env.BRANCH_NAME == "main"
-                 }
-                }
        environment{
             scannerHome = tool 'ibt-sonarqube';
        }
