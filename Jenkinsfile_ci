@@ -7,7 +7,9 @@ pipeline {
         }
         stage('Build') {
             steps {
+                withMaven(maven: 'maven_3.8') {
                 sh "mvn validate"
+                }
             }
         }
         stage('Test') {
@@ -22,8 +24,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-            echo 'Deploy'
-            echo 'Now'
+            echo 'gggg'
             }
         }
     }
