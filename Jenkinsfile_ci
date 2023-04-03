@@ -13,10 +13,6 @@ pipeline {
             }
         }
         stage('Test') {
-            when {
-                expression {
-                }
-            }
             steps {
                 echo 'Test'
                 echo 'almost done'
