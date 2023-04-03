@@ -11,9 +11,9 @@ pipeline {
                 git branch: 'feature_koby2', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
-        stage('test Mvn') {
+        stage('validate') {
             steps {
-                echo 'what now'
+                Mvn validate
             }
         }
     }
