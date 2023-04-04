@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Git') {
             steps {
-                sh "Mvn validate"
+                echo "Hi"
             }
         }
     }
