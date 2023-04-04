@@ -10,7 +10,7 @@ pipeline {
         }
         stage('validate') {
             steps {
-                echo 'Hello Github'
+                sh "mvn validate"
             }
         }
     }
