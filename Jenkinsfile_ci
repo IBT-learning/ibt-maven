@@ -5,7 +5,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello Github'
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_koby2']], extensions: [], userRemoteConfigs: [[credentialsId: 'for-github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_koby2']], extensions: [], userRemoteConfigs: [[credentialsId: 'k-github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
         stage('validate') {
