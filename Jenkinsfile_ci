@@ -11,7 +11,7 @@ pipeline {
         stage('validate') {
             steps {
                 echo 'Hi Mvn'
-                sh "Mvn validate"
+                sh "mvn validate"
             }
         }
     }
