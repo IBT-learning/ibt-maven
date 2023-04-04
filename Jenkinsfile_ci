@@ -5,11 +5,7 @@ pipeline {
             steps {
             git branch: '${Branch}', changelog: false, credentialsId: 'for-github', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'            }
         }
-        stage('Build') {
-            steps {
-                sh "mvn validate"
-            }
-        }
+    
         stage('Test') {
             when {
                 expression {
