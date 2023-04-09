@@ -25,5 +25,11 @@ pipeline {
 
                     }
                 }
+         stage('MVN clean') {
+                            steps {
+                                echo 'test gitscm'
+                                mvn clean
+                            }
+                        }
     }
 }
