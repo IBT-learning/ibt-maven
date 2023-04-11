@@ -80,6 +80,18 @@ pipeline{
                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
        }
+       stage('Configure Dev Server')
+       {
+            steps{
+                ansiblePlaybook
+                become: true,
+                colorized: true,
+                credentialsId: 'vm-ssh',
+                disableHostKeyChecking: true,
+                inventory: 'hosts',
+                playbook: 'tomcat.yaml'
+            }
+       }
        stage('Deploy to Dev server')
        {
        when{
