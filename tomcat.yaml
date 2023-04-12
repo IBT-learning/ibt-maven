@@ -60,7 +60,7 @@
 
     - name: Create a webapps Directory
       file:
-        path: "{{ tomcat_path }}"/webapps
+        path: /opt/tomcat/webapps
         owner: root
         group: root
         mode: 755
