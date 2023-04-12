@@ -5,7 +5,7 @@
   become: yes
 
   vars:
-    tomcat_path: "/opt/tomcat10"
+    tomcat_path: "/opt/tomcat"
     ansible_python_interpreter: /usr/bin/python3
 
   tasks:
@@ -45,7 +45,7 @@
 
     - name: Change ownership of tomcat directory
       file:
-        path: /opt/tomcat10
+        path: /opt/tomcat
         owner: tomcat
         group: tomcat
         mode: "u+rwx,g+rx,o=rx"
@@ -53,7 +53,7 @@
         state: directory
 
     - name: Start and Enable Tomcat 10 on sever
-      command: sh /opt/tomcat10/bin/startup.sh
+      command: sh /opt/tomcat/bin/startup.sh
 
     - name: allow tcp connections
       command: sudo ufw allow 8080/tcp
