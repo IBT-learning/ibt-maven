@@ -4,7 +4,7 @@ pipeline{
     stages {
     stage('Git checkout') {
                 steps {
-                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/patdada']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_gunjan']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
                 }
             }
      stage('Validate')
@@ -52,16 +52,20 @@ pipeline{
        stage('Upload to Artifactory')
        {
             steps{
-                withCredentials([file(credentialsId: 'mvn_settings_patdada', variable: 'settings')]) {
+                withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
+                withMaven(maven: 'maven_3.8') {
                     sh "mvn deploy -s $settings"
+                   }
                 }
             }
        }
        stage('upload Artifactory - configFile')
        {
             steps{
-                configFileProvider([configFile(fileId: 'Mysettings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings', variable: 'mvn_settings')]) {
+                withMaven(maven: 'maven_3.8') {
                    sh "mvn deploy -s $mvn_settings"
+                  }
                 }
             }
        }
@@ -76,15 +80,28 @@ pipeline{
                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
        }
+       stage('Configure Dev Server')
+       {
+            steps{
+                ansiblePlaybook(
+                become: true,
+                colorized: true,
+                credentialsId: 'vm-ssh',
+                disableHostKeyChecking: true,
+                inventory: 'hosts',
+                playbook: 'tomcat.yaml'
+                )
+            }
+       }
        stage('Deploy to Dev server')
        {
         steps{
             script{
-                def remote = [name: 'IBT-dev', host: '146.190.74.177', allowAnyHosts: true]
+                def remote = [name: 'IBT-dev', host: '165.22.224.106', allowAnyHosts: true]
                 withCredentials([usernamePassword(credentialsId: 'for-IBT-dev01Server', passwordVariable: 'password', usernameVariable: 'username')]) {
                     remote.password = password
                     remote.user = username
-                    sshPut remote: remote, from: 'target/ibt-maven-1.4.jar' , into: '/opt/tomcat/webapps'
+                    sshPut remote: remote, from: 'target/ibt-maven-1.0.0.jar' , into: '/opt/tomcat/webapps'
                 }
 
             }
