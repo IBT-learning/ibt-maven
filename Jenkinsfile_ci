@@ -83,13 +83,14 @@ pipeline{
        stage('Configure Dev Server')
        {
             steps{
-                ansiblePlaybook
+                ansiblePlaybook(
                 become: true,
                 colorized: true,
                 credentialsId: 'vm-ssh',
                 disableHostKeyChecking: true,
                 inventory: 'hosts',
                 playbook: 'tomcat.yaml'
+                )
             }
        }
        stage('Deploy to Dev server')
