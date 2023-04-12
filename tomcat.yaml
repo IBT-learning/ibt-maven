@@ -57,3 +57,11 @@
 
     - name: allow tcp connections
       command: sudo ufw allow 8080/tcp
+
+    - name: Create a webapps Directory
+      file:
+        path: "{{ tomcat_path }}"/webapps
+        owner: root
+        group: root
+        mode: 755
+        recurse: yes
