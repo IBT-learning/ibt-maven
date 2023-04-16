@@ -28,16 +28,16 @@
   </dependencies>
 
   <distributionManagement>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>a0dgqoivcggpg-artifactory-primary-0-snapshots</name>
-      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-snapshot</url>
-    </snapshotRepository>
     <repository>
       <id>central</id>
-      <name>a0dgqoivcggpg-artifactory-primary-0-releases</name>
-      <url>https://ibtlearning.jfrog.io/artifactory/ibt-libs-release</url>
+      <name>IBT Learning Jfrog-releases</name>
+      <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-release</url>
     </repository>
+    <snapshotRepository>
+      <id>central</id>
+      <name>IBT Learning Jfrog-releases</name>
+      <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-snapshot</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <build>
