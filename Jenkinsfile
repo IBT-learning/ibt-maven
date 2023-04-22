@@ -1,18 +1,9 @@
-pipeline {
+pipeline{
     agent any
 
     stages {
-        stage('Git-Clone') {
-            steps {
-                echo 'cloning'
-            }
-        }
-        
-    stage('Validate')
-         {
-            steps{
-                withMaven(maven: 'maven_3.8') {
-                    sh "mvn validate"
+    stage('Git checkout') {
+                steps {
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_nnamdi']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
                 }
             }
-         }
