@@ -28,7 +28,7 @@ pipeline {
         stage('Git checkout') {
             steps{
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_nnamdi']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-                //sh 'ls -lrt'
+                echo 'checking out'
             }
         }
     }
