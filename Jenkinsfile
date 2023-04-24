@@ -27,9 +27,8 @@ pipeline {
                }
         stage('Git checkout') {
             steps{
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'For-Github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_nnamdi']], extensions: [], userRemoteConfigs: [[credentialsId: 'For-Github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                 sh 'ls -lrt'
-                sh 'echo $Branch_Name $CHOICES'
             }
         }
     }
