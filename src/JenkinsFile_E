@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Pipeline_with_Git') {
+            steps {
+                echo 'Hello World from GIT'
+            }
+        }
+        stage('New Stage') {
+            steps {
+                echo 'New stage has been added'
+            }
+        }
+         stage('New Stage') {
+            steps {
+                echo 'New stage has been added'
+            }
+        }
+    }
+}
