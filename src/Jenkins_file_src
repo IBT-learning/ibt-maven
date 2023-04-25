@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    parameters{
+    string(name: 'Branch_Name', defaultValue: 'feature-Elena', description: 'please select branch to checkout')
+    choice(name: 'CHOICES_test', choices: ['one', 'two', 'three'], description: 'testing choice parameter') }
+}
 
     stages {
         stage('CD to the dir') {
@@ -25,4 +29,3 @@ pipeline {
                 }
 
     }
-}
