@@ -12,6 +12,11 @@ pipeline {
                 echo 'New stage has been added'
             }
         }
+        stage('Another Stage for testing') {
+                    steps {
+                        echo 'Another stage'
+                    }
+                }
 
     }
 }
