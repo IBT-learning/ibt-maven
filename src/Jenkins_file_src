@@ -23,8 +23,9 @@ pipeline {
         }
         stage('Git checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/feature-Elena']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT_Elena', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT_Elena', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                 sh 'ls -lrt'
+                sh '$Branch_Name $CHOICES_test'
             }
         }
 
