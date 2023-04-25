@@ -17,6 +17,12 @@ pipeline {
                         echo 'Another stage'
                     }
                 }
+        stage ('Git checkout'){
+                    steps {
+                        checkout scmGit(branches: [[name: '*/feature-Elena']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT_Elena', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                        sh 'ls -lrt'
+                    }
+                }
 
     }
 }
