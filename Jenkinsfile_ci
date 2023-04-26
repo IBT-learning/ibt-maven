@@ -82,6 +82,11 @@ pipeline{
        }
        stage('Configure Dev Server')
        {
+       when {
+           expression {
+               env.BRANCH_NAME== 'master'
+           }
+       }
             steps{
                 ansiblePlaybook(
                 become: true,
@@ -95,6 +100,11 @@ pipeline{
        }
        stage('Deploy to Dev server')
        {
+       when {
+           expression {
+               env.BRANCH_NAME== 'master'
+           }
+       }
         steps{
             script{
                 def remote = [name: 'IBT-dev', host: '165.22.224.106', allowAnyHosts: true]
