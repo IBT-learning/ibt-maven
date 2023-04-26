@@ -16,5 +16,10 @@ pipeline {
                 echo 'test'
             }
         }
+         stage('testing jenkinsfile') {
+                    steps {
+                        echo 'testing jenkinsfile'
+                    }
+                }
     }
 }
