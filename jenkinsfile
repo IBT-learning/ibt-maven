@@ -24,7 +24,7 @@ pipeline {
                 }
                 stage('Git checkout') {
                     steps{
-                      checkout scmGit(branches: [[name: '*/feature_claudia']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-github-claudia', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                      checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_claudia']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-github-claudia', url: 'https://github.com/IBT-learning/ibt-maven.git']]) 'IBT-github-claudia', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                       sh 'ls -lrt'
     }
 }
