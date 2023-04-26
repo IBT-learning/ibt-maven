@@ -7,7 +7,12 @@ pipeline {
                 echo 'Hello World'
             }
         }
-         stage('Good-bye') {
+        stage('Testing jenkinsfile') {
+                    steps {
+                        echo 'jenkinsfile'
+                    }
+                }
+        stage('Good-bye') {
             steps {
                 echo 'Good-bye'
             }
