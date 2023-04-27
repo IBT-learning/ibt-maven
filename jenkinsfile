@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters{
-        string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to checkout')
+        string(name:'Branch_Name', defaultValue:'feature-irinamm', description:'Enter the branch to checkout')
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
     }
 
@@ -28,7 +28,7 @@ pipeline {
                 sh 'echo $Branch_Name $CHOICES'
             }
         }
-        stage('Good-bye') {
+        stage('testing hook') {
               steps {
                 echo 'hook tested successfully'
              }
