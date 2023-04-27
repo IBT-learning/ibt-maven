@@ -20,6 +20,7 @@ pipeline {
         }
                     steps {
                         echo 'jenkinsfile'
+                        echo $env.BRANCH_NAME
                     }
                 }
         stage('Good-bye') {
