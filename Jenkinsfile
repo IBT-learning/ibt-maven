@@ -39,14 +39,23 @@ pipeline {
             }
         }
         stage('testing hook') {
-        environment{
+            environment{
                 version2 = '1.25.0'
             }
-              steps {
+            steps {
                 echo 'hook tested successfully'
                 echo "${env.version2}"
-              }
+            }
         }
+
+
+        post{
+            always{
+                emailext body: 'test', subject: 'pipeline_git test', to: 'yrenamm@gmail.com'
+            }
+
+        }
+
 
     }
 }
