@@ -15,7 +15,7 @@ pipeline {
         stage('Testing jenkinsfile') {
         when{
             expression{
-                $CHOICES=='two'
+                env.BRANCH_NAME=='feature-irinamm'
             }
         }
                     steps {
