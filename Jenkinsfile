@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    }
     tool{
         maven 'maven_3.8'
     }
