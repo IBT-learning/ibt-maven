@@ -9,7 +9,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                eho env.BUILD_NUMBER
+                echo env.BUILD_NUMBER
             }
         }
         stage('Testing jenkinsfile') {
