@@ -9,9 +9,15 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                eho env.BUILD_NUMBER
             }
         }
         stage('Testing jenkinsfile') {
+        when{
+            expression{
+                $CHOICES=='two'
+            }
+        }
                     steps {
                         echo 'jenkinsfile'
                     }
