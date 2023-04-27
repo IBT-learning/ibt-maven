@@ -61,10 +61,26 @@ pipeline {
         }
 
         stage('mvn version') {
-                    steps {
-                        sh 'mvn --version'
+             steps {
+                sh 'mvn --version'
+             }
+        }
+
+        stage('script') {
+             steps {
+                echo 'Script starting'
+
+                script{
+                    def fruits = ['apple', 'kiwi', 'peach']
+                    for (int i = fruits.size(); i++){
+                        echo "The current item is ${fruits[i]}"
                     }
                 }
+
+
+                echo 'Script ends'
+             }
+        }
 
     }
 
