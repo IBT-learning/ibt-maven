@@ -45,13 +45,8 @@ pipeline {
               steps {
                 echo 'hook tested successfully'
                 echo "${env.version2}"
-             }
+              }
         }
-        post{
-            always{
-                emailext body: 'test', subject: 'pipeline_git test', to: 'yrenamm@gmail.com'
-            }
 
-        }
     }
 }
