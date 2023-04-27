@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 echo env.BUILD_NUMBER
-                echo ${env.version}
+                echo "${env.version}"
             }
         }
         stage('Testing jenkinsfile') {
@@ -44,7 +44,7 @@ pipeline {
             }
               steps {
                 echo 'hook tested successfully'
-                echo ${env.version2}
+                echo "${env.version2}"
              }
         }
 
