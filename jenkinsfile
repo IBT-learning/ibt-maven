@@ -28,5 +28,11 @@ pipeline {
                 sh 'echo $Branch_Name $CHOICES'
             }
         }
+        stage('Good-bye') {
+              steps {
+                echo 'hook tested successfully'
+             }
+        }
+
     }
 }
