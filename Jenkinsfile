@@ -1,4 +1,7 @@
 pipeline {
+    environment{
+        version = '1.25.0'
+    }
     agent any
     parameters{
         string(name:'Branch_Name', defaultValue:'feature-irinamm', description:'Enter the branch to checkout')
@@ -10,12 +13,13 @@ pipeline {
             steps {
                 echo 'Hello World'
                 echo env.BUILD_NUMBER
+                echo $version
             }
         }
         stage('Testing jenkinsfile') {
         when{
             expression{
-                env.BRANCH_NAME=='feature-irinamm'
+                env.BRANCH_NAME == 'feature-irinamm'
             }
         }
                     steps {
@@ -35,8 +39,12 @@ pipeline {
             }
         }
         stage('testing hook') {
+        environment{
+                version2 = '1.25.0'
+            }
               steps {
                 echo 'hook tested successfully'
+                echo $version2
              }
         }
 
