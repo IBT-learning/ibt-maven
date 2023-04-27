@@ -33,7 +33,7 @@ pipeline {
             }
         }
         stage('mvn version') {
-            step {
+            steps {
                 sh 'mvn --version'
             }
         }
