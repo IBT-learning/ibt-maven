@@ -72,7 +72,7 @@ pipeline {
 
                 script{
                     def fruits = ['apple', 'kiwi', 'peach']
-                    for (int i = fruits.size(); i++){
+                    for (int i = 0; i < fruits.size(); i++){
                         echo "The current item is ${fruits[i]}"
                     }
                 }
