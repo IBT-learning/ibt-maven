@@ -9,6 +9,7 @@ pipeline {
     }
 
     stages {
+
         stage('Hello') {
             steps {
                 echo 'Hello World'
@@ -16,21 +17,24 @@ pipeline {
                 echo "${env.version}"
             }
         }
+
         stage('Testing jenkinsfile') {
-        when{
-            expression{
-                env.BRANCH_NAME == 'feature-irinamm'
+            when{
+                expression{
+                    env.BRANCH_NAME == 'feature-irinamm'
+                }
+            }
+            steps {
+                echo 'jenkinsfile'
             }
         }
-                    steps {
-                        echo 'jenkinsfile'
-                    }
-                }
+
         stage('Good-bye') {
             steps {
                 echo 'Good-bye'
             }
         }
+
         stage('Git checkout') {
             steps{
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-irinamm']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
@@ -38,6 +42,7 @@ pipeline {
                 sh 'echo $Branch_Name $CHOICES'
             }
         }
+
         stage('testing hook') {
             environment{
                 version2 = '1.25.0'
@@ -48,14 +53,13 @@ pipeline {
             }
         }
 
+    }
 
-        post{
-            always{
-                emailext body: 'test', subject: 'pipeline_git test', to: 'yrenamm@gmail.com'
-            }
-
+    post{
+        always{
+            emailext body: 'test', subject: 'pipeline_git test', to: 'yrenamm@gmail.com'
         }
 
-
     }
+
 }
