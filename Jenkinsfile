@@ -1,8 +1,9 @@
 pipeline {
-    agent any
-    tool{
+    tools {
         maven 'maven_3.8'
     }
+    agent any
+
     stages {
         stage('Hello') {
             steps {
