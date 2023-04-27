@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    parameters{
-      string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to checkout')
-      choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
+    }
+    tool{
+        maven 'maven_3.8'
     }
     stages {
         stage('Hello') {
@@ -32,5 +32,10 @@ pipeline {
                 sh 'ls -lrt'
             }
         }
+        stage('mvn version') {
+                    steps {
+                        sh 'mvn --version'
+                    }
+                }
     }
 }
