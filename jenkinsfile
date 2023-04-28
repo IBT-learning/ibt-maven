@@ -32,5 +32,10 @@ pipeline {
                sh 'echo $Branch_Name $CHOICES'
             }
          }
+         stage('testing hooks') {
+                     steps {
+                                 echo 'hook tested success'
+                             }
+                         }
     }
 }
