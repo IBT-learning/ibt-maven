@@ -27,8 +27,9 @@ pipeline {
                 }
          stage('Git checkout') {
             steps{
-               checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_tokaf']], extensions: [], userRemoteConfigs: [[credentialsId: 'for-uo-feb26-cohort-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+               checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'for-uo-feb26-cohort-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                sh 'ls -lrt'
+               sh 'echo $Branch_Name $CHOICES'
             }
          }
     }
