@@ -19,5 +19,5 @@ pipeline {
         stage('testing jenkinsfile') {
            steps {
                  echo 'jenkinsfile'
-    }
+        }
 }
