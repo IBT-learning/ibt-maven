@@ -19,7 +19,7 @@ pipeline {
         stage('Another Stage for testing') {
             when {
                 expression{
-                    env.BRANCH_NAME == 'feature-Elena'
+                    env.BRANCH_NAME == 'main'
                 }
             }
             steps {
