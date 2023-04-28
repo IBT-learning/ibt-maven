@@ -17,6 +17,11 @@ pipeline {
             }
         }
         stage('Another Stage for testing') {
+            when {
+                expression{
+                    env.BRANCH_NAME == 'feature-Elena'
+                }
+            }
             steps {
                 echo 'Another stage'
             }
