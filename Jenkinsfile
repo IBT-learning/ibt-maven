@@ -18,9 +18,15 @@ pipeline {
             }
         }
         stage('Jenkinsfile test') {
-                    steps {
-                        echo 'Jenkinsfile test'
+             steps {
+                 echo 'Jenkinsfile test'
                     }
                 }
+        stage('Git checkout') {
+            steps {
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_anya']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                sh 'ls -lrt'
+            }
+        }
     }
 }
