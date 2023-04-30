@@ -1,9 +1,5 @@
 pipeline {
     agent any
-   parameters{
-     string(name:'Branch_Name', defaultValue:'master', description:'Enter the branch to checkout')
-     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
-     }
     stages {
         stage('Hello') {
             steps {
@@ -16,7 +12,13 @@ pipeline {
             }
         }
         stage('test') {
-            steps {
+        when{
+             expression{
+                 env.BRANCH.NAME=='master'
+             }
+       }
+
+          steps {
                 echo 'test'
             }
         }
