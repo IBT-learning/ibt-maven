@@ -59,7 +59,7 @@ pipeline {
     }
     post{
         always{
-            mail bcc: '', body: 'Testing Jenkins', cc: '', from: '', replyTo: '', subject: 'Testing Jenkins', to: 'annushkaar77@gmail.com'
+        //    mail bcc: '', body: 'Testing Jenkins', cc: '', from: '', replyTo: '', subject: 'Testing Jenkins', to: 'annushkaar77@gmail.com'
             echo "*** Build Successful ***"
         }
     }
