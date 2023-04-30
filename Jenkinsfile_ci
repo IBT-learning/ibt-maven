@@ -79,6 +79,12 @@ stages{
                 }
            }
  stage('Deploy to Dev'){
+  when{
+             expression{
+ //                 $Branch_Name=='main'
+                 env.BRANCHA_NAME=='main'
+             }
+         }
                             steps{
                                 script{
                                     def remote = [name: 'dev-server', host: '178.128.228.15', allowAnyHosts: true]
