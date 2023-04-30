@@ -2,6 +2,9 @@ pipeline {
    environment{
    version ='1,2,3'
    }
+   tools {
+    maven 'maven_3.8'
+   }
     agent any
     stages {
         stage('Hello') {
@@ -15,17 +18,21 @@ pipeline {
                 echo "${env.version}"
             }
         }
-        stage('test') {
-        when{
-             expression{
-                 env.BRANCH.NAME=='master'
-             }
-       }
 
-          steps {
-                echo 'test'
+         stage ('testing hooks'){
+          environment{
+           version2 = '1,5,0'
+       }
+             steps {
+               echo 'hook tested success'
+                echo "${env.version2}"
             }
         }
+        stage('mvn version') {
+                  steps {
+                     sh 'mvn --version'
+                  }
+              }
     }
         post{
            always {
