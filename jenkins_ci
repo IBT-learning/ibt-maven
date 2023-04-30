@@ -27,4 +27,5 @@ stages {
                          sh 'mvn test'
                      }
                  }
+               }
              }
