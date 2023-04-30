@@ -16,6 +16,12 @@ pipeline {
             steps {
                  echo 'yellow'
             }
-        }
+        } stage('testing jenkins') {
+                     steps {
+                          echo 'testing jenkinsfile'
+                     }
+                 }
+
+
     }
 }
