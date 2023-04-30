@@ -18,16 +18,16 @@ stages{
             steps{
                 withMaven(maven: 'maven_3.8') {
                     sh 'mvn compile'
-                    }
                 }
             }
+         }
      stage ('Run Test'){
                  steps{
                      withMaven(maven: 'maven_3.8') {
                          sh 'mvn test'
-                         }
+                     }
                  }
-             }
+          }
     stage('SonarQube Analysis') {
            environment{
             sonarScan = tool 'ibt-sonarqube'
@@ -35,11 +35,28 @@ stages{
             steps{
                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
                  sh "$sonarScan/bin/sonar-scanner"
-                    }
+                 }
                }
             }
-
-
+    stage('Package')
+                {
+                   steps{
+                       withMaven(maven: 'maven_3.8') {
+                             sh "mvn package"
+                      }
+                   }
+                }
+    stage('Vulnerability scan - Dependency Check')
+           {
+                steps{
+                         dependencyCheck additionalArguments: '''
+                                                               -o "./"
+                                                               -s "./"
+                                                               -f "ALL"
+                                                               --prettyPrint ''', odcInstallation: 'dependency-check'
+                           dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                }
+           }
 
 
     }
