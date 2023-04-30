@@ -32,13 +32,11 @@ pipeline {
                         checkout poll: false, scm: scmGit(branches: [[name: '*/$Branch_name']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-github-claudia', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                         sh 'ls -lrt'
                         sh 'echo $Branch_Name $CHOICES'
-
                     }
                 }
                 stage('Testing hooks') {
                   environment{
                      version2 ='1,5,3'
-
                             steps {
                                 echo 'Hooks tested and success'
                                 echo "${env.version2}"
