@@ -58,8 +58,8 @@ pipeline {
                          echo 'Testing hooks - **SUCCESS**'
                          echo "${env.version2}" // if env.variable always use evn.variable_name in double quotes
                             }
-                        }
-        }
+          }
+
         stage('mvn version') {
                     steps {
                         sh 'mvn --version'
