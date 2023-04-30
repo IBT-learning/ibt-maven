@@ -5,6 +5,8 @@ pipeline {
     }
     tools{
         maven 'maven_3.8'
+//         npm ''
+//         docker ''
     }
     agent any
 //     parameters{
@@ -60,7 +62,7 @@ pipeline {
                             }
           }
 
-        stage('mvn version') {
+           stage('mvn version') {
                     steps {
                         sh 'mvn --version'
                     }
