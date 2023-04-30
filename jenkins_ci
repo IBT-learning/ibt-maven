@@ -9,21 +9,21 @@ stages ('Git checkout'){
         }
       }
 
-      stage ('validate"){
+      stage ('validate'){
         steps{
           withMaven(maven: 'maven_3.8') {
              sh 'mvn validate'
       }
     }
    }
-   stage ('compile"){
+   stage ('compile'){
            steps{
              withMaven(maven: 'maven_3.8') {
                 sh 'mvn compile'
          }
        }
      }
-      stage ('Run Test"){
+      stage ('Run Test'){
               steps{
                 withMaven(maven: 'maven_3.8') {
                    sh 'mvn test'
@@ -39,6 +39,24 @@ stages ('Git checkout'){
                        sh "$sonarScan/bin/sonar-scanner"
                     }
                   }
+                }
+                stage ('Package'){
+                        steps{
+                          withMaven(maven: 'maven_3.8') {
+                             sh 'mvn package'
+                      }
+                    }
+                   }
+              stage('Vulnerability scan - Dependency Check')
+                {
+                     steps{
+                              dependencyCheck additionalArguments: '''
+                                                                    -o "./"
+                                                                    -s "./"
+                                                                    -f "ALL"
+                                                                    --prettyPrint ''', odcInstallation: 'dependency-check'
+                                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                     }
                 }
               }
             }
