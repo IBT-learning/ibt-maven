@@ -46,6 +46,8 @@ pipeline {
         post{
            always {
            emailext body: '', subject: 'test', to: 'reineclaudia126@gmail.com'
-           echo "Build successful"
+           echo 'Build successful'
            }
         }
+      }
+
