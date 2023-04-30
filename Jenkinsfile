@@ -3,6 +3,9 @@ pipeline {
     environment{
         version = '1.3.0'
     }
+    tools{
+        maven 'maven_3.8'
+    }
     agent any
 //     parameters{
 //         string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
@@ -56,11 +59,17 @@ pipeline {
                          echo "${env.version2}" // if env.variable always use evn.variable_name in double quotes
                             }
                         }
-    }
-    post{
-        always{
+        }
+        stage('mvn version') {
+                    steps {
+                        sh 'mvn --version'
+                    }
+        }
+
+  post{
+            always{
         //    mail bcc: '', body: 'Testing Jenkins', cc: '', from: '', replyTo: '', subject: 'Testing Jenkins', to: 'annushkaar77@gmail.com'
             echo "*** Build Successful ***"
-        }
-    }
+                }
+       }
 }
