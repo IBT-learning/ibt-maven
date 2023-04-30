@@ -19,7 +19,7 @@ pipeline {
         stage('Hi') {
             steps {
                 echo 'Hi'
-                echo $version
+                echo ${env.version}  // if env.variable always use evn.variable_name
             }
         }
          stage('Hi test') {
@@ -53,7 +53,7 @@ pipeline {
              }
                      steps {
                          echo 'Testing hooks - **SUCCESS**'
-                         echo $version2
+                         echo ${env.version2} // if env.variable always use evn.variable_name
                             }
                         }
     }
