@@ -30,9 +30,9 @@ pipeline {
                 }
                 stage('Testing hooks') {
                             steps {
-                                echo 'hook tested success'
+                                echo 'Testing hooks and success'
                             }
                         }
-            }
-        }
+
+
 
