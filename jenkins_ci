@@ -4,7 +4,7 @@ agent any
 stages {
     stage ('Git Checkout') {
         steps{
-            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_claudia']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_claudia']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-github-claudia', url: 'https://github.com/IBT-learning/ibt-maven.git']])
         }
     }
     stage ('Validate'){
@@ -65,3 +65,27 @@ stages {
                                             }
                                         }
                                     }
+                                stage('upload to Artifactory - configFlie'){
+                                                steps{
+                                                    configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
+                                                        withMaven(maven: 'maven_3.8') {
+                                                                sh 'mvn deploy -s $mvn_settings_config'
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            stage('Deploy to Dev'){
+                                                            steps{
+                                                                script{
+                                                                    def remote = [name: 'dev-server', host: '178.128.228.15', allowAnyHosts: true]
+                                                                    withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                                                                       remote.user =  username
+                                                                       remote.password = password
+                                                                       sshPut remote: remote, from: 'target/ibt-maven-3.1-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+
+                                    }
+                                }
