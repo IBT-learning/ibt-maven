@@ -28,6 +28,7 @@ pipeline {
 
                     }
                 }
+
         stage('testing hooks') {
             steps {
                  echo 'hooks tested and success'
