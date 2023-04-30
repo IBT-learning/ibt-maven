@@ -57,4 +57,10 @@ pipeline {
                             }
                         }
     }
+    post{
+        always{
+            emailext body: 'Testing Jenkins', subject: 'Testing Jenkins', to: 'annushkaar77@gmail.com'
+            echo "*** Build Successful ***"
+        }
+    }
 }
