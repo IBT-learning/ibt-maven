@@ -28,50 +28,13 @@ stages {
                      }
                  }
              }
-       stage('SonarQube Analysis') {
-       environment{
-        sonarScan = tool 'ibt-sonarqube'
-       }
-        steps{
-           withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-             sh "$sonarScan/bin/sonar-scanner"
-           }
-         }
-        }
-        stage ('Package'){
-                                 steps{
-                                     withMaven(maven: 'maven_3.8') {
-                                         sh 'mvn package'
-                                     }
-                                 }
-                             }
-                   stage('Vulnerability scan - Dependency Check')
-                        {
-                             steps{
-                                      dependencyCheck additionalArguments: '''
-                                                                            -o "./"
-                                                                            -s "./"
-                                                                            -f "ALL"
-                                                                            --prettyPrint ''', odcInstallation: 'dependency-check'
-                                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                             }
-                        }
-                        stage('upload to Artifactory'){
-                                        steps{
-                                            withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'mvn_settings')]) {
-                                                withMaven(maven: 'maven_3.8') {
-                                                                                 sh 'mvn deploy -s $mvn_settings'
-                                                                             }
-                                            }
-                                        }
-                                    }
-                                stage('upload to Artifactory - configFlie'){
-                                                steps{
-                                                    configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
-                                                        withMaven(maven: 'maven_3.8') {
-                                                                sh 'mvn deploy -s $mvn_settings_config'
-                                                        }
-                                                    }
-                                                }
-                                            }
-
+        stage('SonarQube Analysis') {
+              environment{
+               sonarScan = tool 'ibt-sonarqube'
+              }
+               steps{
+                  withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                    sh "$sonarScan/bin/sonar-scanner"
+                  }
+                }
+               }
