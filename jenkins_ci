@@ -34,10 +34,11 @@ stages ('Git checkout'){
          environment{
            sonarScan = tool 'ibt-sonarqube'
            }
+           steps{
                       withSonarqubeEnv(withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
                        sh "$sonarScan/bin/sonar-scanner"
                     }
                   }
                 }
-      }
-    }
+              }
+            }
