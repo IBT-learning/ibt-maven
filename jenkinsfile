@@ -42,4 +42,3 @@ pipeline {
                                 echo "${env.version2}"
                             }
                         }
-                     }
