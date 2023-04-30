@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.ibt.anya_app.AppTest" time="0.016" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\AnyaRuiz\Maven\ibt-maven\target\test-classes;C:\Users\AnyaRuiz\Maven\ibt-maven\target\classes;C:\Users\AnyaRuiz\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\AnyaRuiz\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://openjdk.java.net/"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\OpenJDK\openjdk-11.0.16_8\bin"/>
+    <property name="sun.java.command" value="C:\Users\AnyaRuiz\AppData\Local\Temp\surefire1818416751126059974\surefirebooter12665235255319720575.jar C:\Users\AnyaRuiz\AppData\Local\Temp\surefire1818416751126059974 2023-04-30T00-59-57_510-jvmRun1 surefire14787405183605016981tmp surefire_08056991583623767209tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\AnyaRuiz\Maven\ibt-maven\target\test-classes;C:\Users\AnyaRuiz\Maven\ibt-maven\target\classes;C:\Users\AnyaRuiz\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\AnyaRuiz\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\AnyaRuiz"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2022-07-19"/>
+    <property name="java.home" value="C:\Program Files\OpenJDK\openjdk-11.0.16_8"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\AnyaRuiz\Maven\ibt-maven"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\AnyaRuiz\AppData\Local\Temp\surefire1818416751126059974\surefirebooter12665235255319720575.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.16+8"/>
+    <property name="user.name" value="AnyaRuiz"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="18.9"/>
+    <property name="localRepository" value="C:\Users\AnyaRuiz\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\AnyaRuiz\AppData\Local\Temp\"/>
+    <property name="java.version" value="11.0.16"/>
+    <property name="user.dir" value="C:\Users\AnyaRuiz\Maven\ibt-maven"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\OpenJDK\openjdk-11.0.16_8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\OpenJDK\openjdk-8u342-b07\bin;C:\Program Files\nodejs;C:\Program Files\OpenJDK\openjdk-11.0.16_8\bin;C:\Program Files\MongoDB\Server\6.0\bin;C:\Program Files\OpenJDK\openjdk-11.0.16_8\bin;C:\Users\AnyaRuiz\AppData\Local\Android\Sdk\platform-tools;C:\Users\AnyaRuiz\AppData\Local\Android\Sdk\tools;C:\Users\AnyaRuiz\AppData\Local\Android\Sdk\build-tools;C:\Users\AnyaRuiz\AppData\Local\Android\Sdk\build-tools\bin;C:\Users\AnyaRuiz\AppData\Local\Android\Sdk\tools\bin;C:\Program Files\OpenJDK\openjdk-11.0.16_8;C:\Program Files\OpenJDK\openjdk-11.0.16_8\lib;C:\Program Files\apache-maven-3.9.1-bin\apache-maven-3.9.1\bin;C:\Program Files\Git\cmd;C:\Program Files\apache-maven-3.9.1-bin\apache-maven-3.9.1;C:\Users\AnyaRuiz\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\AnyaRuiz\AppData\Local\Programs\Python\Python39\;C:\Users\AnyaRuiz\AppData\Local\Microsoft\WindowsApps;C:\Users\AnyaRuiz\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\AnyaRuiz\AppData\Local\GitHubDesktop\bin;C:\Users\AnyaRuiz\AppData\Local\Android\Sdk\platform-tools;C:\Users\AnyaRuiz\AppData\Roaming\npm;C:\Program Files\nodejs;C:\Program Files\JetBrains\PyCharm Community Edition 2022.3.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1\bin;;C:\Program Files\apache-maven-3.9.1-bin\apache-maven-3.9.1\bin;C:\Program Files\apache-maven-3.9.1-bin\apache-maven-3.9.1;C:\Program Files\apache-maven-3.9.1-bin\apache-maven-3.9.1\bin;;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="11.0.16+8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="testApp" classname="com.ibt.anya_app.AppTest" time="0.001"/>
+</testsuite>
