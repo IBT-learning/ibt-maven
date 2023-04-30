@@ -65,7 +65,7 @@ pipeline {
                         sh 'mvn --version'
                     }
         }
-
+}
   post{
             always{
         //    mail bcc: '', body: 'Testing Jenkins', cc: '', from: '', replyTo: '', subject: 'Testing Jenkins', to: 'annushkaar77@gmail.com'
