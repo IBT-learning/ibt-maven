@@ -1,7 +1,6 @@
 pipeline {
    environment{
    version ='1,2,3'
-
    }
     agent any
     stages {
@@ -37,6 +36,7 @@ pipeline {
                 stage('Testing hooks') {
                   environment{
                      version2 ='1,5,3'
+                     }
                             steps {
                                 echo 'Hooks tested and success'
                                 echo "${env.version2}"
