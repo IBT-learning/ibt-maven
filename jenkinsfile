@@ -26,7 +26,7 @@ pipeline {
                 echo 'test'
             }
         }
-
+    }
         post{
            always {
            emailext body: '', subject: 'test', to: 'reineclaudia126@gmail.com'
@@ -34,4 +34,3 @@ pipeline {
            }
         }
       }
-
