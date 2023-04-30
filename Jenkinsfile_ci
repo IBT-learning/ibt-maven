@@ -67,7 +67,7 @@ stages{
                     }
                 }
            }
-    stage('upload Artifactory - configFile')
+    stage('Upload Artifactory - configFile')
            {
                 steps{
                     configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings', variable: 'mvn_settings_config')]) {
