@@ -28,10 +28,11 @@ pipeline {
 
                     }
                 }
-
-        stage('testing hooks') {
-            steps {
-                 echo 'hooks tested and success'
+                stage('Testing hooks') {
+                            steps {
+                                echo 'Hooks tested and success'
+                            }
+                        }
             }
         }
 
