@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    parameters{
-        string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
-        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
-    }
+//     parameters{
+//         string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
+//         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
+//     }
     stages {
         stage('Hello') {
             steps {
@@ -21,6 +21,12 @@ pipeline {
             }
         }
         stage('Jenkinsfile test') {
+        when{
+            expression{
+//                 $Branch_Name=='main'
+                env.BRANCHA_NAME=='main'
+            }
+        }
              steps {
                  echo 'Jenkinsfile test'
                     }
