@@ -17,7 +17,7 @@ pipeline {
                  echo 'yellow'
             }
         }
-        stage('testing jenkins') {
+        stage('testing jenkins again') {
                      steps {
                           echo 'testing jenkinsfile'
                      }
