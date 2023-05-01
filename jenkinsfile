@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment{
+     version = '1.3.0'
+    }
         stages {
         stage('Hello') {
             steps {
@@ -9,6 +12,7 @@ pipeline {
         stage('Hi') {
             steps {
                 echo 'HI'
+                echo "${env.version}"
             }
         }
           stage('test') {
@@ -34,8 +38,12 @@ pipeline {
             }
          }
          stage('testing hooks') {
+           environment{
+              version2 = '1.5.0'
+           }
                      steps {
                                  echo 'hook tested success'
+                                 echo "${env.version2}"
                              }
                      }
          }
