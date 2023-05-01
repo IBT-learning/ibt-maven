@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    parameters{
-    string(name: 'Branch_Name', defaultvalue:'main' description:'enter the value to checkout')
-     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
+      parameters{
+        string(name: 'Branch_Name', defaultvalue:'main' description:'enter the value to checkout')
+          choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
     stages {
         stage('Hello') {
