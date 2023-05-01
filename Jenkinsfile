@@ -1,6 +1,6 @@
 pipeline {
     tools {
-        maven 'maven_3.9.0'
+        maven 'Maven_3.9.0'
     }
     agent {label 'UX_IBT'}
 
