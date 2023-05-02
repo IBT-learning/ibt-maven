@@ -12,7 +12,7 @@ pipeline {
         stage('CD to the dir') {
             steps {
                 sh 'ls'
-                echo ${env.version}
+                echo "${env.version}"
             }
         }
         stage('New Stage') {
@@ -43,7 +43,7 @@ pipeline {
             }
             steps {
                 echo 'git hooks'
-                echo ${env.version2}
+                echo "${env.version2}"
             }
         }
 
