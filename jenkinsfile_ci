@@ -44,7 +44,7 @@ pipeline{
                       }
                   }
              }
-      stage('Vulnerability scan - Dependency Check')
+    stage('Vulnerability scan - Dependency Check')
          {
                  steps{
                                          dependencyCheck additionalArguments: '''
@@ -55,7 +55,7 @@ pipeline{
                                            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                  }
          }
-      stage('upload to Artifactory'){
+    stage('upload to Artifactory'){
        steps{
              withCredentials([file(credentialsId: 'mvn-settings-artifactory-UO', variable: 'mvn_settings')]) {
                  withMaven(maven: 'maven_3.8') {
@@ -63,7 +63,7 @@ pipeline{
              }
          }
       }
-      stage('upload to Artifactory - configFlie'){
+    stage('upload to Artifactory - configFlie'){
        Steps{
        configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
             withMaven(maven: 'maven_3.8') {
