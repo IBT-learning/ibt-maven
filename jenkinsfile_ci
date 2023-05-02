@@ -33,7 +33,7 @@ pipeline{
     }
      steps{
              withSonarQubeEnv(credentialsId: 'student-Sonar-token',installationName: 'IBT sonarqube') {
-                   sh "$sonarScan/bin.sonar-scanner"
+                   sh "$sonarScan/bin/sonar-scanner"
                       }
                  }
              }
