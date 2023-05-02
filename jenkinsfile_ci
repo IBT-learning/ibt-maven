@@ -43,7 +43,7 @@ pipeline{
                                   sh "mvn package"
                               }
                           }
-                       }
+                 }
     stage('Vulnerability scan - Dependency Check') {
                  steps{
                                dependencyCheck additionalArguments: '''
@@ -52,7 +52,7 @@ pipeline{
                                                                          -f "ALL"
                                                                          --prettyPrint ''', odcInstallation: 'dependency-check'
                                      dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                                   }
-                          }
+                               }
+                 }
      }
   }
