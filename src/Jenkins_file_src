@@ -48,4 +48,10 @@ pipeline {
         }
 
     }
+    post{
+        always{
+            emailext body: 'hello from Jenkins Job', subject: 'test notification', to: 'lekollc@yahoo.com'
+            echo 'Trying emails'
+        }
+    }
 }
