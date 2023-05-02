@@ -32,7 +32,7 @@ pipeline{
      sonarScan = tool 'ibt-sonarqube'
     }
      steps{
-             withSonarQubeEnv(credentialsId: 'student-Sonar-token',installationName: 'IBT sonarqube') {
+             withSonarQubeEnv(credentialsId: 'student-sonar-token',installationName: 'IBT sonarqube') {
                    sh "$sonarScan/bin/sonar-scanner"
                       }
                  }
@@ -40,7 +40,7 @@ pipeline{
               stage('package') {
                           steps{
                               withMaven(maven: 'maven_3.8') {
-                                  sh "mvn test"
+                                  sh "mvn package"
                               }
                           }
                        }
