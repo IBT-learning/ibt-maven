@@ -50,11 +50,11 @@ pipeline {
                 echo "${env.version2}"
             }
         }
-            stage('Maven version') {
-                steps {
-                    sh 'mvn --version'
-                }
-            }
+//            stage('Maven version') {
+//                steps {
+//                    sh 'mvn --version'
+//                }
+//            }
         }
             post {
                 always {
