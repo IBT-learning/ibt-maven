@@ -3,9 +3,9 @@ pipeline {
     environment{
         version ='1.3.0'
     }
-    tools {
-        maven 'maven-3.8'
-    }
+//    tools {
+//        maven 'maven-3.8'
+//    }
 
     parameters {
         string(name: 'Branch_Name', defaultValue: 'feature-Elena', description: 'please select branch to checkout')
