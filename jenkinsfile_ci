@@ -56,7 +56,7 @@ pipeline{
                  }
          }
       stage('upload to Artifactory'){
-         steps{
+       steps{
              withCredentials([file(credentialsId: 'mvn-settings-artifactory-UO', variable: 'mvn_settings')]) {
                  withMaven(maven: 'maven_3.8') {
                                            sh 'mvn deploy -s $mvn_settings'
