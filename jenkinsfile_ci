@@ -60,18 +60,9 @@ pipeline{
              withCredentials([file(credentialsId: 'mvn-settings-artifactory-UO', variable: 'mvn_settings')]) {
                  withMaven(maven: 'maven_3.8') {
                                            sh 'mvn deploy -s $mvn_settings'
-             }
-         }
-      }
-    stage('upload to Artifactory - configFlie'){
-       Steps{
-       configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
-            withMaven(maven: 'maven_3.8') {
-                  sh 'mvn deploy -s $mvn_settings_config'
        }
        }
       }
     }
-  }
   }
   }
