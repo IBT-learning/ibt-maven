@@ -1,34 +1,32 @@
-pipeline {
-agent any
+pipeline{
+    agent any
 
-stages {
-     stage ('Git checkout') {
-        steps{
-            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_tokaf']], extensions: [], userRemoteConfigs: [[credentialsId: 'for-uo-feb26-cohort-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-        }
-     }
-     stage ('Validate'){
+  stages {
+    stage('Git checkout') {
+                steps {
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_tokaf']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                }
+            }
+    stage('Validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
-              sh 'mvn validate'
+                sh "mvn validate"
             }
         }
-     }
-     stage ('compile'){
+    }
+    stage('Compile'){
              steps{
                  withMaven(maven: 'maven_3.8') {
-                   sh 'mvn compile'
+                   sh "mvn compile"
                  }
              }
-         }
-     stage ('Test'){
-                  steps{
-                      withMaven(maven: 'maven_3.8') {
-                        sh 'mvn Test'
-                      }
-                  }
-         }
-     }
-}
-
-
+          }
+    stage('Run tests'){
+             steps{
+                 withMaven(maven: 'maven_3.8') {
+                                 sh "mvn test"
+                 }
+             }
+          }
+    }
+  }
