@@ -30,23 +30,23 @@ pipeline{
     stage('SonarQube Analysis') {
                 environment{
                  sonarScan = tool 'ibt-sonarqube'
-                }
-                 steps{
+             }
+             steps{
                     withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
                       sh "${env.sonarScan}/bin/sonar-scanner"
                     }
                   }
                  }
     stage('package') {
-                          steps{
+                 steps{
                               withMaven(maven: 'maven_3.8') {
                                   sh "mvn package"
                               }
                           }
                        }
     stage('Vulnerability scan - Dependency Check') {
-                          steps{
-                                   dependencyCheck additionalArguments: '''
+                 steps{
+                               dependencyCheck additionalArguments: '''
                                                                          -o "./"
                                                                          -s "./"
                                                                          -f "ALL"
