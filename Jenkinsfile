@@ -32,11 +32,7 @@ pipeline {
                                             sh 'echo $Branch_Name $CHOICES'
                 }
                       {
-        stage('testing Ci pipeline') {
-               steps {
-                     echo 'testing Ci pipeline'
-                                 }
-                             }
+
 
                  }
 
