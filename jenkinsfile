@@ -1,7 +1,10 @@
 pipeline {
-    agent {UX_IBT}
+    agent {label 'UX_IBT'}
     environment{
      version = '1.3.0'
+    }
+    tools {
+      maven 'maven_3.8'
     }
         stages {
         stage('Hello') {
