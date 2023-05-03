@@ -1,6 +1,6 @@
 pipeline {
-   agent any{
-   parameters
+   agent any
+   parameters{
         string(name: 'Branch_Name', defaultValue:'main', description:'enter the value to checkout')
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
@@ -27,8 +27,9 @@ pipeline {
                  }
         stage('Git checkout') {
                steps {
-                    checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_sullivan']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                    checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                                             sh 'dir'
+                                            sh 'echo $Branch_Name $CHOICES'
 
                                        }
                                    }
