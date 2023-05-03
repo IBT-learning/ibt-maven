@@ -55,11 +55,12 @@ pipeline{
                                            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                  }
          }
-    stage('upload to Artifactory'){
+    stage('upload to Artifactory') {
                  steps{
              withCredentials([file(credentialsId: 'mvn-settings-artifactory-UO', variable: 'mvn_settings')]) {
                    withMaven(maven: 'maven_3.8') {
                                            sh 'mvn deploy -s $mvn_settings'
+                                           }
        }
        }
                    }
