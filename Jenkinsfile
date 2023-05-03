@@ -32,9 +32,9 @@ pipeline {
                                             sh 'echo $Branch_Name $CHOICES'
                  }
                       {
-                             stage('My Jenkins file') {
+                             stage('Dev Jenkins') {
                                  steps {
-                                     echo 'My Jenkins file'
+                                     echo 'Dev Jenkins'
                                  }
                              }
 
