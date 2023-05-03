@@ -56,15 +56,15 @@ pipeline{
                  }
          }
     stage('upload to Artifactory'){
-       steps{
+                 steps{
              withCredentials([file(credentialsId: 'mvn-settings-artifactory-UO', variable: 'mvn_settings')]) {
-                 withMaven(maven: 'maven_3.8') {
+                   withMaven(maven: 'maven_3.8') {
                                            sh 'mvn deploy -s $mvn_settings'
        }
        }
-      }
+                   }
     stage('Deploy to Dev'){
-                        steps{
+                  steps{
                             script{
                                 def remote = [name: 'dev-server', host: '157.245.134.108', allowAnyHosts: true]
                                 withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
