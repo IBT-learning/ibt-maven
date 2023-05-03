@@ -30,11 +30,11 @@ pipeline {
                     checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                                             sh 'dir'
                                             sh 'echo $Branch_Name $CHOICES'
+                    }
                 }
-                      {
+}
 
 
-                 }
 
 
 
