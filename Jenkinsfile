@@ -34,7 +34,7 @@ pipeline {
                       {
                              stage('testing Ci pipeline') {
                                  steps {
-                                     echo 'Ci pipeline'
+                                     echo 'testing Ci pipeline'
                                  }
                              }
 
