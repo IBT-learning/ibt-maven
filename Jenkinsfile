@@ -29,10 +29,16 @@ pipeline {
                steps {
                     checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                                             sh 'dir'
-                                            sh 'echo $Branch_Name $CHOICES'
+                                            sh 'echo $Branch_Name $CHOICES
+                 }
+                      {
+                             stage('My Jenkins file') {
+                                 steps {
+                                     echo 'My Jenkins file'
+                                 }
+                             }
 
-                                       }
-                                   }
+                 }
 
 
 
