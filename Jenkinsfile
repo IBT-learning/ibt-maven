@@ -1,6 +1,10 @@
 pipeline {
    agent any
+<<<<<<< HEAD
    parameters{
+=======
+      parameters{
+>>>>>>> 63d0d2da4c54fc0a2bd9e6d6d328f64876ae2eb7
         string(name: 'Branch_Name', defaultValue:'main', description:'enter the value to checkout')
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
