@@ -2,6 +2,9 @@ pipeline {
     environment{
     version = '1.3.0'
     }
+    tools {
+        maven 'maven_3.8'
+    }
     agent any
     stages {
         stage('Hello') {
@@ -47,6 +50,11 @@ pipeline {
                  echo "${env.version2}"
              }
          }
+         stage('mvn version') {
+                     steps {
+                         sh 'mvn --version'
+                     }
+                }
     }
     post{
         always{
