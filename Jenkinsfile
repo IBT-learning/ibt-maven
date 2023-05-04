@@ -1,7 +1,7 @@
 pipeline {
-   environment{
+   environment {
       version= '1.3.0'
-      }
+   }
    agent any
     stages {
         stage('Hello') {
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('testing Jenkins once more') {
         when{
-            expression{
+            expression {
               env.BRANCH_NAME=='main'
             }
         }
