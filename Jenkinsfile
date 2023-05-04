@@ -32,7 +32,7 @@ pipeline {
                                             sh 'echo $Branch_Name $CHOICES'
                                             sh 'echo trying hook'
                                          }
-                                   }   stage('tesing hooks') {
+                                   }   stage('testing hooks') {
                                                          steps {
                                                               echo 'hook tested success'
                                                 }
