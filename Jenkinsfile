@@ -33,10 +33,10 @@ pipeline {
                                             sh 'echo trying hook'
                                          }
                                    }   stage('testing hooks') {
-                                                         steps {
-                                                              echo 'hook tested success'
-                                                }
-                                            }
+                                           steps {
+                                                echo 'hook tested success'
+                                           }
+                                       }
 
 
 
