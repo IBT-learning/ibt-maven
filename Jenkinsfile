@@ -7,7 +7,7 @@ pipeline {
         stage('Hello') {
            steps {
               echo 'hello'
-              echo ${"env.version"}
+              echo ${"en.version"}
            }
         }
         stage('test') {
@@ -44,7 +44,7 @@ pipeline {
                                          }
                                            steps {
                                                 echo 'hook tested success'
-                                                echo $"{env.version}"
+                                                echo $"{en.version}"
                                            }
                                        }
 
