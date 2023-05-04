@@ -48,4 +48,10 @@ pipeline {
              }
          }
     }
+    post{
+        always{
+            emailext body: 'text', subject: 'text', to: 'dinayenbelirta@gmail.com'
+            echo "Build successful"
+        }
+    }
 }
