@@ -27,9 +27,9 @@ pipeline {
                           }
                       }
     }
-    stage ('DependencyCHeck'){
-       steps{
-         DependencyCHeck()
+     stage ('DependencyCHeck'){
+           steps{
+             DependencyCHeck()
        }
     }
   }
