@@ -5,9 +5,9 @@ pipeline {
    agent any
     stages {
         stage('Hello') {
-            steps {
-                echo %"{env.version}"%
-            }
+           steps {
+              echo %"{env.version}"%
+           }
         }
         stage('test') {
             steps {
