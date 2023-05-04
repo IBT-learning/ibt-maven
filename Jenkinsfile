@@ -40,7 +40,7 @@ pipeline {
          }
          stage('testing hooks') {
           environment{
-                 version = '1.5.0'
+                 version2 = '1.5.0'
              }
              steps {
                  echo 'hook tested success'
