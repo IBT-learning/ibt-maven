@@ -28,7 +28,7 @@ pipeline {
                 }
          stage("git checkout") {
              steps{
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'beli-git', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_belirta']], extensions: [], userRemoteConfigs: [[credentialsId: 'beli-git', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                 sh 'ls -lrt'
                 sh 'echo $Branch_Name $CHOICES'
                 sh 'echo trying hooks'
