@@ -67,11 +67,11 @@ pipeline{
     stage('Deploy to Dev'){
                   steps{
                             script{
-                                def remote = [name: 'dev-server', host: '157.245.134.108', allowAnyHosts: true]
+                                def remote = [name: 'dev-server', host: '206.189.184.228', allowAnyHosts: true]
                                 withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
                                     remote.user = username
                                     remote.password = password
-                                    sshPut remote: remote, from: 'target/ibt-maven-4.0-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+                                    sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar', into: '/opt/tomcat/apps'
     }
   }
   }
