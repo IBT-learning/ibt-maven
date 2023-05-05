@@ -75,6 +75,23 @@ pipeline{
     }
   }
   }
+    stage {
+      stage ('Build'){
+         steps {
+            echo "Build approval"
+         }
+      }
+    stage ('Get Approval') {
+       steps {
+         input "Please approve this deployment"
+       }
+    }
+    stage('Deploy') {
+      steps {
+      echo "Deploying Application"
+      }
+    }
+    }
   }
   }
   }
