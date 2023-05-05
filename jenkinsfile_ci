@@ -84,11 +84,14 @@ pipeline{
     stage ('Get Approval') {
        steps {
          input "Please approve this deployment"
+           when {
+                           expression { user == 't.okaf@outlook.com'}
+                       }
        }
     }
     stage('Deploy') {
       steps {
-      echo "Deploying Application"
+      echo "Deploying to Prod"
       }
     }
     }
