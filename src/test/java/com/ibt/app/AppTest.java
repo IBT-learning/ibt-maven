@@ -2,7 +2,7 @@ package com.ibt.app;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import org.junit4.Test;
 
 /**
  * Unit test for simple App.
