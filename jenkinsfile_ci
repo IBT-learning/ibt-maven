@@ -84,8 +84,11 @@ pipeline{
     stage ('Get Approval') {
        steps {
          input "Please approve this deployment"
-           when {
-                           expression { user == 't.okaf@outlook.com'}
+            message "Should we continue?"
+                           ok "Yes"
+                       }
+                       when {
+                           expression { user == 'hardCodeApproverJenkinsId'}
                        }
        }
     }
