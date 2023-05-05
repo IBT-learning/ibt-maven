@@ -85,9 +85,6 @@ pipeline{
        steps {
          input "Please approve this deployment"
                  }
-                 when {
-                                 expression { user == 'sullivand'}
-                             }
     }
     stage('Deploy') {
       steps {
