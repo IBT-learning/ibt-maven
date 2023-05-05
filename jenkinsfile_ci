@@ -73,6 +73,7 @@ pipeline{
                                     remote.password = password
                                     sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar', into: '/opt/tomcat/apps'
     }
+    }
   }
   }
     stage {
@@ -94,5 +95,5 @@ pipeline{
     }
   }
   }
-  }
+
 
