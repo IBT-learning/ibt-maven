@@ -18,7 +18,7 @@ pipeline {
          stage('yellow') {
             steps {
                  echo 'yellow'
-                 echo $"{env.version}"
+                 echo "${env.version}"
             }
         }
         stage('testing Jenkins once more') {
@@ -45,7 +45,7 @@ pipeline {
                                          }
                                            steps {
                                                 echo 'hook tested success'
-                                                echo $"{env.version}"
+                                                echo "${env.version}"
                                            }
                                        }
                                        stage('testing hook2') {
@@ -54,7 +54,7 @@ pipeline {
                                              }
                                                     steps {
                                                         echo 'Hook2 tested success'
-                                                        echo $"{env.version}"
+                                                        echo "${env.version}"
                                                     }
                                                 }
 
