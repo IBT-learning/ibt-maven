@@ -53,7 +53,7 @@ pipeline {
                                              version2= '1.5.0'
                                              }
                                                     steps {
-                                                        echo 'Hook tested success'
+                                                        echo 'Hook2 tested success'
                                                         echo $"{env.version}"
                                                     }
                                                 }
