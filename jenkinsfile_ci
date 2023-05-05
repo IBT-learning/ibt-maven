@@ -84,6 +84,7 @@ pipeline{
     stage ('Get Approval') {
        steps {
          input "Please approve this deployment"
+            input {
             message "Should we continue?"
                            ok "Yes"
                        }
@@ -96,6 +97,7 @@ pipeline{
       steps {
       echo "Deploying to Prod"
       }
+    }
     }
     }
 
