@@ -6,7 +6,11 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
+<<<<<<< HEAD
   <version>3.0-SNAPSHOT</version>
+=======
+  <version>2.0-SNAPSHOT</version>
+>>>>>>> 3996cb9b6055247e52bfc7e27999aaf699ba5397
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
