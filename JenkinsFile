@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters{
       string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to checkout')
-      choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number') }
+      choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
     stages {
         stage('Hello') {
@@ -21,10 +21,10 @@ pipeline {
             }
         }
         stage('Testing JenkinsFile') {
-            steps {
-                 echo 'Testing JenkinsFile'
-            }
-        }
+                 steps {
+                    echo 'Testing JenkinsFile'
+                 }
+              }
         stage('Git checkout') {
             steps{
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
