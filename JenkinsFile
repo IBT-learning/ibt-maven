@@ -25,7 +25,7 @@ pipeline {
         stage('Git checkout') {
             steps{
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-                bat 'dir -lrt'
+                sh 'ls -lrt'
             }
         }
     }
