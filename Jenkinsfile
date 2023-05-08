@@ -56,6 +56,10 @@ pipeline {
                                                         echo 'Hook2 tested success'
                                                         echo "${env.version}"
                                                     }
+                                                    post{
+                                                        always}
+                                                           emailext body: 'Test', subject: 'Test', to: 'sullivandeki@gmail.com'
+                                                           echo "build successful"
                                                 }
 
 
