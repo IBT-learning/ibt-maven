@@ -57,7 +57,7 @@ pipeline {
                                                         echo "${env.version}"
                                                     }
                                                     post{
-                                                        always}
+                                                        always{
                                                            emailext body: 'Test', subject: 'Test', to: 'sullivandeki@gmail.com'
                                                            echo "build successful"
                                                 }
