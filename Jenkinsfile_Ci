@@ -1,0 +1,49 @@
+pipeline {
+agent any
+
+stages {
+    stage{ ("Git checkout") {
+        step{
+           checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_sullivan']], extensions: [], userRemoteConfigs: [[credentialsId: 'IBT-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+        }
+    }
+    stage('validate'){
+       steps{
+          withMaven(maven: 'maven_3.8'){
+              sh 'mvn validate'
+             }
+          }
+       }
+       stage('compile'){
+           steps{
+               withMaven(maven: 'maven_3.8'){
+                   sh 'mvn compile'
+               }
+           }
+       }
+        stage('Run test'){
+            steps{
+               withMaven(maven: 'maven_3.8'){
+                   sh 'mvn Test'
+               }
+           }
+       }
+
+
+
+    }
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+}
