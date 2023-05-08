@@ -2,6 +2,9 @@ pipeline {
    environment {
       version= '1.3.0'
    }
+   tools{
+      maven "maven_3.8"
+   }
    agent any
     stages {
         stage('Hello') {
@@ -46,6 +49,12 @@ pipeline {
                                            steps {
                                                 echo 'hook tested success'
                                                 echo "${env.version}"
+                                           }
+                                       }
+                                       stage('mvn version') {
+                                           steps {
+                                              sh "mvn --version"
+
                                            }
                                        }
                                        stage('testing hook2') {
