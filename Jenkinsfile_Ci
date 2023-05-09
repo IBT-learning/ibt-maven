@@ -23,7 +23,7 @@ stages {
        }
         stage('Run test'){
             steps{
-               withMaven(maven: 'maven_1.4'){
+               withMaven(maven: 'maven_3.8'){
                    sh 'mvn Test'
                }
             }
