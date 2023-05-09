@@ -17,5 +17,10 @@ pipeline {
                 echo 'Test'
             }
         }
+        stage('Testing Jenkinfile') {
+                    steps {
+                        echo 'Jenkinfile'
+                    }
+                }
     }
 }
