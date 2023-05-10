@@ -1,0 +1,37 @@
+pipeline {
+agent any
+
+stages {
+    stage ('Git checkout') {
+        steps{
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+
+        }
+    }
+
+    stage ('validate'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                sh 'mvn validate'
+            }
+        }
+    }
+
+    stage ('compile'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                sh 'mvn compile'
+            }
+        }
+    }
+
+    stage ('Run Test'){
+            steps{
+                withMaven(maven: 'maven_3.8') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+    }
+}
