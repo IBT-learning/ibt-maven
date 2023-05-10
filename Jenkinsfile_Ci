@@ -28,5 +28,15 @@ stages {
                }
             }
         }
+        stage('SonarQube Analysis') {
+        environment{
+        sonarScan = tool 'ibt-sonarqube'
+            withSonarQubeEnv(credentialsId: 'student-sonar-token'  installationName: 'IBT sonarqube') {
+            sh "$sonarScan/bin/sonar-scanner"
+
+            }
+          }
+
+
     }
 }
