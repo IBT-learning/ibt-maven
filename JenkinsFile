@@ -21,8 +21,13 @@ pipeline {
             }
         }
         stage('Testing JenkinsFile') {
+        when{
+            expression{
+                env.Branch_Name=='main'
+            }
+        }
                  steps {
-                      echo 'Testing JenkinsFile'
+                      echo 'JenkinsFile'
                    }
                }
         stage('Git checkout') {
