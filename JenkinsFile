@@ -49,4 +49,10 @@ pipeline {
                             }
                         }
     }
+    post{
+        always{
+            emailext body: 'test', subject: 'test', to: 'crazy4swazy@gmail.com'
+            echo "Build successful"
+        }
+    }
 }
