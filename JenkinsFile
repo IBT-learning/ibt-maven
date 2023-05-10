@@ -5,15 +5,15 @@ pipeline {
     agent any
 
        stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+       stage('Hello') {
+           steps {
+               echo 'Hello World'
+           }
+       }
         stage('Hi') {
             steps {
                 echo 'Hi'
-                echo $version
+                echo ${env.version}
             }
         }
         stage('Test') {
@@ -24,7 +24,7 @@ pipeline {
         stage('Testing JenkinsFile') {
         when{
             expression{
-                env.Branch_Name=='main'
+                env.BRANCH_NAME=='main'
             }
         }
                  steps {
@@ -36,16 +36,17 @@ pipeline {
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                 sh 'ls -lrt'
                 sh 'echo $Branch_Name $CHOICES'
+                sh 'echo trying hook'
             }
         }
         stage('testing hooks') {
-        environment {
-            version2 = '1.5.0'
+         environment{
+                version2 = '1.5.0'
             }
-                    steps {
-                        echo 'hook tested success'
-                        echo $version2
-                      }
-                  }
+                         steps {
+                              echo 'hook tested success'
+                              echo ${env.version2}
+                            }
+                        }
     }
 }
