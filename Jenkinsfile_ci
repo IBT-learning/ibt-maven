@@ -11,7 +11,7 @@ stages {
 
     stage ('validate'){
         steps{
-            withMaven(maven: 'maven_3.8') {
+            withMaven(maven: 'maven_3.9') {
                 sh 'mvn validate'
             }
         }
@@ -19,7 +19,7 @@ stages {
 
     stage ('compile'){
         steps{
-            withMaven(maven: 'maven_3.8') {
+            withMaven(maven: 'maven_3.9') {
                 sh 'mvn compile'
             }
         }
@@ -27,7 +27,7 @@ stages {
 
     stage ('Run Test'){
             steps{
-                withMaven(maven: 'maven_3.8') {
+                withMaven(maven: 'maven_3.9') {
                     sh 'mvn test'
                 }
             }
