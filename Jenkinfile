@@ -1,34 +1,34 @@
 pipeline {
-    agent any
-    stages {
-        stage('Hello') {
+        agent any
+        stages {
+            stage('Hello') {
+                steps {
+                    echo 'Hello World'
+                }
+            }
+        stage('Hi') {
             steps {
-                echo 'Hello World'
+                    echo 'Hi'
+                }
+            }
+        stage('Test') {
+            steps {
+                    echo 'Test'
+                }
+            }
+        stage('Testing Jenkinfile') {
+            steps {
+                echo 'Jenkinfile'
+                }
+            }
+        stage("Git checkout") {
+            steps{
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_Taiwo']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt-github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                sh "ls -lrt"
             }
         }
-    stage('Hi') {
-        steps {
-                echo 'Hi'
-            }
-        }
-    stage('Test') {
-        steps {
-               echo 'Test'
-            }
-        }
-    stage('Testing Jenkinfile') {
-        steps {
-               echo 'Jenkinfile'
-            }
-        }
-    stage("Git checkout") {
-           steps{
-             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_Taiwo']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt-github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-              sh "ls -lrt"
-           }
-       }
-   }
-
+    }
+}
 
 
 
