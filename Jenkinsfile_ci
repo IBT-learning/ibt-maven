@@ -36,6 +36,7 @@ stages{
             steps{
                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
                  sh "$sonarScan/bin/sonar-scanner"
+                 //sh "${env.sonarScan}/bin/sonar-scanner"
                  }
                }
             }
@@ -82,7 +83,7 @@ stages{
   when{
              expression{
  //                 $Branch_Name=='main'
-                    env.BRANCHA_NAME=='main'
+                    env.BRANCH_NAME=='main'
              }
          }
                             steps{
