@@ -56,7 +56,15 @@ stages {
                                      dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                           }
                      }
-
+                  stage('upload to Artifactory'){
+                      stage{
+                          withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'mvn_settings')]) {
+                             withMaven(maven: 'maven_3.8') {
+                                  sh 'mvn deploy -s $mvn_settings'
+                             }
+                          }
+                      }
+                  }
 
   }
 }
