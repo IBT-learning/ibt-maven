@@ -32,6 +32,9 @@ stages {
                 }
             }
         }
-
+    stage('SonarQube Analysis') {
+        withSonarQubeEnv() {
+          sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=feb26_class"
+        }
     }
 }
