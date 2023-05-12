@@ -1,0 +1,14 @@
+ - name: Play 1
+   hosts: localhost
+
+   tasks:
+   - include_vars: vars.yml
+   - name: using vars
+     register: output
+     lineinfile:
+       path: test.sh
+       line: '{{ ip_address1 }}'
+
+   - name: test condition
+     command: echo "done"
+     when: output.msg.find("line added")!= -1

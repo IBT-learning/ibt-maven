@@ -1,0 +1,23 @@
+name: overview
+
+feb26:
+    - student1:
+        name: sullivan
+        dob: 5/5/23
+        skills:
+            - unix
+            - python
+            - git
+            - maven
+
+    - student2:
+        name: belrita
+        dob:
+        skills:
+            - unix
+            - python
+            - git
+            - maven
+
+    - student3: elena
+    - student: nnamdi

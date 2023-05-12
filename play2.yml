@@ -1,0 +1,31 @@
+---
+- name: Play 1
+  hosts: localhost
+  vars:
+    day: 25th May
+    test: day
+
+  tasks:
+    - name: hello world
+      shell: echo "Hello World!"
+
+    - name: hi
+      shell: echo "**HI**"
+
+    - name: date
+      command: date
+
+#    - name: run a script
+#      script: test.sh
+
+    - name: display contents of a file
+      command: cat /etc/resolv.conf
+
+    - name: display contents of a file2
+      command: cat resolv.conf chdir=/etc
+
+    - name: add line in file
+      lineinfile:
+          path: test.sh
+          line: 'day - {{ day }}'
+
