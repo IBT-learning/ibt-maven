@@ -1,46 +1,46 @@
 pipeline{
 //agent {label 'UX_IBT'}
-agent any
+    agent any
 
-stages{
-    stage ('GIT Checkout'){
-        steps{
-            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_anya']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-            }
-        }
-    stage ('Validate'){
-        steps{
-            withMaven(maven: 'maven_3.8') {
-                sh 'mvn validate'
+    stages{
+        stage ('GIT Checkout'){
+                steps{
+                        checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_anya']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                    }
                 }
-            }
-        }
-     stage ('Compile'){
-            steps{
-                withMaven(maven: 'maven_3.8') {
-                    sh 'mvn compile'
+        stage ('Validate'){
+                steps{
+                    withMaven(maven: 'maven_3.8') {
+                        sh 'mvn validate'
+                        }
+                    }
                 }
-            }
-         }
-     stage ('Run Test'){
-                 steps{
-                     withMaven(maven: 'maven_3.8') {
-                         sh 'mvn test'
+         stage ('Compile'){
+                steps{
+                    withMaven(maven: 'maven_3.8') {
+                        sh 'mvn compile'
+                    }
+                }
+             }
+         stage ('Run Test'){
+                     steps{
+                         withMaven(maven: 'maven_3.8') {
+                             sh 'mvn test'
+                         }
                      }
-                 }
-          }
-    stage('SonarQube Analysis') {
-           environment{
-            sonarScan = tool 'ibt-sonarqube'
-                }
-            steps{
-               withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-                 //sh "$sonarScan/bin/sonar-scanner"
-                 sh "${env.sonarScan}/bin/sonar-scanner"
-                 }
-               }
-            }
-    stage('Package')
+              }
+        stage ('SonarQube Analysis') {
+                   environment{
+                    sonarScan = tool 'ibt-sonarqube'
+                        }
+                    steps{
+                       withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                         //sh "$sonarScan/bin/sonar-scanner"
+                         sh "${env.sonarScan}/bin/sonar-scanner"
+                         }
+                       }
+                    }
+        stage  ('Package')
                 {
                    steps{
                        withMaven(maven: 'maven_3.8') {
@@ -48,44 +48,44 @@ stages{
                       }
                    }
                 }
-    stage('Vulnerability scan - Dependency Check')
-           {
-                steps{
-                         dependencyCheck additionalArguments: '''
-                                                               -o "./"
-                                                               -s "./"
-                                                               -f "ALL"
-                                                               --prettyPrint ''', odcInstallation: 'dependency-check'
-                           dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                }
-           }
-    stage('Upload to Artifactory')
-           {
-                steps{
-                    withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
-                    withMaven(maven: 'maven_3.8') {
-                        sh "mvn deploy -s $settings"
-                       }
+        stage   ('Vulnerability scan - Dependency Check')
+               {
+                    steps{
+                             dependencyCheck additionalArguments: '''
+                                                                   -o "./"
+                                                                   -s "./"
+                                                                   -f "ALL"
+                                                                   --prettyPrint ''', odcInstallation: 'dependency-check'
+                               dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                     }
-                }
-           }
-    stage('Upload Artifactory - configFile')
-           {
-                steps{
-                    configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings', variable: 'mvn_settings_config')]) {
-                    withMaven(maven: 'maven_3.8') {
-                       sh "mvn deploy -s $mvn_settings_config"
-                      }
+               }
+        stage   ('Upload to Artifactory')
+               {
+                    steps{
+                        withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'settings')]) {
+                        withMaven(maven: 'maven_3.8') {
+                            sh "mvn deploy -s $settings"
+                           }
+                        }
                     }
-                }
-           }
+               }
+        stage   ('Upload Artifactory - configFile')
+               {
+                    steps{
+                        configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings', variable: 'mvn_settings_config')]) {
+                        withMaven(maven: 'maven_3.8') {
+                           sh "mvn deploy -s $mvn_settings_config"
+                          }
+                        }
+                    }
+               }
 
-    stage('Configure server - run playbook')
-        when{
-                       expression{
-                               env.BRANCH_NAME=='main'
-                       }
-                   }
+        stage   ('Configure server - run playbook')
+                when{
+                               expression{
+                                       env.BRANCH_NAME=='main'
+                               }
+                           }
                        {
                            steps{
                                ansiblePlaybook(
@@ -99,13 +99,13 @@ stages{
 
                        }
 
-    stage('Deploy to Dev'){
-         when{
-                   expression{
+        stage ('Deploy to Dev'){
+             when{
+                       expression{
 
-                           env.BRANCH_NAME=='main'
+                               env.BRANCH_NAME=='main'
+                       }
                    }
-               }
                             steps{
                                 script{
                                     def remote = [name: 'dev-server', host: '159.65.225.46', allowAnyHosts: true]
@@ -117,11 +117,6 @@ stages{
                                 }
                             }
                         }
-
-
-
-
-
 
     }
 }
