@@ -88,7 +88,7 @@ stages{
          }
                             steps{
                                 script{
-                                    def remote = [name: 'dev-server', host: '178.128.228.15', allowAnyHosts: true]
+                                    def remote = [name: 'dev-server', host: '159.65.225.46', allowAnyHosts: true]
                                     withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
                                        remote.user =  username
                                        remote.password = password
