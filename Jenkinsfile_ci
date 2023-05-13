@@ -79,6 +79,21 @@ stages{
                     }
                 }
            }
+
+    stage('Configure server - run playbook')
+                       {
+                           steps{
+                               ansiblePlaybook(
+                                               become: true,
+                                               credentialsId: 'vm-ssh',
+                                               disableHostKeyChecking: true,
+                                               inventory: 'hosts',
+                                               playbook: 'tomcat-install.yml'
+                                               )
+                           }
+
+                       }
+
  stage('Deploy to Dev'){
   when{
              expression{
@@ -98,19 +113,6 @@ stages{
                             }
                         }
 
-       stage('Configure server - run playbook')
-            {
-                steps{
-                    ansiblePlaybook(
-                                    become: true,
-                                    credentialsId: 'vm-ssh',
-                                    disableHostKeyChecking: true,
-                                    inventory: 'hosts',
-                                    playbook: 'tomcat-install.yml'
-                                    )
-                }
-
-            }
 
 
 

@@ -10,7 +10,6 @@
   tasks:
     - name: Update system package
       apt:
-#        state: latest
         upgrade: yes
         update_cache: yes
 
@@ -21,39 +20,39 @@
 
     - name: Create Tomcat User
       user:
-        name: '{{tomcat_user}}'
+        name: '{{ tomcat_user }}'
 
     - name: Create Tomcat Group
       group:
-        name: tomcat
+        name: '{{ tomcat_user }}'
 
-    - name: Create Tomcat Directory
+    - name: Create tomcat directory
       file:
         path: '{{ tomcat_path }}'
-        owner: '{{tomcat_user}}'
-        group: '{{tomcat_user}}'
+        owner: '{{ tomcat_user }}'
+        group: '{{ tomcat_user }}'
         mode: 755
         recurse: yes
 
     - name: Download Tomcat and unarchive
       unarchive:
-         src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.72//bin/apache-tomcat-9.0.72.tar.gz
-         dest: '{{ tomcat_path }}'
-         remote_src: yes
-         extra_opts: [--strip-components=1]
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.74/bin/apache-tomcat-9.0.74.tar.gz
+        dest: '{{ tomcat_path }}'
+        remote_src: yes
+        extra_opts: [--strip-components=1]
 
     - name: Start tomcat server
-      command: sh /opt/tomcat/bin/startup.sh
+      command: nohup {{ tomcat_path }}/bin/startup.sh
 
     - name: allow tcp connections
       command: sudo ufw allow 8080/tcp
 
     - name: connect to tomcat on port 8080
       tags:
-       - test
-       - connect
+        - test
+        - connect
       uri:
-        url: http:localhost:8080
+        url: http://localhost:8080
       register: result
       until: "result.status==200"
       retries: 2
@@ -64,3 +63,4 @@
   handlers:
     - name: Echo connection
       command: echo "success"
+
