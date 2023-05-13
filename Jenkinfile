@@ -1,5 +1,9 @@
 pipeline {
-        agent any
+     agent any
+     parameters{
+     string(name:'Branch_Name'. defaultvalue:'main'. description:'Enter the branch to checkout'
+     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') }
+     }
         stages {
             stage('Hello') {
                 steps {
@@ -29,6 +33,7 @@ pipeline {
         }
     }
 }
+
 
 
 
