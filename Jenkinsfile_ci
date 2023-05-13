@@ -123,7 +123,7 @@ stages{
                                     withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
                                        remote.user =  username
                                        remote.password = password
-                                       sshPut remote: remote, from: 'target/ibt-maven-3.1-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+                                       sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar', into: '/opt/tomcat/apps'
                                     }
                                 }
                             }
