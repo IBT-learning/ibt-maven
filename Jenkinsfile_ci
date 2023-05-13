@@ -5,26 +5,22 @@ stages {
     stage ('Git checkout') {
         steps{
             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-
         }
     }
-
-    stage ('validate'){
+    stage ('Validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
                 sh 'mvn validate'
             }
         }
     }
-
-    stage ('compile'){
+    stage ('Compile'){
         steps{
             withMaven(maven: 'maven_3.8') {
                 sh 'mvn compile'
             }
         }
     }
-
     stage ('Run Test'){
             steps{
                 withMaven(maven: 'maven_3.8') {
@@ -32,12 +28,13 @@ stages {
                 }
             }
         }
-     stages('SonarQube Analysis') {
-     environment{
-      sonarScan = tool 'ibt-sonarqube'
+     stage('SonarQube Analysis') {
+     environment {
+        sonarScan = tool 'ibt-sonarqube'
      }
+     steps{
          withSonarQubeEnv(credentialsId: 'first-personal-sonar', installationName: 'ibt-sonarqube') {
-            sh "$sonarScan/bin/sonar-scanner"
+            sh "${env.sonarScan}/bin/sonar-scanner"
           }
        }
 
