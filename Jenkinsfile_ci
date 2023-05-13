@@ -32,7 +32,7 @@ stages {
                 }
             }
         }
-     stage('SonarQube Analysis') {
+     stages('SonarQube Analysis') {
      environment{
       sonarScan = tool 'ibt-sonarqube'
      }
