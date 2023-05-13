@@ -7,7 +7,6 @@ stages {
             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-GitHub', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
-    }
     stage ('Validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
