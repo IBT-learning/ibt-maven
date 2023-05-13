@@ -81,10 +81,9 @@ stages{
            }
 
     stage('Configure server - run playbook')
-     when{
+        when{
                        expression{
-
-                               env.BRANCH_NAME=='master'
+                               env.BRANCH_NAME=='main'
                        }
                    }
                        {
@@ -104,7 +103,7 @@ stages{
          when{
                    expression{
 
-                           env.BRANCH_NAME=='master'
+                           env.BRANCH_NAME=='main'
                    }
                }
                             steps{
