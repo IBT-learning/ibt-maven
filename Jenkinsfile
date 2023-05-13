@@ -36,7 +36,7 @@ pipeline {
         when{
             expression{
 //                 $Branch_Name=='main'
-                env.BRANCHA_NAME=='main'
+                env.BRANCH_NAME=='main'
             }
         }
              steps {

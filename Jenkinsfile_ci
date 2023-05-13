@@ -81,6 +81,12 @@ stages{
            }
 
     stage('Configure server - run playbook')
+     when{
+                       expression{
+
+                               env.BRANCH_NAME=='master'
+                       }
+                   }
                        {
                            steps{
                                ansiblePlaybook(
@@ -94,13 +100,13 @@ stages{
 
                        }
 
- stage('Deploy to Dev'){
-  when{
-             expression{
- //                 $Branch_Name=='main'
-                    env.BRANCH_NAME=='main'
-             }
-         }
+    stage('Deploy to Dev'){
+         when{
+                   expression{
+
+                           env.BRANCH_NAME=='master'
+                   }
+               }
                             steps{
                                 script{
                                     def remote = [name: 'dev-server', host: '159.65.225.46', allowAnyHosts: true]
