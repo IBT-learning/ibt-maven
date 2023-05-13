@@ -1,0 +1,31 @@
+---
+- name: Play 1
+  hosts: localhost
+  vars:
+    today: Day.today
+
+  tasks:
+    - name: helloworld
+      shell: echo "hello world"
+
+    - name: hi
+      shell: echo "hello world"
+
+    - name: date
+      command: date
+
+#    - name: run a script
+#      script: /test.sh
+#
+#    - name: display contents of a file
+#      command: cat /Users/KK/IdeaProjects/ibt-maven-gm/src/main/Yaml_demo.yml
+
+    - name: add line in file
+      lineinfile:
+          path: test.sh
+          line: 'day: {{today}}'
+
+    - name: add another line in file
+      lineinfile:
+        path: test.sh
+        line: 'other name'

@@ -1,0 +1,21 @@
+---
+feb26:
+    - student1:
+        name: Elena
+        dob: 3/3/84
+        skills:
+          - java
+          - linux
+          - maven
+
+
+    - student2:
+        name: Anna
+        dob: 6/6/78
+
+    - student3:
+        name: Gunjan
+        teacher:
+          - maven
+          - jenkins
+          - ansible
