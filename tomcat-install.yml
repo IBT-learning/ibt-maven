@@ -21,7 +21,7 @@
 
     - name: Create Tomcat User
       user:
-        name: {{tomcat_user}}
+        name: '{{tomcat_user}}'
 
     - name: Create Tomcat Group
       group:
@@ -29,16 +29,16 @@
 
     - name: Create Tomcat Directory
       file:
-        path: {{ tomcat_path }}
-        owner: {{ tomcat_user }}
-        group: {{ tomcat_user }}
+        path: '{{ tomcat_path }}'
+        owner: '{{tomcat_user}}'
+        group: '{{tomcat_user}}'
         mode: 755
         recurse: yes
 
     - name: Download Tomcat and unarchive
       unarchive:
          src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.72//bin/apache-tomcat-9.0.72.tar.gz
-         dest: {{ tomcat_path }}
+         dest: '{{ tomcat_path }}'
          remote_src: yes
          extra_opts: [--strip-components=1]
 
