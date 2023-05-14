@@ -30,7 +30,7 @@ stages {
         }
      stage('SonarQube Analysis') {
      environment {
-        sonarScan = tool 'IBT-sonarqube'
+        sonarScan = tool 'ibt-sonarqube'
      }
      steps{
             withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT-sonarqube') {
