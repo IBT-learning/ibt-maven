@@ -80,7 +80,7 @@ pipeline{
                     }
                }
 
-        stage   ('Configure server - run playbook')
+        stage   ('Configure server - run playbook'){
                 when{
                                expression{
                                        env.BRANCH_NAME=='main'
@@ -98,6 +98,7 @@ pipeline{
                            }
 
                        }
+                }
 
         stage ('Deploy to Dev'){
              when{
@@ -116,7 +117,7 @@ pipeline{
                                     }
                                 }
                             }
-                        }
+                    }
 
     }
 }
