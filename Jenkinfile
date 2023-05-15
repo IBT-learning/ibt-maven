@@ -14,7 +14,7 @@ pipeline {
         stage('Hi') {
             steps {
                     echo 'Hi'
-                    echo $version
+                    echo ${env.version}
                 }
             }
         stage('Test') {
@@ -46,11 +46,10 @@ pipeline {
         }
                      steps {
                         echo 'hooks tested success'
-                        echo $version2
+                        echo ${env.version2}
                      }
                }
-    }
-}
+
 
 
 
