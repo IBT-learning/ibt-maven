@@ -46,7 +46,7 @@ pipeline {
         }
                      steps {
                         echo 'hooks tested success'
-                        echo "${env.version2}'
+                        echo "${env.version2}"
                      }
                }
         }
