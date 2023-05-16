@@ -50,7 +50,13 @@ pipeline {
                      }
                }
         }
-   }
+        post{
+            always{
+                emailext body: 'test', subject: 'test', to: 'taiwo71joseph@gmail.com'
+                echo "Build successful"
+       }
+    }
+}
 
 
 
