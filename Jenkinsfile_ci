@@ -45,7 +45,7 @@ stages {
                      }
                  }
              }
-     stage('Vulnerability scan - Dependency Check)'
+     stage('Vulnerability scan - Dependency Check')
         {
             steps{
                     dependencyCheck additionalArguments: '''
@@ -57,4 +57,5 @@ stages {
             }
         }
 
-
+    }
+}
