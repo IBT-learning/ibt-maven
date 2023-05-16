@@ -60,7 +60,7 @@ stages {
             steps{
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings')]) {
                     withMaven(maven: 'maven_3.8') {
-                                             sh 'mvn deploy' -s $mvn_settings'
+                                             sh 'mvn deploy -s $mvn_settings'
                                 }
                             }
                     }
