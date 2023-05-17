@@ -8,7 +8,7 @@ pipeline {
         maven 'maven_3.8'
     }
 
-    agent any
+    agent {label 'UX_IBT'}
 
     parameters{
         string(name:'Branch_Name', defaultValue:'feature-irinamm', description:'Enter the branch to checkout')
