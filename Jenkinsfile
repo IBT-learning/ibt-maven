@@ -3,7 +3,7 @@ pipeline {
       version= '1.3.0'
    }
    tools{
-      maven "maven_3.8"
+      maven 'maven_3.8'
    }
    agent {label 'UX_IBT'}
     stages {
@@ -53,7 +53,7 @@ pipeline {
                                        }
                                        stage('mvn version') {
                                            steps {
-                                              sh "mvn --version"
+                                              sh 'mvn --version'
 
                                            }
                                        }
