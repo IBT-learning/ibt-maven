@@ -9,20 +9,23 @@ stages {
         }
     stage ('validate'){
         steps{
+            withMaven(maven: 'maven_3.9') {
                 bat 'mvn validate'
-
+            }
         }
     }
     stage ('compile'){
         steps{
+            withMaven(maven: 'maven_3.9') {
                 bat 'mvn compile'
-
+            }
         }
     }
     stage ('Run Test'){
             steps{
+                withMaven(maven: 'maven_3.9') {
                     bat 'mvn test'
-
+                }
             }
         }
      stage('SonarQube Analysis') {
@@ -31,14 +34,16 @@ stages {
      }
      steps{
             withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                bat "${env.sonarScan}/bin/sonar-scanner"
-
+                withMaven(maven: 'maven_3.9') {
+                   bat "${env.sonarScan}/bin/sonar-scanner"
+            }
          }
        }
      stage ('Package'){
                  steps{
+                    withMaven(maven: 'maven_3.9') {
                          bat 'mvn package'
-
+                    }
                  }
              }
      stage('Vulnerability scan - Dependency Check')
@@ -55,17 +60,19 @@ stages {
         stage('upload to Artifactory') {
             steps{
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings')]) {
+                           withMaven(maven: 'maven_3.9') {
                                              bat 'mvn deploy -s $mvn_settings'
                                 }
-
+                           }
                     }
                 }
                 stage('upload to Artifactory - configFile'){
                     steps{
                         configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
+                            withMaven(maven: 'maven_3.9') {
                                   bat 'mvn deploy -s $mvn_settings_config'
                             }
-
+                        }
                     }
                 }
             }
