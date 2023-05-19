@@ -21,12 +21,22 @@ agent any
              }
         }
    }
-   stage ('run test') {
+   stage ('Run test') {
            steps {
                withMaven(maven: 'maven_3.8') {
                        sh 'mvn test'
                 }
            }
+   stage('SonarQube Analysis') {
+   environment{
+   sonarScan = tool 'ibt-sonarqube'
+   }
+          withSonarQubeEnv(credentialsId: 'student-sonar-token', installaionName: 'IBT sonarqube') {
+          sh $"sonarScan/bin/sonar-scanner"
+         }
+       }
+
+
         }
      }
 }
