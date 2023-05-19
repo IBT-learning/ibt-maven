@@ -28,7 +28,7 @@ stages {
                 }
             }
         }
-     stage('SonarQube Analysis') {
+     stage ('SonarQube Analysis') {
      environment {
         sonarScan = tool 'ibt-sonarqube'
      }
