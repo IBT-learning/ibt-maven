@@ -34,7 +34,7 @@ agent any
         }
        steps{
           withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-          sh $"sonarScan/bin/sonar-scanner"
+             sh $"sonarScan/bin/sonar-scanner"
          }
        }
     }
