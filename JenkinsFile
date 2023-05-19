@@ -6,7 +6,7 @@ pipeline {
     tools {
         maven 'maven_3.8'
     }
-    agent any
+    agent {label 'UX_IBT'}
 
        stages {
        stage('Hello') {
