@@ -10,21 +10,21 @@ stages {
     stage ('validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
-                sh 'mvn validate'
+                bat 'mvn validate'
             }
         }
     }
     stage ('compile'){
         steps{
             withMaven(maven: 'maven_3.8') {
-                sh 'mvn compile'
+                bat 'mvn compile'
             }
         }
     }
     stage ('Run Test'){
             steps{
                 withMaven(maven: 'maven_3.8') {
-                    sh 'mvn test'
+                    bat 'mvn test'
                 }
             }
         }
@@ -34,14 +34,14 @@ stages {
      }
      steps{
             withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                sh "${env.sonarScan}/bin/sonar-scanner"
+                bat "${env.sonarScan}/bin/sonar-scanner"
             }
          }
        }
      stage ('Package'){
                  steps{
                      withMaven(maven: 'maven_3.8') {
-                         sh 'mvn package'
+                         bat 'mvn package'
                      }
                  }
              }
@@ -60,7 +60,7 @@ stages {
             steps{
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings')]) {
                     withMaven(maven: 'maven_3.8') {
-                                             sh 'mvn deploy -s $mvn_settings'
+                                             bat 'mvn deploy -s $mvn_settings'
                                 }
                             }
                     }
@@ -69,7 +69,7 @@ stages {
                     steps{
                         configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
                             withMaven(maven: 'maven_3.8') {
-                                  sh 'mvn deploy -s $mvn_settings_config'
+                                  bat 'mvn deploy -s $mvn_settings_config'
                             }
                         }
                     }
