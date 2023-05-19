@@ -10,19 +10,19 @@ stages {
     stage ('validate'){
         steps{
                 bat 'mvn validate'
-            }
+
         }
     }
     stage ('compile'){
         steps{
                 bat 'mvn compile'
-            }
+
         }
     }
     stage ('Run Test'){
             steps{
                     bat 'mvn test'
-                }
+
             }
         }
      stage('SonarQube Analysis') {
@@ -32,13 +32,13 @@ stages {
      steps{
             withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
                 bat "${env.sonarScan}/bin/sonar-scanner"
-            }
+
          }
        }
      stage ('Package'){
                  steps{
                          bat 'mvn package'
-                     }
+
                  }
              }
      stage('Vulnerability scan - Dependency Check')
@@ -57,7 +57,7 @@ stages {
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings')]) {
                                              bat 'mvn deploy -s $mvn_settings'
                                 }
-                            }
+
                     }
                 }
                 stage('upload to Artifactory - configFile'){
@@ -65,7 +65,7 @@ stages {
                         configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
                                   bat 'mvn deploy -s $mvn_settings_config'
                             }
-                        }
+
                     }
                 }
             }
