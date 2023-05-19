@@ -29,16 +29,15 @@ agent any
            }
        }
    stage('SonarQube Analysis') {
-   environment {
-   sonarScan = tool 'ibt-sonarqube'
+      environment {
+         sonarScan = tool 'ibt-sonarqube'
         }
-   }
        steps{
           withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
           sh $"sonarScan/bin/sonar-scanner"
          }
        }
     }
-        }
-
+     }
+}
 
