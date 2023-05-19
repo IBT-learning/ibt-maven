@@ -28,13 +28,12 @@ stages {
                 }
             }
         }
-     stage ('SonarQube Analysis') {
-     environment {
+     stage('SonarQube Analysis') {
+       environment {
         sonarScan = tool 'ibt-sonarqube'
      }
-     steps{
+        steps{
             withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                withMaven(maven: 'maven_3.9') {
                    sh "${env.sonarScan}/bin/sonar-scanner"
             }
          }
