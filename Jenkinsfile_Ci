@@ -78,9 +78,9 @@ stages {
                      steps{
                         script{
                            def remote = [name: 'dev-server', host: '159.223.171.254', allowAnyHost: true]
-                           withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'host-Password', usernameVariable: 'host-username')]) {
-                               remote.user = host-username
-                               remote.password = host-password
+                           withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'Password', usernameVariable: 'username')]) {
+                               remote.user = username
+                               remote.password = password
                                sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar', into: 'opt/tomcat/apps'
                            }
                         }
