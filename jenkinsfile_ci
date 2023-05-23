@@ -56,9 +56,15 @@ agent any
                                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                      }
                 }
-
-
-
+        stage("upload to artifactory"{
+                 steps{
+                     withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'maven_settings')]) {
+                            // some block
+                                            sh 'mvn deploy -s $maven_settings'
+                        }
+                }
+           }
      }
-}
+  }
+
 
