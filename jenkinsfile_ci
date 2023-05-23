@@ -45,26 +45,27 @@ agent any
                                  }
                              }
                          }
-        stage('Vulnerability scan - Dependency Check')
-                {
+        stage('Vulnerability scan - Dependency Check'){
                      steps{
-                              dependencyCheck additionalArguments: '''
+                          dependencyCheck additionalArguments: '''
                                                                     -o "./"
                                                                     -s "./"
                                                                     -f "ALL"
                                                                     --prettyPrint ''', odcInstallation: 'dependency-check'
                                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                     }
-                }
+                                }
+                           }
         stage("upload to artifactory"{
                  steps{
                      withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'maven_settings')]) {
                             // some block
                                             sh 'mvn deploy -s $maven_settings'
+                                            }
                         }
                 }
            }
-       }
-  }
+
+    }
+
 
 
