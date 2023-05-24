@@ -56,7 +56,7 @@ agent any
                                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                                 }
                            }
-        stage('upload to artifactory'){
+        stage('upload to Artifactory'){
                  steps{
                      withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'maven_settings')]) {
                              withMaven(maven: 'maven_3.8') {
@@ -64,10 +64,19 @@ agent any
                                             }
                         }
                 }
-
            }
+         stage('upload to Artifactory - configFlie'){
+                        steps{
+                            configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
+                                withMaven(maven: 'maven_3.8') {
+                                        sh 'mvn deploy -s $mvn_settings_config'
+                                }
+                            }
+                        }
+                   }
+            }
+     }
 
-    }
-}
+
 
 
