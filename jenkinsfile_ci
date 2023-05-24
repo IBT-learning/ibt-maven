@@ -9,9 +9,9 @@ agent any
         }
     stage ('validate') {
         steps {
-             withMaven(maven: 'maven_3.8') {
+            withMaven(maven: 'maven_3.8') {
                    sh 'mvn validate'
-             }
+            }
         }
     }
     stage ('compile') {
@@ -40,25 +40,26 @@ agent any
     }
      stage ('Package'){
                        steps{
-                              withMaven(maven: 'maven_3.8') {
+                            withMaven(maven: 'maven_3.8') {
                                     sh 'mvn package'
-                                 }
-                             }
-                         }
-        stage('Vulnerability scan - Dependency Check'){
-                     steps{
-                          dependencyCheck additionalArguments: '''
-                                                                    -o "./"
-                                                                    -s "./"
-                                                                    -f "ALL"
-                                                                    --prettyPrint ''', odcInstallation: 'dependency-check'
+                            }
+                       }
+                  }
+        stage('Vulnerability scan - Dependency Check')
+            {
+              steps{
+                    dependencyCheck additionalArguments: '''
+                                                          -o "./"
+                                                          -s "./"
+                                                          -f "ALL"
+                                                         --prettyPrint ''', odcInstallation: 'dependency-check'
                                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                                 }
                            }
-        stage("upload to artifactory"{
+        stage('upload to artifactory'){
                  steps{
                      withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'maven_settings')]) {
-                            // some block
+                             withMaven(maven: 'maven_3.8') {
                                             sh 'mvn deploy -s $maven_settings'
                                             }
                         }
@@ -67,6 +68,6 @@ agent any
            }
 
     }
-
+}
 
 
