@@ -4,8 +4,9 @@ agent any
 stages {
     stage ('Git checkout') {
         steps{
-           checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature_gunjanm']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-                   }
+           checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-local-jenk', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+
+                              }
             }
         }
     stage ('validate'){
