@@ -11,21 +11,21 @@ stages {
         }
     stage ('validate'){
         steps{
-            withMaven(maven: 'maven_3.8') {
+            withMaven(maven: 'maven_3.9') {
                 sh 'mvn validate'
             }
         }
     }
     stage ('compile'){
         steps{
-            withMaven(maven: 'maven_3.8') {
+            withMaven(maven: 'maven_3.9') {
                 sh 'mvn compile'
             }
         }
     }
     stage ('Run Test'){
             steps{
-                withMaven(maven: 'maven_3.8') {
+                withMaven(maven: 'maven_3.9') {
                     sh 'mvn test'
                 }
             }
@@ -42,7 +42,7 @@ stages {
        }
      stage ('Package'){
                  steps{
-                    withMaven(maven: 'maven_3.8') {
+                    withMaven(maven: 'maven_39') {
                          sh 'mvn package'
                     }
                  }
@@ -61,7 +61,7 @@ stages {
         stage('upload to Artifactory') {
             steps{
                 withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings')]) {
-                           withMaven(maven: 'maven_3.8') {
+                           withMaven(maven: 'maven_3.9') {
                                              sh 'mvn deploy -s $mvn_settings'
                                 }
                            }
@@ -70,7 +70,7 @@ stages {
                 stage('upload to Artifactory - configFile'){
                     steps{
                         configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
-                            withMaven(maven: 'maven_3.8') {
+                            withMaven(maven: 'maven_3.9') {
                                   sh 'mvn deploy -s $mvn_settings_config'
                             }
                         }
