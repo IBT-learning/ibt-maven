@@ -6,7 +6,7 @@ stages {
         steps{
            checkout scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-local-jenk', url: 'https://github.com/IBT-learning/ibt-maven.git']])
 
-                }
+
             }
         }
     stage ('validate'){
