@@ -33,7 +33,7 @@ stages {
         sonarScan = tool 'ibt-sonarqube'
      }
         steps{
-            withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'ibt-sonarqube') {
+            withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
                    sh "${env.sonarScan}/bin/sonar-scanner"
             }
          }
