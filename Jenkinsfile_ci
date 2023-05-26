@@ -5,10 +5,8 @@ stages {
     stage ('Git checkout') {
         steps{
            checkout scmGit(branches: [[name: '*/feature-nicole']], extensions: [], userRemoteConfigs: [[credentialsId: 'Ibt-local-jenk', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-
-
-            }
         }
+    }
     stage ('validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
@@ -16,7 +14,7 @@ stages {
             }
         }
     }
-    stage('compile'){
+    stage ('compile'){
         steps{
             withMaven(maven: 'maven_3.8') {
                 sh 'mvn compile'
@@ -31,7 +29,7 @@ stages {
             }
         }
      stage('SonarQube Analysis') {
-     environment{
+     environment {
         sonarScan = tool 'ibt-sonarqube'
      }
         steps{
@@ -58,12 +56,12 @@ stages {
                           dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-        stage('upload to Artifactory') {
+        stage('upload to Artifactory'){
             steps{
-                withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings')]) {
+                withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'mvn_settings')]) {
                            withMaven(maven: 'maven_3.8') {
                                              sh 'mvn deploy -s $mvn_settings'
-                                }
+                                         }
                            }
                     }
                 }
@@ -76,7 +74,5 @@ stages {
                         }
                     }
                 }
-
-
-
-            }
+    }
+}
