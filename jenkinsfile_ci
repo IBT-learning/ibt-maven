@@ -33,7 +33,7 @@ agent any
          sonarScan = tool 'ibt-sonarqube'
         }
        steps{
-          withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+          withSonarQubeEnv(credentialsId: "ibt-sonar", installationName: 'IBT sonarqube') {
              sh "${env.sonarScan}/bin/sonar-scanner"
          }
        }
