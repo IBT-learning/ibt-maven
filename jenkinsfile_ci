@@ -75,7 +75,7 @@ agent any
                              }
          stage('Deploy to dev'){
                             steps{
-                                script
+                                script{
                                     def remote = [name: 'dev-server', host: '159.89.231.159',allowAnyHost:true]
                                     withCredentials([usernamePassword(credentialsId: 'server-ssh-pwd', passwordVariable: 'host-password', usernameVariable: 'host-username')]) {
                                         remote.user = host-username
@@ -85,6 +85,6 @@ agent any
                                     }
                                 }
                            }
-
+              }
 
 
