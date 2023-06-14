@@ -81,7 +81,7 @@ agent any
                                     withCredentials([usernamePassword(credentialsId: 'server-ssh-pwd', passwordVariable: 'host-password', usernameVariable: 'host-username')]) {
                                         remote.user = host-username
                                         remote.password = host-password
-                                        sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar' into: '/opt/tomcat/apps'
+                                        sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar' into} '/opt/tomcat/apps'
                                         }
                                     }
                                 }
