@@ -8,14 +8,14 @@ agent any
            }
         }
     stage ('validate') {
-        steps {
+        steps{
             withMaven(maven: 'maven_3.8') {
                    sh 'mvn validate'
             }
         }
     }
-    stage ('compile') {
-             steps {
+    stage ('compile'){
+             steps{
                   withMaven(maven: 'maven_3.8') {
                     sh 'mvn compile'
              }
@@ -45,10 +45,9 @@ agent any
                             }
                        }
                   }
-        stage('Vulnerability scan - Dependency Check')
-            {
-              steps{
-                    dependencyCheck additionalArguments: '''
+      stage('Vulnerability scan - Dependency Check') {
+               steps{
+                      dependencyCheck additionalArguments: '''
                                                           -o "./"
                                                           -s "./"
                                                           -f "ALL"
@@ -56,11 +55,11 @@ agent any
                                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                                 }
                            }
-        stage('upload to Artifactory'){
-             steps{
-                configFileProvider([configFile(fileId: 'jfrog-mvn-settings', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
+         stage('upload to Artifactory'){
+                 steps{
+                        withCredentials([file(credentialsId: 'mvn-settings-artifactory-feb', variable: 'mvn_settings')]) {
                             withMaven(maven: 'maven_3.8') {
-                                       sh 'mvn deploy -s $mvn_settings_config'
+                                               sh 'mvn deploy -s $mvn_settings'
                                 }
                             }
                         }
@@ -74,19 +73,18 @@ agent any
                                       }
                                   }
                              }
-            stage('Deploy to dev'){
+         stage('Deploy to dev'){
                             steps{
                                 script
                                     def remote = [name: 'dev-server', host: '159.89.231.159',allowAnyHost:true]
                                     withCredentials([usernamePassword(credentialsId: 'server-ssh-pwd', passwordVariable: 'host-password', usernameVariable: 'host-username')]) {
                                         remote.user = host-username
                                         remote.password = host-password
-                                        sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar' into} '/opt/tomcat/apps'
+                                        sshPut remote: remote, from: 'target/ibt-maven-3.0-SNAPSHOT.jar' into: '/opt/tomcat/apps'
                                         }
                                     }
                                 }
                            }
                       }
-
 
 
