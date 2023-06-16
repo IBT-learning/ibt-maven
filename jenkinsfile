@@ -32,7 +32,6 @@ pipeline {
         }
         stage('invoke python'){
             steps{
-                sh 'pip install requirements.txt'
                 sh 'python test.py'
             }
         }
