@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+   parameters {
+        string(name:'Branch_Name', defaultvalue: 'main', description: 'Enter branch name to build')
+   }
     stages {
         stage('Hello') {
             steps {
@@ -18,7 +22,7 @@ pipeline {
         }
         stage('Git checkout'){
             steps{
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-Chia']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
         stage('List files'){
