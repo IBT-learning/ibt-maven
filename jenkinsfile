@@ -21,5 +21,10 @@ pipeline {
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-Chia']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
+        stage('List files'){
+            steps {
+                sh 'ls'
+            }
+        }
     }
 }
