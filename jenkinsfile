@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Hi') {
             steps {
-                echo 'HI'
+                echo 'Hi, My name is Chia'
             }
         }
           stage('test') {
