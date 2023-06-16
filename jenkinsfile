@@ -26,6 +26,11 @@ pipeline {
             }
         }
         stage('List files'){
+        when{
+            expression{
+                BRANCH_NAME == 'feature-Chia'
+            }
+        }
             steps {
                 sh 'ls'
             }
