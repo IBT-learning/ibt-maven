@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameter {
-        string(name:'Branch_Name', defaultValue: 'master', description: 'enter branch name to build')
+        string(name:'Branch_Name', defaultValue: 'main', description: 'enter branch name to build')
     }
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
        stage('List files'){
             when {
                 expression{
-                    env.Branch_Name == 'main'
+                    env.BRANCH_NAME == 'main'
                 }
             }
             steps {
