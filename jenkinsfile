@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+   parameters {
+        string(name:'Branch_Name', defaultvalue: 'main', description: 'Enter branch name to build')
+   }
     stages {
         stage('Hello') {
             steps {
@@ -11,9 +15,25 @@ pipeline {
                 echo 'HI'
             }
         }
-          stage('test') {
+          stage('Hi people') {
             steps {
-                echo 'test'
+                echo 'My name is Chia'
+            }
+        }
+        stage('Git checkout'){
+            steps{
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            }
+        }
+        stage('List files'){
+            steps {
+                sh 'ls'
+            }
+        }
+        stage('invoke python'){
+            steps{
+                sh 'pip install requirements.txt'
+                sh 'python test.py'
             }
         }
     }
