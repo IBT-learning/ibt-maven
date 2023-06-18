@@ -48,8 +48,8 @@ pipeline {
          stage('test stage') {
             steps {
                 sh 'echo hello'
-                echo ${env.version}
-                echo ${env.run}
+                echo "${env.version}"
+                echo "${env.run}"
                 sh 'echo $version'
                 script {
                     print env.version
