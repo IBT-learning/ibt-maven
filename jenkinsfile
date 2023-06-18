@@ -1,6 +1,6 @@
 pipeline {
     agent any
-   tool {maven 'maven-3.8'}
+   tools {maven 'maven-3.8'}
    environment {
    version = '1.3.0'
    run = 'true'
