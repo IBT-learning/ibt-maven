@@ -1,6 +1,6 @@
 pipeline {
-    agent any
-
+   agent any
+   tool name: 'maven_3.8', type: 'maven'
    parameters {
         string(name:'Branch_Name', defaultValue: 'main', description: 'Enter branch name to build')
    }
@@ -43,6 +43,11 @@ pipeline {
         stage('invoke python'){
             steps{
                 sh 'python3 test.py'
+            }
+        }
+        stage('invoke maven'){
+            steps{
+                sh 'mvn --version'
             }
         }
     }
