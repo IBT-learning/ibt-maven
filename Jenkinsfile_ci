@@ -31,7 +31,7 @@ pipeline {
                 steps {
                     withCredentials([file(credentialsId: 'mvn-settings-Chia', variable: 'Chia')]) {
                         withMaven(maven: 'maven_3.8') {
-                                sh 'mvn deploy -s $maven-settings-Chia'
+                                sh 'mvn deploy -s $Chia'
                           }
                     }
                     withCredentials([usernamePassword(credentialsId: 'ibt', passwordVariable: 'art-password', usernameVariable: 'art-name')]) {
