@@ -26,13 +26,23 @@ pipeline {
             }
         }
         stage('List files'){
+        when{
+            expression{
+                BRANCH_NAME == 'feature-Chia'
+            }
+        }
             steps {
                 sh 'ls'
             }
         }
+        stage('version'){
+            steps{
+                sh 'python3 --version'
+            }
+        }
         stage('invoke python'){
             steps{
-                sh 'python test.py'
+                sh 'python3 test.py'
             }
         }
     }
