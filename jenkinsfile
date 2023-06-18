@@ -65,4 +65,9 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            echo "Build is complete"
+        }
+    }
 }
