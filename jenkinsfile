@@ -59,7 +59,7 @@ pipeline {
             steps{
                 echo "${env.version}"
                 echo "${env.run}"
-                sh "echo $version'
+                sh "echo $version"
                 script{
                     print env.version
                 }
