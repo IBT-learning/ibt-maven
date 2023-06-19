@@ -12,5 +12,10 @@ pipeline {
                 echo 'hi'
             }
         }
+        stage('git checkout') {
+           steps{
+             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feauture/theodoreatabe']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-pw-credential', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+           }
+        }
     }
 }
