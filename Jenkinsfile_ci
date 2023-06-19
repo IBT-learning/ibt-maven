@@ -29,10 +29,8 @@ pipeline {
                                      }
             stage('Deploy'){
                 steps {
-                    withCredentials([file(credentialsId: 'mvn-settings-gunjan', variable: 'gunjan_maven')]) {
-                        withMaven(maven: 'maven_3.8') {
-                                sh 'mvn deploy -s $gunjan_maven'
-                          }
+                    withCredentials([file(credentialsId: 'mvn-settings-gunjan', variable: 'maven-settings')]) {
+                                sh 'mvn deploy -s $maven-settings'
                     }
                     withCredentials([usernamePassword(credentialsId: 'ibt', passwordVariable: 'art-password', usernameVariable: 'art-name')]) {
                         sh 'echo $art-name $art-password'
