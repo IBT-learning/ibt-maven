@@ -29,9 +29,9 @@ pipeline{
         }
         stage('Deploy'){
             steps {
-                withCredentials([file(credentialsId: 'mvn-setting-james', variable: 'maven-settings')]) {
+                withCredentials([file(credentialsId: 'mvn-setting-james', variable: 'maven_settings')]) {
                     withMaven(maven: 'maven_3.8') {
-                        sh 'mvn deploy -s $maven-settings'
+                        sh 'mvn deploy -s $maven_settings'
                     }
                 }
                 withCredentials([usernamePassword(credentialsId: 'git_James_c', passwordVariable: 'art-password', usernameVariable: 'art-name')]) {
