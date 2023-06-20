@@ -22,13 +22,18 @@ pipeline {
            }
         }
         stage('list files'){
+        when{
+             expression{
+                 env.BRANCH_NAME == 'main'
+             }
+        }
          steps{
              sh 'ls'
          }
         }
          stage('invoke python'){
                   steps{
-                       sh 'python test.py'
+                       sh 'pwd'
                   }
                  }
     }
