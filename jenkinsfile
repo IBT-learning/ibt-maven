@@ -36,5 +36,20 @@ pipeline {
                 echo "success webhook"
             }
        }
+       stage('invoke python'){
+            steps{
+                sh 'pwd'
+            }
+       }
+       stage('invoke maven'){
+            steps{
+                sh 'mvn ==version'
+            }
+       }
+       stage('test stage'){
+            steps {
+                sh 'echo hello'
+            }
+       }
     }
 }
