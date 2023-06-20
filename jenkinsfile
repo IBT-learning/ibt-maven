@@ -64,7 +64,7 @@ pipeline {
                     print env.version
                 }
             }
-        stage{
+        stage('post'){
             always{
                 echo "Hi, I will always run every damn time!"
             }
