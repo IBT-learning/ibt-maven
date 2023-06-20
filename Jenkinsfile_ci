@@ -27,7 +27,7 @@ pipeline{
                 sh 'mvn package'
             }
         }
-        stage ('Deploy'){
+        stage('Deploy'){
             steps {
                 withCredentials([file(credentialsId: 'mvn-setting-james', variable: 'maven-settings')]) {
                     withMaven(maven: 'maven_3.8') {
