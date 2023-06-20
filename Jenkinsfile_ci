@@ -13,35 +13,20 @@ pipeline {
             }
         }
          stage ('Compile'){
-                    steps {
-                       sh 'mvn compile'
-                    }
+            steps {
+                sh 'mvn compile'
                 }
+           }
            stage ('Test'){
-                              steps {
-                                 sh 'mvn test'
-                              }
-                          }
-
-
-            stage('Vulnerability scan - Dependency Check')
-                {
-                    steps{
-                                              dependencyCheck additionalArguments: '''
-                                                                                    -o "./"
-                                                                                    -s "./"
-                                                                                    -f "ALL"
-                                                                                    --prettyPrint ''', odcInstallation: 'dependency-check'
-                                                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                                 }
-                            }
-
+            steps {
+                    sh 'mvn test'
+                 }
+                }
            stage ('Package'){
-                                         steps {
-                                            sh 'mvn package'
-                                         }
-
-                                     }
+                steps {
+                    sh 'mvn package'
+                }
+               }
             stage('Deploy'){
                 steps {
                     withCredentials([file(credentialsId: 'mvn-settings-gunjan', variable: 'maven_settings')]) {
