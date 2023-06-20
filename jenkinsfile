@@ -62,7 +62,7 @@ pipeline {
                 echo "${env.run}"
 //                 script{
 //                     print env.version
-//                 }
+                }
             }
         post{
             always{
