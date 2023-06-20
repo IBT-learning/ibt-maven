@@ -64,6 +64,11 @@ pipeline {
                     print env.version
                 }
             }
+        stage{
+            always{
+                echo "Hi, I will always run every damn time!"
+            }
+        }
         }
     }
 }
