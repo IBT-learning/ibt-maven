@@ -1,12 +1,35 @@
 pipeline {
     agent any
-
+    tools {maven 'maven_3.8'}
     stages {
         stage('Git checkout'){
             steps{
                    checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature/philip']], extensions: [], userRemoteConfigs: [[credentialsId: '65a2fe5a-7a32-4859-9a03-3a9938037018', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
-    }
 
+    stage ('Validate' {
+        steps{
+            sh 'mvn validate'
+        }
+      }
+
+     stage ('Compile') {
+             steps{
+                 sh 'mvn compile'
+             }
+     }
+
+     stage ('Test') {
+                  steps{
+                      sh 'mvn test'
+                  }
+          }
+
+       stage ('Package') {
+                         steps{
+                             sh 'mvn package'
+                         }
+                 }
+    }
 }
