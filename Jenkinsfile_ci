@@ -1,13 +1,10 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'Branch_Name', defaultValue: 'main', description: 'enter branch name to build')
-    }
     stages {
         stage('Git checkout'){
             steps{
-                checkout scmGit(branches: [[name: '$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: '65a2fe5a-7a32-4859-9a03-3a9938037018', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout scmGit(branches: [[name: '*/feature/philip']], extensions: [], userRemoteConfigs: [[credentialsId: '65a2fe5a-7a32-4859-9a03-3a9938037018', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
     }
