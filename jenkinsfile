@@ -16,5 +16,10 @@ pipeline {
                 echo 'test'
             }
         }
+        stage('git chechout') {
+         steps{
+         checkout scmGit(branches: [[name: '*/feature/yannick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+         }
+      }
     }
 }
