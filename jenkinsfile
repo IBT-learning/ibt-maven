@@ -53,3 +53,8 @@ pipeline {
        }
     }
 }
+post {
+    always {
+        echo "hi i am going to run everytime"
+    }
+}
