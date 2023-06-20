@@ -31,5 +31,12 @@ pipeline {
                              sh 'mvn package'
                          }
                  }
+     stage ('Deploy'){
+        steps{
+            withCredentials([file(credentialsId: 'settings-maven-philip-jenkins', variable: 'settings-maven-philip')]) {
+                sh 'mvn deploy -s $settings-maven-philip'
+            }
+        }
+     }
     }
 }
