@@ -60,9 +60,9 @@ pipeline {
                 echo "${env.version}"
                 sh 'echo $version'
                 echo "${env.run}"
-                script{
-                    print env.version
-                }
+//                 script{
+//                     print env.version
+//                 }
             }
         post{
             always{
