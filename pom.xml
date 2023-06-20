@@ -5,7 +5,9 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
+<<<<<<< HEAD
   <version>1.1-SNAPSHOT</version>
+>>>>>>> 0d64dd12b3832106cb123cbdff5b3631409348e0
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
@@ -34,6 +36,7 @@
       <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
+         
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
