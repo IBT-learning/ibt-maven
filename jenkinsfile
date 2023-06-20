@@ -18,8 +18,7 @@ pipeline {
         }
         stage('git checkout') {
          steps{
-         checkout scmGit(branches: [[name: '*/feature/yannick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-         }
+         checkout scmGit(branches: [[name: '*/feature/yannick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])         }
       }
     }
 }
