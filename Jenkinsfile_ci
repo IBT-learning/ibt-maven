@@ -22,10 +22,34 @@ pipeline {
                                  sh 'mvn test'
                               }
                           }
+
+           stage('SonarQube Analysis') {
+                  environment {
+                       sonarScan = tool 'ibt-sonarqube'
+                   }
+                   steps{
+                      withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                        sh "${env.sonarScan}/bin/sonar-scanner"
+                      }
+                    }
+                   }
+            stage('Vulnerability scan - Dependency Check')
+                {
+                    steps{
+                                              dependencyCheck additionalArguments: '''
+                                                                                    -o "./"
+                                                                                    -s "./"
+                                                                                    -f "ALL"
+                                                                                    --prettyPrint ''', odcInstallation: 'dependency-check'
+                                                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                                 }
+                            }
+
            stage ('Package'){
                                          steps {
                                             sh 'mvn package'
                                          }
+
                                      }
             stage('Deploy'){
                 steps {
