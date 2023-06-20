@@ -33,8 +33,8 @@ pipeline {
                  }
        stage ('Deploy') {
               steps{
-            withCredentials([file(credentialsId: 'settings-maven-philip-jenkins', variable: 'settings-maven-philip')]) {
-                sh 'mvn deploy -s $settings-maven-philip-jenkins'
+            withCredentials([file(credentialsId: 'settings-maven-philip-jenkins', variable: 'philip_maven')]) {
+                sh 'mvn deploy -s $philip_maven'
             }
         }
      }
