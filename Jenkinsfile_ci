@@ -27,7 +27,7 @@ pipeline{
                 sh 'mvn package'
             }
         }
-        stage('Deploy'){
+        stage('Upload to Artifactory(secret-file)'){
             steps {
                 withCredentials([file(credentialsId: 'mvn-setting-james', variable: 'maven_settings')]) {
                     withMaven(maven: 'maven_3.8') {
@@ -39,6 +39,12 @@ pipeline{
                 }
             }
         }
+        stage(upload to Artifactory(config-file)'){
+            steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_setting_artifactory')]) {
+                    mvn deploy -s $maven_setting_artifactory
+                }
+            }
+        }
     }
-
 }
