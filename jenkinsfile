@@ -39,7 +39,7 @@ pipeline {
 }
 
         checkout scmGit(branches: [[name: '*/feature/leroy']], extensions: [], userRemoteConfigs: [[credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-        }
+
     }
    }
 }
