@@ -44,8 +44,8 @@ pipeline {
             stage('invoke maven'){
                 steps{
                     sh 'mvn --version'
-                    sh 'echo ${env.run}'
-                    sh 'echo ${env.version}'
+                    echo "${env.run}"
+                    echo "${env.version}"
                     sh 'echo $version'
                     script {
                         print env.version
