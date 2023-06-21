@@ -30,9 +30,9 @@ pipeline {
 
         stage ('Deploy'){
             steps {
-            withCredentials([file(credentialsId: 'mvn-settings-leroy', variable: 'mvn-settings-leroy')]) {
+            withCredentials([file(credentialsId: 'mvn-settings-leroy', variable: 'leroy')]) {
                 withMaven(maven: 'maven_3.8') {
-                sh 'mvn deploy -s $maven-settings-leroy'
+                sh 'mvn deploy -s $leroy'
                 }
             }
             withCredentials([usernamePassword(credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', passwordVariable: 'art-password', usernameVariable: 'art-name')]) {
