@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    parameters  {
-        string(name:'Branch_Name', defaultvalue: 'main', description: 'enter branch name to build')
-    }
+
 
     stages {
         stage('Hello') {
@@ -14,33 +12,34 @@ pipeline {
     stage('Git Checkout') {
         steps{
 
+
         checkout scmGit(branches: [[name: '$feature/leroy']], extensions: [], userRemoteConfigs: [[credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+        }
+
+    }
 
 
       stage('List files'){
             steps{
                 sh 'ls'
 
-            }
+      }      }
 
+
+          stage('testing webhook'){
+                  steps {
+                      echo 'success webhook'
+
+          }        }
       }
     }
 
-}
 
 
 
-        stage('testing webhook'){
-               steps{
-                   echo "success webhook"
-               }
-              }
-    }
-}
 
-        checkout scmGit(branches: [[name: '*/feature/leroy']], extensions: [], userRemoteConfigs: [[credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', url: 'https://github.com/IBT-learning/ibt-maven.git']])
 
-    }
-   }
-}
+
+
+
 
