@@ -7,30 +7,10 @@ pipeline {
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature/leroy']], extensions: [], userRemoteConfigs: [[credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
-    }
         stage ('Validate'){
             steps {
                 sh 'mvn validate'
             }
-
         }
-          stage ('Compile'){
-                    steps {
-                        sh 'mvn compile'
-                    }
-
-                }
-                  stage ('Test'){
-                            steps {
-                                sh 'mvn test'
-                            }
-
-                  }
-                         stage ('Package'){
-                                   steps {
-                                       sh 'mvn package'
-                                   }
-
-                               }
-
-}
+    }
+ }
