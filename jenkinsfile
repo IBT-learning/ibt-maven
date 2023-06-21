@@ -22,6 +22,11 @@ pipeline {
          }
        }
        stage('List of files'){
+       when {
+            expression{
+                env.Branch_Name == 'main'
+            }
+       }
         steps{
          sh'ls'
         }
