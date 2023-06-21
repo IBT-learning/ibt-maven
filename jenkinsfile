@@ -1,8 +1,8 @@
 pipeline {
     agent any
-
+    tool name: 'maven_3.8', type: 'maven'
     parameters  {
-        string(name:'Branch_Name', defaultValue: 'master' decription: 'enter branch name to build')
+        string(name:'Branch_Name', defaultValue: 'main' decription: 'enter branch name to build')
     }
 
 
@@ -34,14 +34,26 @@ pipeline {
 
         }
 
+            stage('invoke maven'){
+                steps{
+                    sh 'mvn --version'
+                }
+            }
+
+
+
+
 
           stage('testing webhook'){
                   steps {
                       echo 'success webhook'
 
+
           }        }
       }
-    }
+
+
+   }
 
 
 
