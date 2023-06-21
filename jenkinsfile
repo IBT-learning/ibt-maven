@@ -1,6 +1,10 @@
 pipeline {
     agent any
     tools { maven 'maven_3.8'}
+    environment {
+        verison = '1.3.0'
+        run = 'true'
+    }
     parameters {
         string(name:'Branch_Name', defaultValue: 'main', description: 'enter branch name to build')
     }
@@ -40,6 +44,12 @@ pipeline {
             stage('invoke maven'){
                 steps{
                     sh 'mvn --version'
+                    sh 'echo ${env.run}'
+                    sh 'echo ${env.version}'
+                    sh 'echo $version'
+                    script {
+                        print env.version
+                    }
                 }
             }
 
