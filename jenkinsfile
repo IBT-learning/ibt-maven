@@ -25,7 +25,7 @@ pipeline {
       stage('List files'){
       when {
             expression{
-                params.Branch_Name == 'feature/leroy'
+                ${params.Branch_Name} == 'feature/leroy'
              }
       }
             steps{
