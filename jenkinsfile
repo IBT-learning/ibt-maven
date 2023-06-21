@@ -17,5 +17,8 @@ pipeline {
            checkout scmGit(branches: [[name: '*/official/josias']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-josias', url: 'https://github.com/IBT-learning/ibt-maven.git']])
          }
        }
+       stage('List files'){
+        steps{
+         sh'ls'
     }
 }
