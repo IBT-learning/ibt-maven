@@ -33,7 +33,7 @@ pipeline {
       stage('List files'){
       when {
             expression{
-                ${params.Branch_Name} == 'feature/leroy'
+                env.Branch_Name == 'feature/leroy'
              }
       }
             steps{
