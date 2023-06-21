@@ -27,5 +27,11 @@ pipeline {
             sh 'mvn package'
             }
         }
+        stage('Deploy'){
+            steps {
+                withCredentials([file(credentialsId: 'mvn-settings-leroy', variable: 'maven-settings')]) {
+                    sh 'mvn deploy -s $maven-settings'
+
+        }    }
     }
 }
