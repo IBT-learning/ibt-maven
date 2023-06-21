@@ -40,7 +40,7 @@ pipeline{
             }
         }
         stage(upload to Artifactory(config-file)'){
-            steps{
+            steps {
                 configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_setting_artifactory')]) {
                     mvn deploy -s $maven_setting_artifactory
                 }
