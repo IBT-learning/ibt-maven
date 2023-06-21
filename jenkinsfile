@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    parameters  {
+        string(name:'Branch_Name', defaultValue: 'master' decription: 'enter branch name to build')
+    }
 
 
     stages {
@@ -13,17 +16,23 @@ pipeline {
         steps{
 
 
-        checkout scmGit(branches: [[name: '$feature/leroy']], extensions: [], userRemoteConfigs: [[credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+        checkout changelog: false, poll: false, scm: scmGit(branches: [[name: $Branch_Name]], extensions: [], userRemoteConfigs: [[credentialsId: '975a8fc7-2f3f-484e-9cc5-2e735cda2ec7', url: 'https://github.com/IBT-learning/ibt-maven.git']])
         }
 
     }
 
 
       stage('List files'){
+      when {
+            expression{
+                env.Branch_Name == 'main'
+             }
+      }
             steps{
                 sh 'ls'
+            }
 
-      }      }
+        }
 
 
           stage('testing webhook'){
