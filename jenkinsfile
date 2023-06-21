@@ -1,9 +1,9 @@
 pipeline {
     agent any
     tool name: 'maven_3.8', type: 'maven'
-    parameters  {
-
-        string(name:'Branch_Name', defaultValue: 'main' decription: 'enter branch name to build')
+    parameters {
+        string(name:'Branch_Name', defaultValue: 'main', description: 'enter branch name to build')
+    }
 
 
 
