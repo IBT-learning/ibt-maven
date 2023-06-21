@@ -17,5 +17,10 @@ pipeline {
                 echo 'TEXT Me Omotade'
             }
         }
+        stage('Testing jenkins') {
+                    steps {
+                        echo 'TEXT Me Omotade, testing jenkins file'
+                    }
+                }
     }
 }
