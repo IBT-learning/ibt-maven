@@ -30,8 +30,8 @@ pipeline {
         stage('Deploy'){
             steps {
                 withCredentials([file(credentialsId: 'mvn-settings-leroy', variable: 'leroy_maven')]) {
-                    sh 'mvn deploy -s $leroy_maven'
-                }
+                }      sh 'mvn deploy -s $leroy_maven'
+            }
         }
     }
 }
