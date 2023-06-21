@@ -27,11 +27,13 @@ pipeline {
             sh 'mvn package'
             }
         }
-        stage('Deploy'){
-            steps {
-                withCredentials([file(credentialsId: 'mvn-settings-leroy', variable: 'leroy_maven')]) {
-                }      sh 'mvn deploy -s $leroy_maven'
-            }
-        }
+       stage('Upload to Artifactory'){
+
+                 steps{
+                     withCredentials([file(credentialsId: 'mvn_settings_leroy', variable: 'settings')]) {
+                     withMaven(maven: 'maven_3.8') {
+                         sh "mvn deploy -s $settings"
+                        }
+        }         }
     }
 }
