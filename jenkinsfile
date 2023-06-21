@@ -18,16 +18,18 @@ pipeline {
 
 
       stage('List files'){
-            when {
-                expression{
+            steps{
+                sh 'ls'
 
             }
-           }
 
-        steps{
-            sh 'ls'
-        }
-       }
+      }
+    }
+
+}
+
+
+
         stage('testing webhook'){
                steps{
                    echo "success webhook"
