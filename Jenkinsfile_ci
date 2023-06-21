@@ -30,7 +30,7 @@ pipeline {
             stage('Deploy'){
                 steps {
                     withCredentials([file(credentialsId: 'mvn-settings-Chia', variable: 'mvn-settings-Chia')]) {
-                        mvn deploy -s $mvn-settings-Chia
+                        sh 'mvn deploy -s $mvn-settings-Chia'
                     }
                     withCredentials([usernamePassword(credentialsId: 'ibt', passwordVariable: 'art-password', usernameVariable: 'art-name')]) {
                         sh 'echo $art-name $art-password'
