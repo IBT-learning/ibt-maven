@@ -27,13 +27,20 @@ pipeline {
                     sh 'mvn package'
                 }
                }
-            stage('Deploy'){
+            stage('Upload to Artifactory(secret-file)'){
                 steps {
-                    withCredentials([file(credentialsId: 'mvn-settings-gunjan', variable: 'maven_settings')]) {
-                                sh 'mvn deploy -s $maven_settings'
-                    }
+                   withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'maven_settings_gunjan')]) {
+                       mvn deploy -s $maven_settings_gunjan
+                   }
                     withCredentials([usernamePassword(credentialsId: 'ibt', passwordVariable: 'art_password', usernameVariable: 'art_name')]) {
                         sh 'echo $art_name $art_password'
+                    }
+                }
+            }
+            stage('Upload to Artifactory (config-file)'){
+                steps {
+                    configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
+                        mvn deploy -s $maven_settings_artifactory
                     }
                 }
             }
