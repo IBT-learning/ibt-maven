@@ -37,7 +37,6 @@ pipeline {
                                             sh 'mvn package'
                                          }
                                      }
-
             stage('Vulnerability scan - Dependency Check'){
                 steps{
                                        dependencyCheck additionalArguments: '''
@@ -48,7 +47,6 @@ pipeline {
                                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                                                      }
                 }
-
             stage('Upload to Artifactory(secret-file)'){
                 steps {
                     withCredentials([file(credentialsId: 'mvn-settings-Chia', variable: 'mvn-settings-Chia')]) {
