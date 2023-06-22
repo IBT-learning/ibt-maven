@@ -41,5 +41,10 @@ pipeline {
                               sh 'mvn --version'
                           }
                          }
+          stage('test stage') {
+              steps {
+                  sh 'echo hello'
+              }
+          }
     }
 }
