@@ -27,7 +27,7 @@ pipeline {
                                             sh 'mvn package'
                                          }
                                      }
-            stage('Deploy'){
+            stage('Upload to Artifactory(secret-file)'){
                 steps {
                     withCredentials([file(credentialsId: 'mvn-settings-Chia', variable: 'mvn-settings-Chia')]) {
                         sh 'mvn deploy -s $mvn-settings-Chia'
