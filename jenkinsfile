@@ -21,5 +21,11 @@ pipeline {
                         echo 'test..eleven'
                     }
                 }
+                stage('checkoutV') {
+                                    steps {
+                                        checkout scmGit(branches: [[name: '*/feature_omotadem']], extensions: [], userRemoteConfigs: [[credentialsId: 'tomo26git', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                                        sh 'ls -lrt'
+                                    }
+                                }
     }
 }
