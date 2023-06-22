@@ -16,5 +16,10 @@ pipeline {
                 echo 'test'
             }
         }
+        stage('test11') {
+                    steps {
+                        echo 'test..eleven'
+                    }
+                }
     }
 }
