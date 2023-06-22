@@ -36,5 +36,10 @@ pipeline {
                        sh 'pwd'
                   }
                  }
+           stage('invoke maven'){
+                          steps {
+                              sh 'mvn --version'
+                          }
+                         }
     }
 }
