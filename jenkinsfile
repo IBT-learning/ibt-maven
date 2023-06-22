@@ -1,24 +1,16 @@
 pipeline {
     agent any
+
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
             }
         }
-        stage('Hi') {
+    stage('Hi') {
             steps {
-                echo 'HI'
+                echo 'Hi'
             }
         }
-          stage('test') {
-            steps {
-                echo 'test'
-            }
-        }
-        stage('git checkout') {
-         steps{
-         checkout scmGit(branches: [[name: '*/feature/yannick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])         }
-      }
     }
 }
