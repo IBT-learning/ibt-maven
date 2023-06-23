@@ -58,7 +58,6 @@ pipeline {
              sh 'echo $version'
              script
                  print env.version
-             }
          }
       }
     }
