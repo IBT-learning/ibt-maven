@@ -52,10 +52,11 @@ pipeline {
       }
       stage('test stage') {
          steps {
-             echo 'hello'
-             echo '$(env.version)'
-             echo '$(env.run)'
+             sh 'echo hello'
+             echo "${env.version}"
+             echo "${env.run}"
               script{
+                  print env.version
              }
          }
       }
