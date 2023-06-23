@@ -55,8 +55,8 @@ pipeline {
              echo 'hello'
              echo '$(env.version)'
              echo '$(env.run)'
-              script {
+              script{
+             }
          }
       }
-    }
 }
