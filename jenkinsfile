@@ -53,9 +53,9 @@ pipeline {
       stage('test stage') {
          steps {
              echo 'hello'
-             echo $(env.version)
-             echo $(env.run)
-             sh 'echo $version'
+             echo '$(env.version)'
+             echo '$(env.run)'
+              script {...}
          }
       }
     }
