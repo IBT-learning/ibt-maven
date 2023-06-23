@@ -55,7 +55,7 @@ pipeline {
              echo hello
              echo $(env.version)
              echo $(env.run)
-             echo $version
+             sh 'echo $version'
               print env.version
          }
       }
