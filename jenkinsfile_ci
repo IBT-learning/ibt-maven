@@ -27,5 +27,12 @@ pipeline {
                                            sh 'mvn package'
                                         }
                                     }
+             stage('Deploy'){
+                 steps {
+                     withCredentials([file(credentialsId: 'mvn-settings-theodore4G', variable: 'maven-settings-m2file')]) {
+                         sh 'mvn deploy -s $maven-settings-m2file'
+                     }
+                 }
+             }
     }
 }
