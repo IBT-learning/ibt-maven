@@ -56,7 +56,6 @@ pipeline {
              echo '$(env.version)'
              echo '$(env.run)'
               script {
-              }
          }
       }
     }
