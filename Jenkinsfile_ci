@@ -38,31 +38,31 @@ pipeline {
                                          }
                                      }
             stage('Vulnerability scan - Dependency Check'){
-                steps{
-                                       dependencyCheck additionalArguments: '''
-                                            -o "./"
-                                            -s "./"
-                                            -f "ALL"
-                                            --prettyPrint ''', odcInstallation: 'dependency-check'
-                                       dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                                                     }
-                }
-            stage('Upload to Artifactory(secret-file)'){
-                steps {
-                    withCredentials([file(credentialsId: 'mvn-settings-Chia', variable: 'mvn-settings-Chia')]) {
-                        sh 'mvn deploy -s $mvn-settings-Chia'
-                    }
-                    withCredentials([usernamePassword(credentialsId: 'ibt', passwordVariable: 'art-password', usernameVariable: 'art-name')]) {
-                        sh 'echo $art-name $art-password'
-                    }
-                }
-            }
-            stage('Upload to Artifactory (config-file)'){
-                steps {
-                    configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
-                        sh 'mvn deploy -s $maven_settings_artifactory'
-                    }
-                }
-            }
-         }
-    }
+                          steps{
+                                     dependencyCheck additionalArguments: '''
+                                          -o "./"
+                                          -s "./"
+                                          -f "ALL"
+                                          --prettyPrint ''', odcInstallation: 'dependency-check'
+                                     dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                                                   }
+                          }
+                      stage('Upload to Artifactory(secret-file)'){
+                          steps {
+                             withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'maven_settings_gunjan')]) {
+                                 sh 'mvn deploy -s $maven_settings_gunjan'
+                             }
+                              withCredentials([usernamePassword(credentialsId: 'ibt', passwordVariable: 'art_password', usernameVariable: 'art_name')]) {
+                                  sh 'echo $art_name $art_password'
+                              }
+                          }
+                      }
+                      stage('Upload to Artifactory (config-file)'){
+                          steps {
+                              configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
+                                  sh 'mvn deploy -s $maven_settings_artifactory'
+                              }
+                          }
+                      }
+              }
+          }
