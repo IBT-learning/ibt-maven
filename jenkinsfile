@@ -7,5 +7,10 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Git Checkout') {
+            steps{
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*feature/yannick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            }
+        }
     }
 }
