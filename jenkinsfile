@@ -56,7 +56,7 @@ pipeline {
              sh 'echo ${env.version}'
              sh 'echo ${env.run}'
              sh 'echo $version'
-             script {
+             script
                  print env.version
              }
          }
