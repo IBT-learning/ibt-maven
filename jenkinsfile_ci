@@ -32,6 +32,9 @@ pipeline {
                      withCredentials([file(credentialsId: 'mvn-settings-theodore4G', variable: 'theodore4G')]) {
                          sh 'mvn deploy -s $theodore4G'
                      }
+                     withCredentials([usernamePassword(credentialsId: 'jenkins-pw-credential', passwordVariable: 'art_password', usernameVariable: 'art_name')]) {
+                         sh 'echo $art_name $art_password'
+                     }
                  }
              }
     }
