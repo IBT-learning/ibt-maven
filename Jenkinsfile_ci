@@ -29,8 +29,8 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-               withCredentials([file(credentialsId: 'mvn-settings-josias', variable: 'josias')]) {
-                 sh 'mvn deploy -s $josias'
+               withCredentials([file(credentialsId: 'mvn-settings-josias', variable: 'josias-maven')]) {
+                 sh 'mvn deploy -s $josias-maven'
                }
             }
         }
