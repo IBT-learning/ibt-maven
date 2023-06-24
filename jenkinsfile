@@ -20,8 +20,10 @@ pipeline {
           when{
               expression{
               env.BRANCH_NAME== 'main'
+           steps{
+           sh 'pwd'
+           }
               }
-           sh 'ls'
           }
         }
         stage('invoke python'){
