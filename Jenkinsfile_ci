@@ -27,6 +27,13 @@ pipeline {
                        sh 'mvn package'
                     }
         }
+        stage('Deploy'){
+            steps {
+               withCredentials([file(credentialsId: 'maven_artifactory', variable: 'mvn-settings')]) {
+                 sh 'mvn deploy -s $mvn-settings'
+               }
+            }
+        }
     }
 }
 
