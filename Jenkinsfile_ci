@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-               withCredentials([file(credentialsId: 'maven_artifactory', variable: 'josias')]) {
+               withCredentials([file(credentialsId: 'maven_settings', variable: 'josias')]) {
                  sh "mvn deploy -s $josias"
                }
             }
