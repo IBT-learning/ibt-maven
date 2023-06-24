@@ -23,7 +23,7 @@ pipeline {
             }
         }
         }
-          steps{
+        steps{
           sh 'ls'
           }
         stage('invoke python'){
