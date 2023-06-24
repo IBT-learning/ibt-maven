@@ -16,13 +16,14 @@ pipeline {
             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
-        stage('List files') {
+        stage('List files'){
           when{
               expression{
               env.BRANCH_NAME== 'main'
            steps{
            sh 'pwd'
-           }
+                   }
+                  }
               }
           }
         }
