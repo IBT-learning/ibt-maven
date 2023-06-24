@@ -21,7 +21,7 @@ pipeline {
               expression{
               env.BRANCH_NAME== 'main'
            steps{
-           sh 'pwd'
+           sh 'ls'
                    }
                   }
               }
