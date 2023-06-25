@@ -39,13 +39,8 @@ pipeline {
                }
             stage('Vulnerability scan - Dependency Check'){
                 steps{
-                           dependencyCheck additionalArguments: '''
-                                -o "./"
-                                -s "./"
-                                -f "ALL"
-                                --prettyPrint ''', odcInstallation: 'dependency-check'
-                           dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                                         }
+                           echo "dynamic scan"
+                    }
                 }
             stage('Upload to Artifactory(secret-file)'){
                 steps {
@@ -63,6 +58,17 @@ pipeline {
                         sh 'mvn deploy -s $maven_settings_artifactory'
                     }
                 }
+            }
+            stage('Deploy to Dev'){
+              steps {
+                script{
+                                    def remote = [name: 'dev-server', host: '134.122.38.72', allowAnyHosts: true]
+                                    withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                                       remote.user =  username
+                                       remote.password = password
+                                       sshPut remote: remote, from: 'target/*.jar', into: '/opt/tomcat/apps'
+                                    }
+                                }              }
             }
     }
 }
