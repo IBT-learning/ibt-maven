@@ -31,7 +31,18 @@ pipeline {
                   sh 'mvn package'
               }
               }
-       stage ('Deploy') {
+       stage('Vulnerability scan - Dependency Check'){
+                       steps{
+                              dependencyCheck additionalArguments: '''
+                                 -o "./"
+                                 -s "./"
+                                 -f "ALL"
+                                --prettyPrint ''', odcInstallation: 'dependency-check'
+                                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+
+                       }
+                      }
+       stage ('Upload to Artifactory(secret-file)') {
               steps{
             withCredentials([file(credentialsId: 'settings-maven-philip-jenkins', variable: 'philip_maven')]) {
                 sh 'mvn deploy -s $philip_maven'
@@ -44,8 +55,8 @@ pipeline {
                  steps{
                       configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
                       sh 'mvn deploy -s $maven_settings_artifactory'
-                 }
             }
+     }
     }
    }
 }
