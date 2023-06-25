@@ -22,10 +22,10 @@ pipeline {
             env.BRANCH_NAME == 'main'
             }
         }
-        }
         steps{
           sh 'ls'
           }
+        }
         stage('invoke python'){
           steps{
           sh 'pwd'
