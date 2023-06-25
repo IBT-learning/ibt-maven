@@ -27,10 +27,20 @@ pipeline {
                        sh 'mvn package'
                     }
         }
-        stage('Deploy'){
+        stage('upload to Artifactory(secret-file)'){
             steps {
                withCredentials([file(credentialsId: 'mvn-settings-josias', variable: 'josias')]) {
                  sh 'mvn deploy -s $josias'
+               }
+               withCredentials([usernamePassword(credentialsId: 'jenkins-josias', passwordVariable: 'josias_password', usernameVariable: 'josias_user')]) {
+                 sh 'echo $josias_user $josias_password'
+               }
+            }
+        }
+        stage('upload to Artifactory(config-file)'){
+            steps {
+               configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
+                 sh 'mvn deploy -s $maven_settings_artifactory'
                }
             }
         }
