@@ -23,9 +23,9 @@ pipeline {
           }
             withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
                 sh "${env.sonarscan}/bin/sonar-scanner"
+
             }
           }
-        }
         stage ('test'){
                      steps {
                         sh 'mvn test'
@@ -55,6 +55,6 @@ pipeline {
         }
     }
 }
-}
+
 
 
