@@ -37,6 +37,16 @@ pipeline {
                                            sh 'mvn package'
                                         }
                                     }
+             stage('Vulnerability scan - Dependency check'){
+                 steps {
+                            dependencyCheck additionalArguments:'''
+                                 -o "./"
+                                 -o "./"
+                                 -f 'ALL"
+                                 --prettyPrint ''', odcInstallation: 'dependency-check'
+                           dependencyCheckPublisher pattern: 'dependency-check-report.xml
+                 }
+             }
              stage('Upload to Artifactory(secret file)'){
                  steps {
                      withCredentials([file(credentialsId: 'mvn-settings-theodore4G', variable: 'theodore4G')]) {
