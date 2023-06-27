@@ -19,7 +19,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
           environment {
-                   sonarScan = tool 'ibt-sonarqube'
+                   sonarScan = tool 'IBT-sonarqube'
           }
             steps {
             withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
