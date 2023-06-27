@@ -39,6 +39,11 @@ pipeline {
                        sh 'mvn package'
                     }
         }
+        stage('Vulnerability scan - Dependency Check') {
+           steps {
+               dependencyCheck additionalArguments: '-o "./"', odcInstallation: 'dependency-check'
+           }
+        }
         stage('upload to Artifactory(secret-file)'){
             steps {
                withCredentials([file(credentialsId: 'mvn-settings-josias', variable: 'josias')]) {
