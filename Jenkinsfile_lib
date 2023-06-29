@@ -24,7 +24,7 @@ agent any
                    }
     stage ("Dependencycheck"){
         steps{
-             DependencyCheck{
+             DependencyCheck()
              }
            }
        }
