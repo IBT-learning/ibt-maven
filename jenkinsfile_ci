@@ -44,8 +44,8 @@ pipeline {
              }
              stage('Upload to Artifactory(secret file)'){
                  steps {
-                     withCredentials([file(credentialsId: 'mvn-settings-theodore4G', variable: 'theodore4G')]) {
-                         sh 'mvn deploy -s $theodore4G'
+                     withCredentials([file(credentialsId: 'mvn-settings-theodore4G', variable: 'maven_settings_theodore4G')]) {
+                         sh 'mvn deploy -s $maven_settings_theodore4G'
                      }
                      withCredentials([usernamePassword(credentialsId: 'jenkins-pw-credential', passwordVariable: 'art_password', usernameVariable: 'art_name')]) {
                          sh 'echo $art_name $art_password'
