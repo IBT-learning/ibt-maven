@@ -52,4 +52,9 @@ pipeline {
            }
         }
    }
+   post {
+   always {
+    echo "Hi I'm going to run at anytime "
+        }
+     }
   }
