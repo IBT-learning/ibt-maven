@@ -29,8 +29,8 @@
        }
        stage('Deploy'){
           steps {
-          withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'yannick')]) {
-              sh 'mvn deploy -s $yannick'
+          withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'maven_yannick')]) {
+              sh 'mvn deploy -s $maven_yannick'
           }
           withCredentials([usernamePassword(credentialsId: 'yannick-jenkins', passwordVariable: 'art-password', usernameVariable: 'art-yannick')]) {
               sh 'echo $art-yannick $art-password'
