@@ -32,6 +32,9 @@
           withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'mvn-setting-yannick')]) {
               sh 'mvn deploy -s $mvn-setting-yannick'
           }
+          withCredentials([usernamePassword(credentialsId: 'yannick-jenkins', passwordVariable: 'art-password', usernameVariable: 'art-yannick')]) {
+              sh 'echo $art-yannick $art-password'
+          }
           }
        }
   }
