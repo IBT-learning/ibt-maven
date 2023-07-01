@@ -27,6 +27,13 @@
                  sh 'mvn package'
             }
        }
+       stage('Deploy'){
+          steps {
+          withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'mvn-setting-yannick')]) {
+              sh 'mvn deploy -s $mvn-setting-yannick'
+          }
+          }
+       }
   }
 
  }
