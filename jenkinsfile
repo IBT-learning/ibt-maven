@@ -34,7 +34,7 @@ pipeline {
         }
         stage('invoke maven'){
                   steps{
-                  sh 'maven --version'
+                  sh 'mvn --version'
                   }
                 }
         stage('test stage'){
