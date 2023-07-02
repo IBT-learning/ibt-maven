@@ -32,7 +32,7 @@
           withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'maven_setting')]) {
               withMaven(maven: 'maven_3.8')
               {
-              'mvn deploy -s $maven_setting'
+              sh 'mvn deploy -s $maven_setting'
           }
         }
           withCredentials([usernamePassword(credentialsId: 'yannick-jenkins', passwordVariable: 'art-password', usernameVariable: 'art-yannick')]) {
