@@ -27,7 +27,7 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
+   <distributionManagement>
     <repository>
       <id>central</id>
       <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
