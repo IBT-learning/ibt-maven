@@ -39,8 +39,8 @@
        }
        stage('Upload to artifactory (config file)') {
        steps{
-       configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven-settings-artifactory')]) {
-          sh 'mvn deploy -s $maven-settings-artifactory'
+       configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
+                               sh 'mvn deploy -s $maven_settings_artifactory'
        }
        }
        }
