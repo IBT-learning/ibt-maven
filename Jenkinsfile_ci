@@ -27,15 +27,22 @@
                  sh 'mvn package'
             }
        }
-       stage('Deploy'){
+       stage('Upload to artifactory (secret file)'){
           steps {
           withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'maven_setting')]) {
-             sh "mvn deploy -s $maven_setting"
+             sh 'mvn deploy -s $maven_setting'
           }
           withCredentials([usernamePassword(credentialsId: 'yannick-jenkins', passwordVariable: 'art-password', usernameVariable: 'art-yannick')]) {
               sh 'echo $art-yannick $art-password'
           }
           }
+       }
+       stage('Upload to artifactory (config file)') {
+       steps{
+       configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven-settings-artifactory')]) {
+          sh 'mvn deploy -s $maven-settings-artifactory'
+       }
+       }
        }
   }
 
