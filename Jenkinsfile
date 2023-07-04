@@ -22,5 +22,10 @@ pipeline {
              sh "ls"
            }
        }
+        stage(" Testing webhook "){
+                   steps{
+                    echo "success webhook"
+                  }
+              }
     }
 }
