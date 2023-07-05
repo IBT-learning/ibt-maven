@@ -1,8 +1,9 @@
 pipeline {
     agent any
     parameters{
-    string(name:'Branch_Name', defaultValue: 'main', description: 'enter branch name to build')
+        string(none; "branch_name" , defaultvalue: "main" , description: "enter branch name to build " )
     }
+
     stages {
         stage('Hello') {
             steps {
@@ -20,6 +21,11 @@ pipeline {
             }
         }
         stage("List files "){
+        when {
+            expression{
+                env.BRANCH_NAME == "main"
+            }
+        }
             steps{
              sh "ls"
            }
