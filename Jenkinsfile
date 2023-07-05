@@ -17,7 +17,7 @@ pipeline {
         }
          stage('Git Checkout') {
             steps{
-            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: $branch_name]], extensions: [], userRemoteConfigs: [[credentialsId: '590e1990-6318-4b7c-86cb-f9c7cbf0b390', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: "$branch_name"]], extensions: [], userRemoteConfigs: [[credentialsId: '590e1990-6318-4b7c-86cb-f9c7cbf0b390', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
         stage("List files "){
