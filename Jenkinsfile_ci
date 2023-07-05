@@ -37,6 +37,11 @@
                  sh 'mvn package'
             }
        }
+       stage('Vulnerability scan - Dependency Check'){
+                       steps{
+                                  echo "dynamic scan"
+                           }
+                       }
        stage('Upload to artifactory (secret file)'){
           steps {
           withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'maven_setting')]) {
