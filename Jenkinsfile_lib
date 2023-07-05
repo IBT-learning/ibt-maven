@@ -24,5 +24,12 @@ pipeline {
                 sonarScan()
             }
            }
+
+           stage ('Dependency check') {
+                       steps{
+                           DependencyCheck()
+                       }
+                      }
+
          }
     }
