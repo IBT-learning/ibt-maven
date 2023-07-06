@@ -1,0 +1,28 @@
+@Library('jenkins-library')_
+pipeline {
+    agent any
+    tools { maven  'maven_3.8' }
+    stages {
+        stage('Git checkout') {
+            steps {
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feauture/theodoreatabe']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-pw-credential', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            }
+        }
+        stage ('validate'){
+            steps {
+               sh 'mvn validate'
+            }
+        }
+         stage ('compile'){
+                     steps {
+                        sh 'mvn compile'
+                        }
+                     }
+                    stage ('sonarqube scan'){
+                         steps {
+                              sonarScan()
+                         }
+                   }
+
+        }
+    }
