@@ -51,6 +51,9 @@ pipeline {
                         sshPut remote: remote, from: 'target/ibt-maven-1.1-SNAPSHOT.jar', into:'/opt/tomcat/apps'
                     }
                 }
+
+                stage('Dev')
+                {
               steps{
                               script{
                                   def remote = [name: 'dev-server', host: '159.89.226.247', allowAnyHosts: true]
