@@ -1,45 +1,31 @@
-pipeline {
-    agent any
-      tools { maven 'maven_3.8' }
-    stages {
-        stage( "git checkout" ) {
-            steps {
-               checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature/Derick']], extensions: [], userRemoteConfigs: [[credentialsId: '590e1990-6318-4b7c-86cb-f9c7cbf0b390', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-                 }
+ pipeline{
+ agent any
+  tools { maven 'maven_3.8' }
+  stages{
+       stage('Git checkout'){
+         steps{
+         checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature/Derick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+         }
+       }
+       stage('Validate') {
+          steps{
+          sh 'mvn validate'
+          }
+       }
+       stage('Compile') {
+                 steps{
+                 sh 'mvn compile'
+
             }
-                 stage('Validate') {
-                    steps{
-                    sh 'mvn validate'
-                    }
-                 }
-                 stage('Compile') {
-                           steps{
-                           sh 'mvn compile'
-                      }
-                 }
-
-                 stage('Test') {
-                           steps{
-                           sh 'mvn test'
-                      }
-                 }
-                 stage('Package') {
-                           steps{
-                           sh 'mvn package'
-                      }
-                 }
-                 stage("deploy"){
-                    step{
-                       withCredentials([file(credentialsId: 'maven_artifactory', variable: 'maven-setings')]) {
-                           sh "mvn deploy -s $maven-setings"
-                           }
-                    }
-                 }
-            }
-
-
-
-        }
-    }
-
+       }
+       stage('Test') {
+                        steps{
+                        sh 'mvn test'
+                   }
+               }
+        stage('Package') {
+                        steps{
+                        sh 'mvn package'
+                   }
+              }
 
