@@ -1,78 +1,78 @@
- pipeline{
+pipeline{
  agent any
-  tools { maven 'maven_3.8' }
+  tools { maven 'maven_3.9.3' }
   stages{
        stage('Git checkout'){
          steps{
-         checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature/Derick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+         checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature/yannick']], extensions: [], userRemoteConfigs: [[credentialsId: 'yannick-jenkins', url: 'https://github.com/IBT-learning/ibt-maven.git']])
          }
        }
-             stage('Validate') {
-                steps{
-                sh 'mvn validate'
-                }
-             }
-             stage('Compile') {
-                       steps{
-                       sh 'mvn compile'
-                  }
-             }
-             stage('SonarQube Analysis') {
-                          environment {
-                                    sonarScan = tool 'ibt-sonarqube'
-                                }
-                          steps {
-                            withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                              sh "${env.sonarScan}/bin/sonar-scanner"
-                            }
-                          }
-                         }
-             stage('Test') {
-                       steps{
-                       sh 'mvn test'
-                  }
-              }
-             stage('Package') {
-                       steps{
-                       sh 'mvn package'
-                  }
-             }
-             stage('Vulnerability scan - Dependency Check'){
-                             steps{
-                                        echo "dynamic scan"
-                                 }
-                             }
-             stage('Upload to artifactory (secret file)'){
-                steps {
-                withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'maven_setting')]) {
-                   sh 'mvn deploy -s $maven_setting'
-                }
-                withCredentials([usernamePassword(credentialsId: 'yannick-jenkins', passwordVariable: 'art-password', usernameVariable: 'art-yannick')]) {
-                    sh 'echo $art-yannick $art-password'
-                }
-                }
-             }
-             stage('Upload to artifactory (config file)') {
-             steps{
-             configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
-                                     sh 'mvn deploy -s $maven_settings_artifactory'
-             }
-             }
-             }
-             stage('Deploy to Dev')
-                         {
-                             steps{
-                                  script{
-                                     def remote = [name: 'dev-server', host: '161.35.12.35', allowAnyHosts: true]
-                                     withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
-                                        remote.user = username
-                                        remote.password = password
-                                        sshPut remote: remote, from: 'target/ibt-maven-1.1-SNAPSHOT.jar', into: '/opt/tomcat/apps'
-
-                                     }
-                                  }
-                             }
-                         }
-        }
-
+       stage('Validate') {
+          steps{
+          sh 'mvn validate'
+          }
        }
+       stage('Compile') {
+                 steps{
+                 sh 'mvn compile'
+            }
+       }
+       stage('SonarQube Analysis') {
+                    environment {
+                              sonarScan = tool 'ibt-sonarqube'
+                          }
+                    steps {
+                      withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
+                        sh "${env.sonarScan}/bin/sonar-scanner"
+                      }
+                    }
+                   }
+       stage('Test') {
+                 steps{
+                 sh 'mvn test'
+            }
+        }
+       stage('Package') {
+                 steps{
+                 sh 'mvn package'
+            }
+       }
+       stage('Vulnerability scan - Dependency Check'){
+                       steps{
+                                  echo "dynamic scan"
+                           }
+                       }
+       stage('Upload to artifactory (secret file)'){
+          steps {
+          withCredentials([file(credentialsId: 'mvn-setting-yannick', variable: 'maven_setting')]) {
+             sh 'mvn deploy -s $maven_setting'
+          }
+          withCredentials([usernamePassword(credentialsId: 'yannick-jenkins', passwordVariable: 'art-password', usernameVariable: 'art-yannick')]) {
+              sh 'echo $art-yannick $art-password'
+          }
+          }
+       }
+       stage('Upload to artifactory (config file)') {
+       steps{
+       configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
+                               sh 'mvn deploy -s $maven_settings_artifactory'
+       }
+       }
+       }
+       stage('Deploy to Dev')
+                   {
+                       steps{
+                            script{
+                               def remote = [name: 'dev-server', host: '161.35.12.35', allowAnyHosts: true]
+                               withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                                  remote.user = username
+                                  remote.password = password
+                                  sshPut remote: remote, from: 'target/ibt-maven-1.1-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+
+                               }
+                            }
+                       }
+                   }
+  }
+
+ }
