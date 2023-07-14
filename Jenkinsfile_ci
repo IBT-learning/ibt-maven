@@ -60,11 +60,12 @@ pipeline {
                 }
             }
             stage('Deploy to Dev')
-            when {
-            expression{
-                env.BRANCH_NAME == 'main'
-            }
             {
+                when {
+                expression{
+                    env.BRANCH_NAME == 'main'
+                    }
+                }
                 steps{
                      script{
                         def remote = [name: 'dev-server', host: '137.184.162.151', allowAnyHosts: true]
@@ -72,7 +73,6 @@ pipeline {
                            remote.user = username
                            remote.password = password
                            sshPut remote: remote, from: 'target/ibt-maven-1.1-SNAPSHOT.jar', into: '/opt/tomcat/apps'
-
                         }
                      }
                 }
