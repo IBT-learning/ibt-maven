@@ -23,5 +23,10 @@ pipeline{
            sonarscan()
            }
        }
+       stage('Dependency check') {
+           steps{
+           DependencyCheck()
+           }
+       }
        }
    }
