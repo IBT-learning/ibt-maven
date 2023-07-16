@@ -63,7 +63,7 @@ pipeline {
              {
                 when {
                  expression{
-                     enn.BRANCH_NAME == 'main'
+                     env.BRANCH_NAME == 'main'
                           }
                      }
               steps{
