@@ -59,6 +59,17 @@ pipeline {
                     }
                 }
             }
+            stage('run playbook') {
+                 steps{
+                                    ansiblePlaybook(
+                                                    become: true,
+                                                    credentialsId: 'vm-ssh',
+                                                    disableHostKeyChecking: true,
+                                                    inventory: 'inventory',
+                                                    playbook: 'tomcat.yml'
+                                                    )
+                                }
+            }
             stage('Deploy to Dev')
             {
                 when {
