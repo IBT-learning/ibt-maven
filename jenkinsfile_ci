@@ -60,10 +60,15 @@ pipeline {
                  }
              }
              stage('Deploy to Dev')
+              when {
+                  expression{
+                      enn.BRANCH_NAME == 'main'
+                      }
+                  }
               {
-                 steps{
+              steps{
                    script{
-                      def remote = [name: 'dev-server',host: '137.184.53.124', allowAnyHosts: true]
+                      def remote = [name: 'dev-server',host: '165.22.6.110', allowAnyHosts: true]
                       withCredentials([usernamePassword(credentialsId: 'server-ssh-pwd', passwordVariable: 'password', usernameVariable: 'username')]) {
                          remote.user = username
                          remote.password = password
