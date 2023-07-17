@@ -59,8 +59,24 @@ pipeline {
                           }
                       }
                   }
+                 stage('run playbook') {
+                              steps{
+                                                 ansiblePlaybook(
+                                                                 become: true,
+                                                                 credentialsId: 'vm-ssh',
+                                                                 disableHostKeyChecking: true,
+                                                                 inventory: 'inventory',
+                                                                 playbook: 'tomcat.yml'
+                                                                 )
+                                             }
+                         }
                 stage('Deploy to Dev')
                            {
+                               when {
+                               expression{
+                                     env.BRANCH_NAME == 'main'
+                                     }
+                               }
                                steps{
                                     script{
                                        def remote = [name: 'dev-server', host: '137.184.9.106', allowAnyHosts: true]
@@ -68,7 +84,6 @@ pipeline {
                                           remote.user = username
                                           remote.password = password
                                           sshPut remote: remote, from: 'target/ibt-maven-1.5-SNAPSHOT.jar', into: '/opt/tomcat/apps'
-
                                        }
                                     }
                                }
