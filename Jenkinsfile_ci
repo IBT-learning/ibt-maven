@@ -58,7 +58,17 @@ pipeline {
         {
             when {
             expression{
-            env.BRANCH_NAME == 'feature/leroy'
+            env.BRANCH_NAME == 'main'
+            }
+            }
+        }
+        steps{
+            script{
+            def remote = [name: 'dev-server', host: '147.182.132.156', allowAnyHosts: true]
+            withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]){
+            remote.user = username
+            remote.password = password
+            sshPut remote: remote, from: 'target/ibt-maven-1.1-SNAPSHOT.jar', into:'/opt/tomcat/apps'
             }
             }
         }
