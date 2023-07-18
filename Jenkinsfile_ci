@@ -54,6 +54,14 @@ pipeline {
 
 
         }
+        stage('Deploy to Dev')
+        {
+            when {
+            expression{
+            env.BRANCH_NAME == 'feature/leroy'
+            }
+            }
+        }
 
 
 
