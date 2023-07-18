@@ -44,9 +44,9 @@ pipeline {
             steps{
                 ansibleplaybook(
                                 become: true,
-                                credentialsId: 'vm-ssh'
-                                disableHostKeyChecking: 'true'
-                                inventory: 'inventory'
+                                credentialsId: 'vm-ssh',
+                                disableHostKeyChecking: 'true',
+                                inventory: 'inventory',
                                 playbook: 'tomcat.yaml'
                                 )
 
