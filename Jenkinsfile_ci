@@ -54,14 +54,10 @@ pipeline {
 
 
         }
-        stage('Deploy to Dev')
-        {
-            when {
-            expression{
-            env.BRANCH_NAME == 'main'
-            }
-            }
-        }
+        stage('Deploy to Dev'){
+
+
+
         steps{
             script{
             def remote = [name: 'dev-server', host: '147.182.132.156', allowAnyHosts: true]
