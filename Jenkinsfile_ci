@@ -56,9 +56,20 @@ pipeline{
        steps{
        configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'maven_settings_artifactory')]) {
                                sh 'mvn deploy -s $maven_settings_artifactory'
-       }
-       }
-       }
+                   }
+                      }
+              }
+       stage('run playbook') {
+                        steps{
+                                           ansiblePlaybook(
+                                                           become: true,
+                                                           credentialsId: 'vm-ssh',
+                                                           disableHostKeyChecking: true,
+                                                           inventory: 'inventory',
+                                                           playbook: 'tomcat.yml'
+                                                           )
+                                       }
+                   }
        stage('Deploy to Dev')
                    {
                        steps{

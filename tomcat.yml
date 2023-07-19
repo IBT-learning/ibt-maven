@@ -1,0 +1,59 @@
+---
+- name: Install Tomcat on Ubuntu
+  hosts: nodes
+  vars:
+    tomcat_dir : /opt/tomcat
+    tomcat_user: tomcat
+
+  tasks:
+    - name: update package manager
+      apt:
+        upgrade: yes
+
+    - name: install java
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name : create tomcat user
+      user:
+        name: '{{ tomcat_user }}'
+
+    - name: create tomcat group
+      group:
+        name: '{{ tomcat_user }}'
+
+    - name: create tomcat directory
+      file:
+        path: '{{ tomcat_dir }}'
+        owner: '{{ tomcat_user }}'
+        group: '{{ tomcat_user }}'
+        mode: 755
+        state: directory
+
+    - name: download and unarchive tomcat
+      unarchive:
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
+        dest: '{{ tomcat_dir }}'
+        remote_src: yes
+
+    - name: change ownership
+      file:
+        path: '{{ tomcat_dir }}'
+        owner: '{{ tomcat_user }}'
+        group: '{{ tomcat_user }}'
+        mode: 755
+
+    - name: run startup script
+      command: nohup {{ tomcat_dir }}/apache-tomcat-9.0.78/bin/startup.sh
+
+    - name: allow tcp connections
+      command: sudo ufw allow 8080/tcp
+
+    - name: connect to server URI
+      uri:
+        url: http://localhost:8080
+      register: result
+      until: "result.status == 200"
+      retries: 5
+      delay: 10
