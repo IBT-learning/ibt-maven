@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: '$branch_name', url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                 bat "mvn -B clean validate compile test package"
+            }
+        }
+        stage('Archive') {
+            steps {
+                 archiveArtifacts 'target/*.jar'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                  withCredentials([usernamePassword(credentialsId: 'artifactory-credentials', usernameVariable: 'konissil@gmail.com', passwordVariable: 'cmVmdGtuOjAxOjE3MjA5MTgwODg6eHB6Skd1RDJlNXUyNHI1TTNKZ0NQQTc3TU1u')]) {
+                   bat """
+                        curl -u %konissil@gmail.com%:%cmVmdGtuOjAxOjE3MjA5MTgwODg6eHB6Skd1RDJlNXUyNHI1TTNKZ0NQQTc3TU1u% -X PUT https://ibt.jfrog.io/artifactory/ibt-libs-snapshot/artifactory/ibt-libs-snapshot-local/ibt-maven/1.4/ibt-maven-1.4.jar -T target/ibt-maven-1.4-SNAPSHOT.jar
+                    """
+                }
+            }
+        }
+    }
+}
