@@ -7,16 +7,16 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('firstline'){
+        stage('firstline') {
             steps{
                 echo 'We are testing maven pipeline job'
             }
         }
-        stage('secondline'){
-            steps{
+        stage('secondline') {
+            steps {
                 echo 'I am a master in Devops engineering'
                 bat 'dir'
-                 }
+            }
         }
     }
 }
