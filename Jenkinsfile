@@ -1,7 +1,7 @@
 pipeline {
     agent any
-
-    stages {
+ parameters{
+ string(name: 'Branch_Name', defaultValue:'main',description: 'Enter the branch to build')
         stage('Hello') {
             steps {
                 echo 'Hello World'
