@@ -3,6 +3,9 @@ pipeline {
 parameters{
     string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to build')
 }
+environment{
+    version='1.0.0'
+}
 
     stages {
         stage('Hello') {
@@ -46,5 +49,15 @@ parameters{
              echo "i am ruuning since the condition is met"
         }
        }
+       stage('variables'){
+               steps{
+                   sh 'echo "$version" '
+                   echo "${env.version}"
+                   script{
+                       print env.version
+                   }
+               }
+              }
+
     }
 }
