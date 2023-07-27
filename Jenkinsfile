@@ -58,10 +58,11 @@ environment{
                    }
                }
               }
-    post{
-                always{
-                    echo "i will run everytime"
-                }
-            }
+
     }
+    post{
+                    always{
+                        echo "i will run everytime"
+                    }
+                }
 }
