@@ -22,7 +22,7 @@ parameters{
         }
         stage('get branchName'){
             steps{
-                echo $Branch_Name
+                echo "${params.$Branch_Name}"
             }
         }
         stage('git checkout')
