@@ -22,7 +22,7 @@ parameters{
         }
         stage('get branchName'){
             steps{
-                echo "${params.$Branch_Name}"
+                echo "${params.Branch_Name}"
             }
         }
         stage('git checkout')
@@ -31,10 +31,20 @@ parameters{
                 checkout scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
-        stage('list files'){
+         stage('list files'){
             steps{
                 sh 'ls'
              }
         }
+       stage('checking condition'){
+        when{
+          expression{
+            env.BRANCH_NAME=='main'
+          }
+        }
+        steps{
+             echo "i am ruuning since the condition is met"
+        }
+       }
     }
 }
