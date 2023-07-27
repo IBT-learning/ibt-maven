@@ -16,7 +16,7 @@ pipeline {
             steps{
                 echo 'I am a master in Devops engineering'
                 bat 'dir'
-            }
+                 }
         }
     }
 }
