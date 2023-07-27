@@ -60,6 +60,11 @@ environment{
               }
 
     }
+    stage('testing webhook'){
+        steps{
+            echo "i am running from git push"
+        }
+    }
     post{
                     always{
                         echo "i will run everytime"
