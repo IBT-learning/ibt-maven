@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>1.4</version>
+  <version>1.4.8</version>
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
@@ -14,9 +14,22 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>central</id>
+      <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
+      <url>https://ibt.jfrog.io/artifactory/ibt-libs-release</url>
+    </repository>
+    <snapshotRepository>
+      <id>central</id>
+      <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
+      <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -27,18 +40,6 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
-    <repository>
-      <id>central</id>
-      <name>IBT Learning Jfrog-releases</name>
-      <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-release</url>
-    </repository>
-    <snapshotRepository>
-      <id>central</id>
-      <name>IBT Learning Jfrog-releases</name>
-      <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-snapshot</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
