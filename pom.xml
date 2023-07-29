@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>1.0.9</version>
+  <version>1.9-SNAPSHOT</version>
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
@@ -26,6 +26,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <!-- this is a comment -->
 
   <distributionManagement>
     <repository>

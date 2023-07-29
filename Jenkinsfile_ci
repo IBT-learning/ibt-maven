@@ -29,5 +29,12 @@ stages {
                 }
             }
         }
+        stage('Deploy'){
+            steps{
+                withCredentials([file(credentialsId: 'gunj_artifactory_settings', variable: 'artifactory_settings')]) {
+                    sh 'mvn deploy -s $artifactory_settings'
+                }
+            }
+        }
    }
 }
