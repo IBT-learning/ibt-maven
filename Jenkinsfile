@@ -4,8 +4,8 @@ pipeline {
     parameters {
         string (name:'Branch_Name', defaultValue:'main', description:'Enter the branch to build')
     }
-    environment{
-        version='1.0.0'
+    //environment{
+    //    version='1.0.0'
 
     stages {
         stage('Hello') {
