@@ -4,7 +4,8 @@ agent any
 stages {
     stage ('Git checkout'){
         steps {
-            checkout scmGit(branches: [[name: '*/feature_lili']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            git branch: 'feature_lili', url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
     }
 }
 
