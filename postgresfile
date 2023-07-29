@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('get the db version') {
+            steps {
+               echo 'psql --version'
+            }
+        }
+        stage('connect to PostgreSQL') {
+            steps {
+                echo 'psql'
+            }
+        }
+                stage('get the db_size') {
+            steps {
+                echo "select pg_size_pretty(pg_database_size('postgres'))"
+            }
+        }
+    }
+}
