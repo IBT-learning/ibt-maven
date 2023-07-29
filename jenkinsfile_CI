@@ -32,7 +32,7 @@ stages {
 
     stage('deploy'){
             steps{
-                withCredentials([file(credentialsId: 'artifactory-setting', variable: 'artifactory_settings')]) {
+                withCredentials([file(credentialsId: 'artifactory_settings', variable: 'artifactory_settings')]) {
                     sh 'mvn deploy -s $artifactory_settings'
                 }
             }
