@@ -34,5 +34,11 @@ pipeline {
                    checkout scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                     }
                 }
+        stage('list files'){
+            steps{
+            sh 'ls'
+            }
+       }
+
     }
 }
