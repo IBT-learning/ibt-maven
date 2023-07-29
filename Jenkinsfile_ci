@@ -17,5 +17,17 @@ stages {
                 sh 'mvn compile'
             }
         }
+       stage('Test'){
+                  steps{
+                      sh 'mvn test'
+                  }
+              }
+        stage('Package'){
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn package'
+                }
+            }
+        }
    }
 }
