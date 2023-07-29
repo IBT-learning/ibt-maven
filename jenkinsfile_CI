@@ -1,0 +1,61 @@
+pipeline {
+agent any
+tools { maven 'maven_3.8'}
+stages {
+    stage ('Git checkout'){
+        steps {
+            git branch: 'feature_lili', url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+    }
+    stage('validate'){
+        steps{
+            sh 'mvn validate'
+        }
+    }
+    stage('compile'){
+            steps{
+                sh 'mvn compile'
+            }
+        }
+    stage('test'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+
+     stage('SonarQube Analysis') {
+        environment{
+            sonarScan = tool 'ibt-sonarqube'
+        }
+        steps {
+        withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+          sh "${env.sonarScan}/bin/sonar-scanner"
+        }
+        }
+      }
+    stage('package'){
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn package'
+                }
+            }
+        }
+
+    stage('deploy'){
+            steps{
+                withCredentials([file(credentialsId: 'artifactory_settings', variable: 'artifactory_settings')]) {
+                    sh 'mvn deploy -s $artifactory_settings'
+                }
+            }
+        }
+    stage('deploy with config file'){
+                steps{
+                    configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'artifactory_settings')]) {
+                        sh 'mvn deploy -s $artifactory_settings'
+                    }
+                }
+            }
+
+}
+
+}
