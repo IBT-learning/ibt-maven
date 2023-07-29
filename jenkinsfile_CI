@@ -22,6 +22,15 @@ stages {
                 sh 'mvn test'
             }
         }
+
+     stage('SonarQube Analysis') {
+        environment{
+            sonarScan = tool 'ibt-sonarqube'
+        }
+        withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+          sh "${env.sonarScan}/bin/sonar-scanner"
+        }
+      }
     stage('package'){
             steps{
                 withMaven(maven: 'maven_3.9.3') {
