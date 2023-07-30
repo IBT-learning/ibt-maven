@@ -51,7 +51,11 @@
               }
             }
           }
-
+          stage(testing webhook) {
+            steps{
+             echo 'New job!'
+            }
+          }
        }
          post{
             always{
