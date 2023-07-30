@@ -22,9 +22,12 @@ stages {
              sh  'mvn test'
            }
     }
-    stage('') {
+    stage('package') {
                steps{
-                 sh 'mvn package'
+                 withMaven(maven: 'maven_3.8') {
+                    sh 'mvn package'
+                 }
+                 }
                }
         }
 }
