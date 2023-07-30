@@ -1,4 +1,4 @@
-package com.ibt.app;
+package com.ibt_app;
 
 /**
  * Hello world!
