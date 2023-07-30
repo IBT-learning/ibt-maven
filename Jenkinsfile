@@ -51,7 +51,13 @@
               }
             }
           }
+
        }
+         post{
+            always{
+                echo 'i will run everytime'
+            }
+         }
    }
 
 
