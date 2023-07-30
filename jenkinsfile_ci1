@@ -4,7 +4,7 @@ tools { maven 'maven_3.8' }
 stages {
     stage('Git checkout'){
      steps{
-        checkout scmGit(branches: [[name: '*/feature-gunj']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+        git branch: 'feature_lili', url: 'https://github.com/IBT-learning/ibt-maven.git'
      }
     }
     stage('Validate'){
@@ -46,7 +46,7 @@ stages {
                         -s "./"
                         -f "ALL"
                         --prettyPrint ''' , odcInstallation: 'dependency-check'
-                   dependencyCheckPublisher pattern: 'check-result.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
+                   dependencyCheckPublisher pattern: 'dependency-check-report.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
             }
        }
         stage('Deploy'){
