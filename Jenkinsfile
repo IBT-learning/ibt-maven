@@ -45,7 +45,6 @@
           }
           stage('variables'){
             steps{
-              bat "echo '$version' "
               echo '${env.version}'
               script{
               print env.version
