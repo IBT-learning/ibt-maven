@@ -22,16 +22,16 @@ stages {
                       sh 'mvn test'
                   }
               }
-        stage('SonarQube Analysis') {
-            environment{
-                sonarScan = tool 'ibt-sonarqube'
-            }
-            steps{
-            withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-              sh "${env.sonarScan}/bin/sonar-scanner"
-            }
-           }
-          }
+            stage('SonarQube Analysis') {
+                environment{
+                    sonarScan = tool 'ibt-sonarqube'
+                }
+                steps{
+                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                  sh "${env.sonarScan}/bin/sonar-scanner"
+                }
+               }
+              }
         stage('Package'){
             steps{
                 withMaven(maven: 'maven_3.9.3') {
@@ -39,6 +39,16 @@ stages {
                 }
             }
         }
+       stage('Vulnerability Scan - Dependency Check'){
+            steps{
+                   dependencyCheck additionalArguments: '''
+                        -o "./"
+                        -s "./"
+                        -f "ALL"
+                        --prettyPrint ''' , odcInstallation: 'dependency-check'
+                   dependencyCheckPublisher pattern: 'check-result.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
+            }
+       }
         stage('Deploy'){
             steps{
                 withCredentials([file(credentialsId: 'gunj_artifactory_settings', variable: 'artifactory_settings')]) {
