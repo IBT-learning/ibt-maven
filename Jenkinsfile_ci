@@ -46,7 +46,7 @@ stages {
                         -s "./"
                         -f "ALL"
                         --prettyPrint ''' , odcInstallation: 'dependency-check'
-                   dependencyCheckPublisher pattern: 'check-result.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
+                   dependencyCheckPublisher pattern: 'dependency-check-report.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
             }
        }
         stage('Deploy'){
