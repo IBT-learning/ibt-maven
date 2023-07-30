@@ -3,6 +3,9 @@
        parameters{
             string(name: 'Branch_Name', defaultValue:'main',description: 'Enter the branch to build')
        }
+       environment{
+          version='1.0.0'
+       }
 
        stages {
           stage('Hello') {
@@ -39,6 +42,15 @@
                steps{
                 echo 'i am trying a condition'
                }
+          }
+          stage('variables'){
+            steps{
+              bat "echo '$version' "
+              echo '${env.version}'
+              script{
+              print env.version
+              }
+            }
           }
        }
    }
