@@ -69,7 +69,7 @@ stages {
 
         stage('Deploy') {
               steps {
-                sh 'scp target/ibt-maven-1.13-SNAPSHOT.jar' tomcat@192.168.0.58:/opt/tomcat/apps'
+                sh 'scp -r target/ibt-maven-1.13-SNAPSHOT.jar' tomcat@192.168.0.58:/opt/tomcat/apps'
               }
             }
 
