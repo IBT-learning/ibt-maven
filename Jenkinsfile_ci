@@ -24,7 +24,7 @@ stages {
     }
     stage('package') {
                steps{
-                 withMaven(maven: 'maven_3.8') {
+                 withMaven(maven: 'maven_3.9.3') {
                     sh 'mvn package'
                  }
                  }
