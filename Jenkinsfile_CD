@@ -69,7 +69,7 @@ stages {
         stage('Deploy to DevServer'){
             steps{
                 script{
-                    def remote =[name: 'CentOS Linux', host: '192.168.0.58', allowAnyHosts: true]
+                    def remote =[name: 'Dev', host: '192.168.0.58', allowAnyHosts: true]
                     //withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
                     withCredentials([usernamePassword(credentialsId: '539ac5ba-a50d-4d73-a2a3-23ffeb94e837', passwordVariable: 'passwd', usernameVariable: 'username')]) {
                         remote.user = username
