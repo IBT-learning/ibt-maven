@@ -23,5 +23,5 @@ node{
          //withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-credential', keyFileVariable: 'filetomcat', passphraseVariable: 'passtomcat', usernameVariable: 'usertomcat')]) {
          withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'passwd', usernameVariable: 'username')]) {
              sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-1.13-SNAPSHOT.jar root@167.99.160.148:/opt/tomcat/apps'         }
-     }
+     }}
 }}
