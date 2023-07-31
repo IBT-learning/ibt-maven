@@ -71,8 +71,21 @@ stages {
               steps {
                 sh 'scp -r target/ibt-maven-1.13-SNAPSHOT.jar tomcat@192.168.0.58:/opt/tomcat/apps'
               }
-            }
+        }
 
+
+     stage('Deploy to DevServer'){
+                 steps{
+                     script{
+                          sshagent(['tomcat-maven']) {
+                                  //withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-credential', keyFileVariable: 'filetomcat', passphraseVariable: 'passtomcat', usernameVariable: 'usertomcat')]) {
+                                  withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-maven', keyFileVariable: 'tomcat-maven', passphraseVariable: 'tomcat-maven', usernameVariable: 'tomcat')]) {
+                                      sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-1.13-SNAPSHOT.jar tomcat@192.168.0.58:/opt/tomcat/apps'
+                     }
+                 }
+
+             }
+    }}
 
    }
 }
