@@ -1,28 +1,18 @@
-pipeline {
-    agent {
-        label 'windows-agent'
-    }
-
-    tools {
-        maven 'maven_3.9.3'
-    }
-
-    stages {
-        stage('git checkout') {
-            steps {
-                checkout(scm: [$class: 'GitSCM',
-                              branches: [[name: '*/feature-dianna']],
-                              userRemoteConfigs: [[credentialsId: 'ibt',
-                                                  url: 'https://github.com/IBT-learning/ibt-maven.git']]])
-            }
+ pipeline{
+agent any
+tools { maven 'maven_3.9.3'}
+stages{
+    stage('git checkout'){
+        steps{
+            checkout scmGit(branches: [[name: '*/feature-dianna']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+      }
+     }
+     stage('Compile'){
+        steps{
+           bat 'mvn compile'
         }
-        stage('Compile') {
-            steps {
-                bat 'mvn compile'
-            }
-        }
-    }
+     }
+   }
 }
-
 
 
