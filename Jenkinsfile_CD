@@ -51,7 +51,7 @@ stages {
        }
         stage('Deploy'){
             steps{
-                withCredentials([file(credentialsId: 'gunj_artifactory_settings', variable: 'artifactory_settings')]) {
+                withCredentials([file(credentialsId: 'artifactory_settings', variable: 'artifactory_settings')]) {
                     sh 'mvn deploy -s $artifactory_settings'
                 }
             }
@@ -70,10 +70,11 @@ stages {
             steps{
                 script{
                     def remote =[name: 'Dev', host: '147.182.150.238', allowAnyHosts: true]
-                    withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    //withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    withCredentials([usernamePassword(credentialsId: '539ac5ba-a50d-4d73-a2a3-23ffeb94e837', passwordVariable: 'passwd', usernameVariable: 'username')]) {
                         remote.user = username
-                        remote.password = password
-                        sshPut remote: remote, from: 'target/ibt-maven-1.9-SNAPSHOT.jar', into: '/op/tomcat/apps'
+                        remote.password = passwd
+                        sshPut remote: remote, from: 'target/ibt-maven-1.13-SNAPSHOT.jar', into: '/op/tomcat/webapps'
                     }
                 }
             }

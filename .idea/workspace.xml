@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0a778da-3a59-48e3-bf9d-a5d5ebfe133c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Jenkinsfile_CD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jenkinsfile_ci1" beforeDir="false" afterPath="$PROJECT_DIR$/jenkinsfile_ci1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jenkinsscript_CD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile_CD" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile_CD" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
