@@ -74,7 +74,7 @@ stages {
                     withCredentials([usernamePassword(credentialsId: '539ac5ba-a50d-4d73-a2a3-23ffeb94e837', passwordVariable: 'passwd', usernameVariable: 'username')]) {
                         remote.user = username
                         remote.password = passwd
-                        sshPut remote: remote, from: 'target/ibt-maven-1.13-SNAPSHOT.jar', into: '/op/tomcat/webapps'
+                        sshPut remote: remote, from: 'target/ibt-maven-1.13-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
                     }
                 }
             }
