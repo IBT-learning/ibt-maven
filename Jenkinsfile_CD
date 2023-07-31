@@ -51,12 +51,12 @@ stages {
        }
         stage('Deploy'){
             steps{
-                withCredentials([file(credentialsId: 'artifactory_settings', variable: 'artifactory_settings')]) {
+                withCredentials([file(credentialsId: 'gunj_artifactory_settings', variable: 'artifactory_settings')]) {
                     sh 'mvn deploy -s $artifactory_settings'
                 }
             }
         }
-        stage('Deploy (confilFile)'){
+        stage('Deploy (configFile)'){
             steps{
                 configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_config')]) {
                     sh 'mvn deploy -s $mvn_settings_config'
@@ -65,6 +65,19 @@ stages {
                    sh 'mvn deploy'
                 }
             }
+        }
+        stage('Deploy to DevServer'){
+            steps{
+                script{
+                    def remote =[name: 'Dev', host: '147.182.150.238', allowAnyHosts: true]
+                    withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = username
+                        remote.password = password
+                        sshPut remote: remote, from: 'target/ibt-maven-1.9-SNAPSHOT.jar', into: '/op/tomcat/apps'
+                    }
+                }
+            }
+
         }
    }
 }
