@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30d0c8f6-8761-4062-9f5f-0909e6e12263" name="Changes" comment="" />
+    <list default="true" id="d0a778da-3a59-48e3-bf9d-a5d5ebfe133c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/jenkinsscript_CD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +26,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2Sg1GBUqLJkJdcUvAf4hlo4K5sK" />
+  <component name="ProjectId" id="2TJcPG12JHNxcHvYWdoeEb4bxvz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -31,22 +34,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-<<<<<<< HEAD
-    "last_opened_file_path": "C:/Users/kido9/OneDrive/Documents/Maven/ibt-maven"
-=======
-    "last_opened_file_path": "C:/Users/lilia/OneDrive/Documents/maven-test/ibt-maven"
->>>>>>> 32d8d1fac13e4ec3ba293a230e0807adee2b5600
+    "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="30d0c8f6-8761-4062-9f5f-0909e6e12263" name="Changes" comment="" />
-      <created>1689553321475</created>
+      <changelist id="d0a778da-3a59-48e3-bf9d-a5d5ebfe133c" name="Changes" comment="" />
+      <created>1690764599717</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1689553321475</updated>
+      <updated>1690764599717</updated>
     </task>
     <servers />
   </component>

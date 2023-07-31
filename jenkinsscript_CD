@@ -1,0 +1,27 @@
+node{
+
+    stage('Clone Repo'){
+        git branch: 'feature_lili', url: 'https://github.com/IBT-learning/ibt-maven.git'
+    }
+    stage('Maven Build'){
+        def mavenHome = tool name: "maven_3.9.3", type: "maven"
+        def mavenCMD = "${mavenHome}/bin/mvn"
+        sh "${mavenCMD} clean package"
+    }
+    stage('Code Review'){
+        withSonarQubeEnv('IBT sonarqube'){
+            def mavenHome = tool name: "maven_3.9.3", type: "maven"
+            def mavenCMD = "${mavenHome}/bin/mvn"
+            sh "${mavenCMD} sonar:sonar"
+        }
+    // stage('Upload Build Artifact'){
+    //     nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus-credentials', groupId: 'in.lilian', nexusUrl: '192.168.0.20:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'lilian-snapshot-repo', version: '1.0-SNAPSHOT'
+    //     }
+    // }
+     stage('Deploy'){
+         sshagent(['tomcat-credential']) {
+         //withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-credential', keyFileVariable: 'filetomcat', passphraseVariable: 'passtomcat', usernameVariable: 'usertomcat')]) {
+         withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'passwd', usernameVariable: 'username')]) {
+             sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-1.13-SNAPSHOT.jar root@167.99.160.148:/opt/tomcat/apps'         }
+     }
+}}
