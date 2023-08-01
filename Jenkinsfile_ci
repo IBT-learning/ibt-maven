@@ -31,9 +31,10 @@ stages {
     }
     stage('deploy'){
         steps{
-            withCredentials([file(credentialsId: 'Koami_artifactory_file', variable: 'koami_artifactory_settings')]) {
-               sh 'mvn deploy -s $artifactory_settings'
-            }
+        withCredentials([file(credentialsId: 'Koami_artifactory_file', variable: 'artifactory_settings')]) {
+            sh 'mvn deploy -s $artifactory_settings'
+        }
+           
         }
     }
 
