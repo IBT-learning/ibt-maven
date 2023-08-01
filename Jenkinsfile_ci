@@ -27,8 +27,16 @@ stages {
                  withMaven(maven: 'maven_3.9.3') {
                     sh 'mvn package'
                  }
-                 }
                }
+    }
+    stage('deploy'){
+        steps{
+            withCredentials([file(credentialsId: 'Koami_artifactory_file', variable: 'koami_artifactory_settings')]) {
+               sh 'mvn deploy -s $artifactory_settings'
+            }
         }
+    }
+
+  }
 }
 
