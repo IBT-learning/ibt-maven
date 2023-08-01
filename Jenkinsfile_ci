@@ -32,6 +32,13 @@ stages{
                 }
             }
          }
+         stage('Deploy (confilFile)'){
+            steps{
+                 configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_setting_config')]) {
+                     sh 'mvn deploy -s $mvn_setting_config'
+                 }
+            }
+         }
      }
  }
 
