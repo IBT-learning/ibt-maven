@@ -1,35 +1,29 @@
- pipeline{
-agent any
-tools {
-    maven 'maven_3.9.3'
 pipeline {
     agent any
-
+    tools {
+        maven 'maven_3.9.3'
+    }
     stages {
         stage('git checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/feature-dianna']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
         }
-
         stage('Validate') {
             steps {
                 sh 'mvn validate'
             }
         }
-
         stage('Compile') {
             steps {
                 sh 'mvn compile'
             }
         }
-
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-
         stage('Package') {
             steps {
                 withMaven(maven: 'maven_3.9.3') {
@@ -37,9 +31,8 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy (configFile)'){
-            steps{
+        stage('Deploy (configFile)') {
+            steps {
                 configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_setting_config')]) {
                     sh 'mvn deploy -s $mvn_setting_config'
                 }
@@ -49,4 +42,4 @@ pipeline {
             }
         }
     }
- }
+}
