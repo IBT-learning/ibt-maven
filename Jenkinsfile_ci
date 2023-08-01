@@ -1,6 +1,9 @@
  pipeline{
 agent any
-tools { maven 'maven_3.9.3'}
+tools {
+    maven 'maven_3.9.3'
+}
+
 pipeline {
     agent any
 
@@ -37,8 +40,8 @@ pipeline {
             }
         }
 
-        stage('Deploy (configFile)') {
-            steps {
+        stage('Deploy (configFile)'){
+            steps{
                 configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_setting_config')]) {
                     sh 'mvn deploy -s $mvn_setting_config'
                 }
@@ -49,6 +52,7 @@ pipeline {
         }
     }
 }
+
 
 
 
