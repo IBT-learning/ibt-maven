@@ -37,6 +37,9 @@ stages{
                  configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_setting_config')]) {
                      sh 'mvn deploy -s $mvn_setting_config'
                  }
+                 withMaven(maven_3.9.3', mavenSettingsConfig: 'artifactory-settings') {
+                     sh 'mvn deploy'
+                 }
             }
          }
      }
