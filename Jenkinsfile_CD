@@ -74,18 +74,31 @@ stages {
         }
 
 
-     stage('Deploy to DevServer'){
-                 steps{
-                     script{
-                          sshagent(['tomcat-maven']) {
-                                  //withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-credential', keyFileVariable: 'filetomcat', passphraseVariable: 'passtomcat', usernameVariable: 'usertomcat')]) {
-                                  withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-maven', keyFileVariable: 'tomcat-maven', passphraseVariable: 'tomcat-maven', usernameVariable: 'tomcat')]) {
-                                      sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-1.13-SNAPSHOT.jar tomcat@192.168.0.58:/opt/tomcat/apps'
-                     }
-                 }
+     //stage('Deploy to DevServer'){
+      //           steps{
+      //               script{
+       //                   sshagent(['tomcat-maven']) {
+        //                          //withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-credential', keyFileVariable: 'filetomcat', passphraseVariable: 'passtomcat', usernameVariable: 'usertomcat')]) {
+        //                          withCredentials([sshUserPrivateKey(credentialsId: 'tomcat-maven', keyFileVariable: 'tomcat-maven', passphraseVariable: 'tomcat-maven', usernameVariable: 'tomcat')]) {
+         //                             sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-1.13-SNAPSHOT.jar tomcat@192.168.0.58:/opt/tomcat/apps'
+          //           }
+         //        }
 
-             }
-    }}
+        //     }
+  //  }}}
+         stage('Deploy to DevServer'){
+            steps{
+                script{
+                    def remote =[name: 'Dev', host: '192.168.0.58', allowAnyHosts: true]
+                    withCredentials([usernamePassword(credentialsId: 'tomcat_ID', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = username
+                        remote.password = password
+                        sshPut remote: remote, from: 'target/ibt-maven-1.9-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+                    }
+                }
+            }
+
+        }
 
    }
 }
