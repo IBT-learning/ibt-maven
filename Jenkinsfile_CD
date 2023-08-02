@@ -67,11 +67,11 @@ stages {
             }
         }
 
-        stage('Deploy on tomcat') {
-              steps {
-                sh 'scp -r target/ibt-maven-1.13-SNAPSHOT.jar tomcat@192.168.0.58:/opt/tomcat/apps'
-              }
-        }
+     //   stage('Deploy on tomcat') {
+     //         steps {
+      //          sh 'scp -r target/ibt-maven-1.13-SNAPSHOT.jar tomcat@192.168.0.58:/opt/tomcat/apps'
+      //        }
+      //  }
 
 
      //stage('Deploy to DevServer'){
