@@ -2,7 +2,7 @@ pipeline {
  agent any
  parameters {
          string(name: 'Branch_name', defaultValue: 'main', description: 'prrovide Branch_name')
-         password(name: 'PASSWORD', defaultValue: 'Justin98@', description: 'Enter a password')}
+        }
  stages{
     stage('testing line command output'){
           steps{
@@ -14,7 +14,6 @@ pipeline {
     stage('get branchname') {
       steps{
            echo "${params.Branch_name}"
-           echo "Password: ${params.PASSWORD}
       }
     }
 
