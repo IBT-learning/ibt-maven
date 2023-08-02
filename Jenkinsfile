@@ -69,7 +69,6 @@ environment{
               echo "i am running from multi-branch"
           }
       }
-    }
     post{
                     always{
                         echo "i will run everytime"
