@@ -1,8 +1,9 @@
 pipeline {
     agent any
-    tools {
-        }
+    tools { maven  'maven_3.8' }
     stages {
+        stage('Git checkout') {
+            steps {
         stage('git checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/feature-dianna']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
