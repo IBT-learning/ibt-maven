@@ -1,0 +1,14 @@
+pipeline {
+ agent any
+ stages{
+    stage(testing line command output){
+          steps{
+           echo 'Hello Ibt together'
+           sh 'ls'
+          }
+    }
+
+ }
+
+}
+
