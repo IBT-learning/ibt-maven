@@ -5,6 +5,12 @@ agent any
             steps{
             echo "Hello IT Together"
             sh "ls"
+         stage("get branchname"){
+            steps{
+            echo "${params.$Branch_Name}"
+            }
+
+         }
     }
   }
 }
