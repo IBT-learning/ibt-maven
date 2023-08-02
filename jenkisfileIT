@@ -1,0 +1,12 @@
+pipeline {
+ agent any
+    stages{
+       stage(testing command line output){
+           steps{
+             echo "Hello IT togheter"
+             sh "ls"
+           }
+       }
+       }
+}
+
