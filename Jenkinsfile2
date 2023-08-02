@@ -1,7 +1,7 @@
 pipeline{
 agent any
     stages{
-         stage(testing line command syntax){
+         stage("testing line command syntax"){
             steps{
             echo "Hello IT Together"
             sh "ls"
