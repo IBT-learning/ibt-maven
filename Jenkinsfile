@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'UX_IBT'}
 parameters{
     string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to build')
 }
@@ -64,12 +64,7 @@ environment{
         }
     }
   }
-   stage('testing multibranch'){
-          steps{
-              echo "i am running from multi-branch"
-          }
-      }
-  }
+
     post{
                     always{
                         echo "i will run everytime"
