@@ -28,7 +28,7 @@ stages {
                 }
                 steps{
                 withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-                  sh "${env.sonarScan}/bin/sonar-scanner -Dsonar.projectKey=may17_cohort"
+                  sh "${env.sonarScan}/bin/sonar-scanner"
                 }
               }
               }
