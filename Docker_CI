@@ -1,0 +1,45 @@
+#ENV VARIABLES THAT YOU NEED TO CHANGE
+STUDENT_NAME="brad"
+VERSION="v1.0.$BUILD_NUMBER"
+IMAGE_NAME="$STUDENT_NAME:$VERSION"
+REGISTRY_NAME="devopswithbrad"
+FULL_IMAGE_URI="$REGISTRY_NAME/$IMAGE_NAME"
+FULL_IMAGE_URI_LATEST="$REGISTRY_NAME/$STUDENT_NAME:latest"
+FULL_IMAGE_URI_PROD="$REGISTRY_NAME/$STUDENT_NAME:production"
+
+docker version
+ls -ltra
+cat Dockerfile
+
+echo "Clean up containers"
+docker rm -f $(docker ps -aqf "name=$STUDENT_NAME") 2&> /dev/null
+
+docker ps -af "name=$STUDENT_NAME"
+
+
+docker build -t $IMAGE_NAME .
+
+docker images --filter "reference=$STUDENT_NAME"
+
+docker run -d --name $STUDENT_NAME $IMAGE_NAME
+
+echo "Checking for running containers"
+docker ps -aqf "name=$STUDENT_NAME"
+
+
+echo "Clean up containers"
+docker rm -f $(docker ps -aqf "name=$STUDENT_NAME") 2&> /dev/null
+
+echo "tag our image in preperation to send to registry"
+docker images --filter=reference=*brad*
+docker tag $IMAGE_NAME $FULL_IMAGE_URI
+docker tag $IMAGE_NAME $FULL_IMAGE_URI_LATEST
+docker tag $IMAGE_NAME $FULL_IMAGE_URI_PROD
+docker images --filter=reference=*brad*
+
+
+docker login -u $REGISTRY_NAME -p $DOCKER_HUB_API_KEY
+
+docker push $FULL_IMAGE_URI
+docker push $FULL_IMAGE_URI_LATEST
+docker push $FULL_IMAGE_URI_PROD
