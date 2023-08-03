@@ -2,6 +2,7 @@
       agent any
        parameters{
             string(name: 'Branch_Name', defaultValue:'main',description: 'Enter the branch to build')
+             password(name: 'PASSWORD', defaultValue: 'Justin98@', description: 'Enter a password')
        }
        environment{
           version='1.0.0'
@@ -26,6 +27,7 @@
           stage('get branchname'){
             steps{
               echo "${params.$Branch_Name}"
+              echo "Password: ${params.PASSWORD}
             }
           }
           stage('git checkout')  {

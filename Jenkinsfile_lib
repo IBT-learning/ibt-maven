@@ -1,0 +1,30 @@
+@Library('jenkins-library')_
+
+pipeline {
+agent any
+tools {maven 'maven_3.8'}
+stages {
+  stage('Git checkout'){
+    steps{
+     checkout scmGit(branches: [[name: '*/koami_feature']], extensions: [], userRemoteConfigs: [[credentialsId: '1e7e3334-4478-4db6-92bd-fccd4de8a751', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+    }
+  }
+  stage('validate') {
+      steps{
+        sh  'mvn validate'
+      }
+  }
+    stage('compile') {
+       steps{
+         sh  'mvn compile'
+       }
+    }
+    stage('test') {
+           steps{
+             sh  'mvn test'
+           }
+    }
+
+    }
+
+  }
