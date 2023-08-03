@@ -1,0 +1,113 @@
+pipeline {
+agent any
+tools { maven 'maven_3.8' }
+stages {
+    stage('Git checkout'){
+     steps{
+        git branch: 'feature_lili', url: 'https://github.com/IBT-learning/ibt-maven.git'
+     }
+    }
+    stage('Validate'){
+        steps{
+            sh 'mvn validate'
+        }
+    }
+     stage('Compile'){
+            steps{
+                sh 'mvn compile'
+            }
+        }
+       stage('Test'){
+                  steps{
+                      sh 'mvn test'
+                  }
+              }
+            stage('SonarQube Analysis') {
+                environment{
+                    sonarScan = tool 'ibt-sonarqube'
+                }
+                steps{
+                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                  sh "${env.sonarScan}/bin/sonar-scanner -Dsonar.projectKey=may17_cohort"
+                }
+              }
+              }
+        stage('Package'){
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn package'
+                }
+            }
+        }
+        stage('Archive') {
+            steps {
+                 archiveArtifacts 'target/*.jar'
+            }
+        }
+       stage('Vulnerability Scan - Dependency Check'){
+            steps{
+                   dependencyCheck additionalArguments: '''
+                        -o "./"
+                        -s "./"
+                        -f "ALL"
+                        --prettyPrint ''' , odcInstallation: 'dependency-check'
+                   dependencyCheckPublisher pattern: 'dependency-check-report.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
+            }
+       }
+        stage('Deploy'){
+            steps{
+                withCredentials([file(credentialsId: 'artifactory_settings', variable: 'artifactory_settings')]) {
+                    sh 'mvn deploy -s $artifactory_settings'
+                }
+            }
+        }
+        stage('Deploy (configFile)'){
+            steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_config')]) {
+                    sh 'mvn deploy -s $mvn_settings_config'
+                }
+                withMaven(maven: 'maven_3.9.3', mavenSettingsConfig: 'artifactory-settings') {
+                   sh 'mvn deploy'
+                }
+            }
+        }
+
+        // stage('Deploy to DevServer'){
+        //     steps{
+        //         script{
+        //             def remote =[name: 'Dev', host: '192.168.0.58', allowAnyHosts: true]
+        //             //withCredentials([usernamePassword(credentialsId: 'digital-ocean-vm-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+        //             withCredentials([usernamePassword(credentialsId: 'tomcat_idid', passwordVariable: 'password', usernameVariable: 'username')]) {
+        //                 remote.user = username
+        //                 remote.password = password
+        //                 sshPut remote: remote, from: 'target/ibt-maven-2.20-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+        //             }
+        //         }
+        //     }
+
+        // }
+
+        stage('Deploy tomcatDev') {
+            steps {
+                sshagent(['tomcat-ec2']) {
+                    sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-2.20-SNAPSHOT.jar ec2-user@44.204.229.0:/opt/tomcat/webapps'
+            }}
+        }
+
+        stage('Approval') {
+            steps {
+        // Use an input step to wait for approval before proceeding to production
+        // Wait for stakeholder approval to deploy to Prod
+        input "Deploy to Prod?"
+            }
+        }
+
+        stage('Deploy tomcatProd') {
+            steps {
+                sshagent(['tomcat-ec2']) {
+                    sh 'scp -o StrictHostKeyChecking=no target/ibt-maven-2.20-SNAPSHOT.jar ec2-user@44.204.229.0:/opt/tomcat/webapps'
+            }}
+        }
+
+   }
+}
