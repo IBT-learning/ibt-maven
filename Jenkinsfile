@@ -3,6 +3,9 @@ pipeline {
 parameters{
 string(name:'Branch_Name',defaultValue:'main',description:'Enter the branch to build')
 }
+environment{
+version='1.0,0'
+}
     stages {
         stage('Hello') {
             steps {
@@ -45,5 +48,14 @@ string(name:'Branch_Name',defaultValue:'main',description:'Enter the branch to b
          echo "I am running if the condition is met"
       }
       }
+        stage('variable'){
+         steps{
+           sh 'echo "$version"'
+             echo "${env.version}"
+             script{
+             print env.version
+             }
+        }
+    }
     }
  }
