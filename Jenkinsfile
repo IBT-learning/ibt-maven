@@ -35,5 +35,15 @@ string(name:'Branch_Name',defaultValue:'main',description:'Enter the branch to b
         sh 'ls'
         }
       }
+      stage('checking condition'){
+       when{
+       expression{
+       env.BRANCH_NAME=='main'
+       }
+       }
+       steps{
+         echo "I am running if the condition is met"
+      }
+      }
     }
  }
