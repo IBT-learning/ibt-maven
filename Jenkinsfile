@@ -57,5 +57,11 @@ version='1.0,0'
              }
         }
     }
+
+    }
+    post{
+       always{
+       echo "i will run everytime"
+       }
     }
  }
