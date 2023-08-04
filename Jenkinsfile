@@ -21,7 +21,7 @@ string(name:'Branch_Name',defaultValue:'main',description:'Enter the branch to b
         }
      stage('get branchName'){
          steps{
-          echo $Branch_Name
+          echo "${params.$Branch_Name}"
          }
       }
       stage('git checkout')
