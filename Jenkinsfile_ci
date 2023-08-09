@@ -1,11 +1,21 @@
 pipeline{
   agent any
-
+tool name: 'maven_3.9.3', type: 'maven'
 stages{
   stage('Git checkout'){
    steps{
-    echo "git checkout"
+    checkout scmGit(branches: [[name: '*/feature-allenache']], extensions: [], userRemoteConfigs: [[credentialsId: 'Allen_github', url: 'https://github.com/IBT-learning/ibt-maven.git']])
    }
   }
+  stage('validate'){
+    steps{
+      sh 'mvn validate'
+    }
+  }
+  stage('compile'){
+      steps{
+        sh 'mvn compile'
+      }
+    }
 }
 }
