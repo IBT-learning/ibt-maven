@@ -44,7 +44,7 @@ stages{
           withCredentials([file(credentialsId: 'Allen_artifactory_settings', variable: 'Allen_artifactory_settings')]) {
               sh 'mvn deploy -s $Allen_artifactory_settings'
           }
-
+          }
           }
         }
         stage('Deploy (configFile)'){
@@ -59,5 +59,4 @@ stages{
         }
 
         }
-}
 }
