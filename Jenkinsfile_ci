@@ -29,7 +29,7 @@ stages{
         steps{
          withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
            sh "${env.sonarScan}/bin/sonar-scanner"
-         }
+
          }
         }
        stage('package'){
