@@ -45,7 +45,7 @@ stages{
                     -0 "./"
                     -s "./"
                     -f "ALL"
-                    --prettyprint ''' , odcInstallation: 'dependency-check'
+                    --prettyPrint ''' , odcInstallation: 'dependency-check'
                     dependencyCheckPublisher pattern: 'check-report.xml', stopBuild: true, unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
                }
                }
