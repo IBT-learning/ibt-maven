@@ -27,11 +27,11 @@ stages{
         sonarScan = tool 'ibt-sonarqube'
         }
         steps{
-         withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+         withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube')
            sh "${env.sonarScan}/bin/sonar-scanner"
-
-         }
         }
+         }
+
        stage('package'){
                  steps{
                    withMaven(maven: 'maven_3.9.3') {
@@ -59,4 +59,4 @@ stages{
         }
 
         }
-}
+
