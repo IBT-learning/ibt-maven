@@ -57,6 +57,11 @@ version='1.0,0'
              }
         }
     }
+    stage('testing webhook'){
+        steps{
+        echo "i am running from git push"
+        }
+    }
 
     }
     post{
