@@ -56,7 +56,7 @@ stages{
               sh 'mvn deploy -s $Allen_artifactory_settings'
           }
           }
-          }
+
         }
      stage('Deploy (configFile)'){
           steps{
