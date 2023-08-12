@@ -56,8 +56,8 @@ stages{
               sh 'mvn deploy -s $Allen_artifactory_settings'
           }
           }
+}
 
-        }
      stage('Deploy (configFile)'){
           steps{
         configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_config')]) {
@@ -68,6 +68,6 @@ stages{
 
           }
         }
-
+}
 
 
