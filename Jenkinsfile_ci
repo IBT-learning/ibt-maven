@@ -54,7 +54,7 @@ stages{
           steps{
           withCredentials([file(credentialsId: 'Allen_artifactory_settings', variable: 'Allen_artifactory_settings')]) {
               sh 'mvn deploy -s $Allen_artifactory_settings'
-          }
+
 
 
           }
@@ -62,7 +62,7 @@ stages{
 
      stage('Deploy (configFile)'){
           steps{
-        configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_config')]) {
+        configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_config')])
            sh 'mvn deploy -s $mvn_settings_config'
         }
         withMaven(maven: 'maven_3.9.3', mavenSettingsConfig: 'artifactory-settings')
