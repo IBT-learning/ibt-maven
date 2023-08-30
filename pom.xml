@@ -31,12 +31,12 @@
     <repository>
       <id>central</id>
       <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
-      <url>https://ibtlearning-jfrog.i0/artifactory/ibt-libs-release</url>
+      <url>https://ibtlearning-jfrog.io/artifactory/ibt-libs-release</url>
     </repository>
     <snapshotRepository>
       <id>central</id>
       <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
-      <url>https://ibtlearning-jfrog.i0/artifactory/ibt-libs-snapshot</url>
+      <url>https://ibtlearning-jfrog.io/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
 
