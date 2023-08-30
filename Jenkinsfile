@@ -36,7 +36,7 @@ pipeline {
 
    stage('run mvn command') {
        steps{
-          //windows bat 'dir'
+          tool name: 'maven_3.8', type: 'maven'
            sh 'mvn validate'   //mac-unix
        }
       }
