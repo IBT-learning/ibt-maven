@@ -1,6 +1,6 @@
 pipeline {
 	agent any
-
+    tool name: 'maven_3.8', type: 'maven'
 	stages{
 		stage('Hello') {
 		  steps {
@@ -36,7 +36,7 @@ pipeline {
 
    stage('run mvn command') {
        steps{
-          tool name: 'maven_3.8', type: 'maven'
+
            sh 'mvn validate'   //mac-unix
        }
       }
