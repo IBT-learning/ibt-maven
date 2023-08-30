@@ -1,6 +1,11 @@
 pipeline {
 	agent any
-    tools maven: 'maven_3.8'
+
+    parameters {
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
+        string(name: 'Branch_Name', defaultValue: 'main', description:'enter branch to build')
+     }
+
 	stages{
 		stage('Hello') {
 		  steps {
@@ -24,7 +29,7 @@ pipeline {
          }
        }
         steps{
-            git branch: 'main', changelog: false, credentialsId: 'git_password', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'git_password', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
    }
    stage('list files') {
@@ -34,11 +39,5 @@ pipeline {
     }
    }
 
-   stage('run mvn command') {
-       steps{
-
-           sh 'mvn validate'   //mac-unix
-       }
-      }
 	}
 }
