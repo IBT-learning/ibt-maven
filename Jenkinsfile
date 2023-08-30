@@ -18,8 +18,13 @@ pipeline {
   	}
     }
    stage('git checkout') {
+       when {
+        expression {
+               env.BRANCH_NAME=='main'
+         }
+       }
         steps{
-            git branch: 'feature_gunjvm', changelog: false, credentialsId: 'git_password', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            git branch: 'main', changelog: false, credentialsId: 'git_password', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
    }
    stage('list files') {
