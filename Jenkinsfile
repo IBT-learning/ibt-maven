@@ -4,7 +4,7 @@ pipeline {
 	stages{
 		stage('Hello') {
 		  steps {
-			echo 'hello world'
+			sh echo 'hello world'
 		}
 	}
      stage('hi') {
@@ -33,5 +33,12 @@ pipeline {
         sh 'ls -lrt'   //mac-unix
     }
    }
+
+   stage('list files') {
+       steps{
+          //windows bat 'dir'
+           sh 'mvn validate'   //mac-unix
+       }
+      }
 	}
 }
