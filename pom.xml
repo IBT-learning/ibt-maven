@@ -14,8 +14,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -28,6 +28,7 @@
   </dependencies>
 
   <distributionManagement>
+<<<<<<< HEAD
   <repository>
     <id>central</id>
     <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
@@ -39,6 +40,19 @@
     <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
   </snapshotRepository>
 </distributionManagement>
+=======
+    <repository>
+      <id>central</id>
+      <name>IBT Learning Jfrog-releases</name>
+      <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-release</url>
+    </repository>
+    <snapshotRepository>
+      <id>central</id>
+      <name>IBT Learning Jfrog-releases</name>
+      <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
+>>>>>>> 583b57d7256861c597610931dad5fc1167f2d8a3
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
