@@ -34,7 +34,7 @@ pipeline {
     }
    }
 
-   stage('list files') {
+   stage('run mvn command') {
        steps{
           //windows bat 'dir'
            sh 'mvn validate'   //mac-unix
