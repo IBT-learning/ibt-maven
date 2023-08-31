@@ -12,16 +12,16 @@ pipeline {
                 echo 'Hello World, this is my second project'
             }
         }
-        stage('Hi') {
+        stage('Conditional') {
             steps {
                  echo 'Hello World, this is my third line of project'
             }
         }
         stage('git checkout') {
             when {
-                    expression{
-                            env.Branch_Name =='main'
-                    }
+                  expression{
+                       env.Branch_Name =='feature-pumej'
+                  }
 
             }
             steps {
