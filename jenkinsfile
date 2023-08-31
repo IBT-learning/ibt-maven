@@ -25,7 +25,7 @@ pipeline {
 
             }
             steps {
-                  git branch: 'main', changelog: false, credentialsId: 'jenkin_maven-pumej', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                  git branch: 'feature-pumej', changelog: false, credentialsId: 'jenkin_maven-pumej', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
         stage('list files') {
