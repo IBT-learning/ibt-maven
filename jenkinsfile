@@ -6,9 +6,11 @@ pipeline {
             steps {
                 echo 'Hello World'
             }
-	stage('Hello') {
+        }
+	    stage('Hello Mexy') {
             steps {
                 echo 'Hello World, this is my second project'
             }
+        }
     }
 }
