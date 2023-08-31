@@ -12,5 +12,10 @@ pipeline {
                 echo 'Hello World, this is my second project'
             }
         }
+        stage('Hi') {
+            steps {
+                 echo 'Hello World, this is my third line of project'
+            }
+        }
     }
 }
