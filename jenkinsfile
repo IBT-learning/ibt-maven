@@ -21,11 +21,6 @@ pipeline {
             }
         }
         stage('git checkout') {
-            when {
-                  expression{
-                       env.Branch_Name =='main'
-                  }
-            }
             steps {
                   git branch: '$Branch_Name', changelog: false, credentialsId: 'jenkin_maven-pumej', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
