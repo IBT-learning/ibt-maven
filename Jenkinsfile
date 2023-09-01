@@ -1,6 +1,11 @@
 pipeline {
 	agent any
 
+    environment {
+        version = "1.5"
+        db_name = "ibt_db"
+    }
+
     parameters {
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
         string(name: 'Branch_Name', defaultValue: 'main', description:'enter branch to build')
@@ -38,6 +43,17 @@ pipeline {
         sh 'ls -lrt'   //mac-unix
     }
    }
+   stage('env variables') {
+    steps{
+        sh 'echo $version '
+        echo "${env.version}"
+        echo "${env.db_name}"
 
+        script {
+            print env.version
+        }
+
+    }
+   }
 	}
 }
