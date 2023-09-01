@@ -52,8 +52,12 @@ pipeline {
         script {
             print env.version
         }
-
     }
    }
+	}
+	post {
+	    always{
+	        echo "i am going to run in the end"
+	    }
 	}
 }
