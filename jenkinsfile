@@ -5,27 +5,27 @@ pipeline {
             choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
     }
     stages {
-        stage('Hello') {
+        stage('Test') {
             steps {
                 echo 'Hello World'
             }
         }
-	    stage('Hello Mexy') {
+	    stage('Validate) {
             steps {
                 echo 'Hello World, this is my second project'
             }
         }
-        stage('Conditional') {
+        stage('Compile') {
             steps {
                  echo 'Hello World, this is my third line of project'
             }
         }
-        stage('git checkout') {
+        stage('Package') {
             steps {
                   git branch: '$Branch_Name', changelog: false, credentialsId: 'jenkin_maven-pumej', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
-        stage('list files') {
+        stage('Deploy') {
             steps {
                   // bat 'dir'
                    sh 'ls'
