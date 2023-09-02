@@ -1,35 +1,67 @@
-pipeline {
+pipeline{
     agent any
     parameters {
-            string(name: 'Branch_Name', defaultValue: 'main', description: 'Input the Branch name to Build')
-            choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
+                string(name: 'Branch_Name', defaultValue: 'main', description: 'Input the Branch name to Build')
+                choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
     }
-    stages {
-        stage('Test') {
-            steps {
-                echo 'Hello World'
+    stages{
+
+    stage('Git checkout'){
+        steps{
+            echo "git checkout"
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'pumejgitpsswd', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+    }
+    stage('Test'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                sh 'mvn test'
             }
         }
-	    stage('Validate') {
-            steps {
-                echo 'Hello World, this is my second project'
-            }
+    }
+    stage('Validate'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                sh 'mvn validate'
+                }
+           }
         }
-        stage('Compile') {
-            steps {
-                 echo 'Hello World, this is my third line of project'
-            }
-        }
-        stage('Package') {
-            steps {
-                  git branch: '$Branch_Name', changelog: false, credentialsId: 'jenkin_maven-pumej', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                  // bat 'dir'
-                   sh 'ls -ltr'
-            }
-        }
+    stage('Compile'){
+         steps{
+             withMaven(maven: 'maven_3.8') {
+                 sh 'mvn compile'
+                 }
+             }
+         }
+    stage('Package'){
+          steps{
+              withMaven(maven: 'maven_3.8') {
+                    sh 'mvn package'
+                   }
+              }
+          }
+    stage('Deploy'){
+           steps{
+                withMaven(maven: 'maven_3.8') {
+                    withCredentials([file(credentialsId: 'settings_pumej', variable: 'settingsxml_pumej')]) {
+                        sh 'mvn deploy -s $settingsxml_pumej'
+                        }
+                    }
+                }
+           }
+    stage('Deploy with Config file'){
+           steps{
+                withMaven(maven: 'maven_3.8') {
+                    configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'settingsxml_managed')]) {
+                        sh 'mvn deploy -s $settingsxml_managed'
+                        }
+                    }
+                }
+           }
+    }
+     post {
+          always {
+                   echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
+          }
     }
 }
