@@ -10,7 +10,7 @@ pipeline {
                 echo 'Hello World'
             }
         }
-	    stage('Validate) {
+	    stage('Validate') {
             steps {
                 echo 'Hello World, this is my second project'
             }
