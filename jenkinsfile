@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                   // bat 'dir'
-                   sh 'ls'
+                   sh 'ls -ltr'
             }
         }
     }
