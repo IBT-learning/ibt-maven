@@ -12,5 +12,10 @@ pipeline {
                  echo 'I am Mike'
             }
     }
-	    }
+              stage('How') {
+    	        steps {
+                     echo 'How far na'
+                }
+             }
+	 }
 }
