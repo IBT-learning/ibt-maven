@@ -16,7 +16,7 @@ pipeline {
      steps{
        sh 'echo $version'
        echo "${env.version}"
-       echo "${evn.db_name}"
+       echo "${env.db_name}"
 
        script {
           print env .version
