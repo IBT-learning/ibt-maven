@@ -33,11 +33,11 @@ pipeline {
       stage('deploy'){
         steps{
           withMaven( maven: 'maven_3.8') {
-            withCredentials([file(credentialsId: 'Abiola_settings', variable: 'mvn_settings_omoba')]) {
+           withCredentials([file(credentialsId: 'settings_Abiola_omoba', variable: 'mvn_settings_omoba')]) {
                 sh 'mvn deploy -s $mvn_settings_omoba'
+           }
              }
         }
       }
     }
   }
-}
