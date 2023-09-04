@@ -36,9 +36,9 @@
     <snapshotRepository>
       <id>central</id>
     <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
-    <url>https://ibt.jfrog.io/artifactory/ibt-libs-release</url>snapshotRepository>
-    </snapshotRepository>
-  </distributionManagement>
+    <url>https://ibt.jfrog.io/artifactory/ibt-libs-release</url>
+    </snapshotRepository
+      </distributionManagement>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
