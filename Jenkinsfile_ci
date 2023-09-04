@@ -34,10 +34,20 @@ pipeline {
         steps{
           withMaven(maven: 'maven_3.8') {
            withCredentials([file(credentialsId: 'settings_Abiola_omoba', variable: 'mvn_settings_omoba')]) {
-                sh 'mvn deploy -s $mvn_settings_omoba'
+               sh 'mvn deploy -s $mvn_settings_omoba'
            }
-             }
+            }
         }
       }
+      stage('deploy using configFile') {
+        steps{
+           withMaven(maven: 'maven_3.8') {
+            configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_managed')]) {
+               sh 'mvn deploy -s $mvn_settings_managed'
+            }
+        }
+      }
+
     }
-  }
+   }
+}
