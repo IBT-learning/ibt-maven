@@ -19,7 +19,7 @@ pipeline {
                   }
          stage('list files') {
                                steps {
-                                  bat 'dir'
+                               sh 'ls -lrt'
                                }
                            }
     }
