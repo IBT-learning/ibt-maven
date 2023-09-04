@@ -35,6 +35,6 @@ pipeline {
              steps{
                  sh 'echo $version '
 
-         }
+   }
     }
 }
