@@ -24,6 +24,11 @@ pipeline {
 
      }
     }
+    stage('test githook') {
+        steps{
+            echo "git hook worked automatically"
+        }
+    }
     }
     post {
         always{
