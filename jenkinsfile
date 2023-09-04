@@ -44,7 +44,7 @@ pipeline{
            steps{
                 withMaven(maven: 'maven_3.8') {
                     withCredentials([file(credentialsId: 'settingsxml_pumej', variable: 'settingsxml_pumej')]) {
-                        bat 'mvn deploy -s $settingsxml_pumej'
+                        bat 'mvn deploy -s settingsxml_pumej'
                         }
                     }
                 }
@@ -53,7 +53,7 @@ pipeline{
            steps{
                 withMaven(maven: 'maven_3.8') {
                     configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'settingsxml_managed')]) {
-                        bat 'mvn deploy -s $settingsxml_managed'
+                        bat 'mvn deploy -s settingsxml_managed'
                         }
                     }
                 }
