@@ -6,6 +6,14 @@ pipeline {
     stage('Git Checkout'){
         steps{
             echo "git checkout"
+            git branch: 'feature_omoba', changelog: false, credentialsId: 'Abiola-Git', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+    }
+    stage('Validate'){
+        steps{
+           withMaven( maven: 'maven_3.8') {
+              sh 'mvn validate'
+           }
         }
     }
     }
