@@ -40,7 +40,15 @@ pipeline{
                    }
               }
           }
-
+    stage('Deploy'){
+           steps{
+                withMaven(maven: 'maven_3.8') {
+                    withCredentials([file(credentialsId: 'settingsxml_pumej', variable: 'settingsxml_pumej')]) {
+                        bat 'mvn deploy -s $settingsxml_pumej'
+                        }
+                    }
+                }
+           }
     stage('Deploy with Config file'){
            steps{
                 withMaven(maven: 'maven_3.8') {
@@ -54,6 +62,7 @@ pipeline{
      post {
           always {
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
+                   echo 'This was Deployed successfully'
           }
     }
 }
