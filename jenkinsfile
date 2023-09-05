@@ -48,6 +48,8 @@ stages{
 
                script {
                   print env.version
+                  }
+              }
              }
-               }
-     }
+   }
+}
