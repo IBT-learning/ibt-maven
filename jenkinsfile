@@ -64,6 +64,7 @@ pipeline{
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'This was Deployed successfully'
                    echo 'Thanks it worked!!!'
+                   echo 'Worked correctly'
           }
     }
 }
