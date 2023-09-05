@@ -16,5 +16,6 @@ pipeline{
             steps{
                 echo 'howdy'
             }
+        }
     }
 }
