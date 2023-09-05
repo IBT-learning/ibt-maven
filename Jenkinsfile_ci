@@ -41,6 +41,17 @@ pipeline {
                  }
               }
           }
+       stage('Vulnerability scan - Dependency Check')
+                               {
+                                  steps{
+                                       dependencyCheck additionalArguments: '''
+                                                                                  -o "./"
+                                                                                   -s "./"
+                                                                                   -f "ALL"
+                                                                                   --prettyPrint ''', odcInstallation: 'dependency-check'
+                                               dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                                    }
+                               }
       stage('deploy'){
         steps{
           withMaven(maven: 'maven_3.8') {
