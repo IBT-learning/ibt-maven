@@ -19,12 +19,13 @@ pipeline {
     }
     stage('git checkout') {
         steps{
-            git branch: 'feature_wendy', changelog: false, credentialsId: 'git_credentials_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            git branch: 'main', changelog: false, credentialsId: 'git_credentials_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     }
     stage('list files') {
     steps{
         bat 'dir'
     }
+   }
     }
 }
