@@ -3,7 +3,7 @@ pipeline {
 
       environment {
           Version = "1.5"
-          db_name = "ibt_bt
+          db_name = "ibt_bt"
 }
       parameters{
                   choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
