@@ -46,9 +46,8 @@ pipeline {
              }
              stage('list files'){
              steps{
-             bat 'dir'} //for window
-             //sh 'ls -lrt' for mac or linux
-    }
-}
+             bat 'dir'
+                 }
+            }
     }
 }
