@@ -46,7 +46,7 @@ pipeline {
              }
              stage('list files'){
              steps{
-             batch 'dir'
+            echo 'dir'
                  }
             }
     }
