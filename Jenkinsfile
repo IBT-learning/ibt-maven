@@ -41,7 +41,7 @@ pipeline {
                                               }
          stage('git checkout') {
               steps {
-              echo 'git branch: 'main', changelog: false, credentialsId: 'GGD', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git''
+             git branch: 'main', changelog: false, credentialsId: 'GGD', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
                 }
              }
     }
