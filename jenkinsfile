@@ -25,7 +25,7 @@ pipeline {
     stage('git checkout') {
         when {
          expression {
-                env.BRANCH_NAME=='main'
+                env.BRANCH_NAME=='feature_wendy'
          }
         }
         steps{
