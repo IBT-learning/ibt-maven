@@ -24,6 +24,7 @@ pipeline{
         }
         stage('List files'){
             steps{
+                sh 'ls'
                 bat 'dir'
             }
         }
