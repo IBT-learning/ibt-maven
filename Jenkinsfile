@@ -48,6 +48,7 @@ pipeline {
              steps{
              bat 'dir'} //for window
              //sh 'ls -lrt' for mac or linux
-
+    }
+}
     }
 }
