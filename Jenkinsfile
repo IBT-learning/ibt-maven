@@ -44,5 +44,9 @@ pipeline {
              git branch: 'main', changelog: false, credentialsId: 'GGD', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
                 }
              }
+             stage('list files'){
+             steps{
+             ls -lrt}
+
     }
 }
