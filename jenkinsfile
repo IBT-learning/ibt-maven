@@ -33,10 +33,10 @@ pipeline {
         }
     }
     stage('list files') {
-    steps{
+     steps{
         bat 'dir'
     }
    }
 
-  }
+    }
 }
