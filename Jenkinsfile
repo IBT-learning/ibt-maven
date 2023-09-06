@@ -34,5 +34,10 @@ pipeline {
                                echo 'Stage-4'
                            }
                        }
+                       stage('Needed jenkins knowledge') {
+                                                  steps {
+                                                      echo 'Needed jenkins knowledge'
+                                                  }
+                                              }
     }
 }
