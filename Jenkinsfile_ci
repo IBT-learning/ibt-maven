@@ -1,3 +1,4 @@
+@Library('jenkins-library')_
 pipeline {
     agent any
 
@@ -34,6 +35,11 @@ pipeline {
              }
             }
            }
+         stage('SonarScan - Library'){
+            steps{
+                sonarScan()
+            }
+         }
         stage('Package') {
                steps{
                   withMaven(maven: 'maven_3.8') {
