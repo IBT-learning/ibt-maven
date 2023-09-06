@@ -1,5 +1,5 @@
 pipeline {
-	agent any
+	agent {label 'UX_IBT'}
 
     environment {
         version = "1.5"
@@ -62,7 +62,7 @@ pipeline {
 	}
 	post {
 	    always{
-	        echo "i am going to run in the end"
+	        emailext body: 'Test', subject: 'Test', to: 'gunjanvm@gmail.com'
 	    }
 	}
 }
