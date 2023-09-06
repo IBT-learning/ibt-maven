@@ -14,29 +14,29 @@ pipeline {
                  }
              }
 
-              stage('Stage-1') {
+              stage('trial-1') {
                               steps {
-                                  echo 'Stage-1'
+                                  echo 'trial-1'
                               }
                           }
-           stage('Satge-2') {
+           stage('trial-2') {
                            steps {
-                               echo 'Stage-2'
+                               echo 'trial-2'
                            }
                        }
-                        stage('Satge-3') {
+                        stage('trial-3') {
                            steps {
-                               echo 'Stage-3'
+                               echo 'trial-3'
                            }
                        }
-                        stage('Satge-4') {
+                        stage('trial-4') {
                            steps {
-                               echo 'Stage-4'
+                               echo 'trial-4'
                            }
                        }
-                       stage('Needed jenkins knowledge') {
+                       stage('exp') {
                                                   steps {
-                                                      echo 'Needed jenkins knowledge'
+                                                      echo 'exp'
                                                   }
                                               }
     }
