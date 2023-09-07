@@ -1,0 +1,62 @@
+pipeline{
+    agent any
+    parameters {
+              string(name: 'Branch_Name', defaultValue: 'main', description: 'Input the Branch name to Build')
+              choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
+    }
+    stages{
+
+    stage('Git checkout'){
+        steps{
+            echo "git checkout"
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'testpipelinepwd', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
+        }
+    }
+    stage('Test'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                bat 'mvn test'
+            }
+        }
+    }
+    stage('Validate'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                bat 'mvn validate'
+                }
+           }
+        }
+    stage('Compile'){
+         steps{
+             withMaven(maven: 'maven_3.8') {
+                 bat 'mvn compile'
+                 }
+             }
+         }
+    stage('Package'){
+          steps{
+              withMaven(maven: 'maven_3.8') {
+                    bat 'mvn package'
+                   }
+              }
+          }
+    stage('Deploy'){
+           steps{
+                withMaven(maven: 'maven_3.8') {
+                    withCredentials([file(credentialsId: 'settingsxmltestpipeline', variable: 'settingsxmltestpipeline')]) {
+                        bat 'mvn deploy -s %settingsxmltestpipeline%'
+                        }
+                    }
+                }
+           }
+    }
+     post {
+                    always {
+                   echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
+                   echo 'This was Deployed successfully'
+                   echo 'Thanks it worked!!!'
+                   echo 'Worked correctly-was able to trigger build via push'
+                   echo 'Testing git push again'
+          }
+     }
+}
