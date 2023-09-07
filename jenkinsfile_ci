@@ -33,6 +33,17 @@ pipeline{
                  }
              }
          }
+    stage ('Vulnerability scan - Dependency Check') {
+
+    	steps {
+    		dependencyCheck additionalArguments: '''
+    					-0 "./"
+    					-s "./"
+    					-f "All"
+    					--prettyPrint ''', odeInstallation: 'dependency-check'
+    		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+    	}
+    }
     stage ('Sonarqube Analysis') {
      	    environment {
      		sonarScan = tool 'ibt-sonarqube'
