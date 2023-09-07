@@ -16,28 +16,5 @@ pipeline {
            }
         }
         }
-        stage('compile') {
-           steps{
-              withMaven(maven: 'maven_3.8') {
-                 sh 'mvn compile'
-              }
-           }
-           }
-        stage('package') {
-          steps{
-             withMaven(maven: 'maven_3.8') {
-                sh 'mvn package'
-             }
-          }
-          }
-        stage('deploy') {
-          steps{
-             withMaven(maven: 'maven_3.8') {
-              withCredentials([file(credentialsId: 'wendy_mvn_ci_settings.xml', variable: 'wendy_mvn_ci')]) {
-                 sh 'mvn deploy -s $wendy_mvn_ci'
-             }
-              }
-         }
-        }
     }
 }
