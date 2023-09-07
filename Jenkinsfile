@@ -7,7 +7,7 @@ pipeline{
 	    Author = 'Mr_Dromor'
 	}
     parameters{
-        string (name: 'Mose_app', defaultValue: 'master', description: 'Enter the Build Branch')
+        string (name: 'Mose_app', defaultValue: 'branch_de_Moses', description: 'Enter the Build Branch')
     }
 	stages{
 		stage('HELLO'){
