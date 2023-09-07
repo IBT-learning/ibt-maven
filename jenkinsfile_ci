@@ -58,8 +58,8 @@ pipeline{
         					-o "./"
         					-s "./"
         					-f "All"
-        					--prettyPrint ''', odcInstallation: 'dependency-check'
-        		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        					--prettyPrint''', odcInstallation: 'dependency-check'
+        		dependencyCheckPublisher pattern: 'dependency-check-reportPumej.xml'
         	}
     }
     stage('Deploy'){
