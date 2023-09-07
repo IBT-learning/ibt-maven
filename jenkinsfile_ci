@@ -9,54 +9,61 @@ pipeline{
     stage('Git checkout'){
         steps{
             echo "git checkout"
-            git branch: '$Branch_Name', changelog: false, credentialsId: 'feature-pumejpwd', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'pumejgitpsswd', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
         }
     }
     stage('Test'){
         steps{
             withMaven(maven: 'maven_3.8') {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
     }
     stage('Validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
-                bat 'mvn validate'
+                sh 'mvn validate'
                 }
            }
         }
     stage('Compile'){
          steps{
              withMaven(maven: 'maven_3.8') {
-                 bat 'mvn compile'
+                 sh 'mvn compile'
                  }
              }
          }
     stage('Package'){
           steps{
               withMaven(maven: 'maven_3.8') {
-                    bat 'mvn package'
+                    sh 'mvn package'
                    }
               }
           }
     stage('Deploy'){
            steps{
                 withMaven(maven: 'maven_3.8') {
-                    withCredentials([file(credentialsId: 'settingsxmltestpipeline', variable: 'settingsxmltestpipeline')]) {
-                        bat 'mvn deploy -s %settingsxmltestpipeline%'
+                    withCredentials([file(credentialsId: 'settingsxml_pumej', variable: 'settingsxml_pumej')]) {
+                        sh 'mvn deploy -s $settingsxml_pumej'
+                        }
+                    }
+                }
+           }
+    stage('Deploy with Config file'){
+           steps{
+                withMaven(maven: 'maven_3.8') {
+                    configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'settingsxml_managed')]) {
+                        sh 'mvn deploy -s $settingsxml_managed'
                         }
                     }
                 }
            }
     }
      post {
-                    always {
+          always {
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'This was Deployed successfully'
-                   echo 'Thanks it worked!!!'
-                   echo 'Worked correctly-was able to trigger build via push'
-                   echo 'Testing git push again'
+                   echo 'Thanks it worked. Testing git push trigger'
           }
-     }
+    }
 }
