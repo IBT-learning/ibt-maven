@@ -1,8 +1,11 @@
 pipeline{
     agent any
+    environment{
+           name = "Mexy_Pumej-Lab"
+           project_description = "Maven_Jenkins pipeline project - testing phase"
+    }
     parameters {
-              string(name: 'BranchName', defaultValue: 'main', description: 'Input the Branch name to Build')
-              choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
+              choice(name: 'BranchName', choices: ['main', 'feature-pumej'], description: 'Pick a Branch')
     }
     stages{
 
@@ -78,6 +81,19 @@ pipeline{
                         }
                     }
                 }
+          stage('Deploy to Dev (cloud) server')
+                 {
+                  steps{
+                      script{
+                          def remote = [name: 'pumej-dev', host: '146.190.129.165', allowAnyHosts: true]
+                                        withCredentials([usernamePassword(credentialsId: 'pumej_dev_serverpwd', passwordVariable: 'password', usernameVariable: 'username')]){
+                                        remote.user = username
+                                        remote.password = password
+                                        sshPut remote: remote, from: 'target/pumej-app-1.9.3-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
+                                        }
+                          }
+                      }
+                 }
           }
     }
      post {
