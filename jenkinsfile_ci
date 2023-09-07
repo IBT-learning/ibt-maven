@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters {
-              string(name: 'BranchName', defaultValue: 'feature-pumej', description: 'Input the Branch name to Build')
+              string(name: 'BranchName', defaultValue: 'main', description: 'Input the Branch name to Build')
               choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
     }
     stages{
