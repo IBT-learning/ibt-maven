@@ -55,7 +55,7 @@ pipeline{
 
         	steps {
         		dependencyCheck additionalArguments: '''
-        					-O "./"
+        					-o "./"
         					-s "./"
         					-f "All"
         					--prettyPrint ''', odcInstallation: 'dependency-check'
