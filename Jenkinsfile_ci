@@ -1,0 +1,79 @@
+pipeline{
+    agent any
+    stages{
+        stage('git checkout'){
+            steps{
+            git changelog: false, credentialsId: 'Moses_D', poll: false, url: 'https://github.com/MDromor/maven_process.git'
+            }
+        }
+        stage('Validate'){
+            steps{
+                withMaven( maven: 'maven_3.8') {
+                sh 'mvn validate'
+                }
+            }
+        }
+        stage('Compile'){
+            steps{
+                withMaven( maven: 'maven_3.8') {
+                sh 'mvn compile'
+                }
+            }
+        }
+        stage('Test'){
+            steps{
+                 withMaven( maven: 'maven_3.8') {
+                   sh 'mvn test'
+                 }
+            }
+        }
+        stage('SonarQube Analysis') {
+            environment{
+                sonarScan = tool 'ibt-sonarqube'
+            }
+            steps{
+                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                    //sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=July_cohort"
+                    sh "${env.sonarScan}/bin/sonar-scanner"
+                }
+            }
+        }
+         stage('Package'){
+            steps{
+                withMaven( maven: 'maven_3.8') {
+                sh 'mvn package'
+                }
+            }
+        }
+        stage('Dynamic Scan - Dependency Check') {
+            steps{
+                dependencyCheck additionalArguments: '''
+                    -o "./"
+                    -s "./"
+                    -f "ALL"
+                --prettyPrint''', odcInstallation: 'dependency-check'
+
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+
+        }
+        stage('Deploy'){
+            steps{
+                withMaven( maven: 'maven_3.8') {
+                withCredentials([file(credentialsId: 'settings_mvn', variable: 'Mvn_Settings')]) {
+                sh 'mvn deploy -s $Mvn_Settings'
+                }
+                }
+            }
+        }
+        stage ('Deploy with Config_File_Prov'){
+            steps{
+                withMaven( maven: 'maven_3.8') {
+                configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'teams_mvn_settings')]) {
+                sh 'mvn deploy -s $teams_mvn_settings'
+                }
+                }
+            }
+        }
+    }
+}
