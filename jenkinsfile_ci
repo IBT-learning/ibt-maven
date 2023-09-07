@@ -81,22 +81,22 @@ pipeline{
                         }
                     }
                 }
-          stage('Deploy to Dev (cloud) server')
-                 {
-                  steps{
-                      script{
-                          def remote = [name: 'pumej-dev', host: '146.190.129.165', allowAnyHosts: true]
+          }
+          stage('Deploy to Dev (cloud) server') {
+                    steps{
+                            script{
+                                         def remote = [name: 'pumej-dev', host: '146.190.129.165', allowAnyHosts: true]
                                         withCredentials([usernamePassword(credentialsId: 'pumej_dev_serverpwd', passwordVariable: 'password', usernameVariable: 'username')]){
                                         remote.user = username
                                         remote.password = password
                                         sshPut remote: remote, from: 'target/pumej-app-1.9.3-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
                                         }
-                          }
-                      }
-                 }
+                            }
+                    }
           }
     }
-     post {
+     post
+     {
           always {
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'This was Deployed successfully'
