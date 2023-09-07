@@ -6,7 +6,15 @@ pipeline {
     stage('Git Checkout'){
         steps{
             echo "git checkout"
+            git branch: 'feature_wendy', changelog: false, credentialsId: 'wendy_ibtjenkins_creds', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     }
+    stage('validate') {
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                sh 'mvn validate'
+           }
+        }
+        }
     }
 }
