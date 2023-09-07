@@ -6,7 +6,7 @@ stages {
         }
         stage('hi) {
         steps{
-            echo 'hi'
+            echo 'hi i love my daughter'
      }
    }
      }
