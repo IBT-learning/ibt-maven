@@ -19,12 +19,12 @@ pipeline{
         }
         stage ('Git'){
             steps {
-                git branch: 'feature-Martin2', changelog: false, credentialsId: 'MartinChuks', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: 'feature-Martin2', changelog: false, credentialsId: 'MartinChukwu', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
         stage('List files'){
             steps{
-                sh 'ls'
+                sh 'ls-lrt'
             }
         }
     }
