@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters {
-              string(name: 'Branch_Name', defaultValue: 'main', description: 'Input the Branch name to Build')
+              string(name: 'BranchName', defaultValue: 'feature-pumej', description: 'Input the Branch name to Build')
               choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
     }
     stages{
@@ -9,7 +9,7 @@ pipeline{
     stage('Git checkout'){
         steps{
             echo "git checkout"
-            git branch: '$Branch_Name', changelog: false, credentialsId: 'pumejgitpsswd', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
+            git branch: '$BranchName', changelog: false, credentialsId: 'pumejgitpsswd', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
         }
     }
     stage('Test'){
