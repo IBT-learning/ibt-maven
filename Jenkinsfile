@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    environment {
+        version= "1.5"
+        db_name = "ibt_db" 
+    }
 
     parameters {
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
