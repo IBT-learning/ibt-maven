@@ -51,8 +51,7 @@ pipeline{
                    }
               }
           }
-    stage('Vulnerability scan - Dependency Check')
-          {
+    stage('Vulnerability scan - Dependency Check') {
           steps{
                 dependencyCheck additionalArguments: '''
                                            -o "./"
@@ -62,30 +61,30 @@ pipeline{
                                            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                 }
           }
-    }
-    stage('Deploy'){
-           steps{
-                withMaven(maven: 'maven_3.8') {
+          stage('Deploy'){
+                steps{
+                    withMaven(maven: 'maven_3.8') {
                     withCredentials([file(credentialsId: 'settingsxml_pumej', variable: 'settingsxml_pumej')]) {
                         sh 'mvn deploy -s $settingsxml_pumej'
                         }
                     }
                 }
-           }
-    stage('Deploy with Config file'){
-           steps{
-                withMaven(maven: 'maven_3.8') {
+          }
+          stage('Deploy with Config file'){
+                steps{
+                    withMaven(maven: 'maven_3.8') {
                     configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'settingsxml_managed')]) {
                         sh 'mvn deploy -s $settingsxml_managed'
                         }
                     }
                 }
-           }
+          }
     }
      post {
           always {
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'This was Deployed successfully'
+                   echo 'Testing branch agan!!!'
           }
     }
 }
