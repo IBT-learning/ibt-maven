@@ -9,7 +9,7 @@ pipeline{
     stage('Git checkout'){
         steps{
             echo "git checkout"
-            git branch: '$Branch_Name', changelog: false, credentialsId: 'pumejgitpwdibt2', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'feature-pumejpwd', poll: false, url: 'https://github.com/Mexxy-lab/mexy_maven.git'
         }
     }
     stage('Test'){
