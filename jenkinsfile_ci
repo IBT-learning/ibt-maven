@@ -34,7 +34,7 @@ pipeline {
        steps{
           withMaven(maven: 'maven_3.8') {
             withCredentials([file(credentialsId: 'mvn_ci_wendy_settings_xml', variable: 'mvn_ci_wendy')]) {
-                sh 'mvn deploy -s $mvn_ci_wendy'
+                bat 'mvn deploy -s $mvn_ci_wendy'
             }
              }
        }
