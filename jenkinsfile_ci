@@ -75,6 +75,7 @@ pipeline{
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'This was Deployed successfully'
                    echo 'Thanks it worked!!!Testing SonarQube....printout'
+                   echo 'Thanks it worked!!!Congratulation'
           }
     }
 }
