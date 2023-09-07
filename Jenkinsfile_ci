@@ -1,5 +1,6 @@
-piprline {
-    agent anystages{
+pipeline {
+    agent any
+    stages{
         stage('Git Checkout'){
             steps{
                 echo "git checkout"
@@ -8,7 +9,9 @@ piprline {
         }
         stage ('Validate'){
             steps{
-                
+             withMaven(maven: 'maven_3.8') {
+                sh 'mvn validate'
+             }  
             }
         }
     }
