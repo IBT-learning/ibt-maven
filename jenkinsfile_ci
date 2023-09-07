@@ -33,7 +33,7 @@ pipeline {
              stage('deploy'){
                      steps{
                            withMaven(maven: 'maven_3.8') {
-                            withCredentials([file(credentialsId: 'mvn_settings_malikaa', variable: 'mvn_settings_malika')]) {
+                            withCredentials([file(credentialsId: 'mvn_settings_malikaa', variable: 'mvn_settings_malikaa')]) {
                          sh 'mvn deploy -s $mvn_settings_malikaa'
                          }
                          }
