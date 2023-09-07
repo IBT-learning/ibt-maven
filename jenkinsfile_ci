@@ -40,7 +40,7 @@ pipeline{
     					-0 "./"
     					-s "./"
     					-f "All"
-    					--prettyPrint ''', odeInstallation: 'dependency-check'
+    					--prettyPrint ''', odcInstallation: 'dependency-check'
     		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
     	}
     }
