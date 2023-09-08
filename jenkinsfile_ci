@@ -1,5 +1,7 @@
 pipeline{
+    //agent {Label 'UX_Pumejprod'}
     agent any
+
     environment{
            name = "Mexy_Pumej-Lab"
            project_description = "Maven_Jenkins pipeline project - testing phase"
@@ -85,12 +87,29 @@ pipeline{
           stage('Deploy to Dev (cloud) server') {
                     steps{
                             script{
-                                         def remote = [name: 'pumej-dev', host: '146.190.129.165', allowAnyHosts: true]
+                                        def remote = [name: 'pumej-dev', host: '164.92.88.219', allowAnyHosts: true]
                                         withCredentials([usernamePassword(credentialsId: 'pumej_dev_serverpwd', passwordVariable: 'password', usernameVariable: 'username')]){
                                         remote.user = username
                                         remote.password = password
                                         sshPut remote: remote, from: 'target/pumej-app-1.9.3-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
                                         }
+                            }
+                    }
+          }
+          stage('deployment approvalRequest'){
+            steps{
+          input id: 'DeploymentApprovalReq', message: 'Requesting approval for Deployment???', ok: 'Approved', parameters: [password(defaultValue: 'pumej', description: 'pumejapproval', name: 'pumejLab')], submitter: 'Mexxy-lab, Gunjan', submitterParameter: 'pumej'
+                }
+          }
+          stage('Deploy to Dev (cloud) Prod server') {
+                    steps{
+                            script{
+                                         def remote = [name: 'pumej-devprod', host: '143.198.79.195', allowAnyHosts: true]
+                                         withCredentials([usernamePassword(credentialsId: 'pumejprodpwd', passwordVariable: 'password', usernameVariable: 'username')]){
+                                         remote.user = username
+                                         remote.password = password
+                                         sshPut remote: remote, from: 'target/pumej-app-1.9.3-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
+                                     }
                             }
                     }
           }
