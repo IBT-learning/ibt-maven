@@ -40,7 +40,7 @@ pipeline {
              }
              stage('env variables') {
                     steps{
-                        sh 'echo $version '
+                        sh 'echo $version'
                         echo "${evn.version}"
                         echo "${env.db_name}"
 
@@ -50,4 +50,9 @@ pipeline {
               }
              }
 	 }
+	         post {
+	               always{
+	                    echo "I am going to run the end"
+	              {
+	         }
 }
