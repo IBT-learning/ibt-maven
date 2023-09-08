@@ -17,5 +17,16 @@ pipeline {
                     echo 'Hoe are you'
                 }
             }
+            stage{'git checkout') {
+                steps{
+                    git branch: 'feature_otunba', credentialsId: 'git_password', url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+       }
+       stage('list files') {
+         steps{
+              bat 'dir'
+              sh 'ls -lrt'
     }
-}
+   }
+    }
+  }
