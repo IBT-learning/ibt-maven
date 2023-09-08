@@ -50,9 +50,3 @@ pipeline {
               }
              }
 	 }
-	         post {
-	               always{
-	                    echo "I am going to run the end"
-	              {
-	         }
-}
