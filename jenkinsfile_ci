@@ -23,6 +23,17 @@ pipeline {
         }
     }
     }
+    stage('SonarQube Analysis') {
+        environment {
+            sonarScan = tool 'ibt-sonarqube'
+        }
+      steps {
+        withSonarQubeEnv(credentialsid: 'student-sonar-token' , installationName: 'IBT sonarqube') {
+          // sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=july_cohort"
+          sh "${env.sonarScan}/bin/sonar-scanner"
+        }
+      }
+    }
     stage('package') {
         steps{
           withMaven(maven: 'maven_3.8') {
