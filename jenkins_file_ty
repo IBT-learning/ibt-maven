@@ -1,32 +1,67 @@
 pipeline {
-    agent any
+	agent any
+	agent {label 'UX_IBT'}
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Hi') {
-            steps {
-                echo 'Hi'
-            }
-        }
-    stage('How are you') {
-                steps {
-                    echo 'Hoe are you'
-                }
-            }
-            stage{'git checkout') {
-                steps{
-                    git branch: 'feature_otunba', credentialsId: 'git_password', url: 'https://github.com/IBT-learning/ibt-maven.git'
-            }
+    environment {
+        version = "1.5"
+        db_name = "ibt_db"
+    }
+    parameters {
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
+        string(name: 'Branch_Name', defaultValue: 'main', description:'enter branch to build')
+     }
+	stages{
+		stage('Hello') {
+		  steps {
+			echo 'hello world'
+		}
+	}
+     stage('hi') {
+	steps{
+		echo 'hi'
+	}
+  }
+     stage('howdy') {
+  	steps{
+  		echo 'howdy'
+  	}
+    }
+   stage('git checkout') {
+       when {
+        expression {
+               env.BRANCH_NAME=='main'
+         }
        }
-       stage('list files') {
-         steps{
-              bat 'dir'
-              sh 'ls -lrt'
+        steps{
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'git_password', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+   }
+   stage('list files') {
+    steps{
+       //windows bat 'dir'
+        sh 'ls -lrt'   //mac-unix
     }
    }
+   stage('env variables') {
+    steps{
+        sh 'echo $version '
+        echo "${env.version}"
+        echo "${env.db_name}"
+        script {
+            print env.version
+        }
     }
-  }
+   }
+   stage('test githook') {
+    steps{
+        echo "git hook worked automatically"
+    }
+   }
+	}
+	post {
+	    always{
+	        echo "i am going to run in the end"
+	        emailext body: 'Test', subject: 'Test', to: 'gunjanvm@gmail.com'
+	    }
+	}
+}
