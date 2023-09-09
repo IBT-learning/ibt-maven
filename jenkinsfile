@@ -1,5 +1,6 @@
 pipeline{
-    agent any
+    //agent any
+    agent {label 'UX_Pumejprod'}
     parameters {
               string(name: 'Branch_Name', defaultValue: 'main', description: 'Input the Branch name to Build')
               choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Make a selection')
@@ -15,28 +16,28 @@ pipeline{
     stage('Test'){
         steps{
             withMaven(maven: 'maven_3.8') {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
     }
     stage('Validate'){
         steps{
             withMaven(maven: 'maven_3.8') {
-                bat 'mvn validate'
+                sh 'mvn validate'
                 }
            }
         }
     stage('Compile'){
          steps{
              withMaven(maven: 'maven_3.8') {
-                 bat 'mvn compile'
+                 sh 'mvn compile'
                  }
              }
          }
     stage('Package'){
           steps{
               withMaven(maven: 'maven_3.8') {
-                    bat 'mvn package'
+                    sh 'mvn package'
                    }
               }
           }
@@ -44,7 +45,7 @@ pipeline{
            steps{
                 withMaven(maven: 'maven_3.8') {
                     withCredentials([file(credentialsId: 'settingsxmltestpipeline', variable: 'settingsxmltestpipeline')]) {
-                        bat 'mvn deploy -s %settingsxmltestpipeline%'
+                        sh 'mvn deploy -s $settingsxmltestpipeline'
                         }
                     }
                 }
