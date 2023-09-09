@@ -1,6 +1,6 @@
 pipeline{
+    //agent {label 'UX_Pumejprod'}
     agent any
-    //agent {Label 'UX_Pumejprod'}
 
     environment{
            name = "Mexy_Pumej-Lab"
