@@ -98,14 +98,14 @@ pipeline{
           }
           stage('deployment approvalRequest'){
             steps{
-          input id: 'DeploymentApprovalReq', message: 'Requesting approval for Deployment???', ok: 'Approved', parameters: [password(defaultValue: 'pumej', description: 'pumejapproval', name: 'pumejLab')], submitter: 'Mexxy-lab, Gunjan', submitterParameter: 'pumej'
+          input id: 'DeploymentApprovalReq', message: 'Requesting approval for Deployment???', ok: 'Approved', parameters: [password(defaultValue: 'pumej', description: 'pumejapproval', name: 'pumejLab')], submitter: 'Gunjan', submitterParameter: 'pumej'
                 }
           }
           stage('Deploy to Dev (cloud) Prod server') {
                     steps{
                             script{
                                          def remote = [name: 'pumej-devprod', host: '143.198.79.195', allowAnyHosts: true]
-                                         withCredentials([usernamePassword(credentialsId: 'pumejprodpwd', passwordVariable: 'password', usernameVariable: 'username')]){
+                                         withCredentials([usernamePassword(credentialsId: 'pumej_dev_serverpwd', passwordVariable: 'password', usernameVariable: 'username')]){
                                          remote.user = username
                                          remote.password = password
                                          sshPut remote: remote, from: 'target/pumej-app-1.9.3-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
