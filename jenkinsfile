@@ -57,7 +57,6 @@ pipeline{
                    echo 'This was Deployed successfully'
                    echo 'Thanks it worked!!!'
                    echo 'Worked correctly-was able to trigger build via push'
-                   echo 'Testing git push again to see if it works'
           }
      }
 }
