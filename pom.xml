@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>pumej-app</artifactId>
-  <version>1.9.3-SNAPSHOT</version>
+  <version>1.9.4-SNAPSHOT</version>
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
