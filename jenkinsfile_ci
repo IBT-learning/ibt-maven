@@ -1,6 +1,6 @@
 pipeline{
-    agent {Label 'UX_Pumejprod'}
     agent any
+    //agent {Label 'UX_Pumejprod'}
 
     environment{
            name = "Mexy_Pumej-Lab"
@@ -118,8 +118,7 @@ pipeline{
      {
           always {
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
-                   echo 'This was Deployed successfully'
-                   echo 'Testing branch agan!!!'
+                   echo 'Testing Approval and Deploy to Cloud server!!!'
           }
     }
 }
