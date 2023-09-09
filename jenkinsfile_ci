@@ -1,6 +1,6 @@
 pipeline{
-    //agent any
-    agent {label 'UX_Pumejprod'}
+    agent any
+    //agent {label 'UX_Pumejprod'}
     environment{
            name = "Mexy_Pumej-Lab"
            project_description = "Maven_Jenkins pipeline project - testing phase"
