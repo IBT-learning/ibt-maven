@@ -14,7 +14,7 @@ pipeline{
     stage('Git checkout'){
         steps{
             echo "git checkout"
-            git branch: 'feature-pumej', changelog: false, credentialsId: 'testpipelinepwd', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            git branch: 'feature-pumej', changelog: false, credentialsId: 'pumejextserverpwd', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     }
     stage('Test'){
