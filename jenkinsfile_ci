@@ -1,7 +1,5 @@
 pipeline{
-    //agent {label 'UX_Pumejprod'}
     agent any
-
     environment{
            name = "Mexy_Pumej-Lab"
            project_description = "Maven_Jenkins pipeline project - testing phase"
@@ -114,11 +112,12 @@ pipeline{
                     }
           }
     }
-     post
-     {
+    post
+    {
           always {
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'Testing Approval and Deploy to Cloud server!!!'
           }
     }
+
 }
