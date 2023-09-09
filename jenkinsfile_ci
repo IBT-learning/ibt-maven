@@ -96,7 +96,7 @@ pipeline{
                             }
                     }
           }
-          stage('deployment approvalRequest'){
+          //stage('deployment approvalRequest'){
             steps{
           input id: 'DeploymentApprovalReq', message: 'Requesting approval for Deployment???', ok: 'Approved', parameters: [password(defaultValue: 'pumej', description: 'pumejapproval', name: 'pumejLab')], submitter: 'Gunjan', submitterParameter: 'pumej'
                 }
