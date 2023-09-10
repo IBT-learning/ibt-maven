@@ -90,7 +90,7 @@ pipeline{
                                         withCredentials([usernamePassword(credentialsId: 'pumej_dev_serverpwd', passwordVariable: 'password', usernameVariable: 'username')]){
                                         remote.user = username
                                         remote.password = password
-                                        sshPut remote: remote, from: 'target/pumej-app-1.9.4-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
+                                        sshPut remote: remote, from: 'target/pumej-app-1.9.5-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
                                         }
                             }
                     }
@@ -107,7 +107,7 @@ pipeline{
                                          withCredentials([usernamePassword(credentialsId: 'pumej_dev_serverpwd', passwordVariable: 'password', usernameVariable: 'username')]){
                                          remote.user = username
                                          remote.password = password
-                                         sshPut remote: remote, from: 'target/pumej-app-1.9.4-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
+                                         sshPut remote: remote, from: 'target/pumej-app-1.9.5-SNAPSHOT.jar' , into: '/opt/tomcat/webapps'
                                      }
                             }
                     }
