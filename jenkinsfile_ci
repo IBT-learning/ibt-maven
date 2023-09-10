@@ -119,6 +119,7 @@ pipeline{
                    echo 'This is the end of the PIPELINE!!! PROJECT WAS SUCCESSFUL'
                    echo 'Testing Approval and Deploy to Cloud server!!!'
                    echo 'Final Test project for local server upload'
+                   echo 'Testing Approval request'
           }
     }
 }
