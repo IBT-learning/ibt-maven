@@ -14,5 +14,26 @@ pipeline {
              }  
             }
         }
+        stage ('Compile'){
+            steps{
+             withMaven(maven: 'maven_3.8') {
+                sh 'mvn compile'
+             }  
+            }
+        }
+        stage ('Package'){
+            steps{
+             withMaven(maven: 'maven_3.8') {
+                sh 'mvn package'
+             }  
+            }
+        }
+        stage ('Deploy'){
+            steps{
+             withMaven(maven: 'maven_3.8') {
+                sh 'mvn deploy'
+             }  
+            }
+        }
     }
 }
