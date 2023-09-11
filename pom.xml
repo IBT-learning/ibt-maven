@@ -39,8 +39,8 @@
       <url>https://ibtlearning-jfrog.com:443/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
--->
-  <!--
+
+  
   <distributionManagement>
 
     <snapshotRepository>
