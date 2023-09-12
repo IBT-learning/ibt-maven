@@ -30,14 +30,5 @@ pipeline {
                 }
             }
         }
-        stage('deploy') {
-            steps{
-                withMaven(maven: 'maven_3.8') {
-                withCredentials([file(credentialsId: 'settings.xml', variable: 'mvn_settings_mike')]) {
-                    sh 'mvn deploy -s $mvn_settings_mike'
-                }
-                }
-            }
-        }
     }
 }
