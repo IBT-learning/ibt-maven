@@ -51,7 +51,6 @@ pipeline {
                     echo "git hook worked automatically"
                     }
              }
-
 	 }
 	         post {
 	               always{
