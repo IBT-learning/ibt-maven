@@ -45,7 +45,7 @@ pipeline {
                     sh 'mvn deploy -s $mvn_settings_managed'
                 }
             }
-            }
+           }
         }
     }
 }
