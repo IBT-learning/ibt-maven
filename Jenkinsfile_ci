@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    Stages{
+
+    Stage ('Git Checkout'){
+        steps{
+            echo "git checkout"
+        }
+    }
+    }
+}
