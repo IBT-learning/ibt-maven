@@ -76,5 +76,17 @@ pipeline {
                }
             }
         }
+        stage('Deploy to Dev') {
+            steps{
+                script{
+                   def remote = [name: 'dev', host: '159.65.250.250', allowAnyHosts: true]
+                   withCredentials([usernamePassword(credentialsId: 'D-ocean-server', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = username
+                        remote.password = password
+                        sshPut remote: remote, from: 'target/ibt-maven-1.4-SNAPSHOT.jar' , into: '/opt/tomcat/apps'
+                   }
+                }
+            }
+        }
     }
 }
