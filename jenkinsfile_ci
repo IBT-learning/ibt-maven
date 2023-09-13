@@ -42,7 +42,7 @@ pipeline{
      		sonarScan = tool 'ibt-sonarqube'
             }
             steps {
-     	        withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'ibt-sonarqube') {
+     	        withSonarQubeEnv(credentialsId: 'student-sonar-token2', installationName: 'ibt-sonarqube') {
      	        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=July_cohort"
      	        //sh "${env.sonarScan}/bin/sonar-scanner"
      		    }
