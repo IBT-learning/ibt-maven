@@ -62,7 +62,7 @@ pipeline {
             steps{
               withMaven(maven: 'maven_3.8') {
                withCredentials([file(credentialsId: 'settings_mvn', variable: 'mvn_settings_mdromor')]) {
-                   sh 'mvn deploy -s $mvn_settings_mdromor'
+                   sh  'mvn deploy -s $mvn_settings_mdromor'
                }
                 }
             }
