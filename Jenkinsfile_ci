@@ -7,7 +7,7 @@ pipeline {
     stage('Git Checkout'){
         steps{
             echo "git checkout"
-            git branch: 'feature_gunjvm', changelog: false, credentialsId: 'ibt', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            git branch: 'feat_Mo', changelog: false, credentialsId: 'Moses_D', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     }
     stage('Validate') {
@@ -61,8 +61,8 @@ pipeline {
          stage('deploy'){
             steps{
               withMaven(maven: 'maven_3.8') {
-               withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_settings_gunjan')]) {
-                   sh  'mvn deploy -s $mvn_settings_gunjan'
+               withCredentials([file(credentialsId: 'settings_mvn', variable: 'mvn_settings_mdromor')]) {
+                   sh  'mvn deploy -s $settings_mvn'
                }
                 }
             }
