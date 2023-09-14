@@ -76,6 +76,11 @@ pipeline {
                }
             }
         }
+        stage('Get Approval') {
+            steps{
+                input 'Please approve to proceed to deployment'
+            }
+        }
         stage('Deploy to Dev') {
             steps{
                 script{
