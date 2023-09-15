@@ -19,5 +19,20 @@ parameters {
                 sh "pwd"
             }
          }
+         stage ('get branchname') {
+            steps {
+                echo $Branch_name
+            }
+         }
+         stage ('git checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/$Branch_name']], extensions: [], userRemoteConfigs: [[credentialsId: 'git_credential_laura', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            }
+         }
+         stage ('build') {
+            steps {
+                mvn compile
+            }
+         }
     }
 }
