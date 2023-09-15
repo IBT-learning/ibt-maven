@@ -11,5 +11,10 @@ pipeline {
                   echo "hi"
              }
          }
+         stage ('windows bash cmd') {
+            steps {
+                echo "hi"
+            }
+         }
     }
 }
