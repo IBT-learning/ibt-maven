@@ -21,7 +21,7 @@ parameters {
          }
          stage ('get branchname') {
             steps {
-                echo $Branch_name
+                echo "${params.$Branch_name}"
             }
          }
          stage ('git checkout') {
