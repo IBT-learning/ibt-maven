@@ -1,4 +1,7 @@
 pipeline {
+parameters {
+    string(name:'Branch_name', defaultValue:'main', description:'enter your branch name')
+}
     agent any
     stages {
         stage ('hello') {
