@@ -31,7 +31,7 @@ parameters {
          }
          stage ('build') {
             steps {
-                echo "lets try"
+                sh 'make'
            }
          }
     }
