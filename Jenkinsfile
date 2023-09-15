@@ -31,7 +31,7 @@ parameters {
          }
          stage ('build') {
             steps {
-                mvn validate
+                echo "lets try"
            }
          }
     }
