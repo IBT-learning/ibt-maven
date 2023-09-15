@@ -29,10 +29,5 @@ parameters {
                 checkout scmGit(branches: [[name: '*/$Branch_name']], extensions: [], userRemoteConfigs: [[credentialsId: 'git_credential_laura', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
          }
-         stage ('build') {
-            steps {
-                mvn compile
-            }
-         }
     }
 }
