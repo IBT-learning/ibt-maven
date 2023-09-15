@@ -13,7 +13,7 @@ pipeline {
          }
          stage ('windows bash cmd') {
             steps {
-                echo "hi"
+                bat "pwd"
             }
          }
     }
