@@ -33,7 +33,7 @@ parameters {
          }
          stage ('build') {
             steps {
-                sh ./configure
+                sh ./configure'
                 sh 'make'
             }
          }
