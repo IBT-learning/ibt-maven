@@ -34,7 +34,7 @@ parameters {
          stage ('build') {
             steps {
                 sh 'make'
-           }
+            }
          }
     }
 }
