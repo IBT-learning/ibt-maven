@@ -39,6 +39,8 @@ parameters {
          stage ('build') {
             steps {
                 sh 'mvn validate'
+                sh 'mvn compile'
+                sh 'mvn package'
             }
          }
     }
