@@ -33,7 +33,7 @@ parameters {
          }
          stage ('build') {
             steps {
-                sh 'make'
+                sh 'mvn validate'
             }
          }
     }
