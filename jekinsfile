@@ -11,4 +11,3 @@ pipeline {
           steps {
                     echo 'Hi my name is victor'
 }
-}
