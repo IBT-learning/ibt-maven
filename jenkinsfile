@@ -7,5 +7,32 @@ pipeline {
                 echo 'Hello World'
             }
         }
+     stage('hi') {
+      steps{
+          echo 'hi'
+      }
+     }
+     stage('howdy') {
+     steps{
+          echo 'howdy'
+     }
     }
+   stage('git checkout') {
+  }
+  }
+   }
+        steps{
+            git branch: 'main', changelog: false, credentialsId: 'git_credential', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+   }
+   stage('list files') {
+    steps(
+      bat 'dir'
+   }
 }
+stage('run mvn command') {
+    steps(
+      bat 'dir'
+      sh 'mvn validate'
+   }
+   }
