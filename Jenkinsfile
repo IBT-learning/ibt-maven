@@ -53,13 +53,15 @@ parameters {
              echo "I will run if condition is met"
             }
          }
-         stage('deploy') {
+         stage('nexus credentials') {
             steps {
-                configFileProvider(
-                [configFile(fileId: 'laura-jfrog-settings', variable: 'MAVEN_SETTINGS')]) {
-                sh 'mvn -s $MAVEN_SETTINGS package --batch-mode'
-                sh 'mvn deploy'
+                credentialsId: 'laura-nexus'
+                url: 'http://192.168.1.161:8081/'
                 }
+            }
+         stage('deplo'){
+            steps {
+                sh 'mvn deploy'
             }
          }
     }
