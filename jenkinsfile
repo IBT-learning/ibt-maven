@@ -33,12 +33,12 @@ pipeline {
    }
    stage('list files') {
     steps(
-      bat 'dir'
+       'dir'
    }
 }
 stage('run mvn command') {
     steps(
-      bat 'dir'
+      'dir'
       sh 'mvn validate'
    }
    }
