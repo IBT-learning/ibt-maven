@@ -11,7 +11,7 @@ parameters {
 environment {
 version='3.0.0'
 name='laura'
-def mybuild=True
+Is_success = true
 }
     stages {
         stage ('hello') {
@@ -64,7 +64,7 @@ def mybuild=True
                     print env.name
                 }
                 sh 'echo "$version"'
-                echo "${mybuild}"
+                echo "${Is_success}"
             }
          }
     }
