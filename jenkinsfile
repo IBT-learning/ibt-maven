@@ -32,14 +32,6 @@ pipeline {
         }
    }
    stage('list files') {
-    steps(
+    steps
        'dir'{
        }
-       }
-
-     stage('run mvn command') {
-      steps(
-        'dir'
-           sh 'mvn validate'
-   }
-   }
