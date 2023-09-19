@@ -32,4 +32,5 @@ pipeline {
    }
    stage('list files') {
     steps
-       'dir}',
+       'dir'
+    }
