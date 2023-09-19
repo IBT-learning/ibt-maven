@@ -47,11 +47,10 @@ parameters {
             when {
                 expression {
                     env.Branch_name == 'main'
-                    steps {
-                        echo "I will run if condition is met"
-
-                    }
                 }
+            }
+         steps {
+             echo "I will run if condition is met"
             }
          }
     }
