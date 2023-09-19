@@ -46,7 +46,7 @@ parameters {
          stage ('checking condition') {
             when {
                 expression {
-                    sh 'mvn package'==True
+                    sh 'mvn package'==0
                 }
             }
          steps {
