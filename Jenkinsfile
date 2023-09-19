@@ -12,6 +12,7 @@ environment {
 version='3.0.0'
 name='laura'
 Is_success = true
+mybuild = false
 }
     stages {
         stage ('hello') {
@@ -62,6 +63,7 @@ Is_success = true
             steps {
                 script{
                     print env.name
+                    print env.mybuild
                 }
                 sh 'echo "$version"'
                 echo "${Is_success}"
