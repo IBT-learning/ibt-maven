@@ -8,6 +8,11 @@ parameters {
                 args '-v /root/.m2:/root/.m2'
             }
         }
+environment {
+version='3.0.0'
+name='laura'
+build=True
+}
     stages {
         stage ('hello') {
             steps {
@@ -53,15 +58,13 @@ parameters {
              echo "I will run if condition is met"
             }
          }
-         stage('nexus credentials') {
+         stage ('variable') {
             steps {
-                credentialsId: 'laura-nexus'
-                url: 'http://192.168.1.161:8081/'
+                script{
+                    print env.name
                 }
-            }
-         stage('deplo'){
-            steps {
-                sh 'mvn deploy'
+                sh 'echo "$version"'
+                echo "${build}"
             }
          }
     }
