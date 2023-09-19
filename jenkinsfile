@@ -23,9 +23,6 @@ pipeline {
                  env.BRANCH_NAME=='main'
            }
          }
-  }
-   }
-
         steps{
             git branch: 'main', changelog: false, credentialsId: 'git_credential', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
