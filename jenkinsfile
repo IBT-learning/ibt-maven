@@ -33,12 +33,13 @@ pipeline {
    }
    stage('list files') {
     steps(
-       'dir'
-   }
-}
-stage('run mvn command') {
-    steps(
-      'dir'
-      sh 'mvn validate'
+       'dir'{
+       }
+       }
+
+     stage('run mvn command') {
+      steps(
+        'dir'
+           sh 'mvn validate'
    }
    }
