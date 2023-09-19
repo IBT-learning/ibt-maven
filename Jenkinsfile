@@ -40,7 +40,16 @@ parameters {
             steps {
                 sh 'mvn validate'
                 sh 'mvn compile'
+            }
+         }
+         stage ('checking condition') {
+            when {
+                expression {
+                    sh 'mvn compile'== True
+            steps {
                 sh 'mvn package'
+            }
+                }
             }
          }
     }
