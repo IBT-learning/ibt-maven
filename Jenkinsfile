@@ -40,15 +40,17 @@ parameters {
             steps {
                 sh 'mvn validate'
                 sh 'mvn compile'
+                sh 'mvn package'
             }
          }
          stage ('checking condition') {
             when {
                 expression {
-                    sh 'mvn compile'== True
-            steps {
-                sh 'mvn package'
-            }
+                    env.Branch_name == 'main'
+                    steps {
+                        echo "I will run if condition is met"
+
+                    }
                 }
             }
          }
