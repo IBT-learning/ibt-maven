@@ -67,8 +67,10 @@ mybuild = false
                 }
                 sh 'echo "$version"'
                 echo "${Is_success}"
-                if $mybuild == true {
-                echo 'it was a success'
+                script{
+                    if ($mybuild) == true {
+                    echo 'it was a success'
+                    }
                 }
             }
          }
