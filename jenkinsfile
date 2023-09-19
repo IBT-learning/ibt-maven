@@ -7,30 +7,18 @@ pipeline {
                 echo 'Hello World'
             }
         }
-     stage('hi') {
-      steps{
-          echo 'hi'
+        stage('hi') {
+             steps{
+                 echo 'hi'
       }
      }
-     stage('howdy') {
-     steps{
-          echo 'howdy'
-     }
-    }
-   stage('git checkout') {
-  }
-   stage('hi') {
-  	steps{
-  		echo 'hi'
-  	}
-    }
-       stage('howdy') {
-    	steps{
-    		echo 'howdy'
+        stage('howdy') {
+    	     steps{
+    		      echo 'howdy'
     	}
       }
-     stage('git checkout') {
-         when {
+         stage('git checkout') {
+           when {
           expression {
                  env.BRANCH_NAME=='main'
            }
