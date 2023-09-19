@@ -46,7 +46,7 @@ parameters {
          stage ('checking condition') {
             when {
                 expression {
-                    env.Branch_name == 'main'
+                    sh 'mvn package'
                 }
             }
          steps {
