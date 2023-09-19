@@ -52,13 +52,13 @@ parameters {
          steps {
              echo "I will run if condition is met"
             }
-            stage('deploy') {
-                steps {
-                    configFileProvider(
-                        [configFile(fileId: 'laura-nexus-settings', variable: 'MAVEN_SETTINGS')]) {
-                        sh 'mvn -s $MAVEN_SETTINGS package --batch-mode'
-                        sh 'mvn deploy'
-                    }
+         }
+         stage('deploy') {
+            steps {
+                configFileProvider(
+                [configFile(fileId: 'laura-nexus-settings', variable: 'MAVEN_SETTINGS')]) {
+                sh 'mvn -s $MAVEN_SETTINGS package --batch-mode'
+                sh 'mvn deploy'
                 }
             }
          }
