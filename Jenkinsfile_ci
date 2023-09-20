@@ -9,7 +9,7 @@ stages {
     }
     stage ("validate") {
         steps {
-            sh "mvn validate"
+             mvn validate
         }
     }
 }
