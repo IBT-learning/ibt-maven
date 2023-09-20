@@ -29,5 +29,12 @@ stages {
             }
         }
     }
+    stage ("deploy") {
+        steps {
+             withCredentials([file(credentialsId: 'laura_sett_2', variable: 'artifactory_settings')]) {
+                 sh 'mvn deploy -s $artifactory_settings'
+             }
+            }
+        }
 }
 }
