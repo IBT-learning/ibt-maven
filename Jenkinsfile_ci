@@ -34,8 +34,7 @@ stages {
              withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'artifactory_settings')]) {
              }
                  sh 'mvn deploy -s $artifactory_settings'
-             }
-            }
         }
+    }
 }
 }
