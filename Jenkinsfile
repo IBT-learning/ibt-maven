@@ -67,12 +67,14 @@ mybuild = false
                 }
                 sh 'echo "$version"'
                 echo "${Is_success}"
-                script{
-                    if ($mybuild)  {
-                    echo 'it was a success'
-                    }
-                }
+
             }
          }
+
+    }
+    post {
+        always {
+            echo "i will run everytime"
+        }
     }
 }
