@@ -1,6 +1,6 @@
 pipeline {
 agent any
-tool name: 'maven_3.8', type: 'maven'
+tools {maven 'maven_3.8'}
 stages {
     stage ('git checkout') {
         steps {
@@ -9,7 +9,12 @@ stages {
     }
     stage ("validate") {
         steps {
-             mvn validate
+            sh 'mvn validate'
+        }
+    }
+    stage ("compile") {
+        steps {
+        sh 'mvn compile'
         }
     }
 }
