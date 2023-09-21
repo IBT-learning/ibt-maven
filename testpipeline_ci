@@ -10,10 +10,9 @@ pipeline {
                  steps {
                   withMaven(globalMavenSettingsConfig: '--- Use system default settings or file path ---', jdk: '--- Use system default JDK ---', maven: 'maven_3.8', mavenSettingsConfig: 'jfrog-mvn-settings') {
                       // some block
-                  }
                       sh  'maven Validate'
                   }
                 }
               }
           }
-     }
+    }
