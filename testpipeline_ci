@@ -8,7 +8,7 @@ pipeline {
         }
     stage('Validate') {
                  steps {
-                  withMaven(globalMavenSettingsConfig: ‘--- Use system default settings or file path ---’, maven: ‘maven_3.8’, mavenSettingsConfig: ‘jfrog-mvn-settings’)
+                   withMaven(globalMavenSettingsConfig: ‘--- Use system default settings or file path ---’, maven: ‘maven_3.8’, mavenSettingsConfig: ‘jfrog-mvn-settings’)
                       // some block
                       sh  'maven Validate'
                   }
