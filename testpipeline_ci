@@ -11,4 +11,3 @@ pipeline {
                      'maven Validate'
                  }
              }
-         }
