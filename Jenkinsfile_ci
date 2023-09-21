@@ -33,7 +33,7 @@ stages {
         steps {
             withCredentials([file(credentialsId: 'laura_nexus_settings', variable: 'artifactory_settings')]) {
             }
-                 sh 'mvn deploy -s $artifactory_settings'
+                 sh 'mvn deploy $artifactory_settings'
         }
     }
 }
