@@ -32,8 +32,8 @@ stages {
     stage ("deploy") {
         steps {
             withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'settings')]) {
-            }
                 sh 'mvn deploy -s $settings'
+            }
         }
     }
 }
