@@ -8,9 +8,9 @@ pipeline {
         }
     stage('Validate') {
                  steps {
-                  withMaven(globalMavenSettingsConfig:) {
+                  withMaven(maven: 'maven_3.8') {
                       sh  'maven Validate'
-                    }
-                         }
-                     }
-                 }
+                        }
+                           }
+                       }
+                   }
