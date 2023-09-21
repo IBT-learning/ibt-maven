@@ -8,3 +8,4 @@ pipeline {
         }
     }
 }
+gitbranch: 'feature_sokajnr', credentialsId: 'sokajnr', url: 'https://github.com/IBT-learning/ibt-maven.git'
