@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>1.0.42</version>
+  <version>1.0.43</version>
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
@@ -40,7 +40,7 @@
     </snapshotRepository>
   </distributionManagement>
 
-  
+  -->
  <distributionManagement>
 
     <snapshotRepository>
@@ -55,7 +55,7 @@
       <url>http://192.168.1.161:8081/repository/maven-releases/</url>
     </repository>
   </distributionManagement>
-  -->
+  <!--
   <distributionManagement>
     <repository>
       <id>central</id>
@@ -68,7 +68,7 @@
       <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
-
+-->
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
