@@ -29,10 +29,18 @@ stages {
             }
         }
     }
-    stage ("deploy") {
+    /*stage ("deploy") {
         steps {
             withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'settings')]) {
                 sh 'mvn deploy -s $settings'
+            }
+        }
+    }
+    */
+    stage ("deploy") {
+        steps {
+            withCredentials([file(credentialsId: 'laura_nexus_settings', variable: 'artifactory_settings')]) {
+                sh 'mvn deploy -s $artifactory_settings'
             }
         }
     }
