@@ -41,6 +41,10 @@ stages {
         steps {
             configFileProvider([configFile(fileId: 'laura_config_settings', variable: 'artifactory_settings')]) {
                 sh 'mvn deploy -s $artifactory_settings'
+            withMaven(maven: 'maven_3.9.3', mavenSettingsConfig: 'laura_config_settings') {
+                sh 'mvn deploy'
+            }
+            }
             }
         }
     }
