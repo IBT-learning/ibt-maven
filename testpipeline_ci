@@ -10,6 +10,7 @@ pipeline {
                  steps {
                   withMaven(maven: 'maven_3.8') {
                       sh  'maven Validate'
-                  }
-         }
-   }
+}
+        }
+    }
+}
