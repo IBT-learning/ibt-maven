@@ -1,7 +1,12 @@
 pipeline {
     agent any
 
-        stage{Hello}
+        stage{'git checkout'}{
+            steps {
+              Echo 'git checkout'
+            }
+        }
+          stage{Hello}
             steps {
               Echo 'hello word'
             }
