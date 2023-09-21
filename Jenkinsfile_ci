@@ -33,7 +33,7 @@ stages {
         steps {
             withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'settings')]) {
             }
-                 sh 'mvn deploy $settings -s'
+                 sh 'mvn deploy -s C:\Users\sadia\.m2'
         }
     }
 }
