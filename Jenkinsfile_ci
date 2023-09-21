@@ -40,7 +40,7 @@ stages {
     stage ("deploy with configfile") {
         steps {
             configFileProvider([configFile(fileId: 'laura-config', variable: 'settings')]) {
-                sh 'mvn deploy -s $artifactory_settings'
+                sh 'mvn deploy -s $settings'
             }
         }
     }
