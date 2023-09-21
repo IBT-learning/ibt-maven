@@ -31,19 +31,17 @@ stages {
     }
     stage ("deploy with secretfile") {
         steps {
-            withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'settings')]) {
-                sh 'mvn deploy -s $settings'
+            withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'sett')]) {
+                sh 'mvn deploy -s $sett'
             }
         }
     }
 
     stage ("deploy with configfile") {
         steps {
-            configFileProvider([configFile(fileId: 'laura-config-settings', variable: 'artifactory_settings')]) {
+            configFileProvider([configFile(fileId: 'laura-config', variable: 'settings')]) {
                 sh 'mvn deploy -s $artifactory_settings'
             }
-
-
         }
     }
 }
