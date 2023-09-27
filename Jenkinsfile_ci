@@ -39,6 +39,16 @@ stages {
             }
         }
     }
+    stage ('vulnerability scan - dependency check') {
+        steps {
+            dependencyCheck additionalArguments: '''
+                -o "./"
+                -s "./"
+                -f "ALL"
+                --prettyPrint ''', odcInstallation: 'dependency-check'
+            dependencyCheckPublisher pattern: 'check-result.xml', unstableTotalCritical: 0, unstableTotalHigh: 2, unstableTotalLow: 5, unstableTotalMedium: 3
+        }
+    }
     stage ("deploy with secretfile") {
         steps {
             withCredentials([file(credentialsId: 'laura-jfrog-secret-settings', variable: 'sett')]) {
