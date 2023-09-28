@@ -66,5 +66,17 @@ stages {
             }
         }
     }
+    stage ('deploy to tomcat server') {
+        steps {
+            script {
+                def remote = [name: 'Dev', host: '104.131.72.118', allowAnyHosts: true]
+                withCredentials([usernamePassword(credentialsId: 'digital-ocean-server', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    remote.user = username
+                    remote.password = password
+                    sshPut remote , from : 'target/ibt-maven-1.10-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+                }
+            }
+        }
+    }
 }
 }
