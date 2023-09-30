@@ -2,13 +2,13 @@ pipeline {
 parameters {
     string(name:'Branch_name', defaultValue:'main', description:'enter your branch name')
 }
+      agent {label 'UX_IBT_demo'}
     /*agent {
             docker {
                 image 'maven:3.9.4-eclipse-temurin-17-alpine'
                 args '-v /root/.m2:/root/.m2'
             }
         }*/
-    agent { label 'UX_IBT_demo'    }
 environment {
 version='3.0.0'
 name='laura'
