@@ -19,7 +19,7 @@ pipeline {
         }
         stage('git checkout') {
             steps {
-                git branch: 'main', changelog: false, credentialsId: 'git_creds_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: 'wendy-feature', changelog: false, credentialsId: 'git_creds_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
         stage('list files') {
