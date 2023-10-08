@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'make a selection')
         string(name: 'Branch_Name', defaultValue: 'main', description:'enter branch to build')
     }
 
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('git checkout') {
             steps {
-                git branch: '$Branch_Name', changelog: false, credentialsId: 'git_creds_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: 'main', changelog: false, credentialsId: 'git_creds_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
         stage('list files') {
