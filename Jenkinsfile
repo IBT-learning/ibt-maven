@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') }
+        string(name: 'Branch_Name', defaultValue: 'main', description:'enter branch to build') }
 
     stages {
         stage('Hello') {
@@ -19,7 +22,7 @@ pipeline {
         }
         stage('git checkout') {
             steps {
-                git branch: 'wendy-feature', changelog: false, credentialsId: 'git_creds_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: '$Branch_Name', changelog: false, credentialsId: 'git_creds_wendy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
         stage('list files') {
