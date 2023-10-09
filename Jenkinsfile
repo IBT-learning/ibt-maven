@@ -22,6 +22,11 @@ pipeline {
             }
          }
          stage('list all my files') {
+            when {
+                expression{
+                    '$Branch_Name'=='main'
+                }
+            }
             steps{
                 sh 'ls -lrt'
             }
