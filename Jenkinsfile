@@ -5,6 +5,7 @@ pipeline {
         version = "1.5"
         db_name = "ibt_db"
     }
+
     parameters {
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'make a selection')
         string(name: 'Branch_Name', defaultValue: 'main', description:'enter branch to build')
@@ -35,7 +36,7 @@ pipeline {
             steps{
                 sh 'ls -lrt' //mac-unix
                  //bat 'dir'
-                            }
+
         }
     }
         stage('env variables') {
@@ -48,7 +49,7 @@ pipeline {
                 print env.version
             }
 
-            }
+
         }
     }
 
