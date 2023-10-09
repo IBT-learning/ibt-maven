@@ -26,17 +26,7 @@ pipeline {
              }
         }
     }
-    stage ('Sonarqube Analysis') {
-        environment {
-            sonarScan = tool 'ibt-sonarqube'
-    }
-        steps {
-        withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-        //sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=July_cohort"
-        sh "${env.sonarScan}/bin/sonar-scanner"
-        }
-      }
-    }
+
     stage('Package') {
        steps{
            withMaven(maven: 'maven_3.8') {
@@ -44,32 +34,16 @@ pipeline {
             }
         }
       }
-    //stage('Vulnerability scan - Dependency Check') {
-      steps{
-        dependencyCheck additionalArguments: '''
-                         -o "./"
-                         -s "./"
-                         -f "ALL"
-                         --prettyPrint ''', odcInstallation: 'dependency-check'
-                   dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-        }
-      }
+
 
     stage('Deploy') {
       steps{
           withMaven(maven: 'maven_3.8') {
           withCredentials([file(credentialsId: 'wendy_mvn_settings_jenkins', variable: 'mvn_settings_wendy2')]) {
            sh 'mvn deploy -s $mvn_settings_wendy2'
-           }
-         }
-       }
-      }
 
-    //stage('deploy using configFile'){
-           steps{
-             withMaven(maven: 'maven_3.8') {
-                configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_managed')]) {
-                    sh 'mvn deploy -s $mvn_settings_managed'
+
+
       }
     }
 
