@@ -12,5 +12,10 @@ pipeline {
                         echo "hi"
                     }
                 }
+         stage('Git checkout'){
+            steps{
+                git branch: 'feature_gunj', changelog: false, credentialsId: 'GitHub_user_cred_gunjan', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+         }
     }
 }
