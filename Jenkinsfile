@@ -28,7 +28,6 @@ pipeline {
         }
         stage('list files') {
             steps{
-                tool name: 'maven_3.9', type: 'maven'
                 //sh 'ls -lrt' //mac-unix
                  bat 'dir'
             }
