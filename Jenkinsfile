@@ -58,7 +58,14 @@ pipeline {
             }
         }
 
-    }
+        stage ('test2 githook') {
+            steps{
+                echo "git hook second test"
+            }
+            }
+        }
+
+
     post {
         always{
            echo "I am going to run in the end"
