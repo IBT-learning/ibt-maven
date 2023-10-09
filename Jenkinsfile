@@ -54,4 +54,9 @@ pipeline {
     }
 
     }
-}
+    post {
+        always{
+            echo "I am going to run in the end"
+        }
+    }
+  }
