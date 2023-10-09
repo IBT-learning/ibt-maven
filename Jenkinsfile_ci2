@@ -45,6 +45,16 @@ pipeline {
             }
         }
       }
+    stage('Vulnerability scan - Dependency Check') {
+       steps{
+        dependencyCheck additionalArguments: '''
+                                        -o "./"
+                                         -s "./"
+                                          -f "ALL"
+                                           --prettyPrint ''', odcInstallation: 'dependency-check'
+                  dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+             }
+           }
 
 
     stage('Deploy') {
@@ -52,7 +62,6 @@ pipeline {
           withMaven(maven: 'maven_3.8') {
           withCredentials([file(credentialsId: 'wendy_mvn_settings_jenkins', variable: 'mvn_settings_wendy2')]) {
            sh 'mvn deploy -s $mvn_settings_wendy2'
-
 
 
       }
