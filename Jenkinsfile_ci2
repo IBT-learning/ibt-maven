@@ -63,12 +63,23 @@ pipeline {
           withCredentials([file(credentialsId: 'wendy_mvn_settings_jenkins', variable: 'mvn_settings_wendy2')]) {
            sh 'mvn deploy -s $mvn_settings_wendy2'
 
+ }
+               }
+            }
 
-      }
-    }
-
-    }
-   }
+         }
+   stage('Deploy to Dev') {
+      steps{
+        script{
+          def remote = [name: 'DEV1', host: '138.197.6.225', allowAnyHosts: true]
+            withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+              remote.user = username
+                remote.password = password
+                  sshPut remote: remote, from: 'target/ibt-maven-1.9.9-SNAPSHOT.jar' , into: '/opt/tomcat/apps'
+                  }
+                }
+              }
+            }
 
  }
 }
