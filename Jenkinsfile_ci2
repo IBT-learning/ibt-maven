@@ -33,6 +33,15 @@ pipeline {
             }
         }
       }
+    stage('Deploy') {
+      steps{
+          withMaven(maven: 'maven_3.8') {
+          withCredentials([file(credentialsId: 'wendy_mvn_settings_jenkins', variable: 'mvn_settings_wendy2')]) {
+           sh 'mvn deploy -s $wendy_mvn_settings_jenkins'
+           }
+         }
+      }
+    }
 
   }
 }
