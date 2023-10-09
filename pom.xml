@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>1.4</version>
+  <version>1.9-SNAPSHOT</version>
 
   <name>hello-maven</name>
   <!-- FIXME change it to the project's website -->
@@ -27,6 +27,7 @@
     </dependency>
   </dependencies>
 
+
   <distributionManagement>
     <repository>
       <id>central</id>
@@ -35,7 +36,7 @@
     </repository>
     <snapshotRepository>
       <id>central</id>
-      <name>a0n5tucjjiuir-artifactory-primary-0-snapshot</name>
+      <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
       <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
