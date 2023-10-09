@@ -52,11 +52,16 @@ pipeline {
 
         }
     }
+        stage ('test githook') {
+            steps{
+                echo "git hook worked automatically"
+            }
+        }
 
     }
     post {
         always{
-            echo "I am going to run in the end"
+           echo "I am going to run in the end"
         }
     }
   }
