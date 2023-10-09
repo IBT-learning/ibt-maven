@@ -37,7 +37,7 @@ pipeline {
          }
          stage('list environment vars'){
             steps{
-                sh 'echo ${env.version}'
+                sh 'echo "${env.version}" '
                 sh 'echo $version'
             }
          }
