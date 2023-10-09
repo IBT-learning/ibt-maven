@@ -28,8 +28,8 @@ pipeline {
         }
         stage('list files') {
             steps{
-                //sh 'ls -lrt' //mac-unix
-                 bat 'dir'
+                sh 'ls -lrt' //mac-unix
+                 //bat 'dir'
             }
         }
     }
