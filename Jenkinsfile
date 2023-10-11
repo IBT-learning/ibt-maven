@@ -39,7 +39,7 @@ pipeline {
             steps{
                 bat 'echo ${env.version}'
                 bat 'echo $version'
-                scrip{
+                script{
                     print env.version
                 }
             }
