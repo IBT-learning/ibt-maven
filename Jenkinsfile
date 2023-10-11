@@ -17,5 +17,9 @@ pipeline {
                 git branch: 'feature_houdy', changelog: false, credentialsId: 'Github_user_cred_houdy', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage('List all my files')
+            steps{
+                bat 'dir'
+            }
     }
 }
