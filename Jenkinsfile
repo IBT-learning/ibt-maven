@@ -39,6 +39,11 @@ pipeline {
            steps{
              //bat 'echo ${env.version}" '
              bat 'echo $version'
+             bat '''
+                  dir
+                  cd src
+                  dir
+             '''
              script{
                 print env.version
              }
