@@ -22,3 +22,5 @@ pipeline {
                bat 'dir'
             }
         }
+    }
+}
