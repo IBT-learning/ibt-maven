@@ -19,6 +19,6 @@ pipeline {
         }
         stage('list all my files') {
             steps{
-                bat 'dir'
+               bat 'dir'
             }
         }
