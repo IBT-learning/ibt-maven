@@ -17,5 +17,10 @@ pipeline {
                 git branch: 'feature_makeda', changelog: false, credentialsId: 'GitHub_user_cred_makeda', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage('list all my files') {
+             steps {
+                bat 'dir'
+            }
+        }
     }
 }
