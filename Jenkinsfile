@@ -22,6 +22,11 @@ pipeline {
             }
         }
         stage('list all my files') {
+           when {
+                expression{
+                '$Branch_Name'=='master'
+                }
+           }
             steps{
                bat 'dir'
             }
