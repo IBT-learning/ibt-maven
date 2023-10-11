@@ -26,6 +26,7 @@ pipeline {
            when {
               expression{
                  '$Branch_Name'=='main'
+              }
            }
              steps {
                 bat 'dir'
