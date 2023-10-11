@@ -40,9 +40,8 @@ pipeline {
                 bat 'echo ${env.version}'
                 bat 'echo $version'
                 bat '''
-                dir
-                cd src
-                ls-lrt
+                    dir
+                    cd src
                 '''
                 script{
                     print env.version
