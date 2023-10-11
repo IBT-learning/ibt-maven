@@ -21,5 +21,4 @@ pipeline {
             steps{
                 bat 'dir'
             }
-    }
-}
+        }
