@@ -50,5 +50,10 @@ pipeline {
 
             }
          }
+       stage('checking webhook') {
+                           steps {
+                               echo "hi from auto run"
+                           }
+                       }
     }
 }
