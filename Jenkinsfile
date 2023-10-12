@@ -3,7 +3,6 @@ pipeline {
 
 parameters {
       string (name: 'Branch_Name' , defaultValue: 'main' , description: 'enter the branch to build')
-
 }
      stages {
           stage('hello world') {
