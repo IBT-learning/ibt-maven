@@ -23,6 +23,15 @@ parameters {
 
       }
       stage('list all files') {
+          when {
+             expression{
+                  '$Branch_Name'== 'main'
+
+             }
+
+          }
+
+
       steps{
       bat 'dir'
       }
