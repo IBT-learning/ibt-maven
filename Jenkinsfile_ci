@@ -28,5 +28,17 @@ pipeline {
             }
         }
     }
+    stage('SonarQube Analysis'){
+        environment{
+            sonarScan = tool 'ibt-sonarqube_4.8'
+        }
+        steps{
+            withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                sh '${env.sonarScan}/bin/sonar-scanner'
+            }
+        }
+
+    }
+
  }
 }
