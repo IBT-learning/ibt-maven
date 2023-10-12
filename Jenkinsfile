@@ -1,7 +1,10 @@
 pipeline {
      agent any
 
+parameters {
+      string (name: 'Branch_Name' , defaultValue: 'main' , description: 'enter the branch to build')
 
+}
      stages {
           stage('hello world') {
            steps {
@@ -15,7 +18,7 @@ pipeline {
        }
      stage('Git checkout'){
        steps{
-       git branch: 'feature-winfred', changelog: false, credentialsId: 'Github_user_cred_winfred', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+       git branch: '$Branch_Name', changelog: false, credentialsId: 'Github_user_cred_winfred', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
 
         }
 
