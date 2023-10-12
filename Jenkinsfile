@@ -20,6 +20,12 @@ pipeline {
         }
 
       }
+      stage('list all files') {
+      steps{
+      bat 'dir'
+      }
+
+      }
 
     }
 
