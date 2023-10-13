@@ -39,18 +39,18 @@ parameters {
 
 
       steps{
-      sh 'ls-lrt'
+      bat 'dir'
       }
 
       }
        stage('list environment vars'){
        steps{
-          //sh 'echo "${env.version}" '
-          sh 'echo $version'
-          sh '''
-            ls-lrt
+          //bat 'echo "${env.version}" '
+          bat 'echo $version'
+          bat '''
+            dir
             cd src
-            ls-lrt
+            dir
           '''
           script{
              print env.version
