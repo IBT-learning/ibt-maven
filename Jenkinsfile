@@ -1,5 +1,6 @@
 pipeline {
     agent any
+     string(name: 'branch_name', defaultValue: 'feature_abreham', description: 'enter the branch to build')
 
     stages{
         stage('Hello') {
@@ -9,7 +10,7 @@ pipeline {
         }
          stage('Git checkout') {
                     steps{
-                        git branch: 'feature_abreham', credentialsId: 'mvn_user_credential_github', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                        git branch: '$branch_name', credentialsId: 'mvn_user_credential_github', url: 'https://github.com/IBT-learning/ibt-maven.git'
                     }
                 }
                 stage('list my files'){
