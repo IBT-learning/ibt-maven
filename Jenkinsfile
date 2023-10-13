@@ -19,6 +19,11 @@ pipeline {
                     }
                 }
                 stage('list my files'){
+                     when{
+                         expression{
+                             '$branch_name' == 'main'
+                             }
+                         }
                     steps{
                         bat 'dir'
                     }
@@ -28,8 +33,13 @@ pipeline {
                     bat 'echo "${env.version}" '
                     bat 'echo $version'
 
+                    script{
+                        print env.version
+
                     }
 
                 }
+
+         }
     }
 }
