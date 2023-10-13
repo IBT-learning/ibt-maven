@@ -45,7 +45,7 @@ parameters {
       }
        stage('list environment vars'){
        steps{
-          //sh 'echo "${env.version}" '
+          sh 'echo "${env.version}" '
           sh 'echo $version'
           sh '''
             ls - lrt
