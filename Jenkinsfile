@@ -51,7 +51,6 @@ parameters {
             dir
             cd src
             dir
-
           '''
           script{
              print env.version
