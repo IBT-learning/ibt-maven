@@ -39,7 +39,7 @@ parameters {
 
 
       steps{
-      bat 'dir'
+      sh 'ls -lrt'
       }
 
       }
