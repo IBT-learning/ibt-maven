@@ -70,5 +70,14 @@ pipeline {
         }
      }
     }
+     stage('Upload to Artifactory (configFile)'){
+            steps{
+                withMaven(maven: 'maven_3.8') {
+                   configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_manged', variable: 'mvn_settings_manged')]) {
+                       sh 'mvn deploy -s $mvn_settings_manged'
+                   }
+            }
+         }
+        }
   }
 }
