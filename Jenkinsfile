@@ -45,7 +45,7 @@ parameters {
       }
        stage('list environment vars'){
        steps{
-          bat 'echo ${env.version}'
+          //bat 'echo "${env.version}" '
           bat 'echo $version'
        }
        }
