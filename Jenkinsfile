@@ -47,6 +47,9 @@ parameters {
        steps{
           //bat 'echo "${env.version}" '
           bat 'echo $version'
+          script{
+             print env.version
+          }
        }
        }
     }
