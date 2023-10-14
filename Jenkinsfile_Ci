@@ -14,5 +14,17 @@ pipeline {
         }
           }
       }
+      stage('compile'){
+        steps{
+        withMaven(maven: 'maven_3.8') {
+                    sh 'mvn compile'
+        }
+      }
+     stage('test'){
+             steps{
+             withMaven(maven: 'maven_3.8') {
+                         sh 'mvn test'
+             }
+           }
     }
 }
