@@ -25,13 +25,13 @@ pipeline {
                              }
                          }
                     steps{
-                        bat 'dir'
+                        sh 'ls'
                     }
                 }
                 stage('list environment vers'){
                     steps{
-                    bat 'echo "${env.version}" '
-                    bat 'echo $version'
+                    sh 'echo "${env.version}" '
+                    sh 'echo $version'
 
                     script{
                         print env.version
