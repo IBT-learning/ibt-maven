@@ -49,7 +49,7 @@ pipeline {
                     sh 'mvn package'
                 }
             }
-        }
+     }
      stage('Dynamic Scan'){
         steps{
             dependencyCheck additionalArguments: '''
