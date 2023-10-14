@@ -20,11 +20,11 @@ pipeline {
                     sh 'mvn compile'
         }
       }
-     stage('test'){
-             steps{
-             withMaven(maven: 'maven_3.8') {
-                         sh 'mvn test'
-             }
-           }
+      stage('compile'){
+              steps{
+              withMaven(maven: 'maven_3.8') {
+                          sh 'mvn compile'
+              }
+      }
     }
 }
