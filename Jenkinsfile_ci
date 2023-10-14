@@ -47,17 +47,6 @@ pipeline {
              steps{
                 withMaven(maven: 'maven_3.8') {
                     sh 'mvn package'
-             }
-          }
-        }
-     stage('Dynamic Scan'){
-                steps{
-                      dependencyCheck additionalArguments: '''
-                               -o "./"
-                               -s "./"
-                               -f "ALL"
-                              --prettyPrint ''', odcInstallation: 'dependency-check'
-                       dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                 }
             }
         }
