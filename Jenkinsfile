@@ -14,9 +14,9 @@ pipeline {
             }
         }
          stage('Git checkout') {
-                    steps{
-                        git branch: '$branch_name', credentialsId: 'mvn_user_credential_github', url: 'https://github.com/IBT-learning/ibt-maven.git'
-                    }
+              steps{
+                   git branch: '$branch_name', credentialsId: 'mvn_user_credential_github', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                   }
                 }
                 stage('list my files'){
                      when{
@@ -25,13 +25,24 @@ pipeline {
                              }
                          }
                     steps{
-                        sh 'ls'
+                        sh 'ls -lrt'
                     }
                 }
                 stage('list environment vers'){
                     steps{
-                    sh 'echo "${env.version}" '
+                    //sh 'echo "${env.version}" '
                     sh 'echo $version'
+                    sh '''
+                         ls -lrt
+                         cd src
+                         ls -lrt
+
+                      '''
+
+                    script{
+                        print env.version
+
+                    }
 
                 }
 
