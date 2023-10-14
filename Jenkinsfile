@@ -48,9 +48,9 @@ parameters {
           //sh 'echo "${env.version}" '
           sh 'echo $version'
           sh '''
-            ls - lrt
+            ls -lrt
             cd src
-            ls - lrt
+            ls -lrt
           '''
           script{
              print env.version
