@@ -38,8 +38,12 @@ pipeline {
 
                     }
 
-                }
-
+               }
          }
+         stage('checking webook') {
+                     steps{
+                         echo "from auto run"
+                     }
+                 }
     }
 }
