@@ -5,6 +5,10 @@ pipeline {
         string (name: 'Branch_Name' , defaultValue: 'main', description: 'enter the branch to build')
     }
 
+    environment{
+        version = '1.3.0'
+    }
+
     stages {
         stage('Hello'){
             steps {
@@ -29,6 +33,12 @@ pipeline {
             }
             steps{
             bat 'dir'
+            }
+        }
+        stage('list envrionment var'){
+            steps{
+                bat 'echo ${env.version}'
+                bat 'echo $version'
             }
         }
     }
