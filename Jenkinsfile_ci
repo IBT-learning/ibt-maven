@@ -54,6 +54,16 @@ pipeline {
                   --prettyPrint ''', odcInstallation: 'dependency-check'
                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
        }
+
     }
+    stage('Upload to Artifactory') {
+       steps{
+           withMaven(maven: 'maven_3.8') {
+             withCredentials([file(credentialsId: 'mvn_settings_makeda', variable: 'mvn_settings_makeda')]) {
+                 sh 'mvn deploy -s $'mvn_settings_makeda'
+             }
+       }
+    }
+   }
   }
 }
