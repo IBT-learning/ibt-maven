@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment{
-        'version' = '1.3.0'
+        version = '1.3.0'
     }
 
     stages {
@@ -37,6 +37,7 @@ pipeline {
         }
         stage('list environment var'){
             steps{
+                bat 'echo ${env.version}'
                 bat 'echo $version'
             }
         }
