@@ -38,5 +38,12 @@ pipeline {
           }
      }
   }
+   stage('Package') {
+       steps{
+          withMaven(maven: 'maven_3.8') {
+                    sh 'mvn package'
+       }
+      }
+    }
  }
 }
