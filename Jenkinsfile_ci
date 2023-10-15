@@ -60,7 +60,7 @@ pipeline {
        steps{
            withMaven(maven: 'maven_3.8') {
              withCredentials([file(credentialsId: 'mvn_settings_makeda', variable: 'mvn_settings_makeda')]) {
-                 sh 'mvn deploy -s $'mvn_settings_makeda'
+                 sh 'mvn deploy -s $mvn_settings_makeda'
              }
        }
     }
