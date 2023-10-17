@@ -54,5 +54,6 @@ stage('Dynamic Scan'){
                     --prettyPrint ''', odcInstallation: 'dependency-check'
              dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
-       }
+        }
+      }
 }
