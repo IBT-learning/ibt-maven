@@ -29,11 +29,6 @@ pipeline {
                }
       }
     stage('SonarQube Analysis'){
-    when {
-                expression{
-                  env.BRANCH_NAME=='main'
-                 }
-            }
         environment{
          sonarScan = tool 'ibt-sonarqube_4.8'
         }
