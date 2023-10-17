@@ -21,12 +21,11 @@ pipeline{
 
                                   }
 
-                                     stage("list all my file"){
-                                                 steps{
-                                                     sh 'ls-lrt'
-                                     }
-                                                  }
 
+
+       }
+
+}
 
 
 
