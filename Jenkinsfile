@@ -21,15 +21,19 @@ pipeline{
 
                                   }
 
-                                    stage("list all my file"){
-                                                           steps{
-                                                             sh 'ls-lrt'
+                                     stage("list all my file"){
+                                                 steps{
+                                                     sh 'ls-lrt'
+                                     }
+                                                  }
 
 
 
 
 
-       }
+
+
+
 
 }
 
