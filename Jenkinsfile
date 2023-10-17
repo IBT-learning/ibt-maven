@@ -12,7 +12,7 @@ pipeline{
                              echo "Hello World second script"
                          }
                       }
-                                  stage("git checkout"){
+                                  stage("git checkout copied "){
                                        steps{
                                          git branch: 'feature-rizme', changelog: false, credentialsId: 'GitHub_user_rizme', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
 
@@ -26,12 +26,6 @@ pipeline{
        }
 
 }
-
-
-
-
-
-
 
 
 }
