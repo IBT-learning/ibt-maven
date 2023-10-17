@@ -55,5 +55,14 @@ stage('Dynamic Scan'){
              dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-      }
+      stage('Upload to Artifactory'){
+              steps{
+                  withMaven(maven: 'maven_3.8') {
+                     withCredentials([file(credentialsId: 'mvn_settings_winfred', variable: 'mvn_settings_winfred')]) {
+                         sh 'mvn deploy -s $mvn_settings_winfred'
+                     }
+                 }
+             }
+     }
+   }
 }
