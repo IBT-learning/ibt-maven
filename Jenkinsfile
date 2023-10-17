@@ -13,7 +13,7 @@ pipeline{
                         }
                 }
         stage('Git checkout')
-            steps{
+            steps {
                 git branch: 'feature_iyke', changelog: false, credentialsId: 'Github_user_cred_iyke', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
                 }
            }
