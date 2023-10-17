@@ -40,7 +40,6 @@ pipeline {
                 //bat 'echo "%{env.version}"'
                 sh 'echo %version%'
                 sh '''
-                    pwd
                     ls
                     cd src
                     ls
@@ -48,7 +47,13 @@ pipeline {
                 script{
                     print env.version
                 }
+
             }
         }
+        stage('checking webhook'){
+                            steps {
+                                echo "hi from auto run"
+                            }
+                        }
     }
 }
