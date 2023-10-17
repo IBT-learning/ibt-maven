@@ -7,5 +7,12 @@ pipeline {
         git branch:'feature-conrad' , changelog: false, credentialsId: 'Github_user_cred_ccjacobs14', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     }
+    stage('Validate') {
+        steps{
+            withMaven(maven: 'maven_3.8') {
+               sh 'mvn validate'
+            }
+        }
+    }
   }
 }
