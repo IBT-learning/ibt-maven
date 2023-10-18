@@ -22,13 +22,13 @@ pipeline {
                 }
          stage('Git checkout'){
             steps{
-                git branch: '$Branch_Name' , changelog: false, credentialsId: 'GitHub_user_cred_gunjan', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+               git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
          }
          stage('list all my files') {
             when {
                 expression{
-                    '$Branch_Name'=='main'
+                    '$Branch_Name'=='feature-rizme'
                 }
             }
             steps{
