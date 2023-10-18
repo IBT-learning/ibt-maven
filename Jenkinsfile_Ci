@@ -83,6 +83,7 @@ stage('Dynamic Scan'){
                      sshPut remote: remote, from: 'target/ibt-maven-1.6-SNAPSHOT.jar', into: '/opt/tomcat/apps'
                     }
                }
+            }
         }
     }
 }
