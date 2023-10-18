@@ -55,5 +55,14 @@ pipeline {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         }
     }
+    stage('Upload to Artifactory'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                withCredentials([file(credentialsId: 'mvn_settings_conrad', variable: 'mvn_settings_conrad')]) {
+                    sh 'mvn deploy -s $mvn_settings_conrad'
+                }
+            }
+        }
+    }
  }
 }
