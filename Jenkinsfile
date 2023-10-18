@@ -35,6 +35,20 @@ pipeline {
             bat 'dir'
             }
         }
+        stage('list environment var'){
+                    steps{
+                        bat 'echo "%{env.version}"'
+                        bat '''
+                            ls
+                            cd src
+                            ls
+                        '''
+                        script{
+                            print env.version
+                        }
+
+                    }
+        }
         stage('checking webhook'){
                             steps {
                                 echo "hi from auto run"
