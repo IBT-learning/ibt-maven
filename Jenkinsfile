@@ -32,22 +32,7 @@ pipeline {
                 }
             }
             steps{
-            sh 'ls'
-            }
-        }
-        stage('list environment var'){
-            steps{
-                //bat 'echo "%{env.version}"'
-                //sh 'echo %version%'
-                //sh '''
-                    ls
-                    cd src
-                    ls
-                '''
-                script{
-                    print env.version
-                }
-
+            bat 'dir'
             }
         }
         stage('checking webhook'){
