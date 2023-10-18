@@ -37,11 +37,11 @@ pipeline {
         }
         stage('list environment var'){
                     steps{
-                        bat 'echo "%{env.version}"'
-                        bat '''
-                            dir
+                        sh 'echo "%{env.version}"'
+                        sh '''
+                            ls
                             cd src
-                            dir
+                            ls
                         '''
                         script{
                             print env.version
