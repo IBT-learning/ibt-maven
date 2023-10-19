@@ -82,8 +82,8 @@ stage('Dynamic Scan'){
                         remote.password = password
                      sshPut remote: remote, from: 'target/ibt-maven-1.6-SNAPSHOT.jar', into: '/opt/tomcat/apps'
                     }
+                  }
                 }
            }
     }
-  }
 }
