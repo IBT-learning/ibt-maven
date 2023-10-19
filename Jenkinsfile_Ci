@@ -76,8 +76,8 @@ stage('Dynamic Scan'){
    stage('Deploy to Dev'){
     steps{
            script{
-                def remote = [name: 'Dev' , host: '159.223.145.202', allowAnyHosts: true]
-                    withCredentials([usernamePassword(credentialsId: 'server_ssh_p', passwordVariable: 'password', usernameVariable: 'username')]) {
+                def remote = [name: 'Dev' , host: '146.190.76.251', allowAnyHosts: true]
+                    withCredentials([usernamePassword(credentialsId: 'server_ssh_pm', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = username
                         remote.password = password
                      sshPut remote: remote, from: 'target/ibt-maven-1.6-SNAPSHOT.jar', into: '/opt/tomcat/apps'
