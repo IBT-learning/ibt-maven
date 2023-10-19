@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        string (name: Branch_Name , defaultValue: main , description: 'enter tne branch to build')
+    }
+
     stages {
         stage('Hello'){
             steps {
@@ -9,7 +13,7 @@ pipeline {
         }
         stage('Git checkout'){
             steps {
-                git branch: 'feature-franck', credentialsId: 'GtiHub_user_cred_franck', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: $Branch_Name , credentialsId: 'GtiHub_user_cred_franck', url: 'https://github.com/IBT-learning/ibt-maven.git'
                 }
 
         }
