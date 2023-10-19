@@ -5,6 +5,10 @@ pipeline {
         string (name: 'Branch_Name' , defaultValue: 'main' , description: 'enter the branch to build')
     }
 
+    environment{
+        version = '1.3.0'
+    }
+
     stages {
         stage('Hello'){
             steps {
@@ -25,6 +29,12 @@ pipeline {
             }
             steps{
                 sh 'ls -lrt'
+            }
+        }
+        stage('list environment vars'){
+            steps{
+                sh 'echo $[env. version}'
+                sh 'echo $version'
             }
         }
     }
