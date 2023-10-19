@@ -1,11 +1,28 @@
-pipeline {
-    agent any
+pipeline{
+       agent any
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-    }
+           stages{
+              stage("Hello World"){
+              steps{
+                  echo "Hello World"
+              }
+           }
+            stage("Hello World second script"){
+                         steps{
+                             echo "Hello World second script"
+                         }
+                      }
+                                  stage("git checkout"){
+                                       steps{
+                                         git branch: 'feature-rizme', changelog: false, credentialsId: 'GitHub_user_rizme', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+                                       }
+
+
+                                  }
+
+
+
+       }
+
 }
