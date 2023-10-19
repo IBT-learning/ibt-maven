@@ -39,6 +39,5 @@ pipeline {
                     print env.version
                 }
             }
-        }s
+        }
     }
-}
