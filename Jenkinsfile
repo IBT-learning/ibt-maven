@@ -35,6 +35,9 @@ pipeline {
             steps{
                 sh 'echo "$[env. version}"'
                 sh 'echo $version'
+                script{
+                    print env.version
+                }
             }
         }
     }
