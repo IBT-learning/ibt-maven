@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Git checkout'){
             steps {
-                git branch: $Branch_Name , credentialsId: 'GtiHub_user_cred_franck', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: '$Branch_Name' , credentialsId: 'GtiHub_user_cred_franck', url: 'https://github.com/IBT-learning/ibt-maven.git'
                 }
 
         }
