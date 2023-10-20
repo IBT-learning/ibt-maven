@@ -27,7 +27,14 @@ pipeline{
                                                 }
                                          }
 
+                                           stage("list all my list"){
+                                              steps{
+                                                sh 'ls -lrt'
 
-       }
+                                              }
+
+                                            }
+
+            }
 
 }
