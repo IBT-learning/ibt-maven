@@ -14,11 +14,7 @@ pipeline {
             }
         }
     }
-    stage ('Compile') {
-        withMaven(maven: 'maven_3.8') {
-               sh mvn compile
-    }
-    }
+
 
       }
   }
