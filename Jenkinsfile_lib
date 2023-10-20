@@ -51,11 +51,15 @@ pipeline{
                             DependencyCheck()
                         }
                       }
-                      stage('Upload to Artifactory'){
-
-
+                      stage('Upload to Artifactory' ){
+                            steps{
+                                withMaven(maven: 'maven_3.8'){
+                                withCredentials([file(credentialsId: 'mvn_settings_abreham', variable: 'mvn_settings')]) {
+                                    sh 'mvn deploy -s $mvn_settings'
+                                     }
+                                }
+                            }
                       }
-
                       stage('Upload to Artifactory configFile'){
                            steps{
                                withMaven(maven: 'maven_3.8'){
