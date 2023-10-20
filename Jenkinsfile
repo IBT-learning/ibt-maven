@@ -2,7 +2,7 @@ pipeline{
        agent any
 
        parameters{
-         string (name:"Branch_name" , defaultvalue:"main" , description: "enter the name to build")
+         string (name:'Branch_name' , defaultValue:'main' , description: 'enter the name to build')
 
        }
 
@@ -18,14 +18,8 @@ pipeline{
                              echo "Hello World second script"
                          }
                       }
-                                  stage("git checkout"){
-                                       steps{
-                                         git branch: 'feature-rizme', changelog: false, credentialsId: 'GitHub_user_rizme', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
-
-                                       }
 
 
-                                  }
 
                                          stage("list all my files"){
                                                  steps{
