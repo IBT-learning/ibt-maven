@@ -46,7 +46,7 @@ pipeline{
                             }
                          }
         stage('Dynamic scan'){
-            stage{
+            steps{
                 dependencyCheck additionalArguments: '''
                     -o "./"
                     -s "./"
