@@ -2,6 +2,7 @@ pipeline{
 
     agent any
 
+
                parameters{
                  string (name:'Branch_name' , defaultValue:'main' , description: 'enter the name to build')
 
@@ -49,6 +50,7 @@ pipeline{
             }
          }
                                                      stage('list environment vars'){
+
                                                            steps{
                                                               //sh 'echo "${env.version}" '
                                                                  sh 'echo $version'
@@ -59,14 +61,15 @@ pipeline{
                                                                              '''
                                                                             script{
                                                                               print env.version
-                }
+                                                                            }
 
-            }
-         }
+                                                           }
+                                                     }
                                                       stage('checking webhook') {
                                                            steps {
                                                               echo "hi from auto run"
-                           }
-                       }
+                                                           }
+                                                      }
+
     }
 }
