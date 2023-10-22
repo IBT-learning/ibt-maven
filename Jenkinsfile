@@ -30,6 +30,13 @@ pipeline {
 
                                    }
 
+                                         stage("list all my list"){
+                                                           steps{
+
+
+                                                           }
+
+                                         }
 
 
 
