@@ -1,0 +1,55 @@
+---
+- name: install and configure ubuntu
+  hosts: nodes
+
+  vars:
+    user: tomcat
+    path: /opt/tomcat
+
+  tasks:
+    - name: update package manager
+      apt:
+        upgrade: yes
+
+    - name: install java
+      apt:
+        name: openjdk-11-jdk
+        state: latest
+
+    - name: create tomcat User
+      user:
+        name: '{{ user }}'
+
+    - name: create tomcat group
+      group:
+        name: '{{ user }}'
+
+    - name: create tomcat directory
+      file:
+        path: '{{ path }}'
+        directory: yes
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 755
+        recurse: yes
+
+    - name: download and unarchive tomcat
+      unarchive:
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
+        dest: '{{ path }}'
+        remote_src: yes
+
+    - name: change ownership of tomcat directory
+      file:
+        path: '{{ path }}'
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 755
+        recurse: yes
+        state: directory
+
+    - name: start tomcat server
+      command: nohup {{ path }}/apache-tomcat-9.0.82/bin/startup.sh
+
+    - name: enable tcp connections
+      command: sudo ufw allow 8080/tcp
