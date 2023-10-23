@@ -27,7 +27,7 @@
     - name: create tomcat directory
       file:
         path: '{{ path }}'
-        directory: yes
+        state: directory
         owner: '{{ user }}'
         group: '{{ user }}'
         mode: 755
