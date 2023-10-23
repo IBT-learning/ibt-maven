@@ -10,14 +10,14 @@ pipeline {
      stage('Validate') {
            steps{
                withMaven(maven: 'maven_3.8') {
-                  mvn validate
+                 sh 'mvn validate'
                }
            }
        }
      stage('Compile') {
            steps{
                withMaven(maven: 'maven_3.8') {
-                   mvn compile
+                  sh 'mvn compile'
   }
 }
 }
