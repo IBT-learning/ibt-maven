@@ -7,17 +7,17 @@ pipeline {
             git branch: 'feature-franck', credentialsId: 'cdf51f1c-75b2-4a4d-af8d-2c66b88d433a', url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
    }
-     stage ('Validate') {
+     stage('Validate') {
            steps{
                withMaven(maven: 'maven_3.8') {
-                  sh mvn validate
+                  mvn validate
                }
            }
        }
-        stage ('Compile') {
+     stage('Compile') {
            steps{
                withMaven(maven: 'maven_3.8') {
-                   sh mvn compile
+                   mvn compile
   }
 }
 }
