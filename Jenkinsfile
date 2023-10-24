@@ -12,7 +12,7 @@ pipeline {
 
                     stage('Hello world test') {
                           steps {
-                            echo 'Hello world  test'
+                             echo 'Hello world  test'
                            }
                     }
 
@@ -22,22 +22,8 @@ pipeline {
                                                            echo "Hello World second script"
                                                        }
                               }
-                                   stage("list all my files"){
-                                                      steps{
-                                                             git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
-
-                                                      }
-
-                                   }
-
-                                         stage("list all my list"){
-                                                           steps{
 
 
-
-                                                           }
-
-                                         }
 
 
 
@@ -45,8 +31,3 @@ pipeline {
      }
 
 }
-
-
-
-
-
