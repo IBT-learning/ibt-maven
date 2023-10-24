@@ -2,13 +2,26 @@ pipeline {
     agent any
 
     stages {
-        stage('git checkout) {
-           steps {
-
-
-              checkout scmGit(branches: [[name: '*/feature-rizme']], extensions: [], userRemoteConfigs: [[credentialsId: 'riz_jenken', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+        stage('Hello') {
+            steps {
+                echo 'Hello '
             }
         }
 
-    }
+                    stage('Hello world test') {
+                          steps {
+                             echo 'Hello world  test'
+                           }
+                    }
+
+                              stage("Hello World second script"){
+
+                                           steps{
+                                               echo "Hello World second script"
+                                            }
+                              }
+
+     }
+
 }
+

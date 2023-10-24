@@ -8,8 +8,6 @@ pipeline {
             }
         }
 
-
-
                     stage('Hello world test') {
                           steps {
                              echo 'Hello world  test'
@@ -18,15 +16,10 @@ pipeline {
 
                               stage("Hello World second script"){
 
-                                                       steps{
-                                                           echo "Hello World second script"
-                                                       }
+                                           steps{
+                                               echo "Hello World second script"
+                                            }
                               }
-
-
-
-
-
 
      }
 
