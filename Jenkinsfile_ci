@@ -38,8 +38,8 @@ pipeline {
    stage('Upload to Artifactory') {
        steps{
             withMaven(maven: 'maven_3.8') {
-                 withCredentials([file(credentialsId: 'mvn_settings_franck', variable: 'Mvn_settings-franck')]) {
-                    sh 'mvn deploy -s $Mvn_settings-franck'
+                withCredentials([file(credentialsId: 'mvn_settings_franck', variable: 'mvn_settings_franck')]) {
+                     sh 'mvn deploy -s $mvn_settings_franck'
                     }
 }
 }
