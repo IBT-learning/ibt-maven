@@ -14,10 +14,10 @@ pipeline {
                            }
                     }
 
-                              stage("Hello World second script"){
+                              stage("Hello World second script2"){
 
                                      steps{
-                                         echo "Hello World second script"
+                                         echo "Hello World second script2"
                                      }
                               }
 
