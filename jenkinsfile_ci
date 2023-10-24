@@ -29,9 +29,9 @@ pipeline {
 
                               }
 
-                                   stage("list all my list"){
+                                   stage('list all my list'){
                                               steps{
-                                              sh 'ls-lrt'
+                                              sh 'ls -lrt'
 
                                                }
 
