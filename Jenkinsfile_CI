@@ -82,7 +82,7 @@ pipeline {
                         playbook: 'tomcat_sept.yaml'
                                               )
         }
-    },
+    }
     stage('Deploy to Dev'){
     //when {
       //      expression{
