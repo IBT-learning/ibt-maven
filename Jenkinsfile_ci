@@ -2,41 +2,41 @@ pipeline {
     agent any
 
     stages{
-    stage('Git checkout') {
+      stage('Git checkout') {
         steps{
             git branch: 'feature-franck', credentialsId: 'cdf51f1c-75b2-4a4d-af8d-2c66b88d433a', url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
    }
-     stage('Validate') {
+      stage('Validate') {
            steps{
                withMaven(maven: 'maven_3.8') {
                  sh 'mvn validate'
                }
            }
        }
-     stage('Compile') {
+      stage('Compile') {
            steps{
                withMaven(maven: 'maven_3.8') {
                   sh 'mvn compile'
   }
 }
 }
-    stage('Test') {
+      stage('Test') {
                steps{
                    withMaven(maven: 'maven_3.8') {
                       sh 'mvn test'
 }
 }
 }
-   stage('Package') {
+      stage('Package') {
               steps{
                   withMaven(maven: 'maven_3.8') {
                      sh 'mvn package'
 }
 }
 }
-   stage('Dynamic Scan') {
-    steps{
+     stage('Dynamic Scan') {
+       steps{
          dependencyCheck additionalArguments: '''
                  -o "./"
                  -s "./"
@@ -46,6 +46,7 @@ pipeline {
           dependencyCheckPublisher pattern: 'dependency-check-report.xml'
     }
    }
+
    stage('Upload to Artifactory (configFile') {
       steps{
            withMaven(maven: 'maven_3.8') {
