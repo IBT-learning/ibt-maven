@@ -80,9 +80,10 @@ pipeline {
                         credentialsId: 'server-ssh-pwd',
                         inventory: 'inventory_sept',
                         playbook: 'tomcat_sept.yaml'
-                        disableHostKeyChecking: true)
+                        disableHostKeyChecking: true,
+                        )
         }
-    }
+    },
     stage('Deploy to Dev'){
     //when {
       //      expression{
