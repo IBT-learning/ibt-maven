@@ -17,9 +17,9 @@ pipeline {
                 }
               }
 
-                       stage('hi') {
+                       stage('hi jenkiens') {
                           steps {
-                              echo "hi"
+                              echo "hi jenkinens"
                           }
                        }
                              stage('Git checkout'){
