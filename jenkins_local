@@ -2,28 +2,17 @@ pipeline {
     agent any
 
     stages{
-      stage('Git checkout') {
-          steps{
-
-             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-rizme']], extensions: [], userRemoteConfigs: [[credentialsId: 'riz_jenken', url: 'https://github.com/IBT-learning/ibt-maven.git']])
-          }
-      }
-               tage('Validate'){
-                       steps{
-                           withMaven( maven: 'maven_3.8', mavenSettingsConfig: '', traceability: true) {
-                               // some block
-                            }
-                       }
-               }
-                   tage('Validate'){
-                           steps{
-                               withMaven(maven: 'maven_3.8') {
-                                  sh 'mvn validate'
-                               }
-                           }
-                    }
-
+    stage('Git checkout') {
+        steps{
+            git branch: ‘feature-rizme' , changelog: false, credentialsId: 'GitHub_user_rizme', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+    }
+    stage('Validate'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+               sh 'mvn validate'
+            }
+        }
     }
 
-
-}
+ }
