@@ -27,7 +27,7 @@ pipeline {
                                        withMaven(maven: 'maven_3.8') {
                                           sh 'mvn test'
                                        }
-                                     }
+                                    }
                                 }
 
 
