@@ -12,7 +12,7 @@ pipeline {
                        steps{
                            withMaven( maven: 'maven_3.8', mavenSettingsConfig: '', traceability: true) {
                                // some block
-
+                            }
                        }
                }
                    tage('Validate'){
@@ -21,6 +21,7 @@ pipeline {
                                   sh 'mvn validate'
                                }
                            }
+                    }
 
     }
 
