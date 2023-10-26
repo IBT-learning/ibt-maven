@@ -18,6 +18,15 @@ pipeline {
         }
     }
 
+                stage('compile'){
+                    steps{
+                       withMaven('maven_3.8'){
+                          sh 'mvn validate'
+
+                        }
+                    }
+                }
+
 
 
 
