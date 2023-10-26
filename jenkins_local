@@ -8,27 +8,7 @@ pipeline {
               }
           }
         }
-             stage('Validate'){
-                steps{
-                   withMaven(maven: 'maven_3.8') {
-                       sh 'mvn validate'
-                   }
-                }
-             }
-                     stage('Compile'){
-                        steps{
-                           withMaven(maven: 'maven_3.8') {
-                              sh 'mvn compile'
-                           }
-                         }
-                     }
-                               stage('Test'){
-                                    steps{
-                                       withMaven(maven: 'maven_3.8') {
-                                          sh 'mvn test'
-                                       }
-                                    }
-                                }
+
 
 
 
