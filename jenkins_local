@@ -10,7 +10,7 @@ pipeline {
       }
                tage('Validate'){
                        steps{
-                           withMaven(globalMavenSettingsConfig: '', jdk: '', maven: 'maven_3.8', mavenSettingsConfig: '', traceability: true) {
+                           withMaven( maven: 'maven_3.8', mavenSettingsConfig: '', traceability: true) {
                                // some block
 
                        }
