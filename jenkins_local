@@ -61,10 +61,21 @@ pipeline {
                                                    }
 
                                            }
+                         stage('Upload to Artifactory'){
+                                 steps{
+                                     withMaven(maven: 'maven_3.8') {
+                                        withCredentials([file(credentialsId: 'riz_jenkens', variable: 'mvn_settings_rizme')]) {
+                                            // some block
+                                        }
+                                            sh 'mvn deploy -s $mvn_settings_rizme'
+                                        }
+                                 }
+                              }
+        }
 
-         }
+}
 
 
-  }
+
 
 
