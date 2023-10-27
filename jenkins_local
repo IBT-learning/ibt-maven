@@ -65,12 +65,24 @@ pipeline {
                                  steps{
                                      withMaven(maven: 'maven_3.8') {
                                         withCredentials([file(credentialsId: 'mvn_settings_rizme', variable: 'mvn_settings_rizme')]) {
-                                            // some block
+                                             sh 'mvn deploy -s $mvn_settings_rizme'
                                         }
-                                            sh 'mvn deploy -s $mvn_settings_rizme'
+
                                         }
                                  }
                               }
+                    stage('Upload to Artifactory (configFile)'){
+                                                     steps{
+                                                         withMaven(maven: 'maven_3.8') {
+                                                            configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_manage', variable: 'mvn_settings_manage')]) {
+                                                                // some block
+
+                                                                 sh 'mvn deploy -s $mvn_settings_manage'
+                                                            }
+
+                                                            }
+                                                     }
+                                                  }
         }
 
 }
