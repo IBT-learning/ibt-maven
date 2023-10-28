@@ -1,0 +1,2 @@
+
+mvn -B archetype:generate -DgroupId=com.ibt.surafel-app  -DartifactId=surafel-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion
