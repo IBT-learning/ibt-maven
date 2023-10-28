@@ -17,5 +17,10 @@ pipeline {
                 echo "this is running from github"
             }
         }
+        stage('Git checkout'){
+            steps{
+                git branch: 'feature_gunjanm', changelog: false, credentialsId: 'ibt', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
     }
 }
