@@ -5,7 +5,8 @@ pipeline {
           stage('Git checkout') {
                steps{
 
-                 git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                 git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url:
+                 'https://github.com/IBT-learning/ibt-maven.git'
                }
 
           }
@@ -64,22 +65,24 @@ pipeline {
                            stage('Upload to Artifactory'){
                                    steps{
                                        withMaven(maven: 'maven_3.8') {
-                                          withCredentials([file(credentialsId: 'mvn_settings_gunj', variable: 'mvn_settings_gunjan')]) {
-                                              sh 'mvn deploy -s $mvn_settings_gunjan'
+                                          withCredentials([file(credentialsId: 'mvn_settings_rizme',
+                                          variable: 'mvn_settings_rizme')]) {
+                                              sh 'mvn deploy -s $mvn_settings_rizme'
                                           }
                                    }
                                 }
                                }
-                                stage('Upload to Artifactory (configFile)'){
-                                       steps{
-                                           withMaven(maven: 'maven_3.8') {
-                                              configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_manged', variable: 'mvn_settings_manged')]) {
-                                                  sh 'mvn deploy -s $mvn_settings_manged'
+                 stage('Upload to Artifactory (configFile)'){
+                    steps{
+                      withMaven(maven: 'maven_3.8') {
+                        configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation:
+                        variable: 'mvn_settings_rizme')]) {
+                               sh 'mvn deploy -s $mvn_settings_manged'
 
-                                               }
-                                           }
-                                       }
-                                 }
+                        }
+                      }
+                    }
+                 }
  stage('Install Tomcat using playboook'){
         steps{
                 ansiblePlaybook(
@@ -100,7 +103,8 @@ pipeline {
         steps{
             script{
                 def remote = [name: 'Dev' , host: '159.203.26.137', allowAnyHosts: true]
-                withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password',
+                usernameVariable: 'username')]) {
                     remote.user = username
                     remote.password = password
                  sshPut remote: remote, from: 'target/ibt-maven-1.4-SNAPSHOT.jar', into: '/opt/tomcat/apps'
