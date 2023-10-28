@@ -22,5 +22,10 @@ pipeline {
                 git branch: 'feature_gunjanm', changelog: false, credentialsId: 'ibt', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage('list files'){
+            steps{
+                sh 'ls -lrt'
+            }
+        }
     }
 }
