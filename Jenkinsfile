@@ -19,7 +19,7 @@ pipeline {
                               }
                 stage('Window dir command') {
                                  steps{
-                                        bat 'dir /o-d /t-w'
+                                        sh 'ls -lrt'
                                  }
                               }
     }
