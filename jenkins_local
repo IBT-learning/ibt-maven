@@ -57,7 +57,7 @@ pipeline {
                   stage('Upload to Artifactory'){
                       steps{
                           withMaven(maven: 'maven_3.8') {
-                                withCredentials([file(credentialsId: 'mvn_settings_riz', variable: 'mvn_settings_rizme')]) {
+                                withCredentials([file(credentialsId: 'riz_jenkens', variable: 'mvn_setting_amal')]) {
 
                                   sh 'mvn deploy -s $mvn_settings_rizme'
                               }
