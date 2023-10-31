@@ -4,7 +4,7 @@ agent any
 stages {
     stage ('Git Checkout') {
         steps{
-            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-rizme']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/riz_jenken']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
         }
     }
     stage ('Validate'){
