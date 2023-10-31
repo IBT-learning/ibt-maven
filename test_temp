@@ -75,8 +75,8 @@ pipeline {
                  stage('Upload to Artifactory (configFile)'){
                     steps{
                       withMaven(maven: 'maven_3.8') {
-                        configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation:
-                        variable: 'mvn_settings_rizme')]) {
+                       configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_m
+                       sh 'mvn deploy -s $mvn_settings_managed'
                                sh 'mvn deploy -s $mvn_settings_manged'
 
                         }

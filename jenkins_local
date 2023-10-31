@@ -17,7 +17,7 @@ pipeline {
                         sh 'mvn validate'
                     }
                 }
-            }
+           }
               stage('Compile'){
                  steps{
                      withMaven(maven: 'maven_3.8') {
@@ -34,22 +34,23 @@ pipeline {
              }
 
                stage('SonarQube Analysis'){
-                      environment{
+                    environment{
                           sonarScan = tool 'ibt-sonarqube_4.8'
-                      }
-                      steps{
+
+                        steps{
                           withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
                               sh "${env.sonarScan}/bin/sonar-scanner"
                           }
                       }
-                  }
+                    }
+               }
                                stage('Package'){
-                                              steps{
+                                           steps{
                                                   withMaven(maven: 'maven_3.8') {
                                                       sh 'mvn package'
                                               }
                                           }
-                                      }
+                                }
                                            stage('Dynamic Scan'){
                                                    steps{
                                                        dependencyCheck additionalArguments: '''
@@ -72,16 +73,16 @@ pipeline {
                                  }
                           }
                     stage('Upload to Artifactory (configFile)'){
-                                                     steps{
-                                                         withMaven(maven: 'maven_3.8') {
-                                                            configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_manage', variable: 'mvn_settings_manage')]) {
+                           steps{
+                               withMaven(maven: 'maven_3.8') {
+                                    configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_manage', variable: 'mvn_settings_manage')]) {
 
 
-                                                                 sh 'mvn deploy -s $mvn_settings_manage'
-                                                            }
+                                                  sh 'mvn deploy -s $mvn_settings_manage'
+                                    }
 
-                                                         }
-                                                     }
+                               }
+                            }
                     }
         }
 
