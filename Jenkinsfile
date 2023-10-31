@@ -4,8 +4,8 @@ pipeline {
         stages{
           stage('Git checkout') {
                steps{
+                   git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
 
-                 git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
                }
 
           }
