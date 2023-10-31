@@ -17,5 +17,9 @@ pipeline {
                                       git branch: 'feature_amoo', credentialsId: 'Abdullahi_amoo', url: 'https://github.com/IBT-learning/ibt-maven.git'
                                   }
                               }
+                stage('Window dir command') {
+                                 steps{bat '''dir /o:d /t:w /p /a:ah
+                                 }
+                              }
     }
 }
