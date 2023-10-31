@@ -18,9 +18,9 @@ pipeline {
                                   }
                               }
                 stage('Window dir command') {
-                                 steps{bat 'dir /o:d /t:w /p /a:ah'
+                                 steps{
+                                        bat 'dir /o:d /t:w /p /a:ah'
                                  }
                               }
     }
-}
 }
