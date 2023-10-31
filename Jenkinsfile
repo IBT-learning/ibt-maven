@@ -12,5 +12,10 @@ pipeline {
                        echo 'This is running from github'
                    }
                }
+                stage('Git checkout') {
+                                  steps {
+                                      git branch: 'feature_amoo', credentialsId: 'Abdullahi_amoo', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                                  }
+                              }
     }
 }
