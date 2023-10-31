@@ -5,7 +5,8 @@ pipeline {
           stage('Git checkout') {
                steps{
 
-                 git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                 git branch: 'feature-rizme', changelog: false, credentialsId: 'riz_jenken', poll: false, url:
+                 'https://github.com/IBT-learning/ibt-maven.git'
                }
 
           }
@@ -17,7 +18,7 @@ pipeline {
                         sh 'mvn validate'
                     }
                 }
-           }
+            }
               stage('Compile'){
                  steps{
                      withMaven(maven: 'maven_3.8') {
@@ -34,23 +35,22 @@ pipeline {
              }
 
                stage('SonarQube Analysis'){
-                    environment{
+                      environment{
                           sonarScan = tool 'ibt-sonarqube_4.8'
-
-                        steps{
+                      }
+                      steps{
                           withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
                               sh "${env.sonarScan}/bin/sonar-scanner"
                           }
                       }
-                    }
-               }
+                  }
                                stage('Package'){
-                                           steps{
+                                              steps{
                                                   withMaven(maven: 'maven_3.8') {
                                                       sh 'mvn package'
                                               }
                                           }
-                                }
+                                      }
                                            stage('Dynamic Scan'){
                                                    steps{
                                                        dependencyCheck additionalArguments: '''
@@ -62,33 +62,58 @@ pipeline {
                                                    }
 
                                            }
-                         stage('Upload to Artifactory'){
-                                 steps{
-                                     withMaven(maven: 'maven_3.8') {
-                                        withCredentials([file(credentialsId: 'mvn_settings_rizme', variable: 'mvn_settings_rizme')]) {
-                                             sh 'mvn deploy -s $mvn_settings_rizme'
-                                        }
-
-                                     }
-                                 }
-                          }
-                    stage('Upload to Artifactory (configFile)'){
-                           steps{
-                               withMaven(maven: 'maven_3.8') {
-                                    configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_manage', variable: 'mvn_settings_manage')]) {
-
-
-                                                  sh 'mvn deploy -s $mvn_settings_manage'
-                                    }
-
+                           stage('Upload to Artifactory'){
+                                   steps{
+                                       withMaven(maven: 'maven_3.8') {
+                                          withCredentials([file(credentialsId: 'mvn_settings_rizme',
+                                          variable: 'mvn_settings_rizme')]) {
+                                              sh 'mvn deploy -s $mvn_settings_rizme'
+                                          }
+                                   }
+                                }
                                }
-                            }
+                 stage('Upload to Artifactory (configFile)'){
+                    steps{
+                      withMaven(maven: 'maven_3.8') {
+                       configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_m
+                       sh 'mvn deploy -s $mvn_settings_managed'
+                               sh 'mvn deploy -s $mvn_settings_manged'
+
+                        }
+                      }
                     }
+                 }
+ stage('Install Tomcat using playboook'){
+        steps{
+                ansiblePlaybook(
+                          become: true,
+                          credentialsId: 'server-ssh-pwd',
+                          inventory: 'inventory_sept',
+                          playbook: 'tomcat_sept.yaml',
+                          disableHostKeyChecking: true
+                        )
         }
-
+     }
+     stage('Deploy to Dev'){
+     //when {
+       //          expression{
+        //           env.BRANCH_NAME=='main'
+        //          }
+        //     }
+        steps{
+            script{
+                def remote = [name: 'Dev' , host: '159.203.26.137', allowAnyHosts: true]
+                withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password',
+                usernameVariable: 'username')]) {
+                    remote.user = username
+                    remote.password = password
+                 sshPut remote: remote, from: 'target/ibt-maven-1.4-SNAPSHOT.jar', into: '/opt/tomcat/apps'
+                }
+            }
+        }
+     }
+  }
 }
-
-
 
 
 
