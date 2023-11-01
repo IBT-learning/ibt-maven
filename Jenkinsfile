@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Hi') {
             steps {
-                echo 'Hello'
+                echo 'Hello this is abraham'
             }
         }
         stage('Hiiii') {
                     steps {
-                        echo 'Hello'
+                        echo 'this is running from github'
                     }
                 }
     }
