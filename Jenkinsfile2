@@ -12,6 +12,10 @@ pipeline {
                 echo 'Hey this is Ros!'
             }
         }
-        stage('How')
+        stage('trying jenkinsfile'){
+            steps{
+                echo "this is running from github"
+            }
+        }
     }
 }
