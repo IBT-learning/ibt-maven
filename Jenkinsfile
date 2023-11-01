@@ -20,11 +20,16 @@ pipeline {
         stage('Git checkout'){
             steps{
                 git branch: 'feature_gunjanm', changelog: false, credentialsId: 'ibt', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                sh 'ls -lrt'
             }
         }
         stage('list files'){
             steps{
-                sh 'ls -lrt'
+                sh '''
+                ls -lrt
+                pwd
+                who
+                '''
             }
         }
     }
