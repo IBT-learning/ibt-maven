@@ -41,7 +41,7 @@ pipeline {
        stage('parameter'){
        when {
         expression{
-            $BRANCH_NAME=='main'
+            env.BRANCH_NAME=='main'
         }
        }
         steps{
