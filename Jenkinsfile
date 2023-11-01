@@ -7,15 +7,15 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('Hi') {
+        stage('Hey') {
             steps {
-                echo 'Hello'
+                echo 'Hey this is Ros!'
             }
         }
-        stage('Hiiii') {
-                    steps {
-                        echo 'Hello'
-                    }
-                }
+        stage('How') {
+            steps {
+                echo 'How are you doing?'
+            }
+        }
     }
 }

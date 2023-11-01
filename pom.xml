@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>2.9-SNAPSHOT</version>
+  <version>1.9-SNAPSHOT</version>
 
   <name>surafel</name>
   <!-- FIXME change it to the project's website -->
