@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Compile'){
         steps{
-            she 'mvn -version'
+            sh 'mvn -version'
             sh 'mvn compile'
         }
     }
