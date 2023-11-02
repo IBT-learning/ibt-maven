@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters{
        string(name: 'USER_NAME', defaultValue: 'Morel Sami', description: 'User Introduction')
-       string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git target branch'
+       string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git target branch')
     }
 
     stages {
