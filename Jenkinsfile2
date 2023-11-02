@@ -8,7 +8,7 @@ pipeline {
 
     environment{
         version = '2.3'
-        db_name = sql
+        db_name = 'sql'
     }
     stages {
         stage('Hello') {
