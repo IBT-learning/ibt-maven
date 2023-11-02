@@ -5,6 +5,11 @@ pipeline {
         string(name: 'Branch_Name', defaultValue: 'main', description: 'Which branch to build on')
         choice(name: 'Choices', choices: ['one', 'two', 'three'], description: 'Choose your number')
     }
+
+    environment{
+        version = '2.3'
+        db_name = sql
+    }
     stages {
         stage('Hello') {
             steps {
@@ -19,6 +24,9 @@ pipeline {
         stage('Trying Jenkinsfile'){
             steps{
                 echo "this is running from github"
+                echo '${env.db_version}'
+                echo '${env.db_name}'
+                echo '${env.version}'
             }
         }
         stage('Git Checkout'){
@@ -46,6 +54,19 @@ pipeline {
             steps{
                 sh 'echo $Choices'
             }
+        }
+        stage('env variable'){
+            environment{
+                db_version = '5.6'
+            }
+            steps{
+                echo '${env.db.version}'
+                sh 'echo $db_version'
+                script{
+                    print env.db_version
+                }
+            }
+
         }
     }
 }
