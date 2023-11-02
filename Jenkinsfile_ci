@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment{
-        DOMAIN: 'IBT-Jenkins'
+        domain = 'IBT-Jenkins'
     }
 
     tool name: 'maven_3.9.3', type: 'maven'
@@ -22,7 +22,7 @@ pipeline {
         stage('Build job details') {
             steps {
                 echo 'Current job details ...'
-                sh   'echo $env.DOMAIN'
+                sh   'echo $env.domain'
                 echo '($JOB_NAME) - ($BUILD_NUMBER)'
                 sh   'echo $JOB_DISPLAY_URL'
             }
