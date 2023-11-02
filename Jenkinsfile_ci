@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters{
        string(name: 'USER_NAME', defaultValue: 'Morel Sami', description: 'User Introduction')
-       string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git target branch')
+       string(name: 'BRANCH_NAME', defaultValue: 'feature-smorel', description: 'Git target branch')
     }
 
     environment{
@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Git checkout') {
             steps {
-                echo 'Into new branch ($BRANCH_NAME) ...'
+                sh  'echo Into new branch $BRANCH_NAME ...'
                 git branch: '$BRANCH_NAME', credentialsId: 'smorel_git_account', url: 'https://github.com/IBT-learning/ibt-maven.git'
                 sh 'ls -lsrt src'
                 sh 'cat src/main/java/com/ibt/app/App.java'
