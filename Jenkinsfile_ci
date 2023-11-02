@@ -35,8 +35,8 @@ tools {
           }
      stage('upload to artifactory'){
                steps{
-                       withCredentials([file(credentialsId: 'mvn_settings_gunj', variable: 'mvn_settings_gunjan')]) {
-                             sh 'mvn deploy -s $mvn_settings_gunjan'
+                       withCredentials([file(credentialsId: 'mvn_settings_abd', variable: 'mvn_settings_abd')]) {
+                             sh 'mvn deploy -s $mvn_settings_abd'
                                }
                  }
                }
