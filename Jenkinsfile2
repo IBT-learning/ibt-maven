@@ -41,6 +41,7 @@ pipeline {
             when{
                 expression{
                     env.Branch_Name=='main'
+                    }
             }
             steps{
                 sh 'echo $Choices'
