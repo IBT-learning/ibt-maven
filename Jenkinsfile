@@ -22,8 +22,8 @@ pipeline {
                                         sh 'ls -lrt'
                                  }
                               }
-                stage('list files' {
-                     steps{
+                stage('list files') {
+                    steps{
                      sh '''
                      ls -lrt
                      pwd
@@ -34,7 +34,7 @@ pipeline {
                  }
                 }
 
-    }
-   }
-   }
+
+
+
 
