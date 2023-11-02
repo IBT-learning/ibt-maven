@@ -38,6 +38,10 @@ pipeline {
         }
 
         stage('parameter'){
+            when{
+                expression{
+                    $Branch_Name=='main'
+            }
             steps{
                 sh 'echo $Choices'
             }
