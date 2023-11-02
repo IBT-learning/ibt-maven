@@ -9,7 +9,7 @@ pipeline {
         domain = 'IBT-Jenkins'
     }
 
-    tool {
+    tools {
       maven 'maven_3.9.3'
     }
 
