@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Deploy to jFrog artifactory') {
             steps {
-                echo 'Starting artifact deployment ..
+                echo 'Starting artifact deployment ..'
                 configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_ci', variable: 'mvn_settings_ci')]) {
                     sh 'mvn deploy -s $mvn_settings_ci'
                 }
