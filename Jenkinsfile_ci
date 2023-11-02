@@ -19,7 +19,7 @@ tools {
       }
       stage('comiple'){
        steps{
-         she 'mvn -version'
+         sh 'mvn -version'
           sh 'mvn compile'
        }
       }
