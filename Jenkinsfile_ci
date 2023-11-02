@@ -9,9 +9,9 @@ pipeline {
         domain = 'IBT-Jenkins'
     }
 
-    tool name: 'maven_3.9.3', type: 'maven'
-
-
+    tool {
+      maven 'maven_3.9.3'
+    }
 
     stages {
         stage('Greetings') {
