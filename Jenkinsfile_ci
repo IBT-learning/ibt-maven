@@ -23,5 +23,22 @@ tools {
           sh 'mvn compile'
        }
       }
+      stage('test'){
+             steps{
+                sh 'mvn test'
+      }
+    }
+      stage('package'){
+                   steps{
+                      sh 'mvn package'
+            }
+          }
+     stage('upload to artifactory'){
+               steps{
+                       withCredentials([file(credentialsId: 'mvn_settings_gunj', variable: 'mvn_settings_gunjan')]) {
+                             sh 'mvn deploy -s $mvn_settings_gunjan'
+                               }
+                 }
+               }
     }
 }
