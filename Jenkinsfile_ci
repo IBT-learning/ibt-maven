@@ -28,12 +28,9 @@ tools {
                 sh 'mvn test'
       }
     }
-     stage('SCM') {
-         checkout scm
-       }
        stage('SonarQube Analysis') {
         environment{
-          sonarscan = tool 'ibt-sonarqube_4.8'
+          sonarScan = tool 'ibt-sonarqube_4.8'
 
         }
          steps{
