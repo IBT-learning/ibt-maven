@@ -28,7 +28,22 @@ tools {
                 sh 'mvn test'
       }
     }
-      stage('package'){
+     stage('SCM') {
+         checkout scm
+       }
+       stage('SonarQube Analysis') {
+        environment{
+          sonarscan = tool 'ibt-sonarqube_4.8'
+
+        }
+         steps{
+         withSonarQubeEnv(installationName: 'IBT sonarqube',credentialsId: 'student-sonar-token') {
+              sh "${env.sonarScan}/bin/sonar-scanner"
+         }
+         }
+       }
+
+     stage('package'){
                    steps{
                       sh 'mvn package'
             }
