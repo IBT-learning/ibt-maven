@@ -31,7 +31,6 @@ tools {
        stage('SonarQube Analysis') {
         environment{
           sonarScan = tool 'ibt-sonarqube_4.8'
-
         }
          steps{
          withSonarQubeEnv(installationName: 'IBT sonarqube',credentialsId: 'student-sonar-token') {
@@ -45,6 +44,17 @@ tools {
                       sh 'mvn package'
             }
           }
+     stage('vulnerability Scan') {
+      steps{
+            dependencyCheck additionalArguments: '''
+            -o "./"
+            -s "./"
+            -f ".ALL"
+            --prettyPrint''',odcInstallation: 'dependency-check'
+
+            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+      }
+     }
      stage('upload to artifactory'){
                steps{
                        withCredentials([file(credentialsId: 'mvn_settings_abd', variable: 'mvn_settings_abd')]) {
