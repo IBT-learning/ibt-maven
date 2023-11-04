@@ -49,9 +49,8 @@ tools {
             dependencyCheck additionalArguments: '''
             -o "./"
             -s "./"
-            -f ".ALL"
+            -f "ALL"
             --prettyPrint''',odcInstallation: 'dependency-check'
-
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
       }
      }
@@ -62,7 +61,7 @@ tools {
                                }
                  }
                }
-     stage('upload to artifactory (configfile)'){
+     stage('upload to artifactory (configFile)'){
        steps{
        configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
                  sh 'mvn deploy -s $mvn_settings_managed'
