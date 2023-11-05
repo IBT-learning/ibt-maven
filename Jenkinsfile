@@ -12,9 +12,9 @@ pipeline {
                 echo 'Welcome everyone to view my pipeline project'
             }
         }
-        stage('Trying a new jenkins file'{
+        stage('Trying a new jenkins file') {
             steps {
-                echo getting used to jenkins pipeline using script
+                echo 'getting used to jenkins pipeline using script'
             }
         }
 
