@@ -60,7 +60,17 @@ pipeline {
                         echo 'Starting maven package job ...'
                         sh 'mvn package'
                     }
+        }
+        stage('Maven dynamic scan'){
+                steps{
+                    dependencyCheck additionalArguments: '''
+                             -o "./"
+                             -s "./"
+                             -f "ALL"
+                            --prettyPrint ''', odcInstallation: 'dependency-check'
+                     dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                 }
+        }
         stage('Deploy to jFrog artifactory') {
             steps {
                 echo 'Starting artifact deployment ..'
