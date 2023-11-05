@@ -49,9 +49,9 @@ pipeline {
               sonarTool = tool 'smorel-ibt-sonarqube_5.0'
            }
            steps {
-              echo 'Staring code check scan in my ${params.BRANCH_NAME} git branch'
+              sh 'Staring code check scan in my $BRANCH_NAME git branch'
               withSonarQubeEnv(installationName: 'smorel-ibt-sonarqube') {
-                 sh "${sonarTool}/bin/sonar-scanner -Dsonar.projectKey=sada"
+                 sh "${sonarTool}/bin/sonar-scanner -Dsonar.projectKey=sada -Dsonar.sources=."
               }
            }
         }
