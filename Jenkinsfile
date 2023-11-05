@@ -4,18 +4,19 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                echo 'Hello World, This is femi'
             }
         }
-        stage('Hi') {
+         stage('Howdy!') {
             steps {
-                echo 'Hello'
+                echo 'Welcome everyone to view my pipeline project'
             }
         }
-        stage('Hiiii') {
-                    steps {
-                        echo 'Hello'
-                    }
-                }
+        stage('Trying a new jenkins file'{
+            steps {
+                echo getting used to jenkins pipeline using script
+            }
+        }
+        }
     }
 }
