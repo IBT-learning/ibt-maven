@@ -16,14 +16,14 @@ pipeline {
     stages {
         stage('Greetings') {
             steps {
-                echo 'Hello ${USER_NAME} !!'
+                echo 'Hello ${params.USER_NAME} !!'
             }
         }
         stage('Build job details') {
             steps {
                 echo 'Current job details ...'
                 sh   'echo $domain'
-                echo 'Job CI #${env.BUILD_NUMBER}'
+                echo 'Job CI #${BUILD_NUMBER}'
                 sh   'echo $JOB_DISPLAY_URL'
             }
         }
@@ -46,10 +46,10 @@ pipeline {
         }
         stage('Git repo scan') {
            environment {
-              sonarTool = tool 'smorel-ibt-sonarqube-4.8'
+              sonarTool = tool 'smorel-ibt-sonarqube_5.0'
            }
            steps {
-              echo 'Staring code check scan in my ${BRANCH_NAME} git branch'
+              echo 'Staring code check scan in my ${params.BRANCH_NAME} git branch'
               withSonarQubeEnv(installationName: 'smorel-ibt-sonarqube') {
                  sh "${sonarTool}/bin/sonar-scanner -Dsonar.projectKey=sada"
               }
