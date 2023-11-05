@@ -46,11 +46,11 @@ pipeline {
         }
         stage('Git repo scan') {
            environment {
-              sonarTool = tool 'smorel-ibt-sonarqube_5.0'
+              sonarTool = tool 'ibt-sonarqube_4.8'
            }
            steps {
               sh 'echo Staring code check scan in my $BRANCH_NAME git branch'
-              withSonarQubeEnv('smorel-ibt-sonarqube') {
+              withSonarQubeEnv('IBT sonarqube') {
                  sh "${sonarTool}/bin/sonar-scanner"
               }
            }
