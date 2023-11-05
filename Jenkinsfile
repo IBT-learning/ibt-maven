@@ -17,6 +17,6 @@ pipeline {
                 echo getting used to jenkins pipeline using script
             }
         }
-        }
+
     }
 }
