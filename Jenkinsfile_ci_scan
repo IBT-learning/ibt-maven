@@ -51,7 +51,7 @@ pipeline {
            steps {
               sh 'Staring code check scan in my $BRANCH_NAME git branch'
               withSonarQubeEnv(installationName: 'smorel-ibt-sonarqube') {
-                 sh "${sonarTool}/bin/sonar-scanner -Dsonar.projectKey=sada -Dsonar.sources=."
+                 sh "${sonarTool}/bin/sonar-scanner -Dsonar.projectKey=Oct_cohort -Dsonar.sources=."
               }
            }
         }
