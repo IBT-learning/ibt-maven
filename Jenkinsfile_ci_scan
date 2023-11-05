@@ -22,8 +22,8 @@ pipeline {
         stage('Build job details') {
             steps {
                 echo 'Current job details ...'
-                sh   'echo $env.domain'
-                echo 'Job CI #${BUILD_NUMBER}'
+                sh   'echo $domain'
+                echo 'Job CI #${env.BUILD_NUMBER}'
                 sh   'echo $JOB_DISPLAY_URL'
             }
         }
