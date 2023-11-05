@@ -51,7 +51,7 @@ pipeline {
            steps {
               sh 'Staring code check scan in my $BRANCH_NAME git branch'
               withSonarQubeEnv(installationName: 'smorel-ibt-sonarqube') {
-                 sh "${sonarTool}/bin/sonar-scanner"
+                 sh "${env.sonarTool}/bin/sonar-scanner"
               }
            }
         }
@@ -69,5 +69,13 @@ pipeline {
                 }
             }
         }
+    }
+    post {
+       success {
+          echo 'CI Pipeline completed successfully!'
+       }
+       failure {
+          echo 'CI Pipeline failed. Please check the pipeline logs for more details.'
+       }
     }
 }
