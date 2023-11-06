@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hi') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Hello') {
+            steps {
+                echo 'Hi this is chisom'
+            }
+        }
+        stage('trying jenkinsfile1'){
+            steps{
+               echo "this is running from github"
+            }
+        }
+    }
+}
