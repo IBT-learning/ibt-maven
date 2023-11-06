@@ -22,9 +22,13 @@ pipeline {
                 git branch: 'feature_femi', changelog: false, credentialsId: 'git_femi', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
 
             }
-
-
         }
-
+        stage ('list files') {
+            steps {
+                sh 'ls -lrt'
+            }
+        }
     }
 }
+
+
