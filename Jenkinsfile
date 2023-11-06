@@ -17,6 +17,14 @@ pipeline {
                 echo 'getting used to jenkins pipeline using script'
             }
         }
+        stage ('git checkout') {
+            steps {
+                git branch: 'feature_femi', changelog: false, credentialsId: 'git_femi', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+            }
+
+
+        }
 
     }
 }
