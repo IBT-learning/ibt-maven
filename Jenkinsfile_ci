@@ -42,6 +42,16 @@ pipeline{
               sh 'mvn package'
           }
         }
+        stage('Vulnerability Scan'){
+            steps{
+                dependencyCheck addtionalArguments: '''
+                    -o "./"
+                    -s "./"
+                    -f "ALL"
+                    --prettyPrint ''', odcInstallation: 'dependency-check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
         stage('Upload to Artifactory'){
             steps{
                  withCredentials([file(credentialsId: 'mvn_settings_gunjan', variable: 'mvn_setting_ros')]) {
