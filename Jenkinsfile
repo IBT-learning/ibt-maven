@@ -22,5 +22,14 @@ pipeline {
            git branch: 'feature_abem', changelog: false, credentialsId: 'Git_Credentials_abe', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
            }
            }
+           stage('list files') {
+           steps {
+           sh '''
+           ls -lrt
+           pwd
+           who
+           '''
+           }
+           }
     }
 }
