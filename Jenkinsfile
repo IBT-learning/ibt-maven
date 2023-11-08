@@ -5,6 +5,10 @@ pipeline {
     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose your number')
     }
 
+    environments{
+      version = '2.3'
+      db_name = 'sql'
+    }
 
     stages {
         stage('Hello') {
@@ -17,9 +21,12 @@ pipeline {
                 echo 'Hello this is abraham'
             }
         }
-        stage('Hiiii') {
+        stage('trying jenkinsfile') {
                     steps {
                         echo 'this is running from github'
+                        echo '$env.db_version'
+                        echo '$env.db_name'
+                        echo '$env.version'
                     }
                 }
            stage('git checkout') {
@@ -46,5 +53,17 @@ pipeline {
                           sh 'echo $CHOICES'
                        }
                    }
+             stage('env variable'){
+               environment{
+                 db_version = '5.6'
+               }
+              steps{
+                 echo '$env.db_version'
+                 sh 'echo $db_version'
+                 script{
+                   print env.db_version
+                 }
+              }
+             }
     }
 }
