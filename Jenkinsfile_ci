@@ -44,7 +44,7 @@ pipeline{
         }
         stage('Vulnerability Scan'){
             steps{
-                dependencyCheck addtionalArguments: '''
+                dependencyCheck additionalArguments: '''
                     -o "./"
                     -s "./"
                     -f "ALL"
