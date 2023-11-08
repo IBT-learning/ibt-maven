@@ -5,7 +5,7 @@ pipeline {
     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose your number')
     }
 
-    environments{
+    environment{
       version = '2.3'
       db_name = 'sql'
     }
