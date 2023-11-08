@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'WIN_ABD'}
     parameters { string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'which branch to build on')
                  choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose your number')
                 }
