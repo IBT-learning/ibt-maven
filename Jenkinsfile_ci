@@ -75,7 +75,7 @@ tools {
           withCredentials([usernamePassword(credentialsId: 'server-ssh-pwd', passwordVariable: 'password', usernameVariable: 'username')]) {
             remote.user = username
             remote.password = password
-          sshPut remote: remote, from: 'target/ibt-maven-1.55-SNAPSHOT.jar, into:'/opt/tomcat/apache-tomcat-9.0.82/webapps'
+          sshPut remote: remote, from: 'target/ibt-maven-1.55-SNAPSHOT.jar', into:'/opt/tomcat/apache-tomcat-9.0.82/webapps'
 }
         }
        }
