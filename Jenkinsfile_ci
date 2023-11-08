@@ -28,10 +28,10 @@ pipeline{
           }
         }
         stage('SonarQube Analysis Scan'){
-           steps{
              environment{
                sonarScan = tool 'ibt-sonarqube_4.8'
              }
+          steps{
              withSonarQubeEnv(installationName: 'IBT sonarqube', credentialsId: 'student-sonar-token'){
                               sh "${env.sonarScan}/bin/sonar-scanner"
              }
