@@ -66,4 +66,9 @@ pipeline {
               }
              }
     }
+      post{
+         always{
+           echo 'i will run always and say Hello'
+         }
+      }
 }
