@@ -33,11 +33,13 @@ pipeline{
           }
         }
         stage('SonarQube Analysis Scan'){
-            environment{
-                sonarScan = tool 'ibt-sonarqube_4.8'
-            }
-            withSonarQubeEnv(installationName: 'IBT sonarqube', credentialsId: 'student-sonar-token'){
-                sh "${env.sonarScan}/bin/sonar-scanner"
+            steps{
+                environment{
+                    sonarScan = tool 'ibt-sonarqube_4.8'
+                }
+                withSonarQubeEnv(installationName: 'IBT sonarqube', credentialsId: 'student-sonar-token'){
+                     sh "${env.sonarScan}/bin/sonar-scanner"
+                }
             }
         }
         stage('Upload to Artifactory'){
