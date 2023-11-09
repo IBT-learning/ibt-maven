@@ -55,8 +55,8 @@ pipeline {
             }
           }
           stage('env variable'){
-          enviroment{
-          db_verion = '5.6'
+          environment{
+          db_version = '5.6'
 
         }
         steps{
