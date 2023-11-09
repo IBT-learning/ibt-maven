@@ -1,5 +1,10 @@
 pipeline {
     agent any
+          parameters {
+          string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'which branch to build on')
+          choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose your number')
+          }
+
 
     stages {
         stage('Hello') {
@@ -19,7 +24,7 @@ pipeline {
                 }
            stage('git checkout') {
            steps {
-           git branch: 'feature_tojja', changelog: false, credentialsId: 'git_credentials_tojja', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+           git branch: '$BRANCH_NAME', changelog: false, credentialsId: 'git_credentials_tojja', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
            }
            }
          stage('list files') {
@@ -31,5 +36,10 @@ pipeline {
                     '''
                     }
                     }
+          stage('parameter'){
+            steps{
+              sh 'echo $CHOICES'
+            }
+          }
     }
 }
