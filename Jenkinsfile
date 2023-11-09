@@ -22,5 +22,14 @@ pipeline {
            git branch: 'feature_tojja', changelog: false, credentialsId: 'git_credentials_tojja', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
            }
            }
+         stage('list files') {
+                    steps {
+                    sh '''
+                    ls -lrt
+                    pwd
+                    who
+                    '''
+                    }
+                    }
     }
 }
