@@ -25,9 +25,9 @@ pipeline {
         stage('Hiiii') {
                     steps {
                         echo 'this is running from github'
-                        echo '$(env.db_version)'
-                        echo '$(env.db_name)'
-                        echo '$(env.db_version)'
+                        echo '$env.db_version'
+                        echo '$env.db_name'
+                        echo '$env.version'
                     }
                 }
            stage('git checkout') {
@@ -60,7 +60,7 @@ pipeline {
 
         }
         steps{
-        echo '$(env.db_version)'
+        echo '$env.db_version'
         sh 'echo $db_version'
         script{
              print env.db_version
