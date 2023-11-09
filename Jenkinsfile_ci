@@ -24,5 +24,22 @@ pipeline{
                sh 'mvn compile'
           }
       }
+        stage('test'){
+                steps{
+                     sh 'mvn test'
+                }
+            }
+             stage('package'){
+                       steps{
+                            sh 'mvn package'
+                       }
+                   }
+                   stage('upload to Artifactory'){
+                    steps{
+                        withCredentials([file(credentialsId: 'mvn_settings_tojja', variable: 'mvn_settings_tojja')]) {
+                            sh 'mvn deploy -s $mvn_settings_tojja'
+                        }
+                    }
+                   }
       }
 }
