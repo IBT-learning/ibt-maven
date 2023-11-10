@@ -24,7 +24,10 @@ pipeline {
         }
          stage('list files'){
          steps{
-              sh 'ls -lrt'
+              sh '''
+              pwd
+              who
+              '''
           }
          }
         }
