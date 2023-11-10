@@ -80,10 +80,10 @@ pipeline {
                         echo 'Remote SSH to Smorel-dev successful'
 
                         stage ('Artifact deployment init') {
-                             sshPut remote: remote, from: 'target/ibt-maven-2.9.10.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
+                             sshPut remote: remote, from: 'target/ibt-maven-2.9-SNAPSHOT.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
                              sshCommand remote: remote, command: '''
                                   cd /opt/tomcat/apache-tomcat-9.0.82/webapps
-                                  java -cp ibt-maven-2.9.10.jar com.ibt.app/App
+                                  java -cp ibt-maven-2.9-SNAPSHOT.jar com.ibt.app/App
                                   '''
                              echo 'Dev deployment Successful'
                         }
