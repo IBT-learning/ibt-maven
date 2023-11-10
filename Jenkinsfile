@@ -9,13 +9,25 @@ pipeline {
         }
         stage('Hi') {
             steps {
-                echo 'Hello'
+                echo 'Hi this is Chinwe'
             }
         }
-        stage('Hiiii') {
-                    steps {
-                        echo 'Hello'
-                    }
-                }
+        stage('trying jenkinsfile'){
+            steps{
+                 echo 'this is running from github'
+            }
+        }
+        stage('git checkout'){
+             steps{
+                  git branch: 'feature_chinwe', changelog: false, credentialsId: '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', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+         stage('list files'){
+         steps{
+              sh 'ls -lrt'
+          }
+         }
+        }
     }
-}
+
+
