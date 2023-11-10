@@ -62,12 +62,11 @@ pipeline {
                 step
                     echo '${env.db_version}'
                     sh 'echo $db_version'
-                    Script
+                    Script{
                         print env.db_version
                 }
             }
         }
     }
-}
 
 
