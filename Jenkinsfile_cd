@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Dev Connection') {
+            steps {
+                echo 'Starting connection ...'
+            }
+        }
+
+        stage('Deploy to Dev') {
+            steps {
+                script{
+                    def remote = [:]
+                    remote.name = 'smorel-dev'
+                    remote.host = '157.230.86.60'
+                    withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = username
+                        remote.password = password
+                        remote.allowAnyHosts = true
+
+                        echo 'Remote SSH to Smorel-dev successful'
+
+                        stage ('Artifact deployment init') {
+                             sshPut remote: remote, from: 'target/ibt-maven-2.9.10.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
+                             sshCommand remote: remote, command: '''
+                                  cd /opt/tomcat/apache-tomcat-9.0.82/webapps
+                                  java -cp ibt-maven-2.9.10.jar com.ibt.app/App
+                                  '''
+                             echo 'Dev deployment Successful'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Dev Disconnection') {
+            steps {
+                echo 'Server operation complete'
+                echo 'Thank you'
+            }
+        }
+    }
+}

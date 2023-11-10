@@ -1,0 +1,185 @@
+pipeline {
+    agent any
+
+    environment{
+        domain = 'IBT-Jenkins'
+    }
+
+    tools {
+      maven 'maven_3.9.3'
+    }
+
+    stages {
+        stage('Greetings') {
+            steps {
+                echo 'Hello Gunjan!!'
+                echo 'Please check my Jenkins CICD Assignment'
+            }
+        }
+        stage('Build job details') {
+            steps {
+                echo 'Current job details ...'
+                sh   'echo $domain'
+                echo 'Job CI #${BUILD_NUMBER}'
+                sh   'echo $JOB_DISPLAY_URL'
+            }
+        }
+        stage('Git checkout') {
+            steps {
+                sh  'echo Into new branch feature-smorel ...'
+                git branch: 'feature-smorel', credentialsId: 'smorel_git_account', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                sh 'ls -lsrt src'
+                sh 'cat src/main/java/com/ibt/app/App.java'
+                echo 'all good.'
+            }
+        }
+        stage('Maven build job CI') {
+            steps {
+                echo 'Starting maven build job ...'
+                sh 'mvn validate'
+                sh 'mvn compile'
+                sh 'mvn test'
+            }
+        }
+        stage('Git repo scan') {
+           environment {
+              sonarTool = tool 'ibt-sonarqube_4.8'
+           }
+           steps {
+              sh 'echo Staring code check scan in my [feature-smorel] git branch'
+              withSonarQubeEnv('IBT sonarqube') {
+                 sh "${sonarTool}/bin/sonar-scanner"
+              }
+           }
+        }
+        stage('Maven package') {
+            steps {
+                echo 'Starting maven package job ...'
+                sh 'mvn package'
+            }
+        }
+        stage('Maven dynamic scan'){
+            steps{
+                dependencyCheck additionalArguments: '''
+                         -o "./"
+                         -s "./"
+                         -f "ALL"
+                        --prettyPrint ''', odcInstallation: 'dependency-check'
+                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+        stage('Deploy to jFrog artifactory') {
+            steps {
+                echo 'Starting artifact deployment ..'
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_ci', variable: 'mvn_settings_ci')]) {
+                    sh 'mvn deploy -s $mvn_settings_ci'
+                }
+            }
+        }
+
+        stage('Deploy to Dev') {
+            steps {
+                script{
+                    def remote = [:]
+                    remote.name = 'smorel-dev'
+                    remote.host = '67.205.130.62'
+                    withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = username
+                        remote.password = password
+                        remote.allowAnyHosts = true
+
+                        echo 'Remote SSH to Smorel-dev successful'
+
+                        stage('JVM Installation ...') {
+                            sshCommand remote: remote, command: '''
+                                    sudo apt update
+                                    sudo apt install -y default-jdk
+                                    java --version
+                                    '''
+                            echo 'JVM Installation Successful'
+                        }
+
+                        stage('Tomcat Server Installation ...') {
+                            sshCommand remote: remote, command: '''
+                                    sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat
+                                    wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
+                                    cp apache-tomcat-9.0.82.tar.gz /opt/tomcat/
+                                    cd /opt/tomcat
+                                    tar -xvf apache-tomcat-9.0.82.tar.gz
+                                    sudo chown -R tomcat:/opt/tomcat/*
+                                    cd apache-tomcat-9.0.82/bin
+                                    ./startup.sh
+                                    sudo ufw allow 8080/tcp
+                                    '''
+                            echo 'Tomcat Apache Server installation successful'
+                        }
+                        stage ('Artifact deployment init') {
+                             sshPut remote: remote, from: 'target/ibt-maven-2.9.10.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
+                             sshCommand remote: remote, command: '''
+                                  cd /opt/tomcat/apache-tomcat-9.0.82/webapps
+                                  java -cp ibt-maven-2.9.10.jar com.ibt.app/App
+                                  '''
+                             echo 'Dev deployment Successful'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy to Prod') {
+            steps {
+                script{
+                    def remote = [:]
+                    remote.name = 'smorel-prod'
+                    remote.host = '67.205.130.62'
+                    withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
+                        remote.user = username
+                        remote.password = password
+                        remote.allowAnyHosts = true
+
+                        echo 'Remote SSH to smorel-prod successful'
+
+                        stage('JVM Installation ...') {
+                            sshCommand remote: remote, command: '''
+                                    sudo apt update
+                                    sudo apt install -y default-jdk
+                                    java --version
+                                    '''
+                            echo 'JVM Installation Successful'
+                        }
+
+                        stage('Tomcat Server Installation ...') {
+                            sshCommand remote: remote, command: '''
+                                    sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat
+                                    wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
+                                    cp apache-tomcat-9.0.82.tar.gz /opt/tomcat/
+                                    cd /opt/tomcat
+                                    tar -xvf apache-tomcat-9.0.82.tar.gz
+                                    sudo chown -R tomcat:/opt/tomcat/*
+                                    cd apache-tomcat-9.0.82/bin
+                                    ./startup.sh
+                                    sudo ufw allow 8080/tcp
+                                    '''
+                            echo 'Tomcat Apache Server installation successful'
+                        }
+                        stage ('Artifact deployment init') {
+                             sshPut remote: remote, from: 'target/ibt-maven-2.9.10.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
+                             sshCommand remote: remote, command: '''
+                                  cd /opt/tomcat/apache-tomcat-9.0.82/webapps
+                                  java -cp ibt-maven-2.9.10.jar com.ibt.app/App
+                                  '''
+                             echo 'Prod deployment Successful'
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+       success {
+          echo 'CI/CD  Pipeline completed successfully!'
+       }
+       failure {
+          echo 'CI/CD Pipeline failed. Please check the pipeline logs for more details.'
+       }
+    }
+}
