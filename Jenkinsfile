@@ -39,6 +39,11 @@ pipeline {
         }
 
         stage('parameter'){
+        when{
+          expression{
+                $BRANCH_NAME=='main'
+          }
+        }
             steps{
                 sh 'echo $CHOICES'
             }
