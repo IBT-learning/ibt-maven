@@ -6,9 +6,10 @@ pipeline {
      choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose your number')
      }
 
-     environment
+     environment{
            version = '3.1'
            db_name = 'sql'
+     }
 
     stages {
         stage('Hello') {
@@ -57,9 +58,9 @@ pipeline {
             }
             stage ('env variable'){
                 environment{
-                    db_version = 5.6
+                    db_version = '5.6'
                 }
-                step
+                step{
                     echo '${env.db_version}'
                     sh 'echo $db_version'
                     script{
