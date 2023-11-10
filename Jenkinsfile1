@@ -23,8 +23,9 @@ pipeline {
             }
         }
         stage('list files'){
-            steps{}
+            steps{
                 sh 'ls -lrt'
+               }
             }
         }
     }
