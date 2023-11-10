@@ -12,7 +12,7 @@ pipeline{
         stage('Validate'){
             steps{
               withMaven(maven: 'maven_3.9.3'){
-              sh 'mvn validate'
+                sh 'mvn validate'
               }
             }
         }
@@ -33,7 +33,7 @@ pipeline{
              }
           steps{
              withSonarQubeEnv(installationName: 'IBT sonarqube', credentialsId: 'student-sonar-token'){
-                              sh "${env.sonarScan}/bin/sonar-scanner"
+                sh "${env.sonarScan}/bin/sonar-scanner"
              }
            }
         }
