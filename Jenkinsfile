@@ -65,6 +65,7 @@ pipeline {
                     sh 'echo $db_version'
                     script{
                         print env.db_version
+                    }
                 }
             }
         }
