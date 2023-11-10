@@ -114,10 +114,10 @@ pipeline {
                             echo 'Tomcat Apache Server installation successful'
                         }
                         stage ('Artifact deployment init') {
-                             sshPut remote: remote, from: 'target/ibt-maven-2.9.10.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
+                             sshPut remote: remote, from: 'target/ibt-maven-2.9-SNAPSHOT.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
                              sshCommand remote: remote, command: '''
                                   cd /opt/tomcat/apache-tomcat-9.0.82/webapps
-                                  java -cp ibt-maven-2.9.10.jar com.ibt.app/App
+                                  java -cp ibt-maven-2.9-SNAPSHOT.jar com.ibt.app/App
                                   '''
                              echo 'Dev deployment Successful'
                         }
@@ -125,6 +125,26 @@ pipeline {
                 }
             }
         }
+        stage('Approval required for next step'){
+            steps{
+                script{
+                        def isContinue=input(
+                                id: 'prod-deploy',
+                                message: "Continue artifact deployment to [Prod] server?",
+                                parameters: [
+                                 [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this deployment']
+                                ])
+                        echo "Is approved ? : ${isContinue}"
+                        if(isContinue) {
+                            echo "Prod deployment coming up ..."
+                        } else {
+                            currentBuild.result = 'FAILURE'
+                            echo "Request to deploy denied!"
+                        }
+                }
+            }
+        }
+
         stage('Deploy to Prod') {
             steps {
                 script{
@@ -162,12 +182,12 @@ pipeline {
                             echo 'Tomcat Apache Server installation successful'
                         }
                         stage ('Artifact deployment init') {
-                             sshPut remote: remote, from: 'target/ibt-maven-2.9.10.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
+                             sshPut remote: remote, from: 'target/ibt-maven-2.9-SNAPSHOT.jar', into: '/opt/tomcat/apache-tomcat-9.0.82/webapps'
                              sshCommand remote: remote, command: '''
                                   cd /opt/tomcat/apache-tomcat-9.0.82/webapps
-                                  java -cp ibt-maven-2.9.10.jar com.ibt.app/App
+                                  java -cp ibt-maven-2.9-SNAPSHOT.jar com.ibt.app/App
                                   '''
-                             echo 'Prod deployment Successful'
+                             echo 'Dev deployment Successful'
                         }
                     }
                 }
