@@ -1,10 +1,68 @@
 pipeline {
     agent any
 
+    environment{
+            domain = 'IBT-Jenkins'
+        }
+
+        tools {
+          maven 'maven_3.9.3'
+        }
+
     stages {
-        stage('Dev Connection') {
+        stage('Greetings') {
             steps {
-                echo 'Starting connection ...'
+                echo 'Hello Morel Sami !!'
+            }
+        }
+        stage('Build job details') {
+            steps {
+                echo 'Current job details ...'
+                sh   'echo $domain'
+                echo 'Job CI #${BUILD_NUMBER}'
+                sh   'echo $JOB_DISPLAY_URL'
+            }
+        }
+        stage('Git checkout') {
+            steps {
+                sh  'echo Into new branch [feature-smorel] ...'
+                git branch: 'feature-smorel', credentialsId: 'smorel_git_account', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                sh 'ls -lsrt src'
+                sh 'cat src/main/java/com/ibt/app/App.java'
+                echo 'all good'
+            }
+        }
+        stage('Maven build job CI') {
+            steps {
+                echo 'Starting maven build job ...'
+                sh 'mvn validate'
+                sh 'mvn compile'
+                sh 'mvn test'
+            }
+        }
+        stage('Git repo scan') {
+           environment {
+              sonarTool = tool 'ibt-sonarqube_4.8'
+           }
+           steps {
+              sh 'echo Staring code check scan in the feature-smorel git branch'
+              withSonarQubeEnv('IBT sonarqube') {
+                 sh "${sonarTool}/bin/sonar-scanner"
+              }
+           }
+        }
+        stage('Maven package') {
+                    steps {
+                        echo 'Starting maven package job ...'
+                        sh 'mvn package'
+                    }
+                }
+        stage('Deploy to jFrog artifactory') {
+            steps {
+                echo 'Starting artifact deployment ..'
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_ci', variable: 'mvn_settings_ci')]) {
+                    sh 'mvn deploy -s $mvn_settings_ci'
+                }
             }
         }
 
