@@ -82,7 +82,7 @@ pipeline {
                 script{
                     def remote = [:]
                     remote.name = 'smorel-dev'
-                    remote.host = '67.205.130.62'
+                    remote.host = '137.184.28.254'
                     withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = username
                         remote.password = password
@@ -150,7 +150,7 @@ pipeline {
                 script{
                     def remote = [:]
                     remote.name = 'smorel-prod'
-                    remote.host = '67.205.130.62'
+                    remote.host = '137.184.152.223'
                     withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = username
                         remote.password = password
