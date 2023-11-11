@@ -19,7 +19,7 @@ pipeline {
         }
     }
     stage('Compile'){
-        step{
+        steps{
             sh 'mvn -version'
             sh 'mvn compile'
         }
