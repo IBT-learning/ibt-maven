@@ -81,9 +81,10 @@ pipeline {
             steps {
                 script{
                     def remote = [:]
-                     configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_host')]) {
-                        remote.name = remote_host.dev.name
-                        remote.host = remote_host.dev.ip
+                     configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
+                        def config = readJSON file: remote_config
+                        remote.name = config['dev']['name']
+                        remote.host = config['dev']['ip']
                      }
                     withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = username
@@ -151,9 +152,10 @@ pipeline {
             steps {
                 script{
                     def remote = [:]
-                    configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_host')]) {
-                       remote.name = remote_host.prod.name
-                       remote.host = remote_host.prod.ip
+                    configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
+                       def config = readJSON file: remote_config
+                       remote.name = config['prod']['name']
+                       remote.host = config['prod']['ip']
                     }
                     withCredentials([usernamePassword(credentialsId: 'digital-smorel-server-id', passwordVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = username
