@@ -29,6 +29,15 @@ pipeline {
             sh 'mvn test'
         }
     }
+    stage('SonarQube Analysis'){
+        environment{
+            sonarscan = tool 'ibt-sonarqube_4.8'
+        }
+        steps{
+            withSonarQubeEnv(installationName: 'IBT sonarqube', credentialsId: 'student-sonar-token') {
+                sh "${env.sonarScan}"/bin/sonar-scanner"
+        }
+    }
     stage('Package'){
          steps{
             sh 'mvn package'
@@ -44,7 +53,7 @@ pipeline {
       stage ('upload to Artifactory (configfile)'){
         steps{
             configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
-                sh 'mvn deploy -s $mvn_settings_managed'
+               sh 'mvn deploy -s $mvn_settings_managed'
             }
         }
       }
