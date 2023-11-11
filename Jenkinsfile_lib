@@ -1,3 +1,4 @@
+@Library('smorel-jenkins-lib')_
 pipeline {
     agent any
     parameters{
