@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tool{
+        maven 'maven_3.0.1'
+    }
+
     stages{
     stage('Git checkout'){
         steps{
@@ -14,6 +18,11 @@ pipeline {
             }
         }
     }
-
+    stage('Compile'){
+        step{
+            sh 'mvn -version'
+            sh 'mvn compile'
+        }
+    }
     }
 }
