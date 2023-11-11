@@ -1,0 +1,117 @@
+@Library('smorel-jenkins-lib')_
+pipeline {
+    agent any
+    parameters{
+       string(name: 'USER_NAME', defaultValue: 'Morel Sami', description: 'User Introduction')
+       string(name: 'BRANCH_NAME', defaultValue: 'feature-smorel', description: 'Git target branch')
+    }
+
+    environment{
+        domain = 'IBT-Jenkins'
+    }
+
+    tools {
+      maven 'maven_3.9.3'
+    }
+
+    stages {
+        stage('Greetings') {
+            steps {
+                echo 'Hello ${params.USER_NAME} !!'
+            }
+        }
+        stage('Build job details') {
+            steps {
+                echo 'Current job details ...'
+                sh   'echo $domain'
+                echo 'Job CI #${BUILD_NUMBER}'
+                sh   'echo $JOB_DISPLAY_URL'
+            }
+        }
+        stage('Git checkout') {
+            steps {
+                sh  'echo Into new branch $BRANCH_NAME ...'
+                git branch: '$BRANCH_NAME', credentialsId: 'smorel_git_account', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                sh 'ls -lsrt src'
+                sh 'cat src/main/java/com/ibt/app/App.java'
+                echo 'all good'
+            }
+        }
+        stage('Maven build job CI') {
+            steps {
+                echo 'Starting maven build job ...'
+                sh 'mvn validate'
+                sh 'mvn compile'
+                sh 'mvn test'
+            }
+        }
+        stage('Git repo scan') {
+           steps {
+              sonarScan()
+           }
+        }
+        stage('Maven package') {
+           steps {
+               echo 'Starting maven package job ...'
+               sh 'mvn package'
+           }
+         }
+         stage('Maven dynamic scan'){
+            steps{
+                DependencyCheck()
+            }
+         }
+        stage('Deploy to jFrog artifactory') {
+            steps {
+                echo 'Starting artifact deployment ..'
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_ci', variable: 'mvn_settings_ci')]) {
+                    sh 'mvn deploy -s $mvn_settings_ci'
+                }
+            }
+        }
+        stage('Deploy to Dev') {
+            steps {
+               configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'REMOTE_HOST')]) {
+                     tomcatInstall(node = $remote_host.dev
+                     artifactDeploy(node = $remote_host.dev
+               }
+
+            }
+        }
+        stage('Approval required for next step'){
+            steps{
+                script{
+                        def isContinue=input(
+                                id: 'prod-deploy',
+                                message: "Continue artifact deployment to [Prod] server?",
+                                parameters: [
+                                 [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this deployment']
+                                ])
+                        echo "Is approved ? : ${isContinue}"
+                        if(isContinue) {
+                            echo "Prod deployment coming up ..."
+                        } else {
+                            currentBuild.result = 'FAILURE'
+                            echo "Request to deploy denied!"
+                        }
+                }
+            }
+        }
+        stage('Deploy to Prod') {
+            steps {
+                 configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_host')]) {
+                           tomcatInstall(node = $remote_host.prod
+                           artifactDeploy(node = $remote_host.prod
+                 }
+            }
+        }
+    }
+    post {
+       success {
+          echo 'CI Pipeline completed successfully!'
+       }
+       failure {
+          echo 'CI Pipeline failed. Please check the pipeline logs for more details.'
+       }
+    }
+}
