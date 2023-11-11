@@ -31,11 +31,12 @@ pipeline {
     }
     stage('SonarQube Analysis'){
         environment{
-            sonarScan = tool 'ibt-sonarqube_4.8'
+        sonarScan = tool 'ibt-sonarqube_4.8'
         }
         steps{
             withSonarQubeEnv(installationName: 'IBT sonarqube', credentialsId: 'student-sonar-token') {
-                sh "${env.sonarScan}/bin/sonar-scanner"
+                        sh "${env.sonarScan}/bin/sonar-scanner"
+            }
         }
     }
     stage('Package'){
@@ -45,11 +46,11 @@ pipeline {
       }
       stage('upload to Artifactory'){
        steps{
-            withCredentials([file(credentialsId: '3abdf6f0-9287-45fd-920b-95f6282cfbae', variable: 'mvn_settings_chinwe')]) {
-                sh 'mvn deploy -s $mvn_settings_chinwe'
-            }
-      }
-      }
+          withCredentials([file(credentialsId: '3abdf6f0-9287-45fd-920b-95f6282cfbae', variable: 'mvn_settings_chinwe')]) {
+                sh 'mvn deploy -s $mvn_settings_chinwe
+          }
+       }
+    }
       stage ('upload to Artifactory (configfile)'){
         steps{
             configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
