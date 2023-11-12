@@ -1,10 +1,6 @@
-@Library('smorel-jenkins-lib')_
+@Library('smorel-jenkins-lib@feature-smorel-lib')_
 pipeline {
     agent any
-    parameters{
-       string(name: 'USER_NAME', defaultValue: 'Morel Sami', description: 'User Introduction')
-       string(name: 'BRANCH_NAME', defaultValue: 'feature-smorel', description: 'Git target branch')
-    }
 
     environment{
         domain = 'IBT-Jenkins'
@@ -17,7 +13,8 @@ pipeline {
     stages {
         stage('Greetings') {
             steps {
-                echo 'Hello ${params.USER_NAME} !!'
+                echo 'Hello Gunjan!!'
+                echo 'Please check my Jenkins CICD Assignment'
             }
         }
         stage('Build job details') {
@@ -73,12 +70,13 @@ pipeline {
             steps {
                configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
                    def droplet = readJSON file: remote_config
-                   connecToRemote(node = droplet['dev'])
+                   tomcatInstall(node = droplet['dev'])
+                   artifactDeploy(node = droplet['dev'])
                }
 
             }
         }
-        /*stage('Approval required for next step'){
+        stage('Approval required for next step'){
             steps{
                 script{
                         def isContinue=input(
@@ -105,7 +103,7 @@ pipeline {
                          artifactDeploy(node = droplet['prod'])
                  }
             }
-        }*/
+        }
     }
     post {
        success {
