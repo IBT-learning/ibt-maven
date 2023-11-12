@@ -75,8 +75,8 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'server_ssh_pm', passwordVariable: 'password', usernameVariable: 'username')]) {
                 remote.user = username
                 remote.password = password
-            sshPut remote: remote, from: 'target/ibt-maven-3.1-SNAPSHOT.jar', into: 'opt/tomcat/apache-tomcat-9.0.82/webapps'
-            }
+                sshPut remote: remote, from: 'target/ibt-maven-3.1-SNAPSHOT.jar', into: 'opt/tomcat/apache-tomcat-9.0.82/webapps'
+                }
             }
         }
       }
