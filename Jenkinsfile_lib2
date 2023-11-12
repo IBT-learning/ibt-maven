@@ -71,11 +71,12 @@ pipeline {
         }
         stage('Deploy to Dev') {
             steps {
-               configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
-                   def droplet = readJSON file: remote_config
-                   connecToRemote(node = droplet['dev'])
+               script {
+                   configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
+                      def droplet = readJSON file: remote_config
+                      connecToRemote(node = droplet['dev'])
+                   }
                }
-
             }
         }
         /*stage('Approval required for next step'){

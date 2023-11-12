@@ -68,10 +68,12 @@ pipeline {
         }
         stage('Deploy to Dev') {
             steps {
-               configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
-                   def droplet = readJSON file: remote_config
-                   tomcatInstall(node = droplet['dev'])
-                   artifactDeploy(node = droplet['dev'])
+               script {
+                   configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
+                       def droplet = readJSON file: remote_config
+                       tomcatInstall(node = droplet['dev'])
+                       artifactDeploy(node = droplet['dev'])
+                   }
                }
 
             }
@@ -97,10 +99,12 @@ pipeline {
         }
         stage('Deploy to Prod') {
             steps {
-                 configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
-                     def droplet = readJSON file: remote_config
+                 script {
+                     configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
+                         def droplet = readJSON file: remote_config
                          tomcatInstall(node = droplet['prod'])
                          artifactDeploy(node = droplet['prod'])
+                     }
                  }
             }
         }
