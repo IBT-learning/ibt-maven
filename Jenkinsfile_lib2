@@ -74,7 +74,7 @@ pipeline {
                script {
                    configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
                       def droplet = readJSON file: remote_config
-                      connecToRemote(node = droplet['dev'])
+                      connectToRemote(node = droplet['dev'])
                    }
                }
             }
