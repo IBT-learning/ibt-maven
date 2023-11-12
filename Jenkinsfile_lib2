@@ -1,4 +1,4 @@
-@Library('smorel-jenkins-lib')_
+@Library('smorel-jenkins-lib@feature-smorel-lib')_
 pipeline {
     agent any
     parameters{
