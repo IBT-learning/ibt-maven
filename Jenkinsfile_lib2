@@ -102,11 +102,13 @@ pipeline {
         }
         stage('Deploy to Prod') {
             steps {
-                 configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
-                     def droplet = readJSON file: remote_config
-                     connectToRemote(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
-                     tomcatInstall(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
-                     artifactDeploy(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
+                 script{
+                     configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
+                         def droplet = readJSON file: remote_config
+                         connectToRemote(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
+                         tomcatInstall(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
+                         artifactDeploy(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
+                     }
                  }
             }
         }
