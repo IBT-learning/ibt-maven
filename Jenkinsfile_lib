@@ -1,4 +1,5 @@
 @Library('jenkins-library')_
+
 pipeline {
     agent {label 'UX_IBT'}
 
@@ -61,6 +62,5 @@ pipeline {
             }
         }
       }
-
     }
 }
