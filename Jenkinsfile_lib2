@@ -81,7 +81,7 @@ pipeline {
                }
             }
         }
-        /*stage('Approval required for next step'){
+        stage('Approval required for next step'){
             steps{
                 script{
                         def isContinue=input(
@@ -109,7 +109,7 @@ pipeline {
                      artifactDeploy(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
                  }
             }
-        }*/
+        }
     }
     post {
        success {
