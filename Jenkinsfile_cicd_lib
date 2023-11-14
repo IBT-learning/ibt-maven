@@ -13,8 +13,7 @@ pipeline {
     stages {
         stage('Greetings') {
             steps {
-                echo 'Hello Gunjan!!'
-                echo 'Please check my Jenkins CICD Assignment'
+                echo 'Hello ${params.USER_NAME} !!'
             }
         }
         stage('Build job details') {
@@ -70,12 +69,12 @@ pipeline {
             steps {
                script {
                    configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
-                       def droplet = readJSON file: remote_config
-                       tomcatInstall(node = droplet['dev'])
-                       artifactDeploy(node = droplet['dev'])
+                      def droplet = readJSON file: remote_config
+                      connectToRemote(name : droplet['dev']['name'], ip : droplet['dev']['ip'])
+                      tomcatInstall(name : droplet['dev']['name'], ip : droplet['dev']['ip'])
+                      artifactDeploy(name : droplet['dev']['name'], ip : droplet['dev']['ip'])
                    }
                }
-
             }
         }
         stage('Approval required for next step'){
@@ -99,11 +98,12 @@ pipeline {
         }
         stage('Deploy to Prod') {
             steps {
-                 script {
+                 script{
                      configFileProvider([configFile(fileId: 'digital_ocean_droplets', targetLocation: 'droplets-smorel-info', variable: 'remote_config')]) {
                          def droplet = readJSON file: remote_config
-                         tomcatInstall(node = droplet['prod'])
-                         artifactDeploy(node = droplet['prod'])
+                         connectToRemote(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
+                         tomcatInstall(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
+                         artifactDeploy(name : droplet['prod']['name'], ip : droplet['prod']['ip'])
                      }
                  }
             }
