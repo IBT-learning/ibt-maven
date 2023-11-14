@@ -1,7 +1,7 @@
 @Library('jenkins-library')_
 
 pipeline {
-    agent {label 'UX_IBT'}
+    agent any
 
     tools {
             maven 'maven_3.9.3'
@@ -35,7 +35,6 @@ pipeline {
      }
         steps{
              sonarScans()
-
         }
     }
     stage('Package'){
