@@ -26,8 +26,8 @@ pipeline {
         }
         stage('Git checkout') {
             steps {
-                sh  'echo Into new branch $BRANCH_NAME ...'
-                git branch: '$BRANCH_NAME', credentialsId: 'smorel_git_account', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                echo 'Into new branch [feature-smorel] ...'
+                git branch: 'feature-smorel', credentialsId: 'smorel_git_account', url: 'https://github.com/IBT-learning/ibt-maven.git'
                 sh 'ls -lsrt src'
                 sh 'cat src/main/java/com/ibt/app/App.java'
                 echo 'all good'
