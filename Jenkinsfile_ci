@@ -68,6 +68,28 @@ tools {
               }
        }
        }
+        stage('Deploy to Production') {
+                   steps {
+                       script {
+                           // Deploy to production
+                           echo "Deploying to production..."
+
+                           // Ask for user approval
+                           def userInput = input(
+                               id: 'userApproval',
+                               message: 'Do you want to deploy to production?',
+                               parameters: [
+                                   choice(name: 'Proceed', choices: 'Yes', description: 'Approve deployment')
+                               ]
+                           )
+
+                           // Check user input
+                           if (userInput == 'Proceed') {
+                               echo "Deployment approved. Proceeding with deployment..."
+                               // Add deployment steps here
+                           } else {
+                               error "Deployment aborted by user."
+                           }
      stage('Deploy to Devtest') {
       steps{
         script{
