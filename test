@@ -1,0 +1,11 @@
+pipeline{
+stages{
+    stage(){
+    steps{
+
+    }
+    }
+
+}
+
+}

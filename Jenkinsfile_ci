@@ -68,10 +68,20 @@ pipeline {
             }
         }
        }
+       stage('Run Ansible Playbook'){
+        steps{
+                ansiblePlaybook ( become: true,
+                                  credentialsId: 'server_ssh_pwd',
+                                  inventory: 'inventory.txt',
+                                  playbook: 'tomcat.yaml',
+                                  disableHostKeyChecking: true
+                                 )
+        }
+       }
        stage('Deploy to Dev'){
         steps{
             script{
-                def remote = [name: 'dev', host: '68.183.200.199', allowAnyHosts: true]
+                def remote = [name: 'dev', host: '137.184.168.163', allowAnyHosts: true]
                 withCredentials([usernamePassword(credentialsId: 'server-ssh-pwd', passwordVariable: 'password', usernameVariable: 'username')]) {
                     remote.user = username
                     remote.password = password
