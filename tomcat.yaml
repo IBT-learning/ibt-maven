@@ -1,6 +1,6 @@
 -
   name: Tomcat Installation
-  hosts: localhost
+  hosts: webservers
 
   vars:
     tomcat_user: tomcat
