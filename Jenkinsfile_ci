@@ -71,7 +71,7 @@ pipeline {
        stage('Run Ansible Playbook'){
         steps{
                 ansiblePlaybook ( become: true,
-                                  credentialsId: 'server_ssh_pwd',
+                                  credentialsId: 'server-ssh-pwd',
                                   inventory: 'inventory.txt',
                                   playbook: 'tomcat.yaml',
                                   disableHostKeyChecking: true
