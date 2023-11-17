@@ -48,7 +48,7 @@
         state: directory
 
     - name: Start Tomcat Server
-      command: nohup {{ tomcat_path }}/tomcat-9.0.83/bin/startup.sh
+      command: nohup {{ tomcat_path }}/apache-tomcat-9.0.83/bin/startup.sh
 
     - name: Allow TCP connection
       command: sudo ufw allow 8080/tcp
