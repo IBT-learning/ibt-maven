@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages{
+    stage ('Git checkout') {
+        steps{
+            git branch: 'feature_dannybrown317', changelog: false, credentialsId: 'tigadd', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+        }
+        stage('Validate') {
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    sh ' mvn validate'
+    // some block
+}
+            }
+
+        }
+    }    
+    }
+}
