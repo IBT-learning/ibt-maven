@@ -1,10 +1,9 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'branch to build on') }
-    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'branch to build on')
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose your number') }
-
+    }
     stages {
         stage('Hello') {
             steps {
