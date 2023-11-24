@@ -34,9 +34,9 @@ pipeline {
                 pwd
                 who
                 '''
-                }
-
             }
+
+        }
         stage ('parameters') {
             steps {
                 sh 'echo $CHOICES'
