@@ -37,7 +37,7 @@ pipeline {
                 }
 
             }
-        stage ('parameter') {
+        stage ('parameters') {
             steps {
                 sh 'echo $CHOICES'
 
