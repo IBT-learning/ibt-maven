@@ -5,6 +5,6 @@
 - [ ] Update App.java ( hello world - this is **yourname**)
 - [ ] Update pom.xml to new version
 - [ ] Push your changes to your branch 
-- [ ] Generate settings.xml from artifactory or use the one added to the main branch and copy to your local maven repo
-  - if using the settings.xml from repo, ensure to update your encrypted password
+- [ ] Generate settings.xml from artifactory or use the one added to your maven local repo 
 - [ ] Perform mvn commands and push the artifact to Artifactory
+- [ ] Verify your artifact in Artifactory 
