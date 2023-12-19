@@ -36,7 +36,7 @@
     </repository>
     <snapshotRepository>
       <id>central</id>
-      <name>a0n5tucjjiuir-artifactory-primary-0-releases</name>
+      <name>a0n5tucjjiuir-artifactory-primary-0-snapshot</name>
       <url>https://ibt.jfrog.io/artifactory/ibt-libs-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
