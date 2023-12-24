@@ -18,5 +18,10 @@ pipeline {
            git branch: 'feature_sagardhungel', credentialsId: 'Github_cred_sagar', url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
       } //stage 3
-    } // stages
+    stage('List Files'){
+        steps{
+            bat 'dir'
+        }
+    } //Stage 4
+  } //stages
 } //pipeline
