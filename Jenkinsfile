@@ -12,9 +12,9 @@ pipeline {
                 echo 'Hello World'
             }
         } //stage2 end
-        stage('hiya') {
+        stage('Download from Git') {
             steps {
-                echo 'Hello World, Whats up?'
+                git branch: 'main', changelog: false, credentialsId: 'GITHUB_cred_alaskatubbie', poll: false, url: 'https://github.com/Alaskatubbie/nov-cohort.git'
             }
         } //stage3 end
 
