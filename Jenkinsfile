@@ -37,7 +37,7 @@ pipeline {
         }
         stage('list environment var'){
                     steps{
-                        bat 'echo "${version}"'
+                        bat 'echo '$version''
                         bat '''
                             dir
                             cd src
