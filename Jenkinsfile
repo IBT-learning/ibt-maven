@@ -25,16 +25,16 @@ pipeline {
                 git branch: 'feature-conrad', changelog: false, credentialsId: 'Github_user_cred_ccjacobs14', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
-        // stage('list all my files') {
+        stage('list all my files') {
         //     when {
         //         expression{
         //             '$Branch_Name'=='main'
         //         }
         //     }
-        //     steps{
-        //     bat 'dir'
-        //     }
-        // }
+            steps{
+            bat 'dir'
+            }
+        }
         // stage('list environment var'){
         //             steps{
         //                 sh 'echo "%{env.version}"'
