@@ -64,15 +64,15 @@ pipeline {
             }
         }
     }
-    // stage('Upload to Artifactory (configFile)'){
-    //     steps{
-    //         withMaven(maven: 'maven_3.8') {
-    //             configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
-    //                     sh 'mvn deploy -s $mvn_settings_managed'
-    //             }
-    //         }
-    //     }
-    // }
+    stage('Upload to Artifactory (configFile)'){
+        steps{
+            withMaven(maven: 'maven_3.8') {
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                        sh 'mvn deploy -s $mvn_settings_managed'
+                }
+            }
+        }
+    }
     // stage('Install Tomcat using playbook'){
     //     steps{
     //         ansiblePlaybook(
