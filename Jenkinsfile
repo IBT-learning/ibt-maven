@@ -15,11 +15,11 @@ pipeline {
                 echo "hello"
             }
         }
-        // stage('Hi'){
-        //             steps {
-        //                 echo "Hi"
-        //             }
-        //         }
+        stage('Hi'){
+                    steps {
+                        echo "Hi"
+                    }
+                }
         // stage ('Git checkout') {
         //     steps{
         //         git branch: '$Branch_Name', changelog: false, credentialsId: 'Github_user_cred_ccjacobs14', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
