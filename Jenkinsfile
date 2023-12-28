@@ -5,9 +5,9 @@ pipeline {
         string (name: 'Branch_Name' , defaultValue: 'main', description: 'enter the branch to build')
     }
 
-    // environment{
-    //     version = '1.3.0'
-    // }
+    environment{
+        version = '1.3.0'
+    }
 
     stages {
         stage('Hello'){
@@ -35,20 +35,20 @@ pipeline {
             bat 'dir'
             }
         }
-        // stage('list environment var'){
-        //             steps{
-        //                 sh 'echo "%{env.version}"'
-        //                 sh '''
-        //                     ls
-        //                     cd src
-        //                     ls
-        //                 '''
-        //                 script{
-        //                     print env.version
-        //                 }
+        stage('list environment var'){
+                    steps{
+                        sh 'echo "%{env.version}"'
+                        sh '''
+                            ls
+                            cd src
+                            ls
+                        '''
+                        // script{
+                        //     print env.version
+                        // }
 
-        //             }
-        // }
+                    }
+        }
         // stage('checking webhook'){
         //                     steps {
         //                         echo "hi from auto run"
