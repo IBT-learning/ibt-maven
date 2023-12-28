@@ -45,16 +45,16 @@ pipeline {
                 }
             }
     }
-    // stage('Dynamic Scan') {
-    //     steps{
-    //         dependencyCheck additionalArguments: '''
-    //                 -o "./"
-    //                 -s "./"
-    //                 -f "ALL"
-    //                 --prettyPrint ''', odcInstallation: 'dependency-check'
-    //         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-    //     }
-    // }
+    stage('Dynamic Scan') {
+        steps{
+            dependencyCheck additionalArguments: '''
+                    -o "./"
+                    -s "./"
+                    -f "ALL"
+                    --prettyPrint ''', odcInstallation: 'dependency-check'
+            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        }
+    }
     // stage('Upload to Artifactory'){
     //     steps{
     //         withMaven(maven: 'maven_3.8') {
