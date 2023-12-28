@@ -14,13 +14,13 @@ pipeline {
             }
         }
     }
-    // stage('Compile'){
-    //     steps{
-    //        withMaven(maven: 'maven_3.8') {
-    //             sh 'mvn compile'
-    //         }
-    //     }
-    // }
+    stage('Compile'){
+        steps{
+           withMaven(maven: 'maven_3.8') {
+                sh 'mvn compile'
+            }
+        }
+    }
     //  stage('Test'){
     //     steps{
     //        withMaven(maven: 'maven_3.8') {
