@@ -32,16 +32,16 @@ pipeline {
                 }
             }
             steps{
-            bat 'dir'
+            sh 'ls'
             }
         }
         stage('list environment var'){
                     steps{
-                        bat 'echo "$version"'
-                        bat '''
-                            dir
+                        sh 'echo "$version"'
+                        sh '''
+                            ls -lart
                             cd src
-                            dir
+                            ls -lart
                         '''
                         script{
                             print env.version
