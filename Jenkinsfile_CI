@@ -73,32 +73,33 @@ pipeline {
             }
         }
     }
-    // stage('Install Tomcat using playbook'){
-    //     steps{
-    //         ansiblePlaybook(
-    //                     become: true,
-    //                     credentialsId: 'server-ssh-pwd',
-    //                     inventory: 'inventory_sept',
-    //                     playbook: 'tomcat_sept.yaml'
-    //                                           )
-    //     }
+    stage('Install Tomcat using playbook'){
+        steps{
+            ansiblePlaybook(
+                        become: true,
+                        credentialsId: 'server-ssh-pwd',
+                        inventory: 'inventory_sept',
+                        playbook: 'tomcat_sept.yaml',
+                        disableHostKeyChecking: true
+                            )
+        }
+    }
+    stage('Deploy to Dev'){
+    //when {
+      //      expression{
+        //        env.BRANCH_NAME=='main'
+          //  }
     // }
-    // stage('Deploy to Dev'){
-    // //when {
-    //   //      expression{
-    //     //        env.BRANCH_NAME=='main'
-    //       //  }
-    // // }
-    //     steps{
-    //         script{
-    //             def remote = [name: 'Dev' , host: '167.99.62.93' , allowAnyHosts: true]
-    //             withCredentials(usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')) {
-    //                 remote.user = username
-    //                 remote.password = password
-    //               sshPut remote: remote, from: 'target/ibt-maven-2.22-SNAPSHOT.jar', into: 'opt/tomcat/apps'
-    //             }
-    //         }
-    //     }
-    // }
+        steps{
+            script{
+                def remote = [name: 'Dev' , host: '134.209.168.96' , allowAnyHosts: true]
+                withCredentials(usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')) {
+                    remote.user = username
+                    remote.password = password
+                  sshPut remote: remote, from: 'target/ibt-maven-2.22-SNAPSHOT.jar', into: 'opt/tomcat/apps'
+                }
+            }
+        }
+    }
  }
 }
