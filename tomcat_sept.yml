@@ -35,21 +35,22 @@
 
     - name: download and unarchive tomcat
       unarchive:
-        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.84/bin/apache-tomcat-9.0.84.tar.gz
         dest: '{{ path }}'
         remote_src: yes
 
     - name: change ownership of tomcat directory
       file:
         path: '{{ path }}'
+        state: directory
         owner: '{{ user }}'
         group: '{{ user }}'
         mode: 755
         recurse: yes
-        state: directory
+        
 
     - name: start tomcat server
-      command: nohup {{ path }}/apache-tomcat-9.0.82bin/startup.sh
+      command: nohup {{ path }}/apache-tomcat-9.0.84/bin/startup.sh
 
     - name: enable tcp connections
       command: sudo ufw allow 8080/tcp
