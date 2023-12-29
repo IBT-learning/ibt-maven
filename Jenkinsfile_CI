@@ -86,13 +86,13 @@ pipeline {
     }
     stage('Deploy to Dev'){
     //when {
-      //      expression{
-        //        env.BRANCH_NAME=='main'
-          //  }
-    // }
+      //          expression{
+        //          env.BRANCH_NAME=='main'
+        //          }
+        //        }
         steps{
             script{
-                def remote = [name: 'first-project' , host: '134.209.168.96' , allowAnyHosts: true]
+                def remote = [name: 'Dev' , host: '134.209.168.96' , allowAnyHosts: true]
                 withCredentials(usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')) {
                     remote.user = username
                     remote.password = password
