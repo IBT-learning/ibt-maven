@@ -56,6 +56,9 @@ pipeline{
         echo 'testing'
         echo "${env.version}"
         sh 'echo $version'
+        script{
+            print env.version
+        }
     }
    }
   }  // stages
