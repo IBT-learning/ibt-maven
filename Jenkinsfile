@@ -42,7 +42,7 @@ pipeline{
         echo "running on main branch"
      }
    }
-   stages{
+   stage('test'){
     steps{
        echo 'testing'
     }
