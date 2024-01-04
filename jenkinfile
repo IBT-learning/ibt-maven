@@ -13,7 +13,7 @@ pipeline{
      } // stages 2
      stage('download fro GIT'){
        steps{
-             git changelog: false, credentialsId: 'GitHub_cred_oakisanyao', poll: false, url: 'https://github.com/akisanyao/git.git'
+             git branch: 'demo1', changelog: false, credentialsId: 'GitHub_cred_oakisanyao', poll: false, url: 'https://github.com/akisanyao/git.git'
        }
      } //stage 3
 
