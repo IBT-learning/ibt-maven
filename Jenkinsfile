@@ -20,10 +20,7 @@ string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to b
          git branch: '$Branch_Name', changelog: false, credentialsId: 'GitHub_cred_Nasirfaizi', poll: false, url: 'https://github.com/Nasirfaizi/nov-cohort.git'
        }
      } //stage 3
- stage('list files'){
- steps{
- echo "listing files to verify"
- }
+
  steps{bat 'dir'
 
  }
