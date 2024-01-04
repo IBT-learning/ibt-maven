@@ -26,10 +26,10 @@ pipeline{
       bat 'dir'
      }
    }
-   stage('List choice){
+   stage('List choice'){
     steps{
     echo $CHOICES
     }
-   }'
+   }
   } //stages
 } //pipeline
