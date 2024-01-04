@@ -9,6 +9,7 @@ pipeline{
   environment{
     version = '1.3.0'
   }
+
   stages{
     stage('Hello'){
       steps{
@@ -55,7 +56,13 @@ pipeline{
         echo 'testing'
         echo "${env.version}"
         sh 'echo $version'
+        bat 'echo %version%'
     }
    }
   }  // stages
+  post {
+          always {
+              echo 'I will always say Hello again!'
+          }
+      }
 }  //pipeline
