@@ -17,6 +17,10 @@ pipeline{
          git branch: 'main', changelog: false, credentialsId: 'GitHub_cred_Nasirfaizi', poll: false, url: 'https://github.com/Nasirfaizi/nov-cohort.git'
        }
      } //stage 3
+ stage('list files'){
+ steps{bat 'dir'
 
+ }
+ }
   } //stages
 } //pipeline
