@@ -1,0 +1,15 @@
+pipeline{
+  agent any
+  stages{
+     stage('hello world'){
+       steps{
+        echo "hello world, my name is oladimeji Akisanya"
+       }
+     } //stage 1
+     stage('hi'){
+         steps{
+          echo "love my world"
+         }
+     } // stages 2
+  } //stages
+} //pipeline
