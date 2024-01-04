@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    parameter {
+        string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
+    }
     stages {
         stage('Hello') {
             steps {
@@ -14,7 +16,7 @@ pipeline {
         } //stage2 end
         stage('Download from Git') {
             steps {
-                git branch: 'main', changelog: false, credentialsId: 'GITHUB_cred_alaskatubbie', poll: false, url: 'https://github.com/Alaskatubbie/nov-cohort.git'
+                git branch: '$Branch_Name', changelog: false, credentialsId: 'GITHUB_cred_alaskatubbie', poll: false, url: 'https://github.com/Alaskatubbie/nov-cohort.git'
             }
         } //stage3 end
         stage('List files') {
