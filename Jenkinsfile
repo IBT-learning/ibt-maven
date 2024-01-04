@@ -24,6 +24,5 @@ string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to b
  steps{bat 'dir'
 
  }
- }
   } //stages
 } //pipeline
