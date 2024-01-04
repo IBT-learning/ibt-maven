@@ -1,9 +1,6 @@
 pipeline{
   agent any
 
-parameters {
-string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to built")
-}
   stages{
   stage('Hello'){
   steps{
@@ -17,12 +14,13 @@ string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to b
    } //stage 2
    stage('Download from git'){
    steps{
-         git branch: '$Branch_Name', changelog: false, credentialsId: 'GitHub_cred_Nasirfaizi', poll: false, url: 'https://github.com/Nasirfaizi/nov-cohort.git'
+         git branch: 'main', changelog: false, credentialsId: 'GitHub_cred_Nasirfaizi', poll: false, url: 'https://github.com/Nasirfaizi/nov-cohort.git'
        }
      } //stage 3
-
- steps{bat 'dir'
-
- }
+     stage('List files'){'
+ steps{
+      bat 'dir'
+     }
+   }
   } //stages
 } //pipeline
