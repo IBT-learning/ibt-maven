@@ -2,7 +2,7 @@ pipeline{
   agent any
 
 parameters {
-string(name:"Branch_Name", defaultvalue: "main", description: "Enter branch to built")
+string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to built")
 }
   stages{
   stage('Hello'){
@@ -21,7 +21,9 @@ string(name:"Branch_Name", defaultvalue: "main", description: "Enter branch to b
        }
      } //stage 3
  stage('list files'){
-    echo "listing files to verify"
+ steps{
+ echo "listing files to verify"
+ }
  steps{bat 'dir'
 
  }
