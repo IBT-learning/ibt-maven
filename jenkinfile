@@ -11,5 +11,11 @@ pipeline{
           echo "love my world"
          }
      } // stages 2
+     stage(download fro GIT){
+       steps{
+        git branch: '/demo1', changelog: false, poll: false, url: 'https://github.com/akisanyao/git.git'
+       }
+     } //stage 3
+
   } //stages
 } //pipeline
