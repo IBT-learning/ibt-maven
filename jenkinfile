@@ -16,8 +16,8 @@ pipeline{
              git branch: 'demo1', changelog: false, credentialsId: 'GitHub_cred_oakisanyao', poll: false, url: 'https://github.com/akisanyao/git.git'
        }
      } //stage 3
-     stage{
-      steps(lists files) {
+     stage('lists file'){
+      steps{
        bat'dir'
       }
      } //stage4
