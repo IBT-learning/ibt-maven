@@ -39,7 +39,7 @@ pipeline{
    {
     when {
         expression {
-            ${params.Branch_Name}=='main'
+            env.BRANCH_NAME =='main'
         }
     }
     steps{
