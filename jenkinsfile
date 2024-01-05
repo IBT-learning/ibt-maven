@@ -3,6 +3,7 @@ pipeline {
 
     parameters{
         string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'Choose a number')
     }
 
     stages {
@@ -24,6 +25,11 @@ pipeline {
         stage('List files'){
             steps{
                 bat 'dir'
+            } // got it from jenkins pipeline syntax windows batch script
+        }
+        stage('List choice'){
+            steps{
+                echo $CHOICES
             }
         }
     } //stages
