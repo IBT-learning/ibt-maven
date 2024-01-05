@@ -4,6 +4,10 @@ pipeline {
         string(name: "Branch_Name", defaultValue: "main", description: "Enter branch to build")
          choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
+
+     environment{
+        version = '1.5.4'
+      }
     stages {
         stage('Hello') {
             steps {
@@ -45,6 +49,14 @@ pipeline {
                 echo "running on main branch"
             }
         } //stage6 end
+        stage('test'){
+            steps{
+                echo 'testing'
+                echo "${env.version}"
+                bat 'echo %version%'
+
+            }
+        } //stage7 end
     } //stages ending
 
 } //Pipeline end
