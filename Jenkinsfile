@@ -58,5 +58,10 @@ pipeline {
             }
         } //stage7 end
     } //stages ending
+     post {
+              always {
+                  echo 'I will always say Hello again!'
+              }
+          }
 
 } //Pipeline end
