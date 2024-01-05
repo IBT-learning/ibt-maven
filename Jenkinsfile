@@ -21,7 +21,11 @@ pipeline {
         } //stage3 end
         stage('List files') {
             steps {
-                    bat 'dir'
+                    echo "listing files to verify"
+                    bat '''
+                        dir
+                        cd
+                    '''
             }
         } //stage4 end
     } //stages ending
