@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters{
+        string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
+    }
+
     stages {
         stage('Hello') {
             steps {
@@ -12,5 +16,10 @@ pipeline {
                 echo 'Hello this is shamrin'
             }
         }//stage two
+        stage('Download from Git'){
+            steps{
+                echo 'Git Downloading'
+            }
+        }
     } //stages
 } //pipeline
