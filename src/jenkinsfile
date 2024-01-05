@@ -10,16 +10,16 @@ pipeline {
             steps {
                 echo 'Hello World'
             }
-        } // stage one
+        } // stage 1
         stage('Hi') {
             steps {
                 echo 'Hello this is shamrin'
             }
-        }//stage two
+        }//stage 2
         stage('Download from Git'){
             steps{
-                echo 'Git Downloading'
+                git changelog: false, credentialsId: 'Github_cred_shamrin', poll: false, url: 'https://github.com/shamrin23/demo-nov.git'
             }
-        }
+        } // stage 3
     } //stages
 } //pipeline
