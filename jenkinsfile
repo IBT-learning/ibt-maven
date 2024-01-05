@@ -21,5 +21,10 @@ pipeline {
                 git changelog: false, credentialsId: 'Github_cred_shamrin', poll: false, url: 'https://github.com/shamrin23/demo-nov.git'
             }
         } // stage 3
+        stage('List files'){
+            steps{
+                bat 'dir'
+            }
+        }
     } //stages
 } //pipeline
