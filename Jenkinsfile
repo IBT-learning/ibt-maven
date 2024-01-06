@@ -6,12 +6,17 @@ pipeline {
             steps {
                 echo 'Hello World'
             }
+<<<<<<< Updated upstream
         } //stage 1
+=======
+        }
+>>>>>>> Stashed changes
 
         stage('Hi') {
             steps {
                 echo 'Hello World'
             }
+<<<<<<< Updated upstream
         } //stage 2
         stage('Download from Git'){
          steps{
@@ -25,3 +30,8 @@ pipeline {
     } //Stage 4
   } //stages
 } //pipeline
+=======
+        }
+    }
+}
+>>>>>>> Stashed changes
