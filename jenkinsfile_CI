@@ -55,9 +55,7 @@ pipeline{
          stage('Upload to Artifactory- ConfigFile'){
                      steps {
                         configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
-                            // some block
-
-                             sh 'mvn deploy -s $maven_settings_managed'
+                            sh 'mvn deploy -s $maven_settings_managed'
                              }
                              }
                              }
