@@ -7,6 +7,13 @@ pipeline{
                 git branch: 'feature_shamrin', changelog: false, credentialsId: '299d6ea0-24ed-4fc9-a11d-6bb09bc88140', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage('validate'){
+            steps{
+                withMaven( maven: 'maven_3.9.3') {
+                    sh 'mvn validate'
+                }
+            }
+        }
 
     }//stages
 
