@@ -28,5 +28,12 @@ pipeline {
              }
         } // stage 4
 
-    }// stages
+        stage ('list choice')
+        {
+         steps{
+             echo $CHOICES
+              }
+        }
+
+        }// stages
 } // pipeline
