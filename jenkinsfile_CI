@@ -29,8 +29,27 @@ pipeline{
          stage('Test'){
                     steps {
                     sh 'mvn --version'
+                    sh'mvn test'
                 }
 
                 }
+                stage('Package'){
+                                    steps {
+                                    sh 'mvn --version'
+                                    sh'mvn test'
+                  }
+
+           }
+
+           stage('Upload to Artifactory'){
+            steps {
+                withCredentials([file(credentialsId: 'settings file (Sagar)', variable: 'maven_settings_sagar')]) {
+                    // some block
+                    sh 'mvn deploy -s $maven_settings_sagar'
+
+                }
+                           }
+
+                           }
     }
 }
