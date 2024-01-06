@@ -39,7 +39,7 @@ pipeline{
         stage('upload to Artifactory'){
             steps{
                 withCredentials([file(credentialsId: 'shamrin_settings_xml_artifact', variable: 'mvn_settings_xml_shamrin')]) {
-                     sh 'mvn deploy -s $mvn_settings_xml_shamrin
+                     sh 'mvn deploy -s $mvn_settings_xml_shamrin'
                 }
             }
         }
