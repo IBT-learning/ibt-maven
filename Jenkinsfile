@@ -49,5 +49,11 @@ pipeline {
                       }
                 } // stage 6
 
+         stage ('test')
+         {
+         steps{
+              echo 'testing'
+               }
+         }
         }// stages
 } // pipeline
