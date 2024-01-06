@@ -9,6 +9,7 @@ pipeline{
   environment{
     version = '1.02.08'
   }
+
   stages{
   stage('Hello'){
   steps{
@@ -27,7 +28,11 @@ pipeline{
      } //stage 3
      stage('List files'){
  steps{
-      bat 'dir'
+   echo "listing files to verify"
+      bat '''
+      dir
+      pwd
+      '''
      }
    }
    stage('List choice'){
