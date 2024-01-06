@@ -1,0 +1,13 @@
+pipeline{
+    agent any
+
+    stages{
+        stage(''){
+            steps{
+                git branch: 'feature_wale_alake', changelog: false, credentialsId: 'GitHub_cred_token_walealake', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+
+        }
+
+    }
+}
