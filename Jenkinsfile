@@ -3,7 +3,7 @@ pipeline {
 
 
     parameters {
-    string(name:Branch_name, defaultValue: "main", description:"Enter a branch to build")
+    string(name:"Branch_name", defaultValue: "main", description:"Enter a branch to build")
     }
 
 
@@ -20,7 +20,7 @@ pipeline {
         }// stage 2
         stage('Download from Git'){
         steps{
-            git branch: '$Env.Branch_name', changelog: false, credentialsId: 'GitHub_cred_Tagne', poll: false, url: 'https://github.com/christeukam/nov-cohort.git'
+            git branch: '$Branch_name', changelog: false, credentialsId: 'GitHub_cred_Tagne', poll: false, url: 'https://github.com/christeukam/nov-cohort.git'
              }
         } // stage 3
         stage('List files'){
