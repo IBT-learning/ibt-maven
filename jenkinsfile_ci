@@ -5,11 +5,23 @@ pipeline{
         stage('GIT checkout'){
             steps{
                 git branch: 'feature-teewana3', credentialsId: 'taiwo_github(cred)', url: 'https://github.com/IBT-learning/ibt-maven.git'
+        
             }
 
         
 
         
+        }
+
+        stage('validate'){
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+
+                    sh 'mvn validate'
+    
+                    
+                }
+            }
         }
     }
 }
