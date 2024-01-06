@@ -32,5 +32,20 @@ pipeline{
                     }
                 }
 
+          stage('Package'){
+                             steps{
+                                 sh 'mvn --version'
+                                 sh 'mvn package'
+                             }
+                         }
+
+           stage('upload to Artifactory'){
+            steps{
+                withCredentials([file(credentialsId: 'mvn_settings_gunj', variable: 'maven_settings_gunjan')]) {
+                    sh 'mvn deploy -s $maven_settings_gunjan'
+                }
+            }
+           }
+
     }
 }
