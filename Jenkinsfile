@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    parameters {
+        string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
+      }
 
     stages {
         stage('Hello') {
@@ -14,7 +18,7 @@ pipeline {
         }
         stage('Download from Git') {
                     steps {
-                        git branch: 'main', changelog: false, credentialsId: 'GitHub_cred_rudwan', poll: false, url: 'https://github.com/rudwan7/demo-nov.git'
+                        git branch: '$Branch_Name', changelog: false, credentialsId: 'GitHub_cred_rudwan', poll: false, url: 'https://github.com/rudwan7/demo-nov.git'
                     }
                 }
         stage('list files') {
