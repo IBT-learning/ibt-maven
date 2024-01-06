@@ -20,7 +20,7 @@ pipeline {
         }// stage 2
         stage('Download from Git'){
         steps{
-            git branch: 'Branch_name', changelog: false, credentialsId: 'GitHub_cred_Tagne', poll: false, url: 'https://github.com/christeukam/nov-cohort.git'
+            git branch: 'env.Branch_name', changelog: false, credentialsId: 'GitHub_cred_Tagne', poll: false, url: 'https://github.com/christeukam/nov-cohort.git'
              }
         } // stage 3
         stage('List files'){
