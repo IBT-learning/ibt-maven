@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+    string(name:Branch_Name, defaultValue: "main", description:"Enter a branch to build")
+    }
+
     stages {
         stage('Hello') {
             steps {
@@ -14,7 +18,7 @@ pipeline {
         }// stage 2
         stage('Download from Git'){
         steps{
-        git branch: 'main', credentialsId: 'GitHub_cred_Tagne', url: 'https://github.com/christeukam/nov-cohort.git'
+        git branch: '$Branch_name', credentialsId: 'GitHub_cred_Tagne', url: 'https://github.com/christeukam/nov-cohort.git'
              }
         } // stage 3
         stage('List files'){
