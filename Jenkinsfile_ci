@@ -31,7 +31,18 @@ pipeline{
                 sh 'mvn test'
             }
         }
-
+        stage('Package'){
+             steps{
+                sh 'mvn package'
+             }
+        }
+        stage('upload to Artifactory'){
+            steps{
+                withCredentials([file(credentialsId: 'shamrin_settings.xml_artifactory', variable: 'settings.xml')]) {
+                     sh 'mvn deploy -s $settings.xml
+                }
+            }
+        }
     }//stages
 
 
