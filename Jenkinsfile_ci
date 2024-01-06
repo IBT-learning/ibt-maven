@@ -33,7 +33,22 @@ pipeline {
                 sh 'mvn test'
 
 
-           }//stepps
+           }
+        }
+        stage('package'){
+           steps{
+                sh 'mvn --version'
+                sh 'mvn package'
+
+
+           }
+        }
+        stage('upload to Artifactory'){
+           steps{
+                withCredentials([file(credentialsId: 'rudwanSettingsFile', variable: 'maven_settings_rudwan')]) {
+                    sh 'mvn deploy -s $maven_settings_rudwan'
+                }
+           }
         }
 
 
