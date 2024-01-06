@@ -31,7 +31,6 @@ pipeline{
    echo "listing files to verify"
       bat '''
       dir
-      pwd
       '''
      }
    }
