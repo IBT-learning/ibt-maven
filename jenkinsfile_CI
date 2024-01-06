@@ -37,7 +37,7 @@ pipeline{
                                     steps {
                                     sh 'mvn --version'
                                     sh'mvn test'
-                  }
+           }
 
            }
 
@@ -47,9 +47,19 @@ pipeline{
                     // some block
                     sh 'mvn deploy -s $maven_settings_sagar'
 
-                }
-                           }
+            }
 
-                           }
+             }
+         }
+
+         stage('Upload to Artifactory- ConfigFile'){
+                     steps {
+                        configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                            // some block
+                        }
+                             sh 'mvn deploy -s $maven_settings_managed'
+                             }
+                             }
+
     }
 }
