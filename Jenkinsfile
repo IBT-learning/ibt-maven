@@ -4,6 +4,7 @@ pipeline {
 
     parameters {
     string(name:"Branch_name", defaultValue: "main", description:"Enter a branch to build")
+    choice(name: 'CHOICES', choices: ['One', 'Two', 'Three'], description: 'Pick a number')
     }
 
 
@@ -31,7 +32,7 @@ pipeline {
         stage ('list choice')
         {
          steps{
-             echo "Choice: ${params.CHOICE}"
+             echo "Choice: ${params.CHOICES}"
               }
         }
 
