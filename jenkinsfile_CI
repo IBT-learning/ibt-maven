@@ -1,0 +1,14 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Git Checkout'){
+            steps{
+                git branch: 'feature_sagardhungel', credentialsId: '8a16bdb6-76b6-495b-be26-33eb23295c5c', url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+        }
+
+        }
+
+    }
+}
