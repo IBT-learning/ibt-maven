@@ -36,14 +36,14 @@ pipeline{
                 sh 'mvn package'
              }
         }
-        stage('upload to Artifactory'){
+        stage('Upload to Artifactory'){
             steps{
                 withCredentials([file(credentialsId: 'shamrin_settings_xml_artifact', variable: 'mvn_settings_xml_shamrin')]) {
                      sh 'mvn deploy -s $mvn_settings_xml_shamrin'
                 }
             }
         }
-        stage('upload to artifactory'){
+        stage('Upload to Artifactory-configFile'){
             steps{
                 configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
                     sh 'mvn deploy -s $mvn_settings_managed'
