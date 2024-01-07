@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
 
-      }
+    }
 
     stages {
         stage('Hello') {
@@ -17,14 +17,14 @@ pipeline {
             }
         }
         stage('Download from Git') {
-                    steps {
-                        git branch: '$Branch_Name', changelog: false, credentialsId: 'GitHub_cred_rudwan', poll: false, url: 'https://github.com/rudwan7/demo-nov.git'
-                    }
-                }
+            steps {
+                git branch: '$Branch_Name', changelog: false, credentialsId: 'GitHub_cred_rudwan', poll: false, url: 'https://github.com/rudwan7/demo-nov.git'
+            }
+        }
         stage('list files') {
-                            steps {
-                                sh 'ls -lrt'
-                            }
-                        }
+            steps {
+                sh 'ls -lrt'
+            }
+        }
     }
 }
