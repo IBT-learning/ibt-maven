@@ -11,13 +11,6 @@ pipeline{
                git branch: 'feature_nasir1', changelog: false, credentialsId: 'GitHub_cred_nasir', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
          }
      }
-     stage('run on condition')
-        {
-          when {
-             expression{
-                  env.BRANCH_NAME =='main'
-             }
-          }
      stage('Validate'){
         steps{
             withMaven(maven: 'maven_3.9.3') {
@@ -39,5 +32,17 @@ pipeline{
              }
           }
 
+ stage('package'){
+             steps{
+             bat 'mvn --version'
+             bat 'mvn package'
+             }
+          }
+
+      stage('upload to Artifactory'){
+      withCredentials([file(credentialsId: 'maven_artifactory', variable: 'maven_settings_nasir')]) {
+          // bat 'mvn deploy -s %maven_settings_nasir%'
+      }
+      }
   }
 }
