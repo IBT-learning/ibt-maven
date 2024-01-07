@@ -21,9 +21,9 @@ pipeline{
          }
 
        }
-       stage('validate'){
+       stage('compile'){
                 steps{
-                    sh 'mvn validate'
+                    sh 'mvn compile'
                 }
 
        }
