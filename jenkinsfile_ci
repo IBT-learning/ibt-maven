@@ -3,9 +3,10 @@ pipeline{
 
     stages{
        stage('GIT checkout'){
-          steps{git branch: 'feature_oakisanya', changelog: false, credentialsId: 'GITHUB_OAKISANYA', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+          steps{
+              git branch: 'feature_oakisanya', changelog: false, credentialsId: 'GITHUB_OAKISANYA', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
 
-          {
+          }
 
        }
 
