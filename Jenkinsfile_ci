@@ -14,8 +14,8 @@ pipeline{
      stage('Validate'){
         steps{
             withMaven(maven: 'maven_3.9.3') {
-                dir 'mvn --version'
-                dir 'mvn validate'
+                bat 'mvn --version'
+                bat 'mvn validate'
             }
         }
      }
