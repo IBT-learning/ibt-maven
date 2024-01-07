@@ -5,6 +5,9 @@ pipeline {
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
 
     }
+    environment{
+        version = '1.3.0'
+    }
 
     stages {
         stage('Hello') {
@@ -45,6 +48,8 @@ pipeline {
         stage('test') {
             steps {
                 echo 'testing'
+                echo "${env.version}"
+                sh 'echo $version'
             }
         }
     }
