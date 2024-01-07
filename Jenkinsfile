@@ -30,6 +30,17 @@ pipeline {
         stage('list choice') {
             steps {
                echo "Choice: ${params.CHOICES}"
-        }    }
+            }
+        }
+       stage('run on condition'){
+            when {
+                expression {
+                    env.BRANCH_NAME =='main'
+                }
+            }
+            steps{
+                echo "running on main branch"
+            }
+       }
     }
 }
