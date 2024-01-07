@@ -43,7 +43,7 @@ pipeline{
         stage('upload to artifactory'){
                       steps{
                         withCredentials([file(credentialsId: 'settings_mvn_oakisanya', variable: 'mvn_settings_oakisanya')]) {
-                          sh 'deploy -s $mvn_settings_oakisanya'
+                          sh 'mvn deploy -s $mvn_settings_oakisanya'
                         }
 
                       }
