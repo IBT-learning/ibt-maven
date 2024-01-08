@@ -43,29 +43,22 @@ pipeline{
                              }
                          }
 
+
         stage('upload to Artifactory'){
             steps{
 
-                
+                        withCredentials([file(credentialsId: 'maven_jenkins_taiwo', variable: 'taiwo_settings_maven')]) {
+                                sh 'mvn deploy -s $taiwo_settings_maven'
+                    }
+            }
 
 
 
 
-                withCredentials([file(credentialsId: 'teewana_2', variable: 'taiwo_maven')]) {
-
-                            sh 'mvn deploy -s $taiwo_maven'
-    
-                    
-
-                }
-
-                        
-                
-                }
-
-
-
-                }
+        
+            
+            
+            
             }
 }
 
