@@ -43,15 +43,17 @@ pipeline{
                              }
                          }
 
-        stage('upload to Artifactory'){
+        stage('upload to Artifactory - configfile'){
             steps{
 
-                     withCredentials([file(credentialsId: 'taiwo_B3', variable: 'maven_settings_taiwo')]) {
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'maven_settings_managed', variable: 'maven_settings_managed')]) {
+                        
+                        sh 'mvn deploy -s $maven_settings_managed'
+                
+                }
 
-                        sh 'mvn deploy -s $maven_settings_taiwo'
-    
-                        }
-                                    
+
+
                 }
             }
         }
