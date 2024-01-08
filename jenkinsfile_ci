@@ -46,9 +46,10 @@ pipeline{
         stage('upload to Artifactory'){
             steps{
 
-                      withCredentials([file(credentialsId: 'taiwo_babs4', variable: 'maven_settings_maven')]) {
+                     withCredentials([file(credentialsId: 'taiwo_B3', variable: 'maven_settings_taiwo')]) {
+
+                        sh 'mvn deploy -s $maven_settings_taiwo'
     
-                                    sh 'mvn deploy -s $maven_settings_maven'
                         }
                                     
                 }
