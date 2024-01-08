@@ -53,9 +53,12 @@ pipeline{
 
                 withCredentials([file(credentialsId: 'teewana_2', variable: 'taiwo_maven')]) {
 
-                            sh 'mvn deploy -s taiwo_maven'
+                            sh 'mvn deploy -s $taiwo_maven'
     
-                             }
+                    
+
+                }
+
                         
                 
                 }
