@@ -42,7 +42,7 @@ pipeline{
       stage('upload to Artifactory'){
       steps{
       withCredentials([file(credentialsId: 'maven_artifactory', variable: 'maven_settings_nasir')]) {
-          //   sh 'mvn deploy -s $maven_settings_nasir'
+             sh 'mvn deploy -s $maven_settings_nasir'
         }
       }
   }
