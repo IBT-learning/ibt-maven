@@ -60,6 +60,18 @@ pipeline{
                 }
             }
         }
+        stage('Dependency Scan'){
+            steps{
+                dependencyCheck additionalArguments: '''
+                            -o"./"
+                            -s "./"
+                            -f "ALL"
+                            --prettyPrint \'\'\', odcInstallation: \'dependency-check\'
+                ''', odcInstallation: 'dependency-check'
+                dependencyCheckPublisher pattern: 'Dependency-check-report.xml'
+
+            }
+        }
     }//stages
 
 
