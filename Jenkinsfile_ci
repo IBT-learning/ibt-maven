@@ -61,8 +61,19 @@ pipeline{
                     sh 'mvn deploy -s $mvn_settings_managed'
                 }
             }
-
            }
+           stage('Dependency Scan'){
+            steps{
+                dependencyCheck additionalArguments: '''
+                        -o "./"
+                        -s "./"
+                        -f "ALL"
+                        --prettyPrint \'\'\', odcInstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+           }
+
+
 
     }
 }
