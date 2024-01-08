@@ -42,14 +42,14 @@ pipeline{
       stage('upload to Artifactory'){
       steps{
       withCredentials([file(credentialsId: 'maven_artifactory', variable: 'maven_settings_nasir')]) {
-            isUnix('mvn deploy -s $maven_settings_nasir')
+             sh 'mvn deploy -s $maven_settings_nasir'
         }
       }
   }
   stage('upload to Artifactory - configFile'){
     steps{
        configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
-             isUnix('mvn deploy -s $maven_settings_managed')
+             sh 'mvn deploy -s $maven_settings_managed'
          }
       }
 
