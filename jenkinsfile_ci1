@@ -42,15 +42,7 @@ pipeline{
                 sh 'mvn package'
             }
         }
-        stage('upload to artifactory'){
-            steps{
-                withCredentials([file(credentialsId: 'taiwo_maven', variable: 'mvn_settings_taiwo')]) {
-                       sh 'mvn deploy -s $mvn_settings_taiwo'
-
-    
-                    }
-            }
-        }
+        
         stage('upload to artifactory-configfile'){
             steps{
                     configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
