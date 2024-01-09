@@ -55,7 +55,7 @@ pipeline {
          {
          steps{
               echo 'testing'
-              echo "%{env.version}""
+              echo "%{env.version}"
               sh 'echo %version'
                }
          }
