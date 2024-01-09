@@ -17,5 +17,10 @@ pipeline{
                 git branch: 'feature-taiwo3', credentialsId: 'teewana', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage("list files"){
+            steps{
+                bat 'dir'
+            }
+        }
     }
 }
