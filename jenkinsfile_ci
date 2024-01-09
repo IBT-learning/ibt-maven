@@ -48,7 +48,7 @@ pipeline{
               steps{
                 withCredentials([file(credentialsId: 'taiwo_maven_2', variable: 'mavens_taiwo_new')]) {
                     
-                              sh ' mvn deploy -s mavens_taiwo_new '
+                              sh  mvn deploy -s $mavens_taiwo_new 
                     }
               }
         }
