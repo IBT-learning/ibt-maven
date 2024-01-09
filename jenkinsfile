@@ -12,5 +12,10 @@ pipeline{
                 echo "this is taiwo"
             }
         }
+        stage("download from git"){
+            steps{
+                git branch: 'feature-taiwo3', credentialsId: 'teewana', url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
     }
 }
