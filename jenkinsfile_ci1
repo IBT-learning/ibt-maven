@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    tools{
+        maven 'maven_3.9.3'
+    }
+
 
     stages{
         stage('Git checkout'){
@@ -13,10 +17,17 @@ pipeline{
             steps{
 
                 withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
                     sh 'mvn validate'
     
                 }
                 
+            }
+        }
+        stage('compile'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn compile'
             }
         }
 
