@@ -48,5 +48,14 @@ pipeline{
                   }
                                  }
                         }
+
+               stage('upload to artifactory configuration file'){
+                                           steps{
+                                 configFileProvider([configFile(fileId: 'artifactory-settings', variable: 'mvn_settings_managed')]) {
+                                     sh 'mvn deploy -s $mvn_settings_managed'
+                                 }
+                                 }
+                                                }
+                                       }
         }
 }
