@@ -28,6 +28,11 @@ pipeline{
                 sh 'mvn compile'
                  }
         }
-    }
+        stage('Test'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn test'
+                 }
 
+        }
 }
