@@ -30,5 +30,19 @@ pipeline{
                                  sh 'mvn test'
                          }
            }
+        stage('Package'){
+                          steps{
+                              sh 'mvn --version'
+                               sh 'mvn package'
+                          }
+        }
+         stage('upload to Artifactory'){
+               steps{
+                    withCredentials([file(credentialsId: 'walealake_settings', variable: 'maven_settings_walealake')]) {
+                     sh 'mvn deploy -s $maven_settings_walealake'
+                  }
+
+               }
+         }
     }
 }
