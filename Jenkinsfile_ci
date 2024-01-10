@@ -34,5 +34,19 @@ pipeline{
                 sh 'mvn test'
                  }
         }
+        stage('Package'){
+                    steps{
+                        sh 'mvn --version'
+                        sh 'mvn package'
+                         }
+                }
+
+                stage('upload to artifactory'){
+                            steps{
+                  withCredentials([file(credentialsId: 'Settings_tagne', variable: 'maven_settings_tagne')]) {
+                      sh 'mvn deploy -s $maven_settings_tagne'
+                  }
+                                 }
+                        }
         }
 }
