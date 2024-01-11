@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'UX-IBT'}
+    agent { label 'UX-IBT' }
 
     stages {
         stage('Hello') {
