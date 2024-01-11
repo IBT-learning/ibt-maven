@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'UX-IBT'}
+    agent any
     parameters {
         string(name: "Branch_Name", defaultValue: "main", description: "Enter branch to build")
          choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
