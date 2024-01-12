@@ -71,6 +71,20 @@ pipeline{
                          dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                      }
           }
+          stage('Deploy to Dev'){
+            steps{
+                script{
+                    def remote = [name: 'dev', host: '134.122.5.25', allowAnyHosts: true]
+                    withCredentials([usernamePassword(credentialsId: 'walealake-ssh-tomcat', passwordVariable: 'password', usernameVariable: 'user')]) {
+                         remote.user = user
+                         remote.password = password
+                     sshPut remote: remote, from: 'target/ibt-maven-4.1-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
+                    }
+               }
+
+
+            }
+          }
 
 
     }
