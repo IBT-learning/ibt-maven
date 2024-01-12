@@ -53,8 +53,8 @@ pipeline{
              }
            }
           stage('Deploy to Dev'){
-          steps{
-          script{
+            steps{
+              script{
               def remote=[name:'dev',host: '137.184.95.246' ,allowAnyHosts: true]
               withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
                   remote.user = user
@@ -67,8 +67,5 @@ pipeline{
                }
              }
             }
-
-
          }
-      }
 
