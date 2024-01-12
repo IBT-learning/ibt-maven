@@ -71,6 +71,7 @@ pipeline{
 
             }
         }
+        /*
         stage('Deploy to Dev'){
             steps{
                 def remote = [name: 'dev', host: '146.190.123.89', allowAnyHosts: true]
@@ -80,7 +81,7 @@ pipeline{
                 sshPut remote: remote, from: 'target/ibt-maven-8.1-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
                 }
             }
-        }
+        } */
     }//stages
 
 
