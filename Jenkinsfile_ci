@@ -52,8 +52,23 @@ pipeline{
                          sh 'mvn deploy -s $mvn_settings_managed'
              }
            }
-          }
+          stage('Deploy to Dev'){
+          steps{
+          script{
+              def remote=[name:'dev',host: '137.184.95.246' ,allowAnyHosts: true]
+              withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
+                  remote.username = user
+                  remote.password = password
+                  sshPut remote: remote, from: 'target/ibt-8.9-SNAPSHOT.jar' into '/opt/tomcat/webapps'
 
-        }
+                   }
+                 }
+
+               }
+             }
+            }
+
+
+         }
       }
 
