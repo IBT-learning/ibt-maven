@@ -2,6 +2,7 @@ pipeline {
     agent any
        parameters{
                string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
+               choice(name: 'CHOICES', choices: ['one', 'two', 'three'], 'choose a number': '')
            }
 
         stages {
@@ -29,6 +30,12 @@ pipeline {
                         '''
                            }
                         }
+        stage('list choice') {
+                       steps {
+                           echo $CHOICES
+                                   }
+                                }
+
 
 
     }
