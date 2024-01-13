@@ -54,7 +54,7 @@ pipeline {
                  steps {
                           echo "testing for triggers"
                           echo '${env.version}'
-                          bat 'echo %version'
+                          bat 'echo %version%'
                             }
                  }
 
