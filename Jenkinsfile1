@@ -21,7 +21,10 @@ pipeline {
                 }
         stage('List Files') {
                     steps {
-                       bat '''dir
+                       echo 'listing file to verify'
+                       bat '''
+                            dir
+                            pwd
                        '''
                            }
                         }
