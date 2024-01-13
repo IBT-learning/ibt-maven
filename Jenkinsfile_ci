@@ -52,6 +52,7 @@ pipeline{
                          sh 'mvn deploy -s $mvn_settings_managed'
              }
            }
+          }
           stage('Deploy to Dev'){
             steps{
               script{
@@ -67,4 +68,5 @@ pipeline{
                }
              }
             }
+
          }
