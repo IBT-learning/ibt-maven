@@ -18,8 +18,9 @@ pipeline {
         }
     } // stage 3
     stage('List fies'){
-      steps
+      steps{
        bat 'dir'
+      }
     }
   }
 }
