@@ -24,8 +24,7 @@ pipeline {
                        echo 'listing file to verify'
                        bat '''
                             dir
-                            pwd
-                       '''
+                        '''
                            }
                         }
 
