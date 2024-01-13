@@ -55,6 +55,10 @@ pipeline {
                           echo "testing for triggers"
                           echo '${env.version}'
                           bat 'echo %version%'
+                          script{
+                            print env.version
+                          }
+
                         }
                  }
         }
