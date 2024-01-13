@@ -51,8 +51,7 @@ pipeline {
 
         stage('test')
                 {
-                when { triggeredBy 'SCMTrigger' }
-                     steps {
+                 steps {
                           echo "testing for triggers"
                           echo '${env.version}'
                           bat 'echo %version'
