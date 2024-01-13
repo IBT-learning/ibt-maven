@@ -1,0 +1,74 @@
+@Library('jenkins-library')_
+pipeline{
+    agent any
+
+    tools{
+        maven 'maven_3.8'
+       }
+
+    stages{
+        stage('Git checkout'){
+            steps{
+                git branch: 'feature_gunjanvm', changelog: false, credentialsId: 'ibt', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+        stage('Validate'){
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
+                    sh 'mvn validate'
+                }
+            }
+        }
+        stage('Compile'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn compile'
+            }
+        }
+        stage('Test'){
+                    steps{
+                        sh 'mvn --version'
+                        sh 'mvn test'
+                    }
+                }
+          stage('SonarQube Scan'){
+             steps{
+                sonarScan()
+             }
+          }
+          stage('Package'){
+                             steps{
+                                 sh 'mvn --version'
+                                 sh 'mvn package'
+                             }
+                         }
+
+           stage('upload to Artifactory'){
+            steps{
+                withCredentials([file(credentialsId: 'mvn_settings_gunj', variable: 'maven_settings_gunjan')]) {
+                    sh 'mvn deploy -s $maven_settings_gunjan'
+                }
+            }
+           }
+           stage('upload to Artifactory - configFile'){
+            steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                    sh 'mvn deploy -s $mvn_settings_managed'
+                }
+            }
+           }
+           stage('Dependency Scan'){
+            steps{
+                DependencyCheck()
+            }
+           }
+
+
+            }
+           }
+
+
+
+    }
+}
