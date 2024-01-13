@@ -3,24 +3,25 @@ pipeline {
        parameters{
                string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
                choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
-           }
+                 }
 
         stages {
 
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+            stage('Hello') {
+               steps {
+                 echo 'Hello World'
+                     }
+                           }
+
         stage('Hi') {
             steps {
                 echo 'Hi this is Sagar practicing'
             }
         }
+
         stage('Download from Git') {
             steps {
                git branch: 'main', changelog: false, credentialsId: 'Github_cred_sagar', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
-
                    }
                 }
         stage('List Files') {
@@ -34,6 +35,7 @@ pipeline {
                                    }
                                 }
 
-
         }
+        }
+
 
