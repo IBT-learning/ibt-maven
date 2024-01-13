@@ -26,8 +26,8 @@ pipeline {
                 }
         stage('List Files') {
                     steps {
-                       bat 'dir'
-                        }                           }
+                       echo "listing files to verify"
+                        }
                      }
         stage('list choice') {
                        steps {
@@ -35,6 +35,7 @@ pipeline {
                                    }
                                 }
 
+        }
         }
 
 
