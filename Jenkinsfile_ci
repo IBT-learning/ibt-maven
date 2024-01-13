@@ -79,6 +79,19 @@ pipeline {
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
        }
+      stage('Deploy to Dev'){
+           steps{
+              script{
+                   def remote = [name: 'dev', host: '165.22.238.69', allowAnyHosts: true]
+                   withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
+                       remote.user = user
+                       remote.password = password
+                   sshPut remote: remote, from: 'target/ibt-maven-6.2-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
+                   }
+              }
+
+           }
+      }
 
 
 
