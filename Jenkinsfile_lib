@@ -1,0 +1,75 @@
+@Library('jenkins-library')_
+pipeline{
+    agent any
+
+    tools{
+        maven 'maven_3.8'
+    }
+
+
+    stages{
+        stage('Git checkout'){
+            steps{
+                git branch: 'feature_shamrin', changelog: false, credentialsId: '299d6ea0-24ed-4fc9-a11d-6bb09bc88140', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+        stage('validate'){
+            steps{
+                withMaven( maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
+                    sh 'mvn validate'
+                }
+            }
+        }
+        stage('compile'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn compile'
+            }
+        }
+        stage('Test'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+        stage('SonarQube Scan'){
+            steps{
+               sonarScan()
+                }
+            }
+        }
+        stage('Package'){
+             steps{
+                sh 'mvn package'
+             }
+        }
+        stage('Upload to Artifactory'){
+            steps{
+                withCredentials([file(credentialsId: 'shamrin_settings_xml_artifact', variable: 'mvn_settings_xml_shamrin')]) {
+                     sh 'mvn deploy -s $mvn_settings_xml_shamrin'
+                }
+            }
+        }
+        stage('Upload to Artifactory-configFile'){
+            steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                    sh 'mvn deploy -s $mvn_settings_managed'
+                }
+            }
+        }
+        stage('Dependency Scan'){
+             steps{
+                 dependencyCheck additionalArguments: '''
+                       -o "./"
+                       -s "./"
+                       -f "ALL"
+                       --prettyPrint \'\'\', odcInstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'
+                       dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+             }
+        }
+
+    }//stages
+
+
+
+} //pipeline
