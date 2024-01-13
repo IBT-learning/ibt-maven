@@ -55,11 +55,16 @@ pipeline {
                           echo "testing for triggers"
                           echo '${env.version}'
                           bat 'echo %version%'
-                            }
+                        }
                  }
-
-
         }
+         post {
+                always {
+                    echo 'I will always say Hello again!'
+                }
+            }
+        }
+
         }
 
 
