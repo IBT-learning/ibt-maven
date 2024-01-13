@@ -46,6 +46,14 @@ pipeline {
                                            }
          }
 
+        stage('test')
+                {
+                when { triggeredBy 'SCMTrigger' }
+                     steps {
+                          echo "testing for triggers"
+                            }
+                 }
+
 
         }
         }
