@@ -18,6 +18,10 @@ pipeline{
            }
 
         } // stage 3
-
+      stage('List files'){
+        steps{
+         bat 'dir'
+        }
+      }
     } // stages
 }   //pipeline
