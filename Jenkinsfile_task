@@ -1,0 +1,116 @@
+pipeline {
+    agent any
+    tools{
+        maven 'maven_3.9.3'
+    }
+    stages {
+        stage('Git checkout'){
+           steps{
+                git branch: 'feature-rudwan', credentialsId: 'GitHub_Cred_Rudwan', url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+            }
+        }
+        stage('validate'){
+           steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
+                    sh 'mvn validate'
+                }
+
+           }
+        }
+        stage('compile'){
+           steps{
+                sh 'mvn --version'
+                sh 'mvn compile'
+
+
+           }
+        }
+        stage('test'){
+           steps{
+                sh 'mvn --version'
+                sh 'mvn test'
+
+
+           }
+        }
+        stage('SonarQube Scan'){
+            environment{
+                sonarScan = tool 'ibt-sonarqube'
+            }
+            steps{
+                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                sh "${env.sonarScan}/bin/sonar-scanner"
+                }
+            }
+        }
+        stage('package'){
+           steps{
+                sh 'mvn --version'
+                sh 'mvn package'
+
+
+           }
+        }
+        stage('upload to Artifactory'){
+           steps{
+                withCredentials([file(credentialsId: 'rudwanSettingsFile', variable: 'maven_settings_rudwan')]) {
+                    sh 'mvn deploy -s $maven_settings_rudwan'
+                }
+           }
+        }
+        stage('upload to Artifactory - configFile'){
+           steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                    sh 'mvn deploy -s mvn_settings_managed'
+                }
+
+
+           }
+        }
+       stage('Dependency Scan'){
+            steps{
+                dependencyCheck additionalArguments: '''
+                        -o "./"
+                        -s "./"
+                        -f "ALL"
+                        --prettyPrint \'\'\', odcInstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+       }
+
+      stage('Deploy to Dev'){
+           steps{
+              script{
+                   def remote = [name: 'dev', host: '159.203.10.221', allowAnyHosts: true]
+                   withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
+                       remote.user = user
+                       remote.password = password
+                   sshPut remote: remote, from: 'target/ibt-maven-1.22-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
+                   }
+              }
+
+           }
+      }
+      stage('Ask for approval') {
+          input "Deploy to prod?"
+      }
+      stage('Deploy to PROD'){
+           steps{
+              script{
+                   def remote = [name: 'dev', host: '143.110.216.46', allowAnyHosts: true]
+                   withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
+                       remote.user = user
+                       remote.password = password
+                   sshPut remote: remote, from: 'target/ibt-maven-1.22-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
+                   }
+              }
+
+           }
+      }
+
+
+
+    }//
+}
