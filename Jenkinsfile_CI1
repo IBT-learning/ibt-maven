@@ -51,6 +51,7 @@ pipeline{
                                   withCredentials([file(credentialsId: 'settings file (Sagar)', variable: 'mvn_settings_sagar')]) {
                                       sh 'mvn deploy -s $mvn_settings_sagar'
                                   }
+
                                 }
                               }
 
