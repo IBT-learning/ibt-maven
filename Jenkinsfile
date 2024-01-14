@@ -12,5 +12,10 @@ pipeline {
                 echo 'Hi World'
             }
         } //stage2
+        stage('download from git'){
+            steps{
+                git branch: 'feature-ramin', credentialsId: 'Github_Cred_Ramin', url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
     } // stages
 } // End pipeline
