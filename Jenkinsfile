@@ -1,16 +1,23 @@
-pipeline {
+pipeline{
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Hello'){
             steps {
                 echo 'Hello World'
             }
-        }
-         stage('Howdy') {
-            steps {
+        } // stage 1
+         stage('Howdy'){
+            steps{
                 echo 'Howdy'
             }
-        }
-    }
-}
+        } // stage 2
+        stage('Download from Git'){
+          steps{
+               git branch: 'main', credentialsId: 'GitHub_cred_kayshow04', url: 'https://github.com/IBT-learning/ibt-maven.git'
+           }
+
+        } // stage 3
+
+    } // stages
+}   //pipeline
