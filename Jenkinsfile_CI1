@@ -1,6 +1,6 @@
 
 pipeline{
-    agent { label'UX-IBT' }
+    agent any
 
     tools{
         maven 'maven_3.8'
