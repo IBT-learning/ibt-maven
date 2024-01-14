@@ -39,5 +39,20 @@ pipeline{
                    }
                  }
 
+          stage('Package'){
+                           steps{
+                                sh 'mvn -version'
+                                 sh 'mvn package'
+                             }
+                           }
+
+           stage('Upload to Artifactory'){
+                              steps{
+                                  withCredentials([file(credentialsId: 'settings file (Sagar)', variable: 'mvn_settings_sagar')]) {
+                                      sh 'mvn deploy -s $mvn_settings_sagar'
+                                  }
+                                }
+                              }
+
    }
 }
