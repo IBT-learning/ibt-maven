@@ -44,7 +44,13 @@ pipeline{
      }
      steps{
         echo "running on main branch"
-      }
+
+     }
+    }
+    stage('test'){
+        steps{
+            echo 'testing'
+        }
     }
   } //stages
 } //pipeline
