@@ -3,7 +3,7 @@ pipeline{
 
   parameter{
     string(name:"Branch_Name", defaultValue:"main", description:"Enter branch to build")
-    choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description:"choose a number')
+    choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description:'choose a number')
 
   }
 
@@ -11,13 +11,13 @@ pipeline{
       stage('Hello'){
         steps{
           echo "hello"
-            }
-        } //stage1
+        }
+      } //stage1
       stage('HI'){
         steps{
           echo "hi"
-            }
-        } //stage 2
+        }
+      } //stage 2
       stage('Download from Git'){
         steps{
             git branch: '$Branch_Name', changelog: false, credentialsId: 'github_cred_joseph', poll: false, url: 'https://github.com/adaramola01/nov-cohorts.git'
@@ -34,6 +34,6 @@ pipeline{
             echo "Choice: ${params.CHOICES}"
         }
 
-       }
+      }
     } //stages
 } //pipeline
