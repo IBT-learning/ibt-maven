@@ -1,24 +1,30 @@
 pipeline{
-    agent any
+  agent any
 
-    stages{
-        stage('Hello'){
-            steps{
-                echo "hello"
+  parameter{
+    string(name: "Branch_Name", defaultValue:"main", description:"Enter branch to build")
+
+  }
+
+   stages{
+      stage('Hello'){
+        steps{
+          echo "hello"
             }
         } //stage1
-        stage('HI'){
-            steps{
-                echo "hi"
+      stage('HI'){
+        steps{
+          echo "hi"
             }
         } //stage 2
-        stage('Download from Git'){
-            steps{
-            git branch: 'main', changelog: false, credentialsId: 'github_cred_joseph', poll: false, url: 'https://github.com/adaramola01/nov-cohorts.git'
+      stage('Download from Git'){
+        steps{
+            git branch: '$Branch_Name', changelog: false, credentialsId: 'github_cred_joseph', poll: false, url: 'https://github.com/adaramola01/nov-cohorts.git'
             }
        } //stage3
        stage('List files'){
         steps{
+            echo "listing files to verify"
              bat 'dir'
         }
        }
