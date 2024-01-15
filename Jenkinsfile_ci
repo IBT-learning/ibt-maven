@@ -75,7 +75,7 @@ pipeline{
                     -o"./"
                     -s"./"
                     -f"ALL"
-                    --prettyPrint\'\'\', odcinstallation: \'dependency-check\'
+                    --prettyPrint \'\'\', odcinstallation: \'dependency-check\'
                     ''', odcInstallation: 'dependency-check'
                     dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                     }
