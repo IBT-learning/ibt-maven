@@ -31,16 +31,15 @@ pipeline{
        }
        stage('list choice'){
         steps{
-            echo "Choice: ${params.Branch_Name}=='main'
+            echo "Choice: ${params.CHOICES}"
         }
-
       }
      stage('run on condition')
      {
      when {
         expression {
-             ${params.Branch_Name}"
-        }
+             ${params.Branch_Name}=='main'
+
      }
      }
      steps{
