@@ -28,7 +28,7 @@ pipeline{
                 sh 'mvn compile'
                  }
         }
-        stage('SonarQube Scan') {
+        stage('SonarQube Scan'){
             environment{
                 sonarScan = tool 'ibt-sonarqube'
             }
@@ -59,6 +59,7 @@ pipeline{
                   }
                                  }
                         }
+
 
                stage('upload to artifactory configuration file'){
                                            steps{
