@@ -17,5 +17,10 @@ pipeline{
             git branch: 'main', changelog: false, credentialsId: 'github_cred_joseph', poll: false, url: 'https://github.com/adaramola01/nov-cohorts.git'
             }
        } //stage3
+       stage('List files'){
+        steps{
+             bat 'dir'
+        }
+       }
     } //stages
 } //pipeline
