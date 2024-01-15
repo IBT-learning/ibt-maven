@@ -17,5 +17,10 @@ stage('Hi'){
               echo 'world'
               }
             } //stage3
+            stage('Download from git'){
+                         steps{
+                          git branch: 'main', credentialsId: 'benny_crnd', url: 'https://github.com/bennydelight/november-cohot.git'
+                          }
+                        } //stage4
      } //stages
 } //pipeline
