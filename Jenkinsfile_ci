@@ -64,8 +64,14 @@ pipeline{
 
                    }
                  }
-
+                      production:
+                        stage: deploy
+                        script:
+                          - 'echo "Deploying to ${CI_ENVIRONMENT_prod}"'
+                        environment:
+                          name: ${CI_JOB_prod}
                }
              }
+
             }
          }
