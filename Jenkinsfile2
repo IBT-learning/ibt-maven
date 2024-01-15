@@ -33,7 +33,7 @@ pipeline{
         steps{
             echo "Choice: ${params.CHOICES}"
         }
-       }
+
        }
     } //stages
 } //pipeline
