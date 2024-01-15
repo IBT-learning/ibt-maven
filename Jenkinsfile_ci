@@ -1,0 +1,11 @@
+pipeline{
+  agent any
+
+  stages{
+    stage('git checkout'){
+      steps{
+      git branch: 'feature_benny', credentialsId: 'benny_crnd', url: 'https://github.com/IBT-learning/ibt-maven.git'
+      }
+   } //stage1
+  } //stages
+} //pipeline
