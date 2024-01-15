@@ -22,5 +22,10 @@ stage('Hi'){
                           git branch: 'main', credentialsId: 'benny_crnd', url: 'https://github.com/bennydelight/november-cohot.git'
                           }
                         } //stage4
+                        stage('list file'){
+                                                 steps{
+                                                 bat 'dir'
+                                                   }
+                                                } //stage5
      } //stages
 } //pipeline
