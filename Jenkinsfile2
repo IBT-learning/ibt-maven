@@ -14,7 +14,7 @@ pipeline{
         } //stage 2
         stage('Download from Git'){
             steps{
-            git credentialsId: 'github_cred_joseph', url: 'https://github.com/adaramola01/nov-cohorts.git'
+            git branch: 'main', changelog: false, credentialsId: 'github_cred_joseph', poll: false, url: 'https://github.com/adaramola01/nov-cohorts.git'
             }
        } //stage3
     } //stages
