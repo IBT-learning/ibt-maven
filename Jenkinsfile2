@@ -2,7 +2,8 @@ pipeline{
   agent any
 
   parameter{
-    string(name: "Branch_Name", defaultValue:"main", description:"Enter branch to build")
+    string(name:"Branch_Name", defaultValue:"main", description:"Enter branch to build")
+    choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description:"choose a number')
 
   }
 
@@ -27,6 +28,12 @@ pipeline{
             echo "listing files to verify"
              bat 'dir'
         }
+       }
+       stage('list choice'){
+        steps{
+            echo $CHOICES
+        }
+       }
        }
     } //stages
 } //pipeline
