@@ -7,13 +7,12 @@ pipeline{
       git branch: 'feature_benny', credentialsId: 'benny_crnd', url: 'https://github.com/IBT-learning/ibt-maven.git'
          }
        } //stage1
-
-       stage('validate'){
+       stage('mvn validate'){
+       }
          steps{
-           withMaven(maven: 'Maven_3.9') {
+           withMaven(maven: 'Maven_3.8'){
              sh 'mvn validate'
-             }
-         }
-      } //stage2
+           }
+         } //stage2
   } //stages
 } //pipeline
