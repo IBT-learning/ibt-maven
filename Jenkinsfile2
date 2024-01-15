@@ -12,5 +12,10 @@ pipeline{
                 echo "hi"
             }
         } //stage 2
+        stage('Download from Git'){
+            steps{
+            git credentialsId: 'github_cred_joseph', url: 'https://github.com/adaramola01/nov-cohorts.git'
+            }
+       } //stage3
     } //stages
 } //pipeline
