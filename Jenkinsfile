@@ -12,5 +12,10 @@ stage('Hi'){
         echo 'world'
         }
       } //stage2
+      stage('special'){
+             steps{
+              echo 'world'
+              }
+            } //stage3
      } //stages
 } //pipeline
