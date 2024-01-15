@@ -28,6 +28,17 @@ pipeline{
                 sh 'mvn compile'
                  }
         }
+        stage('SonarQube Scan') {
+            environment{
+                sonarScan = tool 'ibt-sonarqube'
+            }
+            steps{
+                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                   sh "${env.sonarScan}/bin/sonar-scanner"
+                }
+            }
+        }
+
         stage('Test'){
             steps{
                 sh 'mvn --version'
