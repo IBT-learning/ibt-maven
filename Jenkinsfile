@@ -1,21 +1,16 @@
-pipeline {
-    agent any
+pipeline{
+  any agent
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
+   stages{
+     stage('Hello'){
+       steps{
+        echo 'world'
         }
-        stage('Yello') {
-            steps {
-                echo 'Hello World'
-            } //steps
-        } //stage
-        stage("Download from git"){
-           steps{
-git branch: 'main', changelog: false, credentialsId: 'Github_crnd_benny', poll: false, url: 'https://github.com/bennydelight/november-cohot.git'
-           }
+      } //stage1
+stage('Hi'){
+       steps{
+        echo 'world'
         }
-    } //stages
+      } //stage2
+     } //stages
 } //pipeline
