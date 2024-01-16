@@ -22,6 +22,10 @@ pipeline {
         steps{
               git branch: 'main', changelog: false, poll: false, url: 'https://github.com/maamejoe358/nov-cohort.git'
             }
+    }
+    stage('list files'){
+        steps{
+        bat 'dir
 
             }
         }
