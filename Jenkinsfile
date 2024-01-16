@@ -3,6 +3,7 @@ pipeline {
 
 parameters{
     string(name:"Branch_Name", defaultvalue: "main", description: "Enter branch to build")
+    choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
 }
     stages {
         stage('Hello') {
@@ -31,8 +32,12 @@ parameters{
             echo"listing files to verify"
         bat 'dir
 
-            }
         }
-
+    }
+    stage("list choice"){
+    steps{
+       echo $CHOICES
+    }
+    }
 }
 }
