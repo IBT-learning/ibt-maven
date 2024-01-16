@@ -53,7 +53,7 @@ pipeline{
         steps{
             echo 'testing'
             echo "${env.version}"
-            dir 'echo %version%'
+            bat 'echo %version%'
 
         }
     }
