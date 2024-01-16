@@ -71,15 +71,31 @@ pipeline{
 
                }
              }
- stage('Ask for approval') {
+  stage('Ask for approval') {
 
-          steps{
-            input "Deploy to prod?"
-            sh '''
-                  echo yes
+           steps{
+             input "Deploy to prod?"
+             sh '''
+                   echo yes
 
-               '''
-          }
-      }
+                '''
+           }
+       }
+       stage('Deploy to PROD'){
+            steps{
+               script{
+                    def remote = [name: 'PROD', host: '143.110.216.46', allowAnyHosts: true]
+                    withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
+                        remote.user = user
+                        remote.password = password
+                    sshPut remote: remote, from: 'target/ibt-maven-1.22-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
+                    }
+               }
+
             }
-         }
+       }
+
+
+
+     }//
+ }
