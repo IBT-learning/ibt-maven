@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Hi') {
             steps {
-                echo 'Hello World'
+                echo 'Hi'
             }
     }
     stage('sweet') {
             steps {
-                echo 'Hello World'
+                echo 'sweet'
 
             }
     }
