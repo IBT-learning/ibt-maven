@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-parameters{
+parameters {
     string(name:"Branch_Name", defaultvalue: "main", description: "Enter branch to build")
     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
 }
@@ -29,16 +29,27 @@ parameters{
     }
     stage('list files'){
         steps{
-            echo"listing files to verify"
-        bat 'dir
+            echo "listing files to verify"
+        bat 'dir'
 
         }
     }
     stage("list choice"){
     steps{
        echo "Choice: ${params.CHOICES}"
+    }
+   }
+   stage("run on condition")
+    {
+     when {
+          expression{
+               ${params.Branch_Name}=='main'
+          }
+     }
+    steps{
+        echo"running on main branch"
+    }
 
     }
-    }
-}
+  }
 }
