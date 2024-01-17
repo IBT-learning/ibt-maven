@@ -70,6 +70,16 @@ pipeline{
                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
              }
         }
+        stage('permission for prod'){
+            steps{
+                input "Please approve to proceed to Prod"
+            }
+        }
+        stage ('deployment for prod'){
+            steps{
+                echo "Deploying to prod"
+            }
+        }
         /*
         stage('Deploy to Dev'){
             steps{
