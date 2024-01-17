@@ -33,10 +33,15 @@ pipeline{
              }
           }
           stage('SonarQube Scan'){
-            steps{
-              sonarScan()
-            }
-           }
+                    environment{
+                                   sonarScan = tool 'ibt-sonarqube'
+                               }
+                               steps{
+                                   withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                                       // some block
+                                   }
+                               }
+                           }
  stage('package'){
              steps{
              sh 'mvn --version'
