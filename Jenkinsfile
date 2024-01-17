@@ -24,7 +24,7 @@ parameters {
     }
     stage('download from Git'){
         steps{
-              git branch: '$Branch_Name', changelog: false, poll: false, url: 'https://github.com/maamejoe358/nov-cohort.git'
+              git branch: $'Branch_Name', changelog: false, poll: false, url: 'https://github.com/maamejoe358/nov-cohort.git'
             }
     }
     stage('list files'){
@@ -43,7 +43,7 @@ parameters {
     {
      when {
           expression{
-               ${params.Branch_Name}=='main'
+               env.BRANCH_NAME =='main'
           }
      }
     steps{
