@@ -21,9 +21,7 @@ pipeline{
       stage('List files'){
         steps{
           echo "listing files to verify"
-         bat '''
-           'dir'
-           '''
+         bat 'dir'
         }
       }
     } // stages
