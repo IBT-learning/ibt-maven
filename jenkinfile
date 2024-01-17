@@ -16,11 +16,6 @@ pipeline{
              git branch: 'demo1', changelog: false, credentialsId: 'GitHub_cred_oakisanyao', poll: false, url: 'https://github.com/akisanyao/git.git'
        }
      } //stage 3
-     stage('lists file'){
-      steps{
-       sh 'ls -lrt '
-      }
-     } //stage4
 
      stage('validate'){
               steps{
