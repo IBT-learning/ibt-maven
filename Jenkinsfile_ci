@@ -19,6 +19,7 @@ pipeline{
             }
         }
 
+
         stage('Compile'){
             steps{
                 sh 'mvn --version'
@@ -42,9 +43,10 @@ pipeline{
         }
         stage('upload to Artifactory'){
             steps{
-                withCredentials([file(credentialsId: 'creating_settings_file_Joseph_maven', variable: 'maven_settings_joseph')]) {
-                    sh 'mvn deploy -s $maven_settings_joseph'
+                withCredentials([file(credentialsId: 'creating_settings-file-Joseph', variable: 'maven_setting_joseph')]) {
+                    sh 'mvn deploy -s $maven_setting_joseph'
                 }
+
             }
         }
     }
