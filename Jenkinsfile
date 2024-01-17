@@ -47,7 +47,7 @@ parameters {
           }
      }
     steps{
-        echo"running on main branch"
+        echo "running on main branch"
     }
 
     }
