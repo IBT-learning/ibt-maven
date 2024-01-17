@@ -20,21 +20,21 @@ pipeline{
      stage('validate'){
               steps{
                  withMaven(maven:'maven_3.9.3') {
-                     sh 'mvn validate'
+                     bat 'mvn validate'
                  }
               }
 
             }
             stage('compile'){
                      steps{
-                         sh 'mvn compile'
+                         bat 'mvn compile'
                      }
 
             }
              stage('test'){
                             steps{
 
-                                sh 'mvn test'
+                                bat 'mvn test'
                             }
 
             }
@@ -45,7 +45,7 @@ pipeline{
              }
                  steps{
                        withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-                         sh "${env.sonarScan}/bin/sonar-scanner"
+                         bat "${env.sonarScan}/bin/sonar-scanner"
 
 
                        }
@@ -56,15 +56,15 @@ pipeline{
 
              stage('package'){
                             steps{
-                                sh 'mvn --version'
-                                sh 'mvn package'
+                                bat 'mvn --version'
+                                bat 'mvn package'
                             }
 
              }
              stage('upload to artifactory'){
                            steps{
                              withCredentials([file(credentialsId: 'settings_mvn_oakisanya', variable: 'mvn_settings_oakisanya')]) {
-                               sh 'mvn deploy -s $mvn_settings_oakisanya'
+                               bat 'mvn deploy -s $mvn_settings_oakisanya'
                              }
 
                            }
@@ -73,7 +73,7 @@ pipeline{
              stage('upload to artifactory with config'){
                                    steps{
                                      configFileProvider([configFile(fileId: 'maven_setting_oakisanya', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
-                                       sh 'mvn deploy -s $mvn_settings_managed'
+                                       bat 'mvn deploy -s $mvn_settings_managed'
                                      }
 
                                    }
