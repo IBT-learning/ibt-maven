@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 parameters {
-    string(name:"Branch_Name", default-value: "main", description: "Enter branch to build")
+    string(name:"Branch_Name", defaultvalue: "main", description: "Enter branch to build")
     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '')
 }
     stages {
@@ -24,7 +24,7 @@ parameters {
     }
     stage('download from Git'){
         steps{
-              git branch: $'Branch_Name', changelog: false, poll: false, url: 'https://github.com/maamejoe358/nov-cohort.git'
+              git branch: '$Branch_Name', changelog: false, credentialsid:'josephine_2jenkinscreed'. poll: false, url: 'https://github.com/maamejoe358/nov-cohort.git'
             }
     }
     stage('list files'){
