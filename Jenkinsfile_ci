@@ -29,7 +29,6 @@ pipeline{
              steps{
                 sh 'mvn --version'
                 sh 'mvn test'
-
              }
         stage('Package'){
              steps{
@@ -43,11 +42,5 @@ pipeline{
                 }
             }
         }
-
-
-
-
     }
-}
-
 }
