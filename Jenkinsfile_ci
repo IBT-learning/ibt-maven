@@ -12,9 +12,10 @@ pipeline{
         }
         stage('Validate'){
             steps{
-                withMaven(maven: 'maven_3.9.3') {
+              withMaven(maven: 'maven_3.9.3') {
               sh 'mvn --version'
               sh 'mvn validate'
+              }
             }
         }
     }
@@ -38,6 +39,7 @@ pipeline{
                 sh 'mvn --version'
                 sh 'mvn package'
             }
+        }
         stage('upload to Artifactory'){
             steps{
                 withCredentials([file(credentialsId: 'creating_settings_file_Joseph_maven', variable: 'maven_settings_joseph')]) {
@@ -46,6 +48,6 @@ pipeline{
             }
         }
     }
-}
-}
+
+
 }
