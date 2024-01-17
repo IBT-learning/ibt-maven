@@ -3,6 +3,7 @@ pipeline{
 
     tools{
        maven 'maven_3.9.3'
+       sonarScan_5
     }
 
     stages{
@@ -32,6 +33,21 @@ pipeline{
 
                            sh 'mvn test'
                        }
+
+       }
+
+       stage ('sonarQube scan'){
+        environment{
+           sonarScan = tool 'ibt-sonarqube'
+        }
+            steps{
+                  withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                    sh "${env.sonarScan}/bin/sonar-scanner"
+
+
+                  }
+
+            }
 
        }
 

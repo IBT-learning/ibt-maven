@@ -21,6 +21,5 @@ pipeline{
        sh 'ls -lrt '
       }
      } //stage4
-
   } //stages
 } //pipeline
