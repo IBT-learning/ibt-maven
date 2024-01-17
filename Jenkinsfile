@@ -51,5 +51,10 @@ parameters {
     }
 
     }
+    stage('test'){
+    steps{
+        echo 'testing'
+    }
+    }
   }
 }
