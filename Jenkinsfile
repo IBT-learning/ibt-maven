@@ -40,5 +40,8 @@ pipeline{
            env.BRANCH_NAME =='main'
        }
      }
+     steps{
+       echo "running on main branch"
+     }
     } // stages
 }   //pipeline
