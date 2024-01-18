@@ -3,7 +3,7 @@ pipeline{
 
     parameters {
       string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
-      choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'chose a number')
+      choice(name: 'CHOICE', choices: ['one', 'two', 'three'], description: 'chose a number')
     }
     stages {
         stage('Hello'){
@@ -30,7 +30,7 @@ pipeline{
       }
       stage('list choices'){
       steps{
-          echo $CHOICES
+          echo $CHOICE
          }
       }
     } // stages
