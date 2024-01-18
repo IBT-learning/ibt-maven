@@ -8,7 +8,7 @@ pipeline{
          }
        } //stage1
 
-    stage('validate'){
+    stage('validating'){
           steps{
               withMaven(maven: 'Maven_3.8') {
                  sh 'mvn validate'
