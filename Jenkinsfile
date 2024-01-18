@@ -28,7 +28,7 @@ pipeline{
          bat 'dir'
         }
       }
-      stages('list choices'){
+      stage('list choices'){
       steps{
           echo $CHOICES
          }
