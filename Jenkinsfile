@@ -37,7 +37,7 @@ pipeline{
       {
      when {
         expression {
-           env.BRANCH_NAME =='feature_kay'
+           env.BRANCH_NAME =='main'
        }
      }
      steps{
