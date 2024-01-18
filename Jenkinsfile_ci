@@ -8,5 +8,13 @@ pipeline{
          }
        } //stage1
 
+    stage('git checkout'){
+          steps{
+          withMaven(maven: 'Maven_3.8') {
+              sh 'mvn validate'
+               }
+             }
+           } //stage2
+
   } //stages
 } //pipeline
