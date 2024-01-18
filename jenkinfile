@@ -64,7 +64,7 @@ pipeline{
 
               stage('upload to artifactory with config'){
                                    steps{
-                                     configFileProvider([configFile(fileId: 'oakisanya_settings', variable: 'akisanya_settings')]) {
+                                     configFileProvider([configFile(fileId: 'oakisanya_settings', targetLocation: 'oakisanya_settings', variable: 'akisanya_settings')]) {
                                        bat 'mvn deploy -s $akisanya_settings'
                                      }
 
