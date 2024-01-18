@@ -33,5 +33,12 @@ pipeline{
           echo "Choice: ${params.CHOICE}"
          }
       }
+      stage('run on condition')
+      {
+     when {
+        expression {
+           env.BRANCH_NAME =='main'
+       }
+     }
     } // stages
 }   //pipeline
