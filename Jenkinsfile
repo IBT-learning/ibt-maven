@@ -31,6 +31,7 @@ pipeline{
       stages('list choices'){
       steps{
           echo $CHOICES
+         }
       }
     } // stages
 }   //pipeline
