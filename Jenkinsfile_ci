@@ -43,7 +43,7 @@ pipeline{
         }
         stage('upload to Artifactory'){
             steps{
-                withCredentials([file(credentialsId: 'creating_settings-file-Joseph', variable: 'maven_setting_joseph')]) {
+                withCredentials([file(credentialsId: 'joseph_settings_two', variable: 'maven_setting_joseph')]) {
                     sh 'mvn deploy -s $maven_setting_joseph'
                 }
 
