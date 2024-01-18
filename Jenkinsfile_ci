@@ -4,14 +4,14 @@ pipeline{
   stages{
     stage('git checkout'){
       steps{
-      git branch: 'feature_benny', credentialsId: 'benny_crnd', url: 'https://github.com/IBT-learning/ibt-maven.git'
+      git branch: 'feature_benny', credentialsId: 'Github_crnd_benny', url: 'https://github.com/IBT-learning/ibt-maven.git'
          }
        } //stage1
 
     stage('validate'){
           steps{
               withMaven(maven: 'Maven_3.8') {
-                 bash 'mvn validate'
+                 sh 'mvn validate'
                }
              }
            } //stage2
