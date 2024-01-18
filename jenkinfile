@@ -61,17 +61,8 @@ pipeline{
                             }
 
              }
-             stage('upload to artifactory'){
-                           steps{
-                             withCredentials([file(credentialsId: 'settings_oakisanya', variable: 'mvn_settings_oakisanya')]){
-                               bat 'mvn deploy -s $mvn_settings_oakisanya'
-                             }
-                           }
 
-             }
-
-
-             stage('upload to artifactory with config'){
+              stage('upload to artifactory with config'){
                                    steps{
                                      configFileProvider([configFile(fileId: 'oakisanya_settings', variable: 'akisanya_settings')]) {
                                        bat 'mvn deploy -s $akisanya_settings'
