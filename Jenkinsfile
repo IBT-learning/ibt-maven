@@ -43,7 +43,7 @@ pipeline {
                 echo "running on main branch"
             }
         } //step 6
-        stage('run on condition'){
+        stage('testing after condition'){
             steps{
                 echo 'testing'
             }
