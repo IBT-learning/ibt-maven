@@ -30,7 +30,7 @@ pipeline{
                  }
         }
         stage('SonarQube Scan'){
-            Steps{
+            steps{
                 sonarScan()
                 }
         }
