@@ -43,6 +43,11 @@ pipeline {
                 echo "running on main branch"
             }
         } //step 6
+        stage('run on condition'){
+            steps{
+                echo 'testing'
+            }
+        } //step 7 
 
     } // stages
 } // End pipeline
