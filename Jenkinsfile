@@ -30,7 +30,7 @@ pipeline {
         } //step 4
         stage('list choice'){
             steps{
-                echo $CHOICES
+                echo "Choice: ${params.CHOICES}"
             }    
         } //step 5
 
