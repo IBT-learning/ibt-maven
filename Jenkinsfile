@@ -3,6 +3,7 @@ pipeline {
 
     parameters{
         string(name:"Branch_Name",defaultValue:"feature-ramin", description:"Enter branch name")
+        choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
 
     stages {
@@ -25,6 +26,11 @@ pipeline {
             steps{
                 echo "listing files to verify"
                 bat 'dir'
+            }    
+        } //step 4
+        stage('list choice'){
+            steps{
+                echo $CHOICES
             }    
         } //step 4
 
