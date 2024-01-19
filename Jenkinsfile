@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters{
+        string(name:"Branch_Name",defaultValue:"feature-ramin", description:"Enter branch name")
+    }
+
     stages {
         stage('Hello') {
             steps {
@@ -14,7 +18,7 @@ pipeline {
         } //stage 2
         stage('download from git'){
             steps{
-                git branch: 'feature-ramin', credentialsId: 'Github_Cred_Ramin', url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: '$Branch_Name', credentialsId: 'Github_Cred_Ramin', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         } //stage 3
         stage('list file'){
