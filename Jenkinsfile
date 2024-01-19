@@ -32,7 +32,7 @@ pipeline {
             steps{
                 echo $CHOICES
             }    
-        } //step 4
+        } //step 5
 
     } // stages
 } // End pipeline
