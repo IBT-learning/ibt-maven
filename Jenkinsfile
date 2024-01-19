@@ -28,7 +28,7 @@ pipeline {
         stage('list file'){
             steps{
                 echo "listing files to verify"
-                bat 'dir'
+                sh 'ls -lrt'
             }    
         } //step 4
         stage('list choice'){
@@ -50,7 +50,7 @@ pipeline {
             steps{
                 echo 'testing'
                 echo "${env.version}"
-                bat 'echo %version%'
+                sh 'echo %version%'
                 script {
                     print env.version
                 }
