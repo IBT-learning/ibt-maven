@@ -5,6 +5,9 @@ pipeline {
         string(name:"Branch_Name",defaultValue:"feature-ramin", description:"Enter branch name")
         choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
+    environment { 
+        version = '1.1.3'
+    }
 
     stages {
         stage('Hello') {
@@ -46,6 +49,8 @@ pipeline {
         stage('testing after condition'){
             steps{
                 echo 'testing'
+                echo '${env.version}'
+                echo '%version%'
             }
         } //step 7 
 
