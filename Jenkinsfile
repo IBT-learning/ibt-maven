@@ -49,8 +49,8 @@ pipeline {
         stage('testing after condition'){
             steps{
                 echo 'testing'
-                echo '${env.version}'
-                echo '%version%'
+                echo ${env.version}
+                bat 'echo %version%'
             }
         } //step 7 
 
