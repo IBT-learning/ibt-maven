@@ -5,6 +5,10 @@ pipeline{
       string(name:"Branch_Name", defaultValue: "main", description: "Enter branch to build")
       choice(name: 'CHOICE', choices: ['one', 'two', 'three'], description: 'chose a number')
     }
+
+    environment{
+      version = '1.3.0'
+    }
     stages {
         stage('Hello'){
             steps {
@@ -47,6 +51,8 @@ pipeline{
     stage('test'){
     steps{
        echo 'testing'
+       echo '${env.version}'
+       echo '%version%'
      }
     }
   } // stages
