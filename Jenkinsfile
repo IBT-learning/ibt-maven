@@ -56,4 +56,9 @@ pipeline{
      }
     }
   } // stages
+  post {
+     always {
+        echo 'I will always say Howdy again'
+     }
+  }
 }  //pipeline
