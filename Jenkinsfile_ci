@@ -38,13 +38,13 @@ pipeline{
                     environment{
                         sonarScan = tool 'ibt-sonarqube'
                     }
-        stage('SonarQube Scan'){
-            steps{
-            withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-                sh "${env.sonarScan}/bin/sonar-scanner"
-                }
-            }
-        }
+                    steps{
+                        withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                        sh "${env.sonarScan}/bin/sonar-scanner"
+                        }
+                    }
+         }
+
         stage('Package'){
              steps{
                 sh 'mvn --version'
