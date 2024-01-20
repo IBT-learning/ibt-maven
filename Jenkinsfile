@@ -51,8 +51,8 @@ pipeline{
     stage('test'){
     steps{
        echo 'testing'
-       echo '${env.version}'
-       echo '%version%'
+       echo ${env.version}
+        bat 'echo %version%'
      }
     }
   } // stages
