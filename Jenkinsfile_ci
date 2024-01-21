@@ -39,7 +39,7 @@ pipeline{
 
         }
 
-        stage('SonarQube Scannnin'){
+        stage('SonarQube Scan'){
             environment{
                 sonarScan = tool 'ibt-sonarqube'
             }
