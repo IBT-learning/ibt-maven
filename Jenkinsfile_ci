@@ -69,11 +69,11 @@ pipeline{
         stage('Dependency Scan'){
             steps{
                 dependencyCheck additionalArguments: '''
-                       -o "./"
-                       -s "./"
-                       -f "ALL"
-                       --prettyPrint \'\'\',odclnstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'
-               dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                                        -o "./"
+                                        -s "./"
+                                        -f "ALL"
+                                        --prettyPrint \'\'\', odcInstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'
+                                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
 
