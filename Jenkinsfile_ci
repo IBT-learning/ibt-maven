@@ -40,7 +40,7 @@ pipeline{
         }
 
         stage('SonarQube Scan'){
-            enviroment{
+            environment{
                 sonarScan = tool 'ibt-sonarqube'
             }
 
