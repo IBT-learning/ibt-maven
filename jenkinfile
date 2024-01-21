@@ -84,8 +84,8 @@ pipeline{
                steps{
 
 
-                  dependencyCheck additionalArguments:
-                         '''-o "./"
+                  dependencyCheck additionalArguments:'''
+                         -o "./"
                          -s "./"
                          -f "ALL"
                          --prettyPrint \'\'\', odcInstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'                                                            --prettyPrint ''', odcInstallation: 'dependency-check'
