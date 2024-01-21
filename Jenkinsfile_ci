@@ -47,9 +47,8 @@ pipeline{
         
         stage('upload to artifactory'){
             steps{
-               withCredentials([file(credentialsId: 'mvn_setting_ramin', variable: 'maven_setting_ramin')]) {
-                    sh 'mvn deploy -s maven_setting_ramin'
-
+               withCredentials([file(credentialsId: 'mvn_setting_ramin', variable: 'maven_settings_ramin')]) {
+                    sh 'mvn deploy -s $maven_settings_ramin'
                 }
             }
 
