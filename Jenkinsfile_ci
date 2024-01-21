@@ -38,7 +38,7 @@ pipeline{
             }
 
         }
-         stage('Package'){
+        stage('Package'){
             steps{
                 sh 'mvn --version'
                 sh 'mvn package'
@@ -52,6 +52,13 @@ pipeline{
                 }
             }
 
+        }
+        stage('upload to artifactory - configFile'){
+            steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                    sh 'mvn deploy -s $mvn_settings_managed'
+                    }
+            }
         }
         
     }
