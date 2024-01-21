@@ -38,6 +38,22 @@ pipeline{
             }
 
         }
+         stage('Package'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn package'
+            }
+        }
+        
+        stage('upload to artifactory'){
+            steps{
+               withCredentials([file(credentialsId: 'mvn_setting_ramin', variable: 'maven_setting_ramin')]) {
+                    sh 'mvn deploy -s maven_setting_ramin'
+
+                }
+            }
+
+        }
         
     }
 }
