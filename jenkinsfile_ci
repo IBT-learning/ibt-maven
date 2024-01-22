@@ -88,7 +88,7 @@
 
         stage('approval to deploy to devubuntu1'){
            steps{
-             input message: 'approval to deploy to devubuntu1', ok: 'ok', submitter: 'Gunjan'
+             input message: 'approval to deploy to devubuntu1', ok: 'ok', submitter: 'AKISANYA_O'
 
              sh 'echo approved'
 
