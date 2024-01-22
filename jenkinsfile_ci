@@ -1,4 +1,4 @@
-pipeline{
+ pipeline{
     agent any
 
     tools{
@@ -88,6 +88,7 @@ pipeline{
 
 
         stage('deploy to devubuntu1 '){
+
             steps{
               scripts{
                 def remote= [name: 'devubuntu1', hosts: '192.168.0.40' , allowAnyHosts: true]
@@ -105,6 +106,6 @@ pipeline{
 
 
         }
-    }
+    }//
 
-}
+ }
