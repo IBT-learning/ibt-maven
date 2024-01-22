@@ -89,13 +89,13 @@ pipeline{
 
         stage('deploy to devubuntu1 '){
          steps{
-          scripts{
+            scripts{
             def remote= [name: 'devubuntu1', hosts: '192.168.0.40' , allowAnyHosts: true]
             withCredentials([usernamePassword(credentialsId: 'deploy_prod_oakisanya', passwordVariable: 'Jayden/1977', usernameVariable: 'oakisanya')]) {
                 remote.username= oakisanya
                 remote.password= Jayden/1977
             sshPut remote: remote, from: 'target/ibt-maven-11.7-SNAPSHOT.jar', into '/opt/tomcat/webapps'
-          }
+           }
          }
 
 
