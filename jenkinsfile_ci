@@ -90,7 +90,7 @@
                    steps{
                       script{
                            def remote = [name: 'devubuntu1', host: '192.168.0.40', allowAnyHosts: true]
-                           withCredentials([usernamePassword(credentialsId: 'deploy_prod_oakisanya', passwordVariable: 'Jayden/1977', usernameVariable: 'oakisanya')]) {
+                           withCredentials([usernamePassword(credentialsId: 'deploy_prod_oakisanya', passwordVariable: 'password', usernameVariable: 'user')]) {
                                remote.user = user
                                remote.password = password
                            sshPut remote: remote, from: 'target/ibt-maven-11.7-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
