@@ -20,7 +20,7 @@ pipeline {
                 echo 'Hi World'
             }
         } //stage 2
-        stage('download from git'){
+        stage('download from github'){
             steps{
                 git branch: '$Branch_Name', credentialsId: 'Github_Cred_Ramin', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
