@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'Unix-IBT'}
+    agent any
 
     tools{
         maven 'maven_3.8'
