@@ -97,9 +97,8 @@ pipeline{
                             // some block
                             remote.user = user
                             remote.password = password
-                            sshPut remote: remote, from: 'target/ibt-maven-6.2-SNAPSHOT.jar', into: 'opt/tomcat/webapps'
+                        sshPut remote: remote, from: 'target/ibt-maven-6.2-SNAPSHOT.jar' , into: 'opt/tomcat/webapps'
                         
-                    
                     }
 
                 }
