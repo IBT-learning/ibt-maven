@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+   agent {label 'Unix-IBT'}
 
     parameters{
         string(name:"Branch_Name",defaultValue:"feature-ramin", description:"Enter branch name")
