@@ -1,0 +1,83 @@
+@Library('jenkins-library')_
+
+pipeline{
+    agent any
+
+    tools{
+        maven 'maven_3.8'
+    }
+
+    stages{
+        stage('Git checkout'){
+            steps{
+                git branch: 'feature-ramin', credentialsId: 'Github_Cred_Ramin', url: 'https://github.com/IBT-learning/ibt-maven.git'
+
+            }
+        }
+        stage('Validate'){
+            steps{
+                withMaven(maven: 'maven_3.9.3') {
+                    // some block
+                    sh 'mvn --version'
+                    sh 'mvn validate'
+                
+                }
+            }
+
+        }
+
+        stage('Compile'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn compile'
+            }
+
+        }
+        stage('Test'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn test'
+            }
+
+        }
+
+        stage('SonarQube Scan'){
+
+            steps{
+                sonarScan()
+            }
+
+        }
+
+        stage('Package'){
+            steps{
+                sh 'mvn --version'
+                sh 'mvn package'
+            }
+        }
+        
+        stage('upload to artifactory'){
+            steps{
+               withCredentials([file(credentialsId: 'mvn_setting_ramin', variable: 'maven_settings_ramin')]) {
+                    sh 'mvn deploy -s $maven_settings_ramin'
+                }
+            }
+
+        }
+        stage('upload to artifactory - configFile'){
+            steps{
+                configFileProvider([configFile(fileId: 'artifactory-settings', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
+                    sh 'mvn deploy -s $mvn_settings_managed'
+                    }
+            }
+        }
+
+        stage('Dependency Scan'){
+            steps{     
+                DependencyCheck()
+            }
+        }
+        
+    }
+
+}
