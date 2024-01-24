@@ -97,7 +97,7 @@ pipeline{
                             // some block
                             remote.user = user
                             remote.password = password
-                            sshPut remote: remote, from: 'target/pom.xml' , into: 'opt/tomcat/webapps'
+                            sshPut remote: remote, from: 'pom.xml' , into: 'opt/tomcat/webapps'
                         
                     }
 
