@@ -1,0 +1,5 @@
+[nodes]
+// server1 ip address
+// server2 ip address
+//
+//
