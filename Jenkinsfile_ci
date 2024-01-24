@@ -40,7 +40,7 @@ pipeline{
       stage('upload Artifactory'){
        steps{
         withCredentials([file(credentialsId: 'maven_secretfile_kayshow', variable: 'maven_settings_kayshow04')]) {
-            sh 'mvn deploy' -s $maven_settings_kayshow04'
+            sh 'mvn deploy' -s $maven_settings_kayshow04
         }
        }
       }
