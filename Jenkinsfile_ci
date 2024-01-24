@@ -79,6 +79,7 @@ pipeline{
                             credentialsId: 'server_ssh_pwd',
                             //installation: 'ansible',
                             inventory: 'inventory.txt',
+                            disableHostKeyChecking: true,
                             playbook: 'tomcat.yml'
                           )
             }
