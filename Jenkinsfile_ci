@@ -79,6 +79,19 @@ pipeline {
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
        }
+
+       stage('Invoke Ansible Playbook'){
+            steps{
+                ansiblePlaybook (
+                    become: true,
+                    credentialsId: 'server_ssh_pwd',
+                    installation: 'ansible',
+                    inventory: 'inventory.txt',
+                    playbook: 'tomcat.yml'
+                )
+            }
+       }
+
       stage('Deploy to Dev'){
            steps{
               script{
