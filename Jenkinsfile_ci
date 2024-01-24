@@ -76,17 +76,26 @@ pipeline{
                 input "Please approve to proceed to Prod"
             }
         }
+        /*
         stage ('deployment for prod'){
             steps{
                 echo "Deploying to prod"
             }
         }
-
-        /*
+        */
+        stage('Invoke Ansible playbook'){
+            steps{
+                ansiblePlaybook become: true,
+                credentialsId: 'server-ssh-pw',
+                installation: 'ansible',
+                inventory: 'inventory.txt',
+                playbook: 'tomcat.yml'
+            }
+        }
         stage('Deploy to Dev'){
             steps{
                 script{
-                    def remote = [name: 'dev', host: '143.110.236.64', allowAnyHosts: true]
+                    def remote = [name: 'dev', host: '159.223.204.224', allowAnyHosts: true]
                      withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
                         remote.user = user
                         remote.password = password
@@ -95,7 +104,7 @@ pipeline{
             }
         }
     }
-    */
+
 
 
     }//stages
