@@ -1,5 +1,5 @@
 pipeline{
-    agent { label unix-IBT}
+    agent any
 
     tools{
         maven 'maven_3.8'
@@ -72,17 +72,33 @@ pipeline{
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
            }
+           stage('Invoke Ansible Playbook'){
+            steps{
+                ansiblePlaybook (
+                            become: true,
+                            credentialsId: 'server_ssh_pwd',
+                            //installation: 'ansible',
+                            inventory: 'inventory.txt',
+                            disableHostKeyChecking: true,
+                            playbook: 'tomcat.yml'
+                          )
+            }
+           }
            stage('Deploy to Dev'){
             steps{
                script{
-                def remote = [name: 'dev', host: '165.22.238.69', allowAnyHosts: true]
+                def remote = [name: 'dev', host: '143.110.222.231', allowAnyHosts: true]
                 withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'user')]) {
                     remote.user = user
                     remote.password = password
                 sshPut remote: remote, from: 'target/ibt-maven-6.2-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
                 }
-                }
+               }
+
             }
-        }
-      }
+           }
+
+
+
     }
+}
