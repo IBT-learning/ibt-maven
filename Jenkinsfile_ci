@@ -87,8 +87,8 @@ pipeline{
             steps{
                 ansiblePlaybook become: true,
                 credentialsId: 'server-ssh-pw',
-                installation: 'ansible',
                 inventory: 'inventory.txt',
+                disableHostKeyChecking: true,
                 playbook: 'tomcat.yml'
             }
         }
