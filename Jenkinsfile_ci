@@ -73,7 +73,13 @@ pipeline{
           }
           stage('Invoke Ansible Playbook'){
            steps{
-                    ansiblePlaybook become: true, credentialsId: 'walealake-ssh-tomcat', installation: 'ansible', inventory: 'inventory.txt', playbook: 'tomcat.yml'
+                    ansiblePlaybook(
+                            become: true,
+                            credentialsId: 'walealake-ssh-tomcat',
+                            //installation: 'ansible',
+                            inventory: 'inventory.txt',
+                            disableHostKeyChecking: true,
+                            playbook: 'tomcat.yml'
 
            }
           }
