@@ -80,7 +80,7 @@ pipeline{
                             inventory: 'inventory.txt',
                             disableHostKeyChecking: true,
                             playbook: 'tomcat.yml'
-
+                            )
            }
           }
           stage('Deploy to Dev'){
