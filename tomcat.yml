@@ -1,0 +1,63 @@
+---
+- name: Tomcat Configuration
+  hosts: nodes
+
+  vars:
+    user : tomcat
+    path : /opt/tomcat
+
+  tasks:
+    - name: update package manager
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Install Java
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Create Tomcat user
+      user:
+        name: '{{ user }}'
+
+    - name: Create Tomcat group
+      group:
+        name: '{{ user }}'
+
+    - name: Create Tomcat Directory
+      file:
+        path: '{{ path }}'
+        state: directory
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 755
+
+    - name: Download Tomcat and unarchive
+      unarchive:
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.83/bin/apache-tomcat-9.0.83.tar.gz
+        dest: '{{ path }}'
+        remote_src: yes
+
+    - name: Change ownership of tomcat directory
+      file:
+        path: '{{ path }}'
+        recurse: yes
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: u+rwx,g+rx,o+rx
+
+    - name: Start tomcat
+      command: nohup {{ path }}/apache-tomcat-9.0.83/bin/startup.sh
+
+    - name: Allow TCP connections
+      command: sudo ufw allow 8080/tcp
+
+    - name: Connect to Tomcat server on port 8080 and check status 200 - Try 5 times
+      tags: test
+      uri:
+        url: http://localhost:8080
+      register: result
+      until: "result.status == 200"
+      retries: 5
+      delay: 10
