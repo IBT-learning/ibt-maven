@@ -7,5 +7,12 @@ pipeline {
                 git branch: 'mavin1', changelog: false, credentialsId: 'JD_credentials', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
+        stage('validate') {
+            steps {
+                withMaven(maven: 'maven_3.9.3') {
+                     sh 'mvn validate'
+                     }
+               }
+         }
     }
 }
