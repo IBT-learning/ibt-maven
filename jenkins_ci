@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git branch: 'mavin1', changelog: false, credentialsId: 'JD_credentials', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+                git branch: 'mavin1', changelog: false, credentialsId: 'Git_cred_jean', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
     }
