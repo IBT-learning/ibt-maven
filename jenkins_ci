@@ -19,7 +19,7 @@ pipeline {
        stage('Compile') {
            steps {
                withMaven(maven: 'maven_3.9.3') {
-                            sh 'mvn Compile'
+                            sh 'mvn compile'
                }
            }
        }
