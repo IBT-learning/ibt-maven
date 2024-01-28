@@ -15,6 +15,13 @@ pipeline {
                               sh 'mvn validate'
                 }
             }
-        }
+         }
+       stage('Compile') {
+           steps {
+               withMaven(maven: 'maven_3.9.3') {
+                            sh 'mvn Compile'
+               }
+           }
+       }
     }
 }
