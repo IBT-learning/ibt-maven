@@ -94,7 +94,8 @@ pipeline{
                 ansiblePlaybook(
                     become: true, 
                     credentialsId: 'server-ssh-pw-ramin', 
-                    installation: 'ansible', 
+                    //installation: 'ansible',
+                    disableHostKeyChecking: true, 
                     inventory: 'inventory.txt', 
                     playbook: 'tomcat.yml'
                 )
