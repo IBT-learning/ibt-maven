@@ -1,5 +1,6 @@
 [nodes]
+137.184.166.133
+146.190.244.242
+159.203.10.148
 // server1 ip address
 // server2 ip address
-//
-//
