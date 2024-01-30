@@ -30,7 +30,13 @@ pipeline {
                       }
                   }
         }
-
+       stage('Package') {
+                  steps {
+                      withMaven(maven: 'maven_3.9.3') {
+                                          sh 'mvn package'
+                      }
+                  }
+       }
     }
 
 
