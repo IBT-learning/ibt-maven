@@ -15,6 +15,9 @@ pipeline{
           }
 
        }
+
+
+    }
        stage('validate'){
          steps{
             withMaven(maven:'maven_3.9.3') {
@@ -96,6 +99,6 @@ pipeline{
                    }
                 }
         }
-    }//
 
- }
+
+}
