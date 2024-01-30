@@ -31,24 +31,24 @@ pipeline {
                   }
         }
        stage('Package') {
-                  steps {
+                    steps {
                       withMaven(maven: 'maven_3.9.3') {
                                           sh 'mvn package'
                       }
        }          }
 
        stage('upload to Artifactory') {
-           steps {
-                withCredentials([file(credentialsId: 'jean_setting', variable: 'jean_setting_biding')]) {
-          }                                              sh 'mvn deploy -s $maven_setting_jean'
+                                  steps {
+                                    withCredentials([file(credentialsId: 'jean_setting', variable: 'jean_setting_biding')]) {
+          }                                                                sh 'mvn deploy -s $maven_setting_jean'
       }
    }
 
 
 
+}
 
 
-    }
 
 
 
