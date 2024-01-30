@@ -38,14 +38,7 @@ pipeline {
                   }
        }
 
-       stage('upload to Artifactory') {
-                         steps {
-                             withCredentials([file(credentialsId: 'jean_setting', variable: 'maven_setting_jean')]) {
-                                 sh 'mvn deploy -s $maven_setting_jean'
-                             }
 
-                         }
-              }
     }
 
 
