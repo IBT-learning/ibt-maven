@@ -82,19 +82,7 @@ pipeline{
           }
         }
 
-        stage('approval to deploy to devubuntu1'){
-           steps{
-             input message: 'approval to deploy to devubuntu1', ok: 'ok' '
-
-             sh 'echo approved'
-
-
-           }
-
-        }
-
-
-        stage('Deploy to devubuntu1'){
+                stage('Deploy to devubuntu1'){
                    steps{
                       script{
                            def remote = [name: 'devubuntu1', host: '192.168.0.40', allowAnyHosts: true]
@@ -106,7 +94,7 @@ pipeline{
                       }
 
                    }
-
+                }
         }
     }//
 
