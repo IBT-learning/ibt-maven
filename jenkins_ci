@@ -29,6 +29,7 @@ pipeline {
                                    sh 'mvn test'
                       }
                   }
+        }
        }stage('package') {
                   steps {
                         withMaven(maven: 'maven_3.9.3') {
