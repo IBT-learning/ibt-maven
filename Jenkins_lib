@@ -1,6 +1,6 @@
 
 @Library('jenkins-library')_
-pipeline{
+ pipeline{
     agent any
 
     tools{
@@ -101,4 +101,4 @@ pipeline{
         }
 
 
-}
+ }
