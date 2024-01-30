@@ -5,7 +5,7 @@ pipeline{
     stages {
     stage('Git checkout') {
                 steps {
-                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_oakisanya']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_OAKISANYA', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_oakisanya']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub_cred_oakisanyao', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
                 }
             }
      stage('Validate')
