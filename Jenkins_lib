@@ -1,103 +1,30 @@
-
 @Library('jenkins-library')_
-  pipeline{
+pipeline{
     agent any
 
-    tools{
-       maven 'maven_3.9.3'
-    }
-
-    stages{
-       stage('GIT checkout'){
-          steps{
-              git branch: 'feature_oakisanya', changelog: false, credentialsId: 'GITHUB_OAKISANYA', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
-
-          }
-
-       }
-
-
-    }
-       stage('validate'){
-         steps{
-            withMaven(maven:'maven_3.9.3') {
-                sh 'mvn validate'
+    stages {
+    stage('Git checkout') {
+                steps {
+                    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/feature_oakisanya']], extensions: [], userRemoteConfigs: [[credentialsId: 'ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']]]
+                }
             }
-         }
-
-       }
-       stage('compile'){
-                steps{
-                    sh 'mvn compile'
-                }
-
-       }
-        stage('test'){
-                       steps{
-
-                           sh 'mvn test'
-                       }
-
-       }
-
-       stage ('sonarQube scan'){
-           steps{
-             sonarScan
-           }
-       }
-
-
-
-
-        stage('package'){
-                       steps{
-                           sh 'mvn --version'
-                           sh 'mvn package'
-                       }
-
+     stage('Validate')
+     {
+        steps{
+            sh "mvn validate"
         }
-        stage('upload to artifactory'){
-                      steps{
-                        withCredentials([file(credentialsId: 'settings_mvn_oakisanya', variable: 'mvn_settings_oakisanya')]) {
-                          sh 'mvn deploy -s $mvn_settings_oakisanya'
-                        }
-
-                      }
-        }
-
-        stage('upload to artifactory with config'){
-                              steps{
-                                configFileProvider([configFile(fileId: 'maven_setting_oakisanya', targetLocation: 'mvn_settings_managed', variable: 'mvn_settings_managed')]) {
-                                  sh 'mvn deploy -s $mvn_settings_managed'
-                                }
-
-                              }
-        }
-
-        stage('Dependency Scan'){
-          steps{
-             dependencyCheck additionalArguments: '''
-                  -o "./"
-                  -s "./"
-                  -f "ALL"
-                  --prettyPrint \'\'\', odcInstallation: \'dependency-check\'''', odcInstallation: 'dependency-check'
-             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+     }
+     stage('Compile')
+          {
+             steps{
+                 sh "mvn compile"
+             }
           }
+     stage('SonarScan')
+     {
+        steps{
+               sonarScan()
         }
-
-                stage('Deploy to devubuntu1'){
-                   steps{
-                      script{
-                           def remote = [name: 'devubuntu1', host: '192.168.0.40', allowAnyHosts: true]
-                           withCredentials([usernamePassword(credentialsId: 'deploy_prod_oakisanya', passwordVariable: 'password', usernameVariable: 'user')]) {
-                               remote.user = user
-                               remote.password = password
-                           sshPut remote: remote, from: 'target/ibt-maven-11.7-SNAPSHOT.jar', into: '/opt/tomcat/webapps'
-                           }
-                      }
-
-                   }
-                }
-  }
-
-
+     }
+ }
+}
