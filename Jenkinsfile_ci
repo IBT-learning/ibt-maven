@@ -85,7 +85,7 @@ pipeline {
                 ansiblePlaybook (
                     become: true,
                     credentialsId: 'server_ssh_pwd',
-                    //installation: 'ansible',
+                    installation: 'ansible',
                     inventory: 'inventory.txt',
                     disableHostKeyChecking: true,
                     playbook: 'tomcat.yml'
