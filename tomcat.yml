@@ -31,7 +31,7 @@
         state: directory
         owner: '{{ user }}'
         group: '{{ user }}'
-        mode: 755
+        mode: 744
 
     - name: Download Tomcat and unarchive
       unarchive:
