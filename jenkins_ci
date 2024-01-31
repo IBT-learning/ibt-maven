@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'UX-IBT'}
+    agent any
 
     stages {
         stage('checkout') {
@@ -37,6 +37,19 @@ pipeline {
                       }
        }          }
 
+       stage('upload to Artifactory') {
+                                  steps {
+                                    withCredentials([file(credentialsId: 'jean_setting', variable: 'jean_setting_biding')]) {
+                                                                                sh 'mvn deploy -s $maven_setting_jean'
+                                    }
+
+                                  }
+
+
+
+
+
+       }
 
 
 
