@@ -45,7 +45,7 @@
         recurse: yes
         owner: '{{ user }}'
         group: '{{ user }}'
-        mode: u+rwx,g+rx,o+rx
+        mode: 744
 
     - name: Start tomcat
       command: nohup {{ path }}/apache-tomcat-9.0.83/bin/startup.sh
