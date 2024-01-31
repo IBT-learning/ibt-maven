@@ -29,8 +29,15 @@ pipeline{
                    sh 'mvn --version'
                    sh 'mvn test'
                }
-      }
-      stage('Package'){
+     }
+     stage('SonarQube Scan'){
+       steps{
+         withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
+             sh "${env.sonarScan}/bin/sonar-scanner"
+         }
+       }
+     }
+     stage('Package'){
                      steps{
                          sh 'mvn --version'
                          sh 'mvn package'
