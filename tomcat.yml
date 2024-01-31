@@ -31,7 +31,7 @@
         state: directory
         owner: '{{ user }}'
         group: '{{ user }}'
-        mode: 744
+        mode: 755
 
     - name: Download Tomcat and unarchive
       unarchive:
@@ -45,7 +45,7 @@
         recurse: yes
         owner: '{{ user }}'
         group: '{{ user }}'
-        mode: 744
+        mode: u+rwx,g+rx,o+rx
 
     - name: Start tomcat
       command: nohup {{ path }}/apache-tomcat-9.0.83/bin/startup.sh
