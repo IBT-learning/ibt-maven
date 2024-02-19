@@ -3,6 +3,9 @@ pipeline {
     parameters {
       string(name:"Branch_Name", defaultValue: "master", description: "Enter branch to build")
     }
+    environment {
+        version = 1.30.0
+    }
 
     stages {
         stage('Hello') {
@@ -33,6 +36,12 @@ pipeline {
             }
             steps {
                 echo "Running on condition"
+            }
+        }
+        stage('testing') {
+            steps {
+                echo '%version%'
+                echo "Testing stage"
             }
         }
     }
