@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'windows'
+        }
+    }
     parameters {
       string(name:"Branch_Name", defaultValue: "master", description: "Enter branch to build")
     }
