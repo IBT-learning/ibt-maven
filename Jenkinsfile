@@ -12,5 +12,10 @@ pipeline {
                 echo 'This is Vamsi'
             }
         }
+        stage('Downloading Git Repo') {
+             steps {
+                 git changelog: false, credentialsId: 'GitHub_cred_vamsi', poll: false, url: 'https://github.com/VamsiKrishnaYadavLoya/demo-nov.git'
+             }
+        }
     }
 }
