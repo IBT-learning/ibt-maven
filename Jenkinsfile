@@ -17,5 +17,10 @@ pipeline {
                  git changelog: false, credentialsId: 'GitHub_cred_vamsi', poll: false, url: 'https://github.com/VamsiKrishnaYadavLoya/demo-nov.git'
              }
         }
+        stage('List Files') {
+             steps {
+                 bat 'dir'
+             }
+        }
     }
 }
