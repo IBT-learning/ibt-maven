@@ -4,7 +4,7 @@ pipeline {
       string(name:"Branch_Name", defaultValue: "master", description: "Enter branch to build")
     }
     environment {
-        version = 1.30.0
+         version = '1.3.0'
     }
 
     stages {
@@ -40,8 +40,7 @@ pipeline {
         }
         stage('testing') {
             steps {
-                echo 'Testing stage'
-                sh 'echo $version'
+                echo 'testing'
                 bat 'echo %version%'
             }
         }
