@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Downloading Git Repo') {
              steps {
-                 git branch: '$Branch_Name', changelog: false, credentialsId: 'Vamsi git creds', poll: false, url: 'https://github.com/VamsiKrishnaYadavLoya/demo-nov.git'
+                 git branch: '$Branch_Name', credentialsId: 'VamsiGitCreds', poll: false, url: 'https://github.com/VamsiKrishnaYadavLoya/demo-nov.git'
              }
         }
         stage('List Files') {
