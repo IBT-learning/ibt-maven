@@ -44,5 +44,10 @@ pipeline {
                 bat 'echo %version%'
             }
         }
+        post {
+            success {
+                echo 'This pipeline is finished successfully!'
+            }
+        }
     }
 }
