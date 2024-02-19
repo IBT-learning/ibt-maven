@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+      string(name:"Branch_Name", defaultValue: "master", description: "Enter branch to build")
+    }
 
     stages {
         stage('Hello') {
@@ -14,7 +17,7 @@ pipeline {
         }
         stage('Downloading Git Repo') {
              steps {
-                 git changelog: false, credentialsId: 'GitHub_cred_vamsi', poll: false, url: 'https://github.com/VamsiKrishnaYadavLoya/demo-nov.git'
+                 git branch: '$Branch_Name', changelog: false, credentialsId: 'GitHub_cred_vamsi', poll: false, url: 'https://github.com/VamsiKrishnaYadavLoya/demo-nov.git'
              }
         }
         stage('List Files') {
