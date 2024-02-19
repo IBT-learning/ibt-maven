@@ -25,5 +25,15 @@ pipeline {
                  bat 'dir'
              }
         }
+        stage('Run on condition') {
+            when {
+                expression {
+                    env.BRANCH_NAME =='main'
+                }
+            }
+            steps {
+                echo "Running on condition"
+            }
+        }
     }
 }
