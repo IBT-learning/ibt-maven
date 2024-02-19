@@ -40,7 +40,7 @@ pipeline {
         }
         stage('testing') {
             steps {
-                echo '%version%'
+                bat 'echo %version%'
                 echo "Testing stage"
             }
         }
