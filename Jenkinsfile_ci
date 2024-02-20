@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Git Checkout'){
+            steps{
+                git branch: 'feature-vamsi', changelog: false, credentialsId: 'VamsiGitCreds', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+    }
+}
