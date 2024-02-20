@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        node {
-            label 'windows'
-        }
-    }
+    agent any
     parameters {
       string(name:"Branch_Name", defaultValue: "master", description: "Enter branch to build")
     }
@@ -29,7 +25,7 @@ pipeline {
         }
         stage('List Files') {
              steps {
-                 bat 'dir'
+                 sh 'ls'
              }
         }
         stage('Run on condition') {
@@ -45,7 +41,7 @@ pipeline {
         stage('testing') {
             steps {
                 echo 'testing'
-                bat 'echo %version%'
+                echo "${env.version}"
             }
         }
     }
