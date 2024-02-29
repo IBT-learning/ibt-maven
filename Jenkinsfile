@@ -13,7 +13,7 @@ pipeline {
         stage('testing') {
              when {  
                  expression{
-                     env.BRANCH_NAME == 'master'
+                     env.BRANCH_NAME == 'jan2024franklin'
             }
   
                 }
