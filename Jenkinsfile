@@ -23,7 +23,7 @@ pipeline {
 
             }
         }
-        stage('check hook'){
+        stage('check hookcc'){
                     steps{
 
                         sh 'ls -lrt'
