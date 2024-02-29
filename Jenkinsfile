@@ -40,8 +40,7 @@ pipeline {
             steps{
 
                         sh 'ls -lrt'
-                        sh 'echo branch'
-
+                        echo ${env.BRANCH_NAME}
                     }
                     
                 }
