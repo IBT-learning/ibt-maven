@@ -43,7 +43,7 @@ pipeline {
             steps{
 
                         sh 'ls -lrt'
-                       sh 'echo env.BRANCH_NAME'
+                      
                     }
                     
                 }
