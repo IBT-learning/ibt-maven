@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    // parameters{
-    //    // string(name:'Branch_Name', defaultValue: 'master',description: 'Enter the branch name')
-    // }
+    parameters{
+       string(name:'Branch_Name', defaultValue: 'main',description: 'Enter the branch name')
+    }
     stages {
         stage('Hello') {
             steps {
@@ -13,7 +13,7 @@ pipeline {
         stage('testing') {
              when {  
                  expression{
-                     env.BRANCH_NAME == 'main'
+                     env.BRANCH_NAME == 'jan2024franklin'
             }
   
                 }
