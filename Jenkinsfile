@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    parameters{
-       // string(name:'Branch_Name', defaultValue: 'master',description: 'Enter the branch name')
-    }
+    // parameters{
+    //    // string(name:'Branch_Name', defaultValue: 'master',description: 'Enter the branch name')
+    // }
     stages {
         stage('Hello') {
             steps {
