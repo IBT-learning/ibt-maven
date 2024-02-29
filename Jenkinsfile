@@ -14,7 +14,7 @@ pipeline {
             steps {
                 when {
                     expression {
-                      env.BRANCH_NAME=='master'
+                      env.BRANCH_NAME=='jan2024franklin'
                       
                     }
                   }
