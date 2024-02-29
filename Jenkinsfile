@@ -33,14 +33,15 @@ pipeline {
                  expression{
                      env.BRANCH_NAME == 'jan2024franklin'
             }
-                
-                }
-                    steps{
+
+                  steps{
 
                         sh 'ls -lrt'
                        // sh 'echo $Branch_Name'
 
                     }
+                }
+                    
                 }
     }
 }
