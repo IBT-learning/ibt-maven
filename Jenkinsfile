@@ -14,7 +14,7 @@ pipeline {
             steps {
                 when {
                     expression {
-                      env.BRANCH_NAME=='jan2024franklin'
+                      env.BRANCH_NAME=='master'
                       
                     }
                   }
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Git Checkout'){
             steps{
-                checkout scmGit(branches: [[name: '*/jan2024franklin']], extensions: [], userRemoteConfigs: [[credentialsId: 'franklin-ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'franklin-ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                 sh 'ls -lrt'
                 sh 'echo $Branch_Name'
 
