@@ -12,13 +12,13 @@ pipeline {
 
         stage('testing') {
             steps {
-                when {
-                    expression {
-                        $Branch_Name =='jan2024franklin'
+                // when {
+                //     expression {
+                //         $Branch_Name =='jan2024franklin'
                       
                       
-                    }
-                  }
+                //     }
+                //   }
             
                 echo 'Hello World'
             }
