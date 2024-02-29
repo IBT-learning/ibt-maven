@@ -12,6 +12,12 @@ pipeline {
 
         stage('testing') {
             steps {
+                when {
+                    expression {
+                      env.BRANCH_NAME=='master'
+                      
+                    }
+                  }
             
                 echo 'Hello World'
             }
