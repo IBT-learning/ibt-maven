@@ -6,6 +6,9 @@ pipeline {
      environment{
     version= "1.3.0"
     }
+    tools {
+        maven 'Maven 3.9.6' // Specify the desired Maven version
+      }
 
     stages {
         stage('Hello') {
@@ -14,6 +17,13 @@ pipeline {
                 echo 'Hello World  I dddam herenbjhbjddff454545'
             }
         }
+        stage('maven version') {
+                      steps {
+                             sh 'mvn --version'
+                         }
+                     }
+
+
 
         stage('testing') {
              when {
@@ -23,8 +33,6 @@ pipeline {
             }
 
                 }
-
-
             steps{
                 echo 'Hello World'
             }
