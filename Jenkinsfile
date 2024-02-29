@@ -29,6 +29,12 @@ pipeline {
             }
         }
         stage('check hookcc'){
+             when{  
+                 expression{
+                     evn.BRANCH_NAME== 'jan2024franklin'
+            }
+                
+                }
                     steps{
 
                         sh 'ls -lrt'
