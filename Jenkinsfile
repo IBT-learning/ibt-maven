@@ -12,11 +12,11 @@ pipeline {
 
         stage('testing') {
             steps {
-                when {
-                    expression {
-                        env.BRANCH_NAME =='jan2024franklin' 
-                    }
-                }
+                // when {
+                //     expression {
+                //         env.BRANCH_NAME =='jan2024franklin' 
+                //     }
+                // }
             steps{  
                 echo 'Hello World'
             }
