@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo ${variable}"
+                echo "${variable}"
                 echo 'Hello World  I dddam herenbjhbjddff454545'
             }
         }
