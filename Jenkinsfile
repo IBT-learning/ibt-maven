@@ -16,9 +16,11 @@ pipeline {
                     expression {
                         env.BRANCH_NAME =='jan2024franklin' 
                     }
-                    steps{  
-                echo 'Hello World'
                 }
+            steps{  
+                echo 'Hello World'
+            }
+                
                 }
             
         }
