@@ -13,7 +13,7 @@ pipeline {
         stage('testing') {
              when {  
                  expression{
-                     env.BRANCH_NAME == 'jan2024franklin'
+                     env.BRANCH_NAME == '*/jan2024franklin'
             }
   
                 }
@@ -39,7 +39,7 @@ pipeline {
             steps{
 
                         sh 'ls -lrt'
-                       // sh 'echo $Branch_Name'
+                        sh 'echo env.BRANCH_NAME'
 
                     }
                     
