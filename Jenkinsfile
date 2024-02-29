@@ -38,12 +38,5 @@ pipeline {
 
             }
         }
-        stage('check hookcc'){
-            
-            steps{
-                        sh 'ls -lrt' 
-                    }
-                    
-                }
     }
 }
