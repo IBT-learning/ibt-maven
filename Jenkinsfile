@@ -7,7 +7,7 @@ pipeline {
     version= "1.3.0"
     }
     tools {
-        maven "maven_3.9.6" // Specify the desired Maven version
+        maven "maven_3.8" // Specify the desired Maven version
       }
 
     stages {
