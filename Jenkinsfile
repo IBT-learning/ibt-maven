@@ -40,6 +40,15 @@ pipeline {
 
             }
         }
+
     }
+    post {
+        always {
+          // Send email notification on success
+          mail  to: 'recipient@example.com',
+               subject: 'Build Successful',
+               body: 'The build was successful!'
+        }
+      }
 }
 
