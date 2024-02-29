@@ -3,11 +3,14 @@ pipeline {
     // parameters{
     //    string(name:'Branch_Name', defaultValue: 'main',description: 'Enter the branch name')
     // }
+     environment{
+    version= '1.3.0'
+    }
    
     stages {
         stage('Hello') {
             steps {
-               
+                echo ${variable}"
                 echo 'Hello World  I dddam herenbjhbjddff454545'
             }
         }
