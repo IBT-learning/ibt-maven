@@ -3,30 +3,35 @@ pipeline {
     // parameters{
     //    string(name:'Branch_Name', defaultValue: 'main',description: 'Enter the branch name')
     // }
+     environment{
+    version= "1.3.0"
+    }
+
     stages {
         stage('Hello') {
             steps {
+                echo "${version}"
                 echo 'Hello World  I dddam herenbjhbjddff454545'
             }
         }
 
         stage('testing') {
-             when {  
+             when {
                  expression{
-                     
+
                      env.BRANCH_NAME == 'jan2024franklin'
             }
-  
+
                 }
-          
-                
-            steps{  
+
+
+            steps{
                 echo 'Hello World'
             }
-                
+
         }
-            
-        
+
+
         stage('Git Checkout'){
             steps{
                 checkout scmGit(branches: [[name: '*/jan2024franklin']], extensions: [], userRemoteConfigs: [[credentialsId: 'franklin-ibt', url: 'https://github.com/IBT-learning/ibt-maven.git']])
@@ -35,15 +40,5 @@ pipeline {
 
             }
         }
-        stage('check hookcc'){
-            
-            steps{
-
-                        sh 'ls -lrt'
-                        sh 'echo branch'
-
-                    }
-                    
-                }
     }
 }
