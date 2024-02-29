@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters{
-        string(name:'Branch_Name', defaultValue: 'jan2024franklin',description: 'Enter the branch name')
+        string(name:'Branch_Name', defaultValue: 'master',description: 'Enter the branch name')
     }
     stages {
         stage('Hello') {
@@ -12,15 +12,13 @@ pipeline {
 
         stage('testing') {
             steps {
-                // when {
-                //     expression {
-                //         $Branch_Name =='jan2024franklin'
-                      
-                      
-                //     }
-                //   }
-            
+                when {
+                    expression {
+                        env.BRANCH_ranch_Name =='jan2024franklin' 
+                    }
+                
                 echo 'Hello World'
+                }
             }
         }
         stage('Git Checkout'){
