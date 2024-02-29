@@ -20,7 +20,7 @@ pipeline {
                 echo 'Hello World'
                 }
                 }
-            }
+            
         }
         stage('Git Checkout'){
             steps{
