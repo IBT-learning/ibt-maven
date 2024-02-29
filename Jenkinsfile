@@ -15,7 +15,7 @@ pipeline {
             when {
                     expression {
                       env.BRANCH_NAME=="master"
-                      return branch == 'master'
+                      
                     }
                   }
                 echo 'Hello World'
