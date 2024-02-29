@@ -14,7 +14,7 @@ pipeline {
             steps {
                 when {
                     expression {
-                        env.BRANCH_Name =='jan2024franklin' 
+                        env.BRANCH_NAME =='jan2024franklin' 
                     }
                 
                 echo 'Hello World'
