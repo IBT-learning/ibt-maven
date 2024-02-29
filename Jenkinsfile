@@ -5,6 +5,7 @@ pipeline {
     // }
     environment{
     version = '1.3.0'
+    }
     stages {
         stage('Hello') {
             steps {
@@ -40,4 +41,4 @@ pipeline {
         }
     }
 }
-}
+
