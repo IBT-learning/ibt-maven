@@ -11,6 +11,12 @@ pipeline {
         }
 
         stage('testing') {
+             when {  
+                 expression{
+                     env.BRANCH_NAME == 'jan2024franklin'
+            }
+  
+                }
           
                 
             steps{  
@@ -29,12 +35,7 @@ pipeline {
             }
         }
         stage('check hookcc'){
-             when {  
-                 expression{
-                     env.BRANCH_NAME == 'master'
-            }
-  
-                }
+            
             steps{
 
                         sh 'ls -lrt'
