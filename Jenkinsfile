@@ -17,7 +17,7 @@ pipeline {
                 echo 'Hello World'
             }
                 
-                }
+        }
             
         
         stage('Git Checkout'){
@@ -29,9 +29,9 @@ pipeline {
             }
         }
         stage('check hookcc'){
-             when{  
+             when {  
                  expression{
-                     evn.BRANCH_NAME== 'jan2024franklin'
+                     env.BRANCH_NAME == 'jan2024franklin'
             }
                 
                 }
