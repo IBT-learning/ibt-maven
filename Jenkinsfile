@@ -29,7 +29,7 @@ pipeline {
              when {
                  expression{
 
-                     env.BRANCH_NAME == 'jan2024franklin'
+                     env.BRANCH_NAME == 'main'
             }
 
                 }
