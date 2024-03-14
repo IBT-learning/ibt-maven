@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    // parameters{
-    //    string(name:'Branch_Name', defaultValue: 'main',description: 'Enter the branch name')
-    // }
+    parameters{
+       string(name:'branch_name', defaultValue: 'main',description: 'Enter the branch name')
+    }
      environment{
     version= "1.3.0"
     }
@@ -50,13 +50,13 @@ pipeline {
         }
 
     }
-    post {
-        always {
-          // Send email notification on success
-          mail  to: 'recipient@example.com',
-               subject: 'Build Successful',
-               body: 'The build was successful!'
-        }
-      }
+//     post {
+//         always {
+//           // Send email notification on success
+//           mail  to: 'recipient@example.com',
+//                subject: 'Build Successful',
+//                body: 'The build was successful!'
+//         }
+//       }
 }
 
