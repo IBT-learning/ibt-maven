@@ -11,7 +11,7 @@ pipeline {
       }
 
     stages {
-        stage('Hello') {
+        stage('Hellorrr') {
             steps {
                 echo "${version}"
                 echo 'Hello World  I dddam herenbjhbjddff454545'
@@ -25,7 +25,7 @@ pipeline {
 
 
 
-        stage('testing') {
+        stage('testing4444444') {
              when {
                  expression{
 
