@@ -3,12 +3,12 @@ pipeline {
 
  stages {
     stage('hello') {
-        step {
+        steps {
             echo "hello world"
         } //step
     } //stage1
     stage('hi') {
-        step {
+        steps {
             echo "hi this is gunjan"
         } //step
     } //stage2
