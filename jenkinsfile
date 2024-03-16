@@ -7,7 +7,7 @@ stages{
             echo "hello"
         }
     }//end of stage1
-    stage('hello'){
+    stage('helle'){
             steps{
                 echo "hello"
                 git branch: 'jan2024franklinv1', credentialsId: 'franklin_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven'
@@ -18,6 +18,6 @@ stages{
 
                         git branch: 'jan2024franklinv1', credentialsId: 'franklin_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven'
                     }
-                }// end of stage 2
+                }// end of stage 3
 }// end of stages
 }// end of pipeline
