@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+ parameters {
+     string(name: 'Branch_name' , defaultValue: 'main' , description: 'Enter branch to  build')
+ }
+
+
     stages {
         stage('Hello') {
             steps {
@@ -14,7 +19,7 @@ pipeline {
         } //stage2
         stage( ' Github download ') {
          steps{
-             git branch: 'jan2024_bagul', credentialsId: 'bagul_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
+             git branch: '$Branch_name' , credentialsId: 'bagul_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
              }
          }
          stage ('List Repo contents')  {
