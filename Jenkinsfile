@@ -12,5 +12,10 @@ pipeline {
             echo "hi this is gunjan"
         } //step
     } //stage2
+    stage('Github download') {
+        steps{
+            git branch: 'jan2024_gunjan', credentialsId: 'gunjan_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+    } //stage3
  } // end of stages
 } // end of pipeline
