@@ -13,12 +13,12 @@ pipeline {
             } //step
         } //stage2
         stage( ' Github download ') {
-         step{
+         steps{
              git branch: 'jan2024_bagul', credentialsId: 'bagul_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
              }
-         } stage3
-         stage ('List Repo contents')  {
-         step{
+         }
+         stages ('List Repo contents')  {
+         steps{
               sh 'ls -lrt'
               }
          }
