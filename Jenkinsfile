@@ -21,5 +21,6 @@ pipeline {
          step{
               sh 'ls -lrt'
               }
+         }
     } //  end of stages
  } //end of pipeline
