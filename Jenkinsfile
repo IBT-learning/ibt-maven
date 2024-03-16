@@ -22,4 +22,4 @@ pipeline {
               sh 'ls -lrt'
               }
     } //  end of stages
-} //end of pipeline
+ } //end of pipeline
