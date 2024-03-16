@@ -17,5 +17,11 @@ pipeline {
             git branch: 'jan2024_gunjan', credentialsId: 'gunjan_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     } //stage3
+    stage ('List Repo contents ') {
+        steps{
+            sh 'ls -lrt'
+            // bat 'dir' -- for windows
+        } //step
+    } //stage4
  } // end of stages
 } // end of pipeline
