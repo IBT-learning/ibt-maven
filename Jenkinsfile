@@ -38,7 +38,7 @@ pipeline {
               branch 'main'
               }
              steps{
-                echoo "Deploying..."
+                echo "Deploying..."
                 }
                 }
     } //  end of stages
