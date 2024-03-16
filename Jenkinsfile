@@ -3,6 +3,7 @@ pipeline {
 
  parameters {
     string(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
+    choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
  }
 
 
@@ -28,7 +29,11 @@ pipeline {
             // bat 'dir' -- for windows
         } //step
     } //stage4
-
+    stage ('Print commands') {
+        steps {
+            echo $CHOICE
+        }
+    } //stage 5
 
  } // end of stages
 } // end of pipeline
