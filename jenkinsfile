@@ -31,5 +31,6 @@ stages{
                     steps {
                         echo "Hello, ${PERSON}, nice to meet you."
                     }
+         }//end of stage4
 }// end of stages
 }// end of pipeline
