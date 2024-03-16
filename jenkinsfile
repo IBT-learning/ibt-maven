@@ -2,15 +2,22 @@ pipeline{
 
 agent any
 stages{
-    stage(''hello){
+    stage('hello'){
         steps{
             echo "hello"
         }
     }//end of stage1
-    stage(''hello){
+    stage('hello'){
             steps{
                 echo "hello"
+                git branch: 'jan2024franklinv1', credentialsId: 'franklin_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven'
             }
         }// end of stage 2
+        stage('download from github'){
+                    steps{
+
+                        git branch: 'jan2024franklinv1', credentialsId: 'franklin_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven'
+                    }
+                }// end of stage 2
 }// end of stages
 }// end of pipeline
