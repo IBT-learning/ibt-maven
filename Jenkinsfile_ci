@@ -1,0 +1,18 @@
+pipeline{
+
+    agent any
+    stages{
+        stage('github checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/jan2024franklinv1']], extensions: [], userRemoteConfigs: [[credentialsId: 'franklin-githubacc', url: 'https://github.com/IBT-learning/ibt-maven']])
+
+            }
+        }// end of stage
+        stage('validate files'){
+            steps{
+                ls -lrt
+
+            }
+        }// end of stage
+    }// end of stages
+}// end of pipeline
