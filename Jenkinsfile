@@ -71,6 +71,11 @@ environment {
                             }
         }
     }
+    stage('checking git hook'){
+        steps{
+            echo "i ran due to git scm commit hook poll"
+        }
+    }
  } // end of stages
  post {
          always {
