@@ -7,6 +7,10 @@ pipeline {
  }
 
 
+environment {
+    version = '1.1.1'
+}
+
  stages {
     stage('hello') {
         steps {
@@ -47,6 +51,13 @@ pipeline {
         steps{
             echo "Deploying... "
         }
+    }
+    stage('using vars'){
+        steps{
+            echo $version
+            echo "${env.version}"
+        }
+
     }
  } // end of stages
 } // end of pipeline
