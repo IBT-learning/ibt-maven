@@ -3,7 +3,7 @@ pipeline{
 agent any
 //triggers{ cron('H/2 * * * *') }
 environment{
-variable = '3.4.5'
+version  = '3.4.5'
 }
 stages{
     stage('hello'){
