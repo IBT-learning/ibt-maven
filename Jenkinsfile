@@ -7,9 +7,10 @@ pipeline {
  }
 
 
-environment {
-      version--1.1.1
-}
+   environment {
+      "version--1.1"
+   }
+ }
 
     stages {
         stage('Hello') {
