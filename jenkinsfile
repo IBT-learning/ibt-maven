@@ -49,8 +49,8 @@ stages{
          stage('use variable'){
                              steps{
 
-                                 echo $version
-                                 echo ${env.version}
+                                 echo '$version'
+                                echo "${env.version}"
                              }
                          }// end of stage 3
 }// end of stages
