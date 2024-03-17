@@ -18,6 +18,11 @@ pipeline{
 
         }
     }
+    stage("List Repo contents"){
+        steps{
+        sh 'ls -lrt'
+        }
+    }
 
  }
 
