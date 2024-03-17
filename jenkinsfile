@@ -8,6 +8,7 @@ stages{
         }
     }//end of stage1
     stage('helle'){
+
             steps{
                 echo "hello"
                 git branch: 'jan2024franklinv1', credentialsId: 'franklin_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven'
@@ -32,5 +33,14 @@ stages{
                         echo "Hello, ${PERSON}, nice to meet you."
                     }
          }//end of stage4
+         stage('checking'){
+
+                    when {
+                    branch 'jan2025franklinv1'
+            }
+                         steps{
+                            echo "hello"
+                            }
+                         }// end of stage 3
 }// end of stages
 }// end of pipeline
