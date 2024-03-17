@@ -3,6 +3,7 @@ pipeline{
 
 parameters{
     string(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
+    choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
 }
 
  stages{
@@ -26,6 +27,11 @@ parameters{
         steps{
         sh 'ls -lrt'
         }
+    }
+    stage('Print commands'){
+    steps{
+    echo $CHOICE
+    }
     }
 
  }
