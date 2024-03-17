@@ -2,6 +2,9 @@ pipeline{
 
 agent any
 //triggers{ cron('H/2 * * * *') }
+environment{
+variable = '3.4.5'
+}
 stages{
     stage('hello'){
         steps{
@@ -42,6 +45,13 @@ stages{
                          steps{
                             echo "hello"
                             }
+                         }// end of stage 3
+         stage('use variable'){
+                             steps{
+
+                                 echo $version
+                                 echo ${env.version}
+                             }
                          }// end of stage 3
 }// end of stages
 }// end of pipeline
