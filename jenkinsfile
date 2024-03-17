@@ -37,7 +37,7 @@ stages{
                         echo "Hello, ${PERSON}, nice to meet you."
                     }
          }//end of stage4
-         stage('checking'){
+         stage('checkingeeee'){
 
                     when {
                     branch 'jan2025franklinv1'
