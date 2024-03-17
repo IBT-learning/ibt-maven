@@ -54,7 +54,7 @@ environment {
     }
     stage('using vars'){
         steps{
-            echo $version
+            echo '$version'
             echo "${env.version}"
         }
 
