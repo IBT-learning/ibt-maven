@@ -10,7 +10,7 @@ pipeline{
         }// end of stage
         stage('validate files'){
             steps{
-                ls -lrt
+               sh ' ls -lrt'
 
             }
         }// end of stage
