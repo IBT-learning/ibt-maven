@@ -68,6 +68,11 @@ environment {
                             echo "Testing the ${browsers[i]} browser"
                         }
         }
+        stage('checking git hook'){
+            steps{
+                echo"i ran due to git scm commit hook pull"
+            }
+        }
     }
     }
 
