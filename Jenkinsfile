@@ -54,9 +54,8 @@ environment {
         steps{
             echo '$version'
             echo "${env.version}"
-            ls
-            pwd
-        }
+
+         }
 
     }
 
