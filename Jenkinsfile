@@ -5,6 +5,9 @@ parameters{
     string(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
 }
+environment {
+    version = '1.1.1'
+}
 
  stages{
     stage("hello"){
@@ -46,6 +49,15 @@ parameters{
         steps{
             echo "Deploying... "
         }
+    }
+    stage('using vars'){
+        steps{
+            echo $version
+            echo "${env.version}"
+            ls
+            pwd
+        }
+
     }
 
  }
