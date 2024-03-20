@@ -3,6 +3,7 @@ pipeline {
 
     parameters {
        string(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
+       choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     }
 
     stages {
@@ -28,5 +29,10 @@ pipeline {
             } //step
 
         } //stage4
+        stage ('Print commands') {
+            steps {
+                echo $CHOICE
+            }// step
+        }// stage5
     } // end of stages
 } // end of pipeline
