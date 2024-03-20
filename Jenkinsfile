@@ -31,7 +31,8 @@ pipeline {
         } //stage4
         stage ('Print commands') {
             steps {
-                echo $CHOICE
+                echo '$CHOICE'
+                echo "Choice: ${params.CHOICE}"
             }// step
         }// stage5
     } // end of stages
