@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Github checkout'){
+            steps{
+                git branch: 'jan2024-abelsulamo', credentialsId: 'asulamo24', url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+        stage('List contents'){
+            steps{
+                sh 'ls -lrt'
+            }
+        }
+
+    } // end of stages
+
+
+} // end of pipeline
