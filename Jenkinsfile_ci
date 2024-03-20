@@ -39,7 +39,7 @@ pipeline{
             }
 
         }
-        stage('test'{
+        stage('test'){
             steps{
                 sh 'mvn --version'
                 sh 'mvn package'
