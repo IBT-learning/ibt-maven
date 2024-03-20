@@ -31,7 +31,7 @@ pipeline {
     stage ('print commands') {
     when {
         expression {
-             ${ params.CHOICE}=='Two'
+             '${params.CHOICE}'=='Two'
         }
     }
        steps {
