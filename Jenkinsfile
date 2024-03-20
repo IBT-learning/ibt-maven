@@ -1,5 +1,10 @@
 pipeline {
-agent any
+ agent any
+
+ parameters {
+     strings(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
+ }
+
 
  stages {
    stage ("hello"){
@@ -14,7 +19,7 @@ agent any
     } //stage2
     stage('Github download') {
         steps{
-             git branch: 'jan2024-funmi', credentialsId: 'olufunmi11_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
+             git $Branch_name: 'jan2024-funmi', credentialsId: 'olufunmi11_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
     } //stage3
     stage ("List Repo contents") {
