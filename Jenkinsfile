@@ -12,5 +12,11 @@ pipeline {
                 echo 'Hi this is Kingsley'
             } // step
         }// stage2
+        stage('Github download') {
+            steps {
+                git branch: 'feature-kingsleyobi', credentialsId: 'kingsley_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+
+        } //stage3
     } // end of stages
 } // end of pipeline
