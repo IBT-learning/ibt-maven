@@ -58,8 +58,22 @@ environment {
             steps {
                 echo '$version'
                 echo "${env.version}"
+                script {
+                    print env.version
+                }
 
             } // step
         } //stage7
+
+    stage('script block') {
+        steps{
+            script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
+        }// step
+    }// stage8
     } // end of stages
 } // end of pipeline
