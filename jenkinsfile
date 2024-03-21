@@ -10,6 +10,10 @@ pipeline {
          stage('hi') {
             steps {
                 echo 'hi this is komivi'
-            }
-        }   }
-}
+                            }step
+        }   }stage2
+}stage('Github download')
+steps{
+git branch: 'jan2024_komivi', credentialsId: 'komivi_github_credential', url: 'https://github.com/IBT-learning/ibt-maven.git'
+ }
+}stages3
