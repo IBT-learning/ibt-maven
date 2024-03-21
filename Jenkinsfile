@@ -6,6 +6,10 @@ pipeline {
        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     }
 
+environment {
+    version = '1.1.1'
+}
+
     stages {
         stage('Hello') {
             steps {
@@ -49,5 +53,13 @@ pipeline {
             }// step
 
         }// stage6
+
+        stage('using vars'){
+            steps {
+                echo $version
+                echo "${env.version}"
+                
+            } // step
+        } //stage7
     } // end of stages
 } // end of pipeline
