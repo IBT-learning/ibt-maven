@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Github checkout'){
+           steps{
+              git branch: 'jan2024-funmi', credentialsId: 'olufunmi', url: 'https://github.com/IBT-learning/ibt-maven.git'
+           }
+        }
+        stage('list contents'){
+           steps{
+               sh 'ls -lrt'
+           }
+        }
+
+    } // end of stages
+} // end of pipeline
