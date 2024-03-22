@@ -17,5 +17,12 @@ pipeline {
                    git branch: 'jan2024-shiney ', credentialsId: 'shiney495_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
          }//stage3
+         stage('windows command'){
+               steps {
+               bat '''dir
+               netstat -noab
+               echo $ENVR '''
+               }
+         }//stage4
     }//endofstages
 }//endofpipeline
