@@ -8,9 +8,8 @@ pipeline {
 
 
    environment {
-      version = 1.1.1
+      version='1.1.1'
    }
-
 
     stages {
         stage('Hello') {
