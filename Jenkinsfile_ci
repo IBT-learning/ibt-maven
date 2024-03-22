@@ -20,5 +20,13 @@ pipeline {
                }
             }
         }
+        stage('comiple'){
+            steps{
+                 withMaven(maven: 'maven_3.8') {
+                    sh 'mvn --version'
+                    sh 'mvn validate'
+                }
+            }
+        }
     } // end of stages
 } // end of pipeline
