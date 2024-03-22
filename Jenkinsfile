@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    parameters{
+        string(name: 'Branch_name', defaultvalue: 'main',desciption: 'Enter branch to build')
+
+    }
+
+
     stages {
         stage('Hello') {
             steps {
@@ -20,8 +26,7 @@ pipeline {
          stage('windows command'){
                steps {
                bat '''dir
-               netstat -noab
-               echo $ENVR '''
+               netstat -noab'''
                }
          }//stage4
     }//endofstages
