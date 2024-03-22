@@ -1,9 +1,8 @@
 pipeline {
     agent any
 
-    parameters{
-        string(name: 'Branch_name', defaultvalue: 'main',desciption: 'Enter branch to build')
-
+    parameters {
+        string(name: 'Branch_name', defaultvalue: 'main',description: 'Enter branch to build')
     }
 
 
