@@ -7,9 +7,9 @@ pipeline {
             echo 'hello world'
         } // steps
     } // stage1
-    stage('salut'){
+    stage('hi'){
         steps{
-             echo 'salut moi c fao'
+             echo 'hi moi c fao'
         } // steps
     } // stage2
 } // end of pipeline
