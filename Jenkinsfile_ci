@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    tools{
+        maven 'maven_3.9.3'
+    }
     stages {
         stage('Github checkout'){
            steps{
@@ -26,6 +29,12 @@ pipeline {
                     sh 'mvn --version'
                     sh 'mvn compile'
                }
+            }
+        }
+        stage('test'){
+            steps {
+               sh 'mvn --version'
+               sh 'mvn test'
             }
         }
 
