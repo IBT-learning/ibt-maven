@@ -22,6 +22,14 @@ pipeline {
                    git branch: '$Branch_name', credentialsId: 'shiney495_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
          }//stage3
+         stage('Example Deploy'){
+         when {
+            branch 'main'
+         }
+         steps{
+         echo "Deploying...."
+            }
+         }
          stage('windows command'){
                steps {
                bat '''dir
