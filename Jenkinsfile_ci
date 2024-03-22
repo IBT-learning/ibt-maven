@@ -1,4 +1,4 @@
-pipeline {
+ pipeline {
     agent any
 
     stages{
@@ -13,4 +13,4 @@ pipeline {
            }
         }
     } //end of stages
-} //end of pipeline
+ }
