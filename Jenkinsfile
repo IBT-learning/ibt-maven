@@ -37,5 +37,11 @@ pipeline {
                netstat -noab'''
                }
          }//stage4
+         stage("print commands-final?") {
+            steps{
+            echo '$Branch_name'
+            }
+         }
+
     }//endofstages
 }//endofpipeline
