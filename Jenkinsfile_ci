@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('GitHub checkout') {
+            steps{
+                git branch: 'feature-kingsleyobi', changelog: false, credentialsId: 'Kingsley_GitHub_Credentials', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+        stage('List contents'){
+            steps{
+                sh 'ls -lrt'
+            }
+        }
+    } // end of stages
+} // end of pipeline
