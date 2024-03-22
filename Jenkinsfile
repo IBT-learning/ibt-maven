@@ -26,10 +26,11 @@ pipeline {
          when {
             branch 'main'
          }
-         steps{
-         echo "Deploying...."
+            steps{
+               echo "Deploying...."
             }
-         }
+         } //steps4
+
          stage('windows command'){
                steps {
                bat '''dir
