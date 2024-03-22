@@ -37,6 +37,12 @@ pipeline {
                sh 'mvn test'
             }
         }
+        stage('package'){
+           steps {
+               sh 'mvn --version'
+               sh 'mvn package'
+           }
+        }
 
     } // end of stages
 } // end of pipeline
