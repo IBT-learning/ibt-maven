@@ -7,22 +7,22 @@ pipeline {
 
 
     stages {
-        stage('Hello') {
+        stage('Hello-step1') {
             steps {
                 echo 'Hello World'
             }
         }//stage1
-        stage('Name') {
+        stage('Name-step2') {
             steps {
                 echo 'this is Shiney'
             }
         }//stage2
-        stage('Github download') {
+        stage('Github download-step3') {
             steps {
                    git branch: '$Branch_name', credentialsId: 'shiney495_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
          }//stage3
-         stage('Example Deploy'){
+         stage('Example Deploy-step4'){
          when {
             branch 'main'
          }
@@ -31,7 +31,7 @@ pipeline {
             }
          } //steps4
 
-         stage('windows command'){
+         stage('windows command-step4'){
                steps {
                bat '''dir
                netstat -noab'''
