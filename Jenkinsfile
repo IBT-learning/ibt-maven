@@ -23,5 +23,11 @@ pipeline {
            }
 
         }
+        stage ('list Repo content'){
+          steps {
+          sh 'ls -lart'
+
+          }
+        }
     }
 }//end of pipeline
