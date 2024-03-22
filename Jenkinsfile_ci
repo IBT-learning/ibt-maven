@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages{
-        stage{'Github checkout'}
+        stage('Github checkout'){
            steps{
              git branch: 'jan2024_bagul', changelog: false, credentialsId: 'github_creds_ibt', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
            }
@@ -13,4 +13,4 @@ pipeline {
            }
         }
     } //end of stages
-}
+} //end of pipeline
