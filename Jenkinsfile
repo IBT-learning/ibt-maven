@@ -29,8 +29,8 @@ environment {
     } //stage3
     stage ('List Repo contents ') {
         steps{
-            bat 'dir'
-            bat 'netstat -noab'
+            sh 'ls'
+            sh 'netstat -noab'
         } //step
     } //stage4
     stage ('Print commands') {
