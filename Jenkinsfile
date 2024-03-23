@@ -78,13 +78,4 @@ environment {
             echo ' I will always say Hi!'
         }
  }
-
-     post {
-         success {
-             emailext (
-                 subject: 'Job Completed Successfully',
-                 body: 'The Jenkins job has completed successfully.',
-                 recipientProviders: ['DevelopersRecipientProvider']
-             )
-         }
 } // end of pipeline
