@@ -5,6 +5,10 @@ parameters {
     choice(name: 'CHOICE', choices: ['Python3', 'Go', 'Ruby'], description: 'Enter Technology')
     }
 
+    environment {
+         version = '1.1.1'
+    }
+
     stages {
         stage('Hello') {
             steps {
@@ -53,6 +57,13 @@ parameters {
             echo 'Deploying'
            }
 
+        }
+        stage('using vars') {
+          steps {
+             echo '$version'
+             echo "${env.vesrion}"
+
+          }
         }
     }// end of stages
 }//end of pipeline
