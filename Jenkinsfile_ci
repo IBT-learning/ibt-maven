@@ -12,5 +12,29 @@ pipeline {
               sh 'ls -lrt'
            }
         }
+        stage('vallidate'){
+           steps{
+               withMaven(maven: 'mvn_3.8'){
+                   sh 'mvn --version'
+                   sh 'mvn validate'
+               }
+           }
+        }
+        stage('test'){
+           steps{
+              withMaven(maven: 'mvn_3.8'){
+                  sh 'mvn --version'
+                  sh 'mvn test'
+              }
+           }
+        }
+        stage('package'){
+           steps{
+              withMaven(mvn: 'mvn_3.8'){
+                  sh 'mvn --version'
+                  sh 'mvn package'
+              }
+           }
+        }
     } //end of stages
 } //end of pipeline
