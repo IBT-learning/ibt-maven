@@ -1,5 +1,8 @@
 pipeline {
     agent any
+parameters {
+    string(name: 'branch_name', defaultvalue: 'feature-uzoma', description: 'Enter branch to build')
+}
 
     stages {
         stage('Hello') {
@@ -19,7 +22,7 @@ pipeline {
         }
         stage ('Github Download') {
            steps{
-           git branch: 'feature-uzoma', credentialsId: 'github_creds_uzoma', url: 'https://github.com/IBT-learning/ibt-maven.git'
+           git branch: '$branch_name', credentialsId: 'github_creds_uzoma', url: 'https://github.com/IBT-learning/ibt-maven.git'
            }
 
         }
