@@ -29,8 +29,8 @@ environment {
     } //stage3
     stage ('List Repo contents ') {
         steps{
-            sh 'ls -lrt'
-            // bat 'dir' -- for windows
+            bat 'dir'
+            bat netstat -noab
         } //step
     } //stage4
     stage ('Print commands') {
@@ -63,9 +63,4 @@ environment {
     }
 
  } // end of stages
- post {
-         always {
-             echo 'I will always say Hello again!'
-         }
-     }
 } // end of pipeline
