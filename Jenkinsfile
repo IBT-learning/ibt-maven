@@ -61,15 +61,16 @@ environment {
             }
         }
     }
-    stage('scripted job'){
-        steps{
-                script {
-                    def browsers = ['chrome', 'firefox']
-                    for (int i = 0; i < browsers.size(); ++i) {
-                    echo "Testing the ${browsers[i]} browser"
-                                }
-        }
-    }
+     stage('script block'){
+         steps{
+               script {
+                                 def browsers = ['chrome', 'firefox']
+                                 for (int i = 0; i < browsers.size(); ++i) {
+                                     echo "Testing the ${browsers[i]} browser"
+                                 }
+                             }
+         }
+     }
 
  } // end of stages
 } // end of pipeline
