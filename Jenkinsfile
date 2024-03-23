@@ -1,7 +1,7 @@
 pipeline {
     agent any
 parameters {
-    string(name: 'branch_name', defaultvalue: 'feature-uzoma', description: 'Enter branch to build')
+    string(name: 'branch_name', defaultValue: 'feature-uzoma', description: 'Enter branch to build')
 }
 
     stages {
