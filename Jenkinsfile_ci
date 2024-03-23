@@ -14,26 +14,30 @@ pipeline {
         }
         stage('vallidate'){
            steps{
-               withMaven(maven: 'mvn_3.8'){
+               withMaven(maven: 'mvn_3.9.3'){
                    sh 'mvn --version'
                    sh 'mvn validate'
                }
            }
         }
-        stage('test'){
+        stage('compile'){
            steps{
               withMaven(maven: 'mvn_3.8'){
                   sh 'mvn --version'
-                  sh 'mvn test'
+                  sh 'mvn compile'
               }
+           }
+        }
+        stage('test'){
+           steps{
+                  sh 'mvn --version'
+                  sh 'mvn test'
            }
         }
         stage('package'){
            steps{
-              withMaven(maven: 'mvn_3.8'){
                   sh 'mvn --version'
                   sh 'mvn package'
-              }
            }
         }
     } //end of stages
