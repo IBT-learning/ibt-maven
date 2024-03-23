@@ -71,6 +71,11 @@ environment {
                              }
          }
      }
+     stage('webhook test'){
+        steps{
+            echo "yes run git scm commit hook poll"
+        }
+     }
 
  } // end of stages
  post {
