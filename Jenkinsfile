@@ -2,7 +2,7 @@ pipeline {
     agent any
 parameters {
     string(name: 'branch_name', defaultValue: 'feature-uzoma', description: 'Enter branch to build')
-    choice(name: 'CHOICES', choices: ['Python3', 'Go', 'Ruby'], description: 'Enter Technology')
+    choice(name: 'CHOICE', choices: ['Python3', 'Go', 'Ruby'], description: 'Enter Technology')
     }
 
     stages {
@@ -35,7 +35,7 @@ parameters {
         }
         stage ('Print command') {
            steps {
-               echo '$CHOICES'//
+               echo '$CHOICE'
                echo "Choice: ${params.CHOICE}"
            }
         }
