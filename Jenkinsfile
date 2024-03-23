@@ -34,7 +34,12 @@ parameters {
           }
         }
         stage ('Print command') {
+          when {
+               expression {
+                    ${params.CHOICE}=='Ruby'
 
+               }
+          }
             steps {
                echo '$CHOICE'
                echo "Choice: ${params.CHOICE}"
