@@ -1,75 +1,69 @@
-pipeline{
+pipeline {
     agent any
 
-    tools{
+    tools {
         maven 'maven_3.9.3'
     }
 
-
-
-    stages{
-        stage('Github checkout'){
-            steps{
+    stages {
+        stage('Github checkout') {
+            steps {
                 git branch: 'jan2024-abelsulamo', credentialsId: 'asulamo24', url: 'https://github.com/IBT-learning/ibt-maven.git'
             }
         }
-        stage('List contents'){
-            steps{
+        stage('List contents') {
+            steps {
                 sh 'ls -lrt'
             }
         }
-        stage('validate'){
-            steps{
+        stage('validate') {
+            steps {
                 withMaven(maven: 'maven_3.9.3') {
                     sh 'mvn --version'
                     sh 'mvn validate'
                 }
             }
-            stage('Sonarqube Scan'){
-            environment{
+        }
+        stage('Sonarqube Scan') {
+            environment {
                 sonarScan = tool 'ibt-sonarqube_4.8'
             }
-                steps{
-                    withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
-                        sh "#{env.sonarScan}/bin/sonar-scanner"
-                    }
+            steps {
+                withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                    sh "${env.sonarScan}/bin/sonar-scanner"
                 }
             }
         }
-        stage('compile'){
-            steps{
-                 withMaven(maven: 'maven_3.8') {
-                          sh 'mvn --version'
-                          sh 'mvn compile'
-                 }
+        stage('compile') {
+            steps {
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
+                    sh 'mvn compile'
+                }
             }
         }
-        stage('test'){
-            steps{
-                sh 'mvn --version'
-                sh 'mvn test'
-            }
-
-        }
-        stage('package'){
-            steps{
-                sh 'mvn --version'
-                sh 'mvn package'
+        stage('test') {
+            steps {
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
+                    sh 'mvn test'
+                }
             }
         }
-        stage('deploy'){
-        steps{
-               withCredentials([file(credentialsId: 'mvn-settings-asulamo', variable: '')]) {
-                   sh 'mvn deploy -s $mvn-settings-asulamo'
-               }
-            }
-
-
-
+        stage('package') {
+            steps {
+                withMaven(maven: 'maven_3.9.3') {
+                    sh 'mvn --version'
+                    sh 'mvn package'
+                }
             }
         }
-
+        stage('deploy') {
+            steps {
+                withCredentials([file(credentialsId: 'mvn-settings-asulamo', variable: 'MVN_SETTINGS')]) {
+                    sh 'mvn deploy -s $MVN_SETTINGS'
+                }
+            }
+        }
     } // end of stages
-
-
 } // end of pipeline
