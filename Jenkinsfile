@@ -36,7 +36,7 @@ parameters {
         stage ('Print command') {
           when {
                expression {
-                    ${params.CHOICE}=='Ruby'
+                    '${params.CHOICE}'=='Ruby'
 
                }
           }
