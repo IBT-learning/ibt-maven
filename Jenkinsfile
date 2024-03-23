@@ -34,6 +34,13 @@ parameters {
           }
         }
         stage ('Print command') {
+          when {
+            expression {
+                ${params.CHOICE}=='Go'
+
+            }
+          }
+
            steps {
                echo '$CHOICE'
                echo "Choice: ${params.CHOICE}"
