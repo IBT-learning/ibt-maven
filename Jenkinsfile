@@ -30,7 +30,7 @@ environment {
     stage ('List Repo contents ') {
         steps{
             bat 'dir'
-            bat netstat -noab
+            bat 'netstat -noab'
         } //step
     } //stage4
     stage ('Print commands') {
