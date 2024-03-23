@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
 parameters {
     string(name: 'branch_name', defaultValue: 'feature-uzoma', description: 'Enter branch to build')
     choice(name: 'CHOICE', choices: ['Python3', 'Go', 'Ruby'], description: 'Enter Technology')
@@ -83,5 +84,5 @@ parameters {
 
            }
         }
-    }// end of stages
-}//end of pipeline
+    } // end of stages
+} //end of pipeline
