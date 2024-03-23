@@ -30,7 +30,7 @@ environment {
     stage ('List Repo contents ') {
         steps{
             sh 'ls'
-            sh 'netstat -noab'
+
         } //step
     } //stage4
     stage ('Print commands') {
