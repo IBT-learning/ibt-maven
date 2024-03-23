@@ -61,7 +61,7 @@ parameters {
         stage('using vars') {
           steps {
              echo '$version'
-             echo "${env.vesrion}"
+             echo "${env.version}"
 
           }
         }
