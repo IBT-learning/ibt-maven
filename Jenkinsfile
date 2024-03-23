@@ -39,5 +39,14 @@ parameters {
                echo "Choice: ${params.CHOICE}"
            }
         }
-    }
+        stage ('Example deploy'){
+          when {
+           branch 'main'
+         }
+           steps {
+            echo 'Deploying'
+           }
+
+        }
+    }// end of stages
 }//end of pipeline
