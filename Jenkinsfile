@@ -48,7 +48,7 @@ parameters {
         }
         stage ('Example deploy'){
           when {
-           branch 'main'
+           branch 'feature-uzoma'
          }
            steps {
             echo 'Deploying'
