@@ -57,15 +57,15 @@ pipeline {
                     sh 'mvn package'
                 }
             }
-            stage('DependencyScan'){
-                steps{
-                    dependencyCheck additionalArguments: '''
-                    -o "./"
-                    -s "./"
-                    -f "ALL"
-                    --prettyPrint ''', odcInstallation: 'dependency-check'
-                  dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                }
+        } // Close the 'package' stage here
+        stage('DependencyScan') {
+            steps {
+                dependencyCheck additionalArguments: '''
+                -o "./"
+                -s "./"
+                -f "ALL"
+                --prettyPrint ''', odcInstallation: 'dependency-check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
         stage('deploy') {
