@@ -1,26 +1,84 @@
 pipeline {
-    agent any
+ agent any
 
-    stages {
-        stage('hello') {
-            steps {
-                echo "hello world"
-            }
+ parameters {
+    string(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
+    choice(name: 'Choice', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+ }
+
+
+environment {
+    version = '1.1.1'
+}
+
+ stages {
+    stage('hello') {
+        steps {
+            echo "hello world"
+        } //step
+    } //stage1
+    stage('hi') {
+        steps {
+            echo "hi this is fao"
+        } //step
+    } //stage2
+    stage('Github download') {
+        steps{
+            git branch: '$Branch_name', credentialsId: 'faomet_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
         }
-        stage('hi') {
-            steps {
-                echo 'hi this is fao'
-            }
+    } //stage3
+    stage ('List Repo contents ') {
+        steps{
+            bat 'dir'
+        } //step
+    } //stage4
+    stage ('Print commands') {
+    when {
+        expression {
+            '${params.CHOICE}'=='Two'
         }
-        stage('Github download') {
-            steps{
-                git branch: '$Branch_name', credentialsId: 'fao_met', url: 'https://github.com/IBT-learning/ibt-maven.git'
-            }
+    }
+        steps {
+            echo '$Choice'
+            echo "Choice: ${params.Choice}"
         }
-        stage('List repo contents') {
-            steps{
-                bat 'dir'
+    } //stage 5
+    stage ('Example Deploy'){
+      when {
+        branch 'jan2024_fao'
+      }
+        steps{
+            echo "Deploying... "
+        }
+    }
+    stage('using vars'){
+        steps{
+            echo '$version'
+            echo "${env.version}"
+            script {
+                print env.version
             }
         }
     }
-}
+    stage('script block'){
+        steps{
+              script {
+                                def browsers = ['chrome', 'firefox']
+                                for (int i = 0; i < browsers.size(); ++i) {
+                                    echo "Testing the ${browsers[i]} browser"
+                                }
+                            }
+        }
+    }
+    stage('checking git hook'){
+        steps{
+            echo "i ran due to git scm commit hook poll"
+        }
+    }
+ } // end of stages
+ post {
+         always {
+             echo 'I will always say Hello again!'
+         }
+     }
+} // end of pipeline
