@@ -73,4 +73,9 @@ environment {
      }
 
  } // end of stages
+ post {
+        always {
+            echo ' I will always say Hi!'
+        }
+ }
 } // end of pipeline
