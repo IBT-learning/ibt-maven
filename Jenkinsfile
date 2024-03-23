@@ -3,7 +3,12 @@ pipeline {
 
     parameters {
         string(name: 'Branch_name', defaultValue: 'main',description: 'Enter branch to build')
+        choice(name: 'CHOICE', choices: ('one','Two','Three'), description: 'pick something')
     }
+environment {
+    version = '1.1.1.1'
+}
+
 
 
     stages {
@@ -42,6 +47,13 @@ pipeline {
             echo '$Branch_name'
             }
          }
+
+        stage('using vars'){
+            steps{
+            echo $version
+            echo '${env.version}'
+            }
+        }
 
     }//endofstages
 }//endofpipeline
