@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+    stages {
+        stage('Github Checkout'){
+            steps{
+                git branch: 'jan2024-shiney ', changelog: false, credentialsId: 'shiney495', poll: false, url: 'https://github.com/IBT-learning/ibt-maven.git'
+            }
+        }
+        stage('List contents'){
+            steps{
+            sh 'ls -lrt'
+            }
+        }
+
+
+    } // end of stages
+} //end of pipeline
