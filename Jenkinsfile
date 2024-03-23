@@ -35,7 +35,8 @@ parameters {
         }
         stage ('Print command') {
            steps {
-               echo '$CHOICES'
+               echo '$CHOICES'//
+               echo "Choice: ${params.CHOICE}"
            }
         }
     }
