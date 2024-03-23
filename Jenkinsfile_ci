@@ -26,6 +26,17 @@ pipeline{
                 }
             }
         }
+
+       stage('Sonarqube scan'){
+            environment{
+                sonarScan = tool 'ibt-sonarqube_4.8'
+            }
+            steps{
+                withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
+                  sh "${env.sonarScan}/bin/sonar-scanner -D sonar.projectkey"
+                }
+            }
+       }
         stage('compile'){
             steps{
                 withMaven(maven: 'maven_3.8') {
