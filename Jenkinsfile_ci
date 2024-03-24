@@ -26,7 +26,9 @@ pipeline{
                }
 
             }
+
          }// end of stage
+
          stage('compile'){
            steps{
              sh 'mvn --version'
@@ -34,11 +36,19 @@ pipeline{
 
            }
          }// end of stage
-         stage('test'){
+         stage('package'){
            steps{
             sh 'mvn --version'
             sh 'mvn package'
            }
          }// end of stage
+
+         stage('upload artefacts'){
+                    steps{
+                     withCredentials([file(credentialsId: 'settingfile-franklin', variable: 'settings.xml-file')]) {
+                         sh 'mvn  deploy -s $settings.xml-file'
+                     }
+                                        }
+                  }// end of stage
     }// end of stages
 }// end of pipeline
