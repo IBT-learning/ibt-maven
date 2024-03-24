@@ -45,8 +45,8 @@ pipeline{
 
          stage('upload artefacts'){
                     steps{
-                     withCredentials([file(credentialsId: 'settingfile-franklin', variable: 'settingfile-franklin')]) {
-                         sh 'mvn  deploy -s $settingfile-franklin'
+                     withCredentials([file(credentialsId: 'settings_franklin', variable: 'setings_franklin')]) {
+                         sh 'mvn  deploy -s $setings_franklin'
                      }
                                         }
                   }// end of stage
