@@ -44,5 +44,11 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('clean'){
+            steps {
+                sh 'mvn --version'
+                sh 'mvn clean'
+            }
+        }
     } // end of stages
 } // end of pipeline
