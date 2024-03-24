@@ -54,6 +54,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'kingsley_settings.xml', variable: 'mvn_settings_kingsley')]) {
                 sh 'mvn deploy -s $mvn_settings_kingsley'
+                }
             }
         }
     } // end of stages
