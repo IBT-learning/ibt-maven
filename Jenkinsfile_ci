@@ -44,16 +44,5 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('clean'){
-            steps {
-                sh 'mvn --version'
-                sh 'mvn clean'
-            }
-        }
-        stage('deploy') {
-            steps withCredentials([file(credentialsId: 'mvn_kingsley_settings.xml', variable: 'settings.xml')]) {
-                 sh 'mvn deploy -s $settings.xml'
-            }
-        }
     } // end of stages
 } // end of pipeline
