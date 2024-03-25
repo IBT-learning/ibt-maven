@@ -1,0 +1,64 @@
+pipeline{
+
+    agent any
+    tools{
+        maven 'maven_3.9'
+    }
+    stages{
+        stage('github checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/jan2024franklinv1']], extensions: [], userRemoteConfigs: [[credentialsId: 'franklin_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven']])
+
+            }
+        }// end of stage
+        stage('list files'){
+            steps{
+               sh ' ls -lrt'
+
+            }
+        }// end of stage
+         stage('validate'){
+            steps{
+               withMaven( maven: 'maven_3.9') {
+                   sh 'mvn --version'
+                   sh 'mvn validate'
+
+               }
+
+            }
+
+         }// end of stage
+         stage('sonarqube scan'){
+         environment{
+            sonarScan= tool 'ibt-sonarqube_5.0'
+         }
+                    steps{
+                      withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
+                        sh "${env.sonarScan}/bin/sonar-scanner"
+                      }
+
+                    }
+                  }// end of stage
+         stage('compile'){
+           steps{
+             sh 'mvn --version'
+             sh 'mvn test'
+
+           }
+         }// end of stage
+         stage('package'){
+           steps{
+            sh 'mvn --version'
+            sh 'mvn package'
+           }
+         }// end of stage
+
+         stage('upload artefacts'){
+                    steps{
+                     withCredentials([file(credentialsId: 'settings_franklin', variable: 'setings_franklin')]) {
+                         sh 'mvn  deploy -s $setings_franklin'
+                     }
+                                        }
+                  }// end of stage
+    }// end of stages
+}// end of pipeline
