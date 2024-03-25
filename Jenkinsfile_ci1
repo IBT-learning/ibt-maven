@@ -33,6 +33,7 @@ pipeline{
             sonarScan= tool 'ibt-sonarqube_5.0'
          }
                     steps{
+                    sh 'mvn compile'
                       withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
                         sh "${env.sonarScan}/bin/sonar-scanner"
                       }
