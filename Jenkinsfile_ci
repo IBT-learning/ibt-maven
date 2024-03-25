@@ -53,6 +53,17 @@ pipeline{
            }
          }// end of stage
 
+         stage('DependencyScan'){
+                              steps{
+                                  dependencyCheck additionalArguments: '''
+                                      -o "./"
+                                      -s "./"
+                                      -f "ALL"
+                                      --prettyPrint ''', odcInstallation: 'dependency-check'
+                                  dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                              }
+                          }
+
          stage('upload artefacts'){
                     steps{
                      withCredentials([file(credentialsId: 'settings_franklin', variable: 'setings_franklin')]) {
