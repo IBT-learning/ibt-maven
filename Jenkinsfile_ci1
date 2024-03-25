@@ -28,18 +28,7 @@ pipeline{
             }
 
          }// end of stage
-         stage('sonarqube scan'){
-         environment{
-            sonarScan= tool 'ibt-sonarqube_5.0'
-         }
-                    steps{
-                    sh 'mvn compile'
-                      withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                        sh "${env.sonarScan}/bin/sonar-scanner"
-                      }
 
-                    }
-                  }// end of stage
          stage('compile'){
            steps{
              sh 'mvn --version'
@@ -47,6 +36,19 @@ pipeline{
 
            }
          }// end of stage
+
+         stage('sonarqube scan'){
+                  environment{
+                     sonarScan= tool 'ibt-sonarqube_5.0'
+                  }
+                             steps{
+
+                               withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
+                                 sh "${env.sonarScan}/bin/sonar-scanner"
+                               }
+
+                             }
+                           }// end of stage
          stage('package'){
            steps{
             sh 'mvn --version'
