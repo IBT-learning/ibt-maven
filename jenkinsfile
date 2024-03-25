@@ -1,30 +1,85 @@
 pipeline {
-    agent any
+ agent any
 
-parameters{
-  string( name:'branch_name', defaultValue: 'main', description: 'enter branch to build')
-}
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }//end of stage
-         stage('hi') {
-            steps {
-                echo 'hi this is komivi'
-             }
+ parameters {
+    string(name: 'Branch_name', defaultValue: 'main', description: 'Enter branch to build')
+    choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+ }
+
+
+environment {
+    version = '1.1.1'
 }
 
-stage('Github download'){
-    steps{
-        git branch: '$branch_name', credentialsId: 'komivi_github_credential', url: 'https://github.com/IBT-learning/ibt-maven.git'
+ stages {
+    stage('hello') {
+        steps {
+            echo "hello world"
+        } //step
+    } //stage1
+    stage('hi') {
+        steps {
+            echo "hi this is komivi"
+        } //step
+    } //stage2
+    stage('Github download') {
+        steps{
+            git branch: '$Branch_name', credentialsId: 'komivi_github_credentials', url: 'https://github.com/IBT-learning/ibt-maven.git'
+        }
+    } //stage3
+    stage ('List Repo contents ') {
+        steps{
+            sh 'ls -lrt'
+            // bat 'dir' -- for windows
+        } //step
+    } //stage4
+    stage ('Print commands') {
+    when {
+        expression {
+            '${params.CHOICE}'=='Two'
+        }
     }
-  } //stages3
-stage('list repo contents') {
-   steps{
-        bat 'dir'
-    } //step
-   } //stage4
- }//end of stages
-}//end of pipeline
+        steps {
+            echo '$CHOICE'
+            echo "Choice: ${params.CHOICE}"
+        }
+    } //stage 5
+    stage ('Example Deploy'){
+      when {
+        branch 'main'
+      }
+        steps{
+            echo "Deploying... "
+        }
+    }
+    stage('using vars'){
+        steps{
+            echo '$version'
+            echo "${env.version}"
+            script {
+                print env.version
+            }
+        }
+    }
+    stage('script block'){
+        steps{
+              script {
+                                def browsers = ['chrome', 'firefox']
+                                for (int i = 0; i < browsers.size(); ++i) {
+                                    echo "Testing the ${browsers[i]} browser"
+                                }
+                            }
+        }
+    }
+    stage('checking git hook'){
+        steps{
+            echo "i ran due to git scm commit hook poll"
+        }
+    }
+ } // end of stages
+ post {
+         always {
+             echo 'I will always say Hello again!'
+         }
+     }
+} // end of pipeline
