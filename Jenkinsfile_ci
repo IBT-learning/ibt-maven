@@ -28,7 +28,17 @@ pipeline{
             }
 
          }// end of stage
+         stage('sonarqube scan'){
+         environment{
+            sonarScan= tool 'ibt-sonarqube_4.8'
+         }
+                    steps{
+                      withSonarQubeEnv(credentialsId: 'student-sonar-token', installationName: 'IBT sonarqube') {
+                        sh "${env.sonarScan}/bin/sonar-scanner"
+                      }
 
+                    }
+                  }// end of stage
          stage('compile'){
            steps{
              sh 'mvn --version'
