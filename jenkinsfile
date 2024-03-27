@@ -29,7 +29,7 @@ environment {
     } //stage3
     stage ('List Repo contents ') {
         steps{
-            // bat 'dir'
+             bat 'dir'
 
         } //step
     } //stage4
