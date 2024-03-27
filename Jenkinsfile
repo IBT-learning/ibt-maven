@@ -39,11 +39,9 @@ parameters {
           }
         }
         stage ('Print command') {
-          echo "$params"
           when {
                expression {
-                    '${params.CHOICE}'=='Ruby'
-
+                    params.CHOICE == 'Ruby'
                }
           }
             steps {
