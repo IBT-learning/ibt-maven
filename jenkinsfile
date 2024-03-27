@@ -29,8 +29,8 @@ environment {
     } //stage3
     stage ('List Repo contents ') {
         steps{
-            sh 'ls -lrt'
-            // bat 'dir' -- for windows
+
+            // bat 'dir'
         } //step
     } //stage4
     stage ('Print commands') {
