@@ -43,7 +43,7 @@ pipeline {
                sh 'mvn package'
            }
         }
-        stage('upload to artifactory'){
+        stage('deploy'){
             steps{
               withCredentials([file(credentialsId: 'mvn_settings_ibt_olufunmi', variable: 'mvn_settings_ibt_olufunmi')]) {
                   sh 'mvn deploy -s $mvn_settings_ibt_olufunmi'
