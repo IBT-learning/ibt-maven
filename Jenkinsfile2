@@ -17,9 +17,9 @@ pipeline {
                 echo 'test'
             }
         }
-          stage('test') {
+          stage('pipeline') {
                  steps {
-                      echo 'test'
+                      echo 'test2'
                     }
                 }
           stage('Git checkout') {
