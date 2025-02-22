@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-      PATH = "/usr/local/bin:${env.PATH}"
+      PATH = "/usr/local/bin:$PATH"
     }
     parameters{
     string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to build')
