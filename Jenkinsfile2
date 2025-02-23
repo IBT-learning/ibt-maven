@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-      PATH = "/usr/local/bin:$PATH"
-    }
     parameters{
     string(name:'Branch_Name', defaultValue:'main', description:'Enter the branch to build')
     choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
