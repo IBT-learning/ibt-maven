@@ -30,5 +30,10 @@ pipeline {
                     checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'git_cred_omalives', url: 'https://github.com/IBT-learning/ibt-maven.git']])
             }
           }
+          stage('testing hooks') {
+                         steps {
+                             echo 'hook tested success'
+                      }
+                  }
     }
 }
