@@ -32,7 +32,7 @@
     <repository>
       <id>central</id>
       <name>IBT Learning Jfrog-releases</name>
-      <url>https://ibtlearniing-jfrog.com/artifactory/ibt-libs-release</url>
+      <url>https://ibtlearning-jfrog.com/artifactory/ibt-libs-release</url>
     </repository>
     <snapshotRepository>
       <id>central</id>
