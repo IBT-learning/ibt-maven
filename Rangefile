@@ -17,5 +17,10 @@ pipeline {
                 echo 'Good morning'
             }
         }
+        stage('Good evening') {
+            steps {
+                 echo 'Good evening'
+            }
+        }
     }
 }
