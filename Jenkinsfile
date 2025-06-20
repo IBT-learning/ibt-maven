@@ -30,7 +30,7 @@ pipeline {
             steps{
                  checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/feature-davido']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-login-credential', url: 'https://github.com/IBT-learning/ibt-maven.git']])
                  bat 'dir'
-
+                 bat 'echo $Branch-Name $Choices'
             }
         }
     }
