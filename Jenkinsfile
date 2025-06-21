@@ -49,13 +49,7 @@ pipeline {
             steps{
                  echo 'hook tested success'
                  echo "${env.version2}"
-                 mail bcc: '', body: '''Hi,
 
-                 Your build is successful.
-
-                 Kind regards,
-
-                 Mgt''', cc: 'akmawater@gmail.com', from: '', replyTo: '', subject: 'Complete Build', to: 'ibhafidondavid@gmail.com'
             }
         }
     }
