@@ -59,9 +59,5 @@ pipeline {
             }
         }
     }
-    post { 'Sending email'
-        always {
-          echo 'I will always say hello'
-        }
-    }
+
 }
