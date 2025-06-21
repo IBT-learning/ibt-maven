@@ -12,8 +12,8 @@ stages {
 
  stage ('Validate'){
      steps{
-        withMaven(maven: 'maven_3.9') {
-            bat 'mvn validate'
+        withMaven( maven: 'maven_3.9')
+        bat 'mvn validate'
      }
  }
 }
