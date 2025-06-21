@@ -7,10 +7,14 @@ pipeline {
     environment{
       version = '1.3.0'
     }
+    tools {
+        maven 'maven_3.9'
+    }
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                bat 'mvn --version'
             }
         }
         stage('Hi') {
