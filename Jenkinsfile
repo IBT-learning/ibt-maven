@@ -16,14 +16,19 @@ pipeline {
                 echo 'Hi'
             }
         }
-        stage('Good morning') {
+        stage('Test') {
             steps {
-                echo 'Good morning'
+                echo 'Test'
             }
         }
-        stage('Good evening') {
-            steps {
-                 echo 'Good evening'
+        stage('Testing jenkinsfile') {
+        when{
+             expression{
+                env.BRANCH_NAME=='main'
+             }
+        }
+             steps {
+                 echo 'Testing jenkinsfile'
             }
         }
         stage('Git checkout') {
