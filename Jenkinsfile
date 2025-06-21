@@ -4,7 +4,9 @@ pipeline {
      string(name:'Branch-Name', defaultValue:'main', description:'Enter the branch to checkout')
      choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: 'choose a number')
     }
-
+    environment{
+      version = '1.3.0'
+    }
     stages {
         stage('Hello') {
             steps {
@@ -14,6 +16,7 @@ pipeline {
         stage('Hi') {
             steps {
                 echo 'Hi'
+                echo "${env.version}"
             }
         }
         stage('Test') {
@@ -40,8 +43,12 @@ pipeline {
             }
         }
         stage('Testing hook') {
+         environment{
+                version2 = '1.5.0'
+           }
             steps{
                  echo 'hook tested success'
+                 echo "${env.version2}"
             }
         }
     }
