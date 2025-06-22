@@ -1,7 +1,7 @@
 pipeline {
 agent any
 tools {
-  maven 'maven_3.8'
+  maven 'maven_3.9'
 }
 stages {
  stage{'Git Checkout'} {
@@ -12,19 +12,19 @@ stages {
 
  stage ('Validate'){
      steps{
-        withMaven( maven: 'maven_3.8')
+        withMaven( maven: 'maven_3.9')
         bat 'mvn validate'
      }
  }
  stage ('Compile'){
       steps{
-         withMaven( maven: 'maven_3.8')
+         withMaven( maven: 'maven_3.9')
          bat 'mvn compile'
       }
   }
   stage ('test run'){
         steps{
-           withMaven( maven: 'maven_3.8')
+           withMaven( maven: 'maven_3.9')
            bat 'mvn test'
         }
     }
