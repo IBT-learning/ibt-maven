@@ -12,7 +12,7 @@ stages {
 
  stage ('Validate'){
      steps{
-        withMaven(maven: 'maven_3.8') {
+        withMaven(maven: 'maven_3.8',globalMavenSettingsConfig: 'globalmavensettings') {
         bat 'mvn validate'
         }
      }
