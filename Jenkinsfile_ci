@@ -1,11 +1,9 @@
 pipeline {
-    agent
-    environment{
-      version = '1.3.0'
-    }
+    agent any
+
     tools {
-        maven 'maven_3.9'
-    }
+            maven 'Maven-3.9.3' // Assuming you have a Maven installation named 'Maven-3.9.3' configured in Jenkins
+        }
 
     stages {
     stage{'Git Checkout'} {
