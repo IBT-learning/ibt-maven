@@ -14,21 +14,21 @@ pipeline {
 
     stage ('Validate'){
      steps{
-        withMaven(maven: 'maven_3.8.9') {
-        bat 'mvn validate'
+        withMaven(maven: 'maven_3.8') {
+          bat 'mvn validate'
         }
      }
     }
     stage ('Compile'){
       steps{
-         withMaven(maven: 'maven_3.8.9') {
+         withMaven(maven: 'maven_3.8') {
          bat 'mvn compile'
          }
       }
     }
     stage ('test run'){
         steps{
-           withMaven(maven: 'maven_3.8.9') {
+           withMaven(maven: 'maven_3.8') {
            bat 'mvn test'
          }
      }
