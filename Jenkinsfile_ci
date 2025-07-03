@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-            maven 'Maven-3.9.3' // Assuming you have a Maven installation named 'Maven-3.9.3' configured in Jenkins
+            maven 'Maven_3.8.9' // Assuming you have a Maven installation named 'Maven_3.8.9' configured in Jenkins
         }
 
     stages {
@@ -14,21 +14,21 @@ pipeline {
 
     stage ('Validate'){
      steps{
-        withMaven(maven: 'maven_3.9') {
+        withMaven(maven: 'maven_3.8.9') {
         bat 'mvn validate'
         }
      }
     }
     stage ('Compile'){
       steps{
-         withMaven(maven: 'maven_3.9') {
+         withMaven(maven: 'maven_3.8.9') {
          bat 'mvn compile'
          }
       }
     }
     stage ('test run'){
         steps{
-           withMaven(maven: 'maven_3.9') {
+           withMaven(maven: 'maven_3.8.9') {
            bat 'mvn test'
          }
      }
