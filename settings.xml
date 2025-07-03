@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <servers>
+        <server>
+            <username>ibhafidondavid@gmail.com</username>
+            <password>{HuyFyXa5PMsH73dE7KgKIJQ+W50RDhoKi5iA7kmcq1hztkpgOljlwN63YwxTFfJgeoXsSfMrX66slC7M27Qubqw9WGD6lagm+iZOtC6ONhRp7SgWmr6jKYYF35p4lfx6}</password>
+            <id>central</id>
+        </server>
+        <server>
+            <username>ibhafidondavid@gmail.com</username>
+            <password>{HuyFyXa5PMsH73dE7KgKIJQ+W50RDhoKi5iA7kmcq1hztkpgOljlwN63YwxTFfJgeoXsSfMrX66slC7M27Qubqw9WGD6lagm+iZOtC6ONhRp7SgWmr6jKYYF35p4lfx6}</password>
+            <id>snapshots</id>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>dave-libs-release</name>
+                    <url>https://trialq37rr9.jfrog.io/artifactory/dave-libs-release</url>
+                </repository>
+                <repository>
+                    <snapshots />
+                    <id>snapshots</id>
+                    <name>dave-libs-snapshot</name>
+                    <url>https://trialq37rr9.jfrog.io/artifactory/dave-libs-snapshot</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>dave-libs-release</name>
+                    <url>https://trialq37rr9.jfrog.io/artifactory/dave-libs-release</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <snapshots />
+                    <id>snapshots</id>
+                    <name>dave-libs-snapshot</name>
+                    <url>https://trialq37rr9.jfrog.io/artifactory/dave-libs-snapshot</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>artifactory</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>artifactory</activeProfile>
+    </activeProfiles>
+</settings>
