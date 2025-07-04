@@ -29,5 +29,13 @@ pipeline {
          }
        }
       }
+      stage('SonarQube Analysis') {
+            environment{
+            sonarScan = tool 'July-sonarqube '
+            }
+              withSonarQubeEnv(credentialsId: 'sonarqube-credential', installationName: 'July-sonarqube') {
+                  bat "$sonarScan/bin/sonar-scanner
+                }
+              }
+          }
     }
-  }
