@@ -31,7 +31,7 @@ pipeline {
       }
       stage ('SonarQube Analysis') {
         environment{
-            sonarScan = tool 'July-sonarqube '
+            sonarScan = tool 'july-sonarqube'
             }
             steps{
               withSonarQubeEnv(credentialsId: 'sonarqube-credential', installationName: 'July-sonarqube') {
