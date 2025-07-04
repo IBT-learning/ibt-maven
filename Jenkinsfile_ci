@@ -29,10 +29,11 @@ pipeline {
          }
        }
       }
-      stage('SonarQube Analysis') {
-            environment{
+      stage ('SonarQube Analysis') {
+        environment{
             sonarScan = tool 'July-sonarqube '
             }
+            steps{
               withSonarQubeEnv(credentialsId: 'sonarqube-credential', installationName: 'July-sonarqube') {
                   bat "$sonarScan/bin/sonar-scanner"
                 }
