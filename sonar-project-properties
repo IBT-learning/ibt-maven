@@ -1,4 +1,5 @@
-sonar.projectKey=June4th
+Dsonar.projectKey=June4th
+Dsonar.projectName='June4th'
 
 sonar.java.binaries=target
 sonar.host.url=http://localhost:9000
