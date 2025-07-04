@@ -34,7 +34,7 @@ pipeline {
             sonarScan = tool 'July-sonarqube '
             }
               withSonarQubeEnv(credentialsId: 'sonarqube-credential', installationName: 'July-sonarqube') {
-                  bat "$sonarScan/bin/sonar-scanner
+                  bat "$sonarScan/bin/sonar-scanner"
                 }
               }
           }
