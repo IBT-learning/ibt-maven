@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'UX_node'}
 
     stages {
     stage('Git Checkout') {
