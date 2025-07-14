@@ -30,6 +30,12 @@ pipeline {
                 echo 'No vulnerabilities detected'
             }
         }
+        stage('Testing Hooks') {
+            steps {
+                echo 'Test completed'
+                echo 'No vulnerabilities detected'
+            }
+        }
     }
 
 }
