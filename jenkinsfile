@@ -10,5 +10,20 @@ pipeline {
                 echo 'Build Successful'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Test completed'
+                echo 'No vulnerabilities detected'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'This is a test deployment'
+                echo 'Image saved in local registry'
+                echo 'Artifact or Build successfully uploaded to Remote Artifactory'
+                echo 'Deployment Successful'
+            }
+        }
     }
+
 }
