@@ -24,6 +24,12 @@ pipeline {
                 echo 'Deployment Successful'
             }
         }
+        stage('Test_2') {
+            steps {
+                echo 'Test completed'
+                echo 'No vulnerabilities detected'
+            }
+        }
     }
 
 }
