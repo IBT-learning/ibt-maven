@@ -16,7 +16,7 @@ pipeline {
                 echo 'Nothing is actual happening'
                 echo 'It has been a ride bro'
                 echo 'Build Successful'
-                echo $versiongit
+                echo $version
             }
         }
         stage('Test') {
