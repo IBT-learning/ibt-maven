@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Git Checkout') {
             steps {
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-login-creds', url: 'https://github.com/Daxhian/ibt-maven.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-login-creds', url: 'https://github.com/Daxhian/ibt-maven.git']])
                 sh 'ls -lrt'
                 sh 'echo $Branch_Name $CHOICE'
             }
