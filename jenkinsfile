@@ -1,5 +1,12 @@
 pipeline {
+    environment{
+        version='1.3.8'
+    }
     agent any
+    // parameters{
+    //     string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
+    //     choice(name: 'CHOICE', choices: ['1-Build', '2-Test', '3-Deploy'], description: 'Choose a Stage')
+    // }
     stages {
         stage('Build') {
             steps {
