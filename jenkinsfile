@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    parameters{
+        string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
+        choice(name: 'CHOICE', choices: ['1-Build', '2-Test', '3-Deploy'], description: 'Choose a Stage')
+    }
+
 
     stages {
         stage('Build') {
@@ -34,6 +39,13 @@ pipeline {
             steps {
                 echo 'Test completed'
                 echo 'No vulnerabilities detected'
+            }
+        }
+        stage('Git Checkout') {
+            steps {
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-login-creds', url: 'https://github.com/Daxhian/ibt-maven.git']])
+                sh 'ls -lrt'
+                sh 'echo $Branch_Name $CHOICE'
             }
         }
     }
