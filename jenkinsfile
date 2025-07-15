@@ -1,0 +1,61 @@
+pipeline {
+    environment{
+        version='1.3.8'
+    }
+    agent any
+    // parameters{
+    //     string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
+    //     choice(name: 'CHOICE', choices: ['1-Build', '2-Test', '3-Deploy'], description: 'Choose a Stage')
+    // }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'This is just a test build'
+                echo 'Nothing is actual happening'
+                echo 'It has been a ride bro'
+                echo 'Build Successful'
+                echo "${version}"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Test completed'
+                echo 'No vulnerabilities detected'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'This is a test deployment'
+                echo 'Image saved in local registry'
+                echo 'Artifact or Build successfully uploaded to Remote Artifactory'
+                echo 'Deployment Successful'
+            }
+        }
+        stage('Test_2') {
+            when{
+                expression{
+                    env.BRANCH_NAME=='main'
+                }
+            }
+            steps {
+                echo 'Test completed'
+                echo 'No vulnerabilities detected'
+            }
+        }
+        stage('Testing Hooks') {
+            steps {
+                echo 'Test completed'
+                echo 'No vulnerabilities detected'
+            }
+        }
+        stage('Git Checkout') {
+            steps {
+                // checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$Branch_Name']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-login-creds', url: 'https://github.com/Daxhian/ibt-maven.git']])
+                sh 'ls -lrt'
+                sh 'echo $Branch_Name $CHOICE'
+            }
+        }
+    }
+
+}
