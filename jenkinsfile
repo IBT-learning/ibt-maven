@@ -7,6 +7,7 @@ pipeline {
     //     string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter the branch to checkout')
     //     choice(name: 'CHOICE', choices: ['1-Build', '2-Test', '3-Deploy'], description: 'Choose a Stage')
     // }
+
     stages {
         stage('Build') {
             steps {
@@ -14,7 +15,7 @@ pipeline {
                 echo 'Nothing is actual happening'
                 echo 'It has been a ride bro'
                 echo 'Build Successful'
-                // echo "${version}"
+                echo "${version}"
             }
         }
         stage('Test') {
