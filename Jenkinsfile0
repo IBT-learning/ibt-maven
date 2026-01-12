@@ -14,7 +14,7 @@ pipeline {
         }
             stage('Hiya') {
             steps {
-                echo 'Hi Chi'
+                echo 'Hi Chichi'
             }
         }
     }
