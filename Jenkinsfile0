@@ -17,5 +17,10 @@ pipeline {
                 echo 'Hi Chichi Man'
             }
         }
+             stage('testing jenkins') {
+             steps {
+                 echo 'jenkins'
+             }
+         }
     }
 }
